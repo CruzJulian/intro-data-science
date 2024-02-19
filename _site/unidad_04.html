@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MNS - Proyecto: The joy of programming</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">MNS</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./unidad_01.html" rel="" target="">
+ <span class="menu-text">Unidad 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./unidad_02.html" rel="" target="">
+ <span class="menu-text">Unidad 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./unidad_03.html" rel="" target="">
+ <span class="menu-text">Unidad 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./unidad_04.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Unidad 4</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenido</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
+  <ul class="collapse">
+  <li><a href="#objetivo-actual" id="toc-objetivo-actual" class="nav-link" data-scroll-target="#objetivo-actual">Objetivo actual</a></li>
+  </ul></li>
+  <li><a href="#preliminares" id="toc-preliminares" class="nav-link" data-scroll-target="#preliminares">Preliminares</a></li>
+  <li><a href="#preparación-de-los-datos" id="toc-preparación-de-los-datos" class="nav-link" data-scroll-target="#preparación-de-los-datos">Preparación de los datos</a></li>
+  <li><a href="#reducción-de-la-dimensionalidad" id="toc-reducción-de-la-dimensionalidad" class="nav-link" data-scroll-target="#reducción-de-la-dimensionalidad">Reducción de la dimensionalidad</a>
+  <ul class="collapse">
+  <li><a href="#análisis-de-componentes-principales" id="toc-análisis-de-componentes-principales" class="nav-link" data-scroll-target="#análisis-de-componentes-principales">Análisis de Componentes principales</a></li>
+  <li><a href="#t-sne" id="toc-t-sne" class="nav-link" data-scroll-target="#t-sne">t-SNE</a></li>
+  </ul></li>
+  <li><a href="#evaluación-de-los-resultados-de-la-reducción-de-dimensiones" id="toc-evaluación-de-los-resultados-de-la-reducción-de-dimensiones" class="nav-link" data-scroll-target="#evaluación-de-los-resultados-de-la-reducción-de-dimensiones">Evaluación de los resultados de la reducción de dimensiones</a>
+  <ul class="collapse">
+  <li><a href="#proporción-de-variabilidad-conservada" id="toc-proporción-de-variabilidad-conservada" class="nav-link" data-scroll-target="#proporción-de-variabilidad-conservada">Proporción de variabilidad conservada</a></li>
+  <li><a href="#test-de-mantel" id="toc-test-de-mantel" class="nav-link" data-scroll-target="#test-de-mantel">Test de Mantel</a></li>
+  </ul></li>
+  <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación">Interpretación</a>
+  <ul class="collapse">
+  <li><a href="#círculo-de-correlaciones" id="toc-círculo-de-correlaciones" class="nav-link" data-scroll-target="#círculo-de-correlaciones">Círculo de correlaciones</a></li>
+  <li><a href="#visualización-de-datos-reducidos" id="toc-visualización-de-datos-reducidos" class="nav-link" data-scroll-target="#visualización-de-datos-reducidos">Visualización de datos reducidos</a></li>
+  </ul></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones">Conclusiones</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Proyecto: The joy of programming</h1>
+<p class="subtitle lead">Etapa 4 de 4</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>En esta etapa se evalúan los resultados de los métodos de reducción de dimensiones presentados en la segunda etapa del proyecto. En el material del curso es posible encontrar las bases teóricas de los métodos de evaluación implementados en esta etapa, es importante consultarlo en caso de inquietudes. Al igual que las etapas anteriores, la implementación de los métodos de evaluación se realiza en lenguajes para el manejo de datos R y Python.</p>
+<p>Los métodos aplicados para la evaluación de los resultados de los métodos de reducción de dimensiones son: proporción de la variabilidad y test de Mantel.</p>
+<section id="objetivo-actual" class="level2">
+<h2 class="anchored" data-anchor-id="objetivo-actual">Objetivo actual</h2>
+<p>La cuarta etapa del proyecto está orientada a cumplir el cuarto objetivo específico:</p>
+<blockquote class="blockquote">
+<p>Evaluar los resultados de los algoritmos de reducción de dimensiones y crear las visualizaciones e interpretaciones correspondientes.</p>
+</blockquote>
+</section>
+</section>
+<section id="preliminares" class="level1">
+<h1>Preliminares</h1>
+<p>En primer lugar debemos cargar las librerías que vamos a utilizar.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readr"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"knitr"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyr"</span>, <span class="at">exclude =</span> <span class="st">"extract"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"purrr"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"FactoMineR"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"factoextra"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tsne"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ade4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mantel</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial <span class="im">import</span> distance_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Generamos una lista de configuración. Esta es una buena práctica de programación en ciencia de datos. En esta lista vamos a almacenar información que utilizaremos en el código de forma reiterada.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mi_setup <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">datos_pinturas =</span> <span class="fu">file.path</span>(<span class="st">"01_data"</span>, <span class="st">"bob-ross.csv"</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">archivo_grupos =</span> <span class="fu">file.path</span>(<span class="st">"01_data"</span>, <span class="st">"resultados_r_01.csv"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este código genera una lista de configuración. En esta lista se guardan las rutas y otros parámetros que se usan más adelante en el desarrollo.</p>
+<ul>
+<li><p><strong><code>datos_pinturas</code>:</strong> Ruta del archivo “bob-ross.csv” ubicado en la carpeta “01_data”. Este archivo contiene datos relacionados con pinturas de Bob Ross.</p></li>
+<li><p><strong><code>archivo_grupos</code>:</strong> Ruta del archivo “resultados_r_01.csv” ubicado en la carpeta “01_data”. Este archivo contiene resultados de los grupos obtenidos en el análisis previo.</p></li>
+</ul>
+<p>Adicionalmente se configura <code>ggplot2</code> para usar el tema <code>minimal</code> por defecto.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mi_setup <span class="op">=</span> {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datos_pinturas"</span>: os.path.join(<span class="st">"01_data"</span>, <span class="st">"bob-ross.csv"</span>), </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"archivo_grupos"</span>: os.path.join(<span class="st">"01_data"</span>, <span class="st">"resultados_py_01.csv"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">'whitegrid'</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sns.set_context(<span class="st">'notebook'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este código genera una lista de configuración. En esta lista se guardan las rutas y otros parámetros que se usan más adelante en el desarrollo.</p>
+<ul>
+<li><p><strong><code>datos_pinturas</code>:</strong> Ruta del archivo “bob-ross.csv” ubicado en la carpeta “01_data”. Este archivo contiene datos relacionados con pinturas de Bob Ross.</p></li>
+<li><p><strong><code>archivo_grupos</code>:</strong> Ruta del archivo “resultados_py_01.csv” ubicado en la carpeta “01_data”. Este archivo contiene resultados de los grupos obtenidos en el análisis previo.</p></li>
+</ul>
+<p>Adicionalmente, se configura <code>seaborn</code> para usar el tema <code>whitegrid</code> y el contexto <code>notebook</code> por defecto.</p>
+</div>
+</div>
+</div>
+<p>Leemos nuestros archivos de datos.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(mi_setup<span class="sc">$</span>datos_pinturas) <span class="ot">-&gt;</span> tb_pinturas</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(mi_setup<span class="sc">$</span>archivo_grupos) <span class="ot">-&gt;</span> tb_grupos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se utiliza las función <code>read_csv</code> de la librería <code>readr</code> para leer archivos de datos en formato .CSV y se asignan los resultados a dos dataframes: <code>tb_pinturas</code> y <code>tb_grupos</code>. Aquí está la explicación:</p>
+<ul>
+<li><p><strong><code>read_csv(mi_setup$datos_pinturas) -&gt; tb_pinturas</code>:</strong> Se lee el archivo de datos cuya ruta está especificada en <code>mi_setup$datos_pinturas</code> utilizando la función <code>read_csv</code> del paquete <code>readr</code>. El dataframe resultante se asigna al objeto <code>tb_pinturas</code>.</p></li>
+<li><p><strong><code>read_csv(mi_setup$archivo_grupos) -&gt; tb_grupos</code>:</strong> Similar a la línea anterior, se lee el archivo de datos cuya ruta está en <code>mi_setup$archivo_grupos</code>. El dataframe resultante se asigna al objeto <code>tb_grupos</code>.</p></li>
+</ul>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tb_pinturas <span class="op">=</span> pd.read_csv(mi_setup[<span class="st">"datos_pinturas"</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tb_grupos <span class="op">=</span> pd.read_csv(mi_setup[<span class="st">"archivo_grupos"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Utilizando la librería <code>pandas</code>, mediante la función <code>pd.read_csv</code> se leen los archivos de datos en formato .CSV y se asignan los resultados a dos dataframes: <code>tb_pinturas</code> y <code>tb_grupos</code>. Aquí está la explicación:</p>
+<ul>
+<li><p><strong><code>tb_pinturas = pd.read_csv(mi_setup["datos_pinturas"])</code>:</strong> Se lee el archivo de datos cuya ruta está especificada en <code>mi_setup["datos_pinturas"]</code>. El dataframe resultante se asigna al objeto <code>tb_pinturas</code>.</p></li>
+<li><p><strong><code>tb_grupos = pd.read_csv(mi_setup["archivo_grupos"])</code>:</strong> Similar a la línea anterior, se lee el archivo de datos cuya ruta está en <code>mi_setup["archivo_grupos"]</code>. El dataframe resultante se asigna al objeto <code>tb_grupos</code>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="preparación-de-los-datos" class="level1">
+<h1>Preparación de los datos</h1>
+<p>Seleccionamos las columnas con las que vamos a realizar nuestros análisis. En este caso se trata de todas las columnas de atributos de las pinturas.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tb_pinturas <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span> EPISODE, <span class="sc">-</span> TITLE) <span class="ot">-&gt;</span> tb_pinturas_caract</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se utiliza el operador <code>%&gt;%</code> de la biblioteca <code>dplyr</code> para realizar una operación de selección de columnas en el dataframe <code>tb_pinturas</code>. Aquí se explica paso a paso:</p>
+<ul>
+<li><p><strong><code>tb_pinturas %&gt;%</code>:</strong> El operador <code>%&gt;%</code> (pipe) se utiliza para pasar el objeto <code>tb_pinturas</code> al siguiente paso de la cadena de operaciones.</p></li>
+<li><p><strong><code>select(- EPISODE, - TITLE)</code>:</strong> Se utiliza la función <code>select</code> del paquete <code>dplyr</code> para elegir columnas específicas del dataframe <code>tb_pinturas</code>. La notación <code>-</code> se utiliza para excluir las columnas llamadas “EPISODE” y “TITLE”. Esto significa que todas las columnas excepto “EPISODE” y “TITLE” son seleccionadas.</p></li>
+<li><p><strong><code>-&gt; tb_pinturas_caract</code>:</strong> El resultado de la selección se asigna a un nuevo dataframe llamado <code>tb_pinturas_caract</code>.</p></li>
+</ul>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tb_pinturas_caract <span class="op">=</span> tb_pinturas.drop([<span class="st">"EPISODE"</span>, <span class="st">"TITLE"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este código elimina las columnas “EPISODE” y “TITLE” del dataframe <code>tb_pinturas</code>, y el resultado se guarda en un nuevo dataframe llamado <code>tb_pinturas_caract</code>.</p>
+<p><strong><code>tb_pinturas_caract =</code>:</strong> El resultado de la operación se guarda en un nuevo dataframe denominado <code>tb_pinturas_caract</code>.</p>
+<p>**tb_pinturas.drop([“EPISODE”, “TITLE”], …)<code>:** Se utiliza el método</code>drop<code>de pandas para eliminar las columnas "EPISODE" y "TITLE" del dataframe</code>tb_pinturas`.</p>
+<p><strong><code>axis=1</code>:</strong> El argumento <code>axis</code> establece en qué sentido se llevan a cabo las operaciones enunciadas.En este caso <code>axis=1</code> indica que la operación se realiza a lo largo de las columnas.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="reducción-de-la-dimensionalidad" class="level1">
+<h1>Reducción de la dimensionalidad</h1>
+<p>La evaluación de los resultados requiere algunas cálculos que se realizan y se guardan durante el ajuste de los modelos. Por esta razón, a diferencia de los algoritmos de agrupación, resulta más fácil correr de nuevo las rutinas de reducción de dimensiones presentadas en la unidad 2 que cargar los resultados. Este es el punto de partida.</p>
+<section id="análisis-de-componentes-principales" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-de-componentes-principales">Análisis de Componentes principales</h2>
+<p>Aplicamos el análisis de componentes principales al conjunto de datos.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PCA</span>(tb_pinturas_caract, <span class="at">graph =</span> <span class="cn">FALSE</span>, <span class="at">ncp =</span> <span class="dv">2</span>) <span class="ot">-&gt;</span> ls_pca_resultado</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ls_pca_resultado <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="st">"ind"</span>, <span class="st">"coord"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>)) <span class="ot">-&gt;</span> tb_pca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este código realiza un análisis de Componentes Principales (PCA) sobre el dataframe <code>tb_pinturas_caract</code> y posteriormente manipula los resultados para obtener un nuevo dataframe llamado <code>tb_pca</code>. A continuación, se presenta la explicación paso a paso:</p>
+<p><strong><code>PCA(tb_pinturas_caract, ...)</code>:</strong> Se utiliza la función <code>PCA</code> del paquete <code>FactoMineR</code> para realizar un análisis de componentes crincipales en el dataframe <code>tb_pinturas_caract</code>.</p>
+<p><strong><code>PCA(..., graph = FALSE, ncp = 2)</code>:</strong> El argumento <code>graph = FALSE</code> indica que no se deben generar gráficos durante el análisis. El argumento <code>ncp = 2</code> especifica que se deben retener los dos primeros componentes principales.</p>
+<p><strong><code>-&gt; ls_pca_resultado</code>:</strong> El resultado es una lista que se almacena en el objeto <code>ls_pca_resultado</code>.</p>
+<p><strong><code>ls_pca_resultado %&gt;% pluck("ind", "coord")</code>:</strong> La función <code>pluck</code> se utiliza para extraer las coordenadas de las observaciones del resultado del PCA.</p>
+<p><strong><code>%&gt;% as_tibble()</code>:</strong> Se utiliza la función <code>as_tibble</code> para convertir las coordenadas a un formato de tibble.</p>
+<p><strong><code>%&gt;% setNames(c("X", "Y"))</code>:</strong> La función <code>setNames</code> se usa para renombrar las columnas del tibble como “X” y “Y”.</p>
+<p><strong><code>-&gt; tb_pca</code>:</strong> El resultado final es un datframe que se almacena en el objeto <code>tb_pca</code>.</p>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>arr_pinturas_standar <span class="op">=</span> StandardScaler().fit_transform(tb_pinturas_caract)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>mod_pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>mod_pca <span class="op">=</span> mod_pca.fit(arr_pinturas_standar)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>tb_pca <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    data    <span class="op">=</span> mod_pca.transform(arr_pinturas_standar)[: , [<span class="dv">0</span>, <span class="dv">1</span>]],</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> [<span class="st">"X"</span>, <span class="st">"Y"</span>]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este código utiliza la librería <code>scikit-learn</code> para realizar un análisis de Componentes Principales (PCA) sobre el DataFrame <code>tb_pinturas_caract</code> y crea un nuevo DataFrame llamado tb_pca. A continuación, se presenta la explicación paso a paso:</p>
+<p><strong><code>arr_pinturas_standar =</code>:</strong> El resultado de esta operacíon, que es un arreglo, se guarda en el objeto <code>arr_pinturas_standar</code>.</p>
+<p>**<code>StandardScaler():** Se utiliza</code>StandardScaler<code>para estandarizar el dataframe</code>tb_pinturas_caract`. Esto significa que cada característica (columna) se ajusta para tener una media de cero y una desviación estándar de uno.</p>
+<p><strong><code>.fit_transform(tb_pinturas_caract)</code>:</strong> El método <code>fit_transform</code> realiza el ajuste y la transformación en una sola llamada.</p>
+<p><strong><code>mod_pca =</code>:</strong> El objeto resultante es un modelo, que se guarda en el objeto <code>mod_pca</code>.</p>
+<p><strong><code>PCA(n_components=10)</code>:</strong> Se crea una instancia de la clase <code>PCA</code> con la especificación de retener dos componentes principales (<code>n_components=2</code>).</p>
+<p><strong><code>mod_pca = mod_pca.fit(arr_pinturas_standar)</code>:</strong> Luego, se ajusta el modelo a los datos estandarizados utilizando el método <code>fit</code>.</p>
+<p><strong><code>mod_pca.transform(arr_pinturas_standar)</code>:</strong> Se utiliza el modelo PCA entrenado para transformar los datos estandarizados. Esto significa proyectar los datos originales en el espacio de las dos primeras componentes principales.</p>
+<p><strong><code>tb_pca = pd.DataFrame(data = ..., columns = ...)</code>:</strong> Se crea un nuevo dataframe llamado <code>tb_pca</code> utilizando las componentes principales obtenidas. Este dataframe tiene dos columnas, “X” y “Y”, que representan las dos dimensiones principales del espacio de los componentes principales.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="t-sne" class="level2">
+<h2 class="anchored" data-anchor-id="t-sne">t-SNE</h2>
+<p>Realizamos la reducción a 2 dimensiones aplicando el algoritmo t-SNE a nuestro dataset de características <code>tb_pinturas_caract</code>. En este ejemplo, utilizamos un <code>perplexity = 20</code>, pero podríamos utilizar cualquier otro valor entre 1 y 50.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tsne</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist</span>(tb_pinturas_caract),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">perplexity =</span> <span class="dv">20</span>, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">k =</span> <span class="dv">2</span>, </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">initial_dims =</span> <span class="fu">ncol</span>(tb_pinturas_caract)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> mt_tsne_resultado</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>mt_tsne_resultado <span class="sc">%&gt;%</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">"minimal"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>)) <span class="ot">-&gt;</span> tb_tsne</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><code>tsne(dist(tb_pinturas_caract),...)</code>:</strong> Se utiliza la función <code>tsne</code> para aplicar el método t-SNE a la matriz de distancias de las características de las pinturas contenidas en <code>tb_pinturas_caract</code>. Se especifican parámetros como la perplexidad, el número de dimensiones, y las dimensiones iniciales.</p>
+<p><strong><code>... -&gt; mt_tsne_resultado</code>:</strong> El resultado de la aplicación de t-SNE es una matriz, que se asigna al objeto <code>mt_tsne_resultado</code>.</p>
+<p><strong><code>mt_tsne_resultado %&gt;% as_tibble(.name_repair = "minimal")</code>: </strong> Se utiliza <code>%&gt;%</code> para encadenar operaciones. El resultado de t-SNE se transforma a un dataframe mediante la función <code>as_tibble</code>.</p>
+<p><strong><code>... %&gt;% setNames(c("X", "Y")) -&gt; tb_tsne</code>:</strong> Se renombran las columnas como “X” y “Y”. El resultado es un dataframe que se almacena en el objeto <code>tb_tsne</code>.</p>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mod_tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, learning_rate<span class="op">=</span><span class="st">'auto'</span>, init<span class="op">=</span><span class="st">'random'</span>, perplexity<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mt_tsne_resultado <span class="op">=</span> mod_tsne.fit_transform(tb_pinturas_caract)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>tb_tsne <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    data    <span class="op">=</span> mt_tsne_resultado,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> [<span class="st">"X"</span>, <span class="st">"Y"</span>]</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><code>mod_tsne = TSNE(n_components=2, ...)</code>:</strong> Se instancia un modelo t-SNE utilizando la clase <code>TSNE</code> del paquete <code>sklearn</code>. Se especifican parámetros como el número de componentes, la tasa de aprendizaje, el método de inicialización y la perplexidad. La instancia es un modelo que se guarda en el objeto <code>mod_tsne</code>.</p>
+<p><strong><code>mod_tsne.fit_transform(tb_pinturas_caract)</code>:</strong> Se ajusta el modelo t-SNE usando los datos de las pinturas contenidas en <code>tb_pinturas_caract</code> utilizando el método <code>fit_transform</code>. Esto realiza el proceso de reducción de dimensionalidad y devuelve las coordenadas en el espacio de baja dimensión en formato de matriz, que se guardae en el objeto <code>mt_tsne_resultado</code>.</p>
+<p><strong><code>tb_tsne = pd.DataFrame(...)</code>:</strong> Se crea un DataFrame llamado <code>tb_tsne</code> con las coordenadas resultantes del t-SNE, asignando nombres a las columnas como “X” y “Y”.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="evaluación-de-los-resultados-de-la-reducción-de-dimensiones" class="level1">
+<h1>Evaluación de los resultados de la reducción de dimensiones</h1>
+<p>Los métodos para evaluar los resultados de la reducción de dimensiones son los siguientes:</p>
+<ul>
+<li><p>Proporción de la variabilidad conservada: que se aplica al análisis de componentes principales para establecer el porcentaje de varianza recogido en sus componentes. Este método no se aplica al resultado del algoritmo t-SNE.</p></li>
+<li><p>Prueba de Mantel para similaridad entre matrices de distancias: que se aplica en ambos casos, acp y t-SNE, con el fin de establecer la cercanía (correlación) entre la matriz de distancias de los puntos resultantes y la matriz de distancias original.</p></li>
+</ul>
+<section id="proporción-de-variabilidad-conservada" class="level2">
+<h2 class="anchored" data-anchor-id="proporción-de-variabilidad-conservada">Proporción de variabilidad conservada</h2>
+<p>Calculamos la varianza recogida por el análisis de componentes principales.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ls_pca_resultado <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  get_eig <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="ot">-&gt;</span> tb_varianza</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">eigenvalue</th>
+<th style="text-align: right;">variance.percent</th>
+<th style="text-align: right;">cumulative.variance.percent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Dim.1</td>
+<td style="text-align: right;">5.56</td>
+<td style="text-align: right;">8.42</td>
+<td style="text-align: right;">8.42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dim.2</td>
+<td style="text-align: right;">3.45</td>
+<td style="text-align: right;">5.22</td>
+<td style="text-align: right;">13.64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dim.3</td>
+<td style="text-align: right;">3.05</td>
+<td style="text-align: right;">4.62</td>
+<td style="text-align: right;">18.26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dim.4</td>
+<td style="text-align: right;">2.34</td>
+<td style="text-align: right;">3.54</td>
+<td style="text-align: right;">21.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dim.5</td>
+<td style="text-align: right;">2.16</td>
+<td style="text-align: right;">3.27</td>
+<td style="text-align: right;">25.07</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dim.6</td>
+<td style="text-align: right;">2.06</td>
+<td style="text-align: right;">3.12</td>
+<td style="text-align: right;">28.19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dim.7</td>
+<td style="text-align: right;">1.98</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">31.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dim.8</td>
+<td style="text-align: right;">1.88</td>
+<td style="text-align: right;">2.85</td>
+<td style="text-align: right;">34.04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dim.9</td>
+<td style="text-align: right;">1.80</td>
+<td style="text-align: right;">2.73</td>
+<td style="text-align: right;">36.77</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dim.10</td>
+<td style="text-align: right;">1.68</td>
+<td style="text-align: right;">2.54</td>
+<td style="text-align: right;">39.31</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><strong><code>ls_pca_resultado %&gt;% get_eig</code>:</strong> Extrae los valores propios (eigenvalues) del análisis de componentes principales mediante <code>get_eig</code>.</p>
+<p><strong><code>... %&gt;% head(10)</code>:</strong> Toma las primeras 10 filas de estos valores propios usando <code>head(10)</code>.</p>
+<p><strong><code>... -&gt; tb_varianza</code>:</strong> El resultado se almacena en el objeto <code>tb_varianza</code>.</p>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tb_varianza <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Componente'</span>: </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    np.array(<span class="bu">range</span>(<span class="bu">len</span>(mod_pca.explained_variance_ratio_))) <span class="op">+</span> <span class="dv">1</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Varianza Explicada'</span>: mod_pca.explained_variance_ratio_,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Varianza acumulada'</span>: mod_pca.explained_variance_ratio_.cumsum()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Componente</th>
+<th data-quarto-table-cell-role="th">Varianza Explicada</th>
+<th data-quarto-table-cell-role="th">Varianza acumulada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>0.084240</td>
+<td>0.084240</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>0.052203</td>
+<td>0.136443</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>0.046177</td>
+<td>0.182620</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>0.035389</td>
+<td>0.218008</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5</td>
+<td>0.032660</td>
+<td>0.250668</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>6</td>
+<td>0.031196</td>
+<td>0.281864</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>7</td>
+<td>0.030028</td>
+<td>0.311892</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>8</td>
+<td>0.028464</td>
+<td>0.340356</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>9</td>
+<td>0.027341</td>
+<td>0.367697</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>10</td>
+<td>0.025430</td>
+<td>0.393127</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><strong><code>tb_varianza = pd.DataFrame(...)</code>:</strong> Se crea un dataframe llamado <code>tb_varianza</code> que contiene la varianza explicada y la varianza acumulada asociadas con cada componente principal.</p>
+<p><strong><code>mod_pca.explained_variance_ratio_</code>:</strong> Proporciona la proporción de varianza explicada por cada componente.</p>
+<p><strong><code>mod_pca.explained_variance_ratio_.cumsum()</code>:</strong> Proporciona la varianza acumulada.</p>
+</div>
+</div>
+</div>
+<p>A partir de la varianza recogida generamos el gráfico de sedimentación</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_screeplot</span>(ls_pca_resultado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unidad_04_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>El gráfico de sedimentación muestra la proporción de varianza explicada por cada componente principal en el eje y contra el número de componente principal en el eje x. Este gráfico es útil para determinar cuántos componentes principales retener en función de la cantidad de varianza que explican.</p>
+<p><strong><code>fviz_screeplot</code>: </strong> es una función de visualización que se utiliza para trazar el gráfico de sedimentación de un análisis de componentes principales (PCA).</p>
+<p><strong><code>ls_pca_resultado</code>:</strong> es el resultado del análisis de componentes principales previo.</p>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot(tb_varianza[<span class="st">"Componente"</span>], tb_varianza[<span class="st">"Varianza Explicada"</span>], <span class="st">'ok-'</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.bar(tb_varianza[<span class="st">"Componente"</span>], tb_varianza[<span class="st">"Varianza Explicada"</span>])</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Número de Componentes Principales'</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Varianza Explicada'</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unidad_04_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><code>plt.plot(..., 'ok-')</code>:</strong> - Se utiliza <code>plt.plot</code> para trazar una línea que conecta los puntos (número de componente principal, proporción de varianza explicada). Se especifica <code>'ok-'</code> para que los puntos sean de color negro (<code>'k'</code>), redondos (<code>'o'</code>) y conectados por líneas (<code>'-'</code>).</p>
+<p><strong><code>plt.bar(...)</code>:</strong> Se utiliza <code>plt.bar</code> para trazar un gráfico de barras de la proporción de varianza explicada por cada componente principal. Esto proporciona una representación visual adicional de la distribución de la varianza entre los componentes principales.</p>
+<p><strong><code>plt.xlabel(...); plt.ylabel(...)</code>:</strong> Se añaden etiquetas al eje x y al eje y,</p>
+<p><strong><code>plt.show(); plt.close()</code>:</strong> Se muestra la figura y luego se cierra.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="test-de-mantel" class="level2">
+<h2 class="anchored" data-anchor-id="test-de-mantel">Test de Mantel</h2>
+<p>La prueba de Mantel permite establecer la correlación entre dos matrices de distancias con un nivel de significancia dado.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tb_pinturas_caract <span class="sc">%&gt;%</span> dist <span class="ot">-&gt;</span> mt_dist_pinturas</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>tb_pca <span class="sc">%&gt;%</span> dist <span class="ot">-&gt;</span> mt_dist_pca</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mantel.randtest</span>(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>   mt_dist_pinturas, mt_dist_pca, </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">nrepet =</span> <span class="dv">1000</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>   ) <span class="ot">-&gt;</span> mantel_result_pca</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>mantel_result_pca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Monte-Carlo test
+Call: mantel.randtest(m1 = mt_dist_pinturas, m2 = mt_dist_pca, nrepet = 1000)
+
+Observation: 0,6786 
+
+Based on 1000 replicates
+Simulated p-value: 0,000999001 
+Alternative hypothesis: greater 
+
+     Std.Obs  Expectation     Variance 
+2,630284e+01 4,859162e-04 6,646608e-04 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tb_tsne <span class="sc">%&gt;%</span> dist <span class="ot">-&gt;</span> mt_dist_tsne</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mantel.randtest</span>(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>   mt_dist_pinturas, mt_dist_tsne, </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">nrepet =</span> <span class="dv">1000</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>   ) <span class="ot">-&gt;</span> mantel_result_tsne</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>mantel_result_tsne</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Monte-Carlo test
+Call: mantel.randtest(m1 = mt_dist_pinturas, m2 = mt_dist_tsne, nrepet = 1000)
+
+Observation: 0,6670998 
+
+Based on 1000 replicates
+Simulated p-value: 0,000999001 
+Alternative hypothesis: greater 
+
+     Std.Obs  Expectation     Variance 
+3,482720e+01 3,515885e-04 3,665106e-04 </code></pre>
+</div>
+</div>
+<p>Este código realiza pruebas de Mantel para comparar la similitud entre las matrices de distancia de las características originales (<code>tb_pinturas_caract</code>) con las matrices de distancia de las coordenadas en el espacio de componentes principales (<code>tb_pca</code>) y en el espacio de t-SNE (<code>tb_tsne</code>).</p>
+<p><strong><code>tb_pinturas_caract %&gt;% dist -&gt; mt_dist_pinturas</code>:</strong> Calcula la matriz de distancias entre las filas de <code>tb_pinturas_caract</code> y almacena el resultado en <code>mt_dist_pinturas</code>. El operador <code>%&gt;%</code> (pipe) se utiliza para pasar el resultado de una operación como argumento a la siguiente.</p>
+<p><strong><code>tb_pca %&gt;% dist -&gt; mt_dist_pca</code>:</strong> Calcula la matriz de distancias entre las filas de <code>tb_pca</code>, que contiene las coordenadas de las observaciones en el espacio de componentes principales, y almacena el resultado en <code>mt_dist_pca</code>.</p>
+<p><strong><code>mantel.randtest(mt_dist_pinturas, mt_dist_pca, ...)</code>:</strong> Realiza una prueba de Mantel entre las matrices de distancia <code>mt_dist_pinturas</code> y <code>mt_dist_pca</code>; <code>mantel.randtest</code> del paquete <code>ade4</code> es la función que realiza una prueba de Mantel.</p>
+<p><strong><code>mantel.randtest(..., nrepet = 1000)</code>:</strong> indica que se deben realizar 1000 permutaciones aleatorias para calcular el p-valor.</p>
+<p><strong><code>mantel_result_pca</code>:</strong> Almacena los resultados de la prueba de Mantel entre las distancias de <code>tb_pinturas_caract</code> y <code>tb_pca</code>.</p>
+<p><strong><code>tb_tsne %&gt;% dist -&gt; mt_dist_tsne</code>:</strong> Calcula la matriz de distancias entre las filas de <code>tb_tsne</code>, que contiene las coordenadas de las observaciones en el espacio de t-SNE, y almacena el resultado en <code>mt_dist_tsne</code>.</p>
+<p><strong><code>mantel.randtest(mt_dist_pinturas, mt_dist_tsne, ...)</code>:</strong> Realiza una prueba de Mantel entre las matrices de distancia <code>mt_dist_pinturas</code> y <code>mt_dist_tsne</code>; <code>mantel.randtest</code> del paquete <code>ade4</code> es la función que realiza una prueba de Mantel.</p>
+<p><strong><code>mantel.randtest(..., nrepet = 1000)</code>:</strong> Se utilizan 1000 permutaciones aleatorias para calcular el p-valor.</p>
+<p><strong><code>mantel_result_tsne</code>:</strong> Almacena los resultados de la prueba de Mantel entre las distancias de <code>tb_pinturas_caract</code> y <code>tb_tsne</code>.</p>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mt_dist_pinturas <span class="op">=</span> distance_matrix(tb_pinturas_caract.values, tb_pinturas_caract.values)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>mt_dist_pca <span class="op">=</span> distance_matrix(tb_pca.values, tb_pca.values)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>mantel_result_pca <span class="op">=</span> mantel.test(mt_dist_pinturas, mt_dist_pca, perms<span class="op">=</span><span class="dv">1000</span>, method<span class="op">=</span><span class="st">'pearson'</span>, tail<span class="op">=</span><span class="st">'upper'</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>mantel_result_pca.r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.6785999550226706</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mantel_result_pca.p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.001</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mt_dist_tsne <span class="op">=</span> distance_matrix(tb_tsne.values, tb_tsne.values)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>mantel_result_tsne <span class="op">=</span> mantel.test(mt_dist_pinturas, mt_dist_tsne, perms<span class="op">=</span><span class="dv">1000</span>, method<span class="op">=</span><span class="st">'pearson'</span>, tail<span class="op">=</span><span class="st">'upper'</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>mantel_result_tsne.r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.6791782039610739</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mantel_result_tsne.p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.001</code></pre>
+</div>
+</div>
+<p>Este código realiza pruebas de Mantel para comparar la similitud entre las matrices de distancia euclidiana de las características originales (<code>tb_pinturas_caract</code>) con las matrices de distancia euclidiana de las coordenadas en el espacio de componentes principales (<code>tb_pca</code>) y en el espacio de t-SNE (<code>tb_tsne</code>).</p>
+<p><strong><code>mt_dist_pinturas = distance_matrix(...)</code>:</strong> Calcula la matriz de distancias euclidianas entre todas las filas de <code>tb_pinturas_caract</code>. Guarda el resultado en el objeto <code>mt_dist_pinturas</code>.</p>
+<p><strong><code>tb_pinturas_caract.values</code>:</strong> se utiliza para obtener la representación de matriz de los datos.</p>
+<p><strong><code>mt_dist_pca = distance_matrix()</code>:</strong> Similar a la línea anterior, calcula la matriz de distancias euclidianas entre todas las filas de <code>tb_pca</code>. Guarda el resultado en el objeto <code>mt_dist_pca</code>.</p>
+<p><strong><code>tb_pca.values</code>:</strong> se utiliza para obtener la representación de matriz de las coordenadas en el espacio de componentes principales.</p>
+<p><strong><code>mantel_result_pca = mantel.test(...)</code>:</strong> Realiza una prueba de Mantel entre las matrices de distancia; <code>mantel.test</code> del paquete <code>mantel</code> es la función que realiza una prueba de Mantel. El resultado se guarda en el objeto <code>mantel_result_pca</code>.</p>
+<p><strong><code>mantel.test(mt_dist_pinturas, mt_dist_pca,...)</code>:</strong> las matrices de distancia evaluadas son la matriz de distancias de los datos de las pinturas <code>mt_dist_pinturas</code> y la matriz de distancias de la representación de los datos en el espacio de componentes principales <code>mt_dist_pca</code>.</p>
+<p><strong><code>mantel.test(..., perms, method, tail)</code>:</strong> Se utilizan los siguientes argumentos para la función: <code>perms=1000</code> indica que se deben realizar 1000 permutaciones aleatorias para calcular el p-valor; <code>method='pearson'</code> especifica que se debe usar la correlación de Pearson como medida de asociación; <code>tail='upper'</code> indica que se está interesado en una prueba de una cola (una dirección).</p>
+<p><strong><code>mantel_result_pca.r</code>:</strong> Muestra el coeficiente de correlación de Mantel obtenido en la prueba de Mantel para <code>tb_pca</code>.</p>
+<p><strong><code>mantel_result_pca.p</code>:</strong> Muestra el p-valor asociado con la prueba de Mantel para <code>tb_pca</code>.</p>
+<p><strong><code>mt_dist_tsne = distance_matrix(...)</code>:</strong> Calcula la matriz de distancias euclidianas entre todas las filas de <code>tb_tsne</code>. Guarda el resultado en el objeto <code>mt_dist_tsne</code>.</p>
+<p><strong><code>tb_tsne.values</code>:</strong> se utiliza para obtener la representación de matriz de las coordenadas en el espacio de t-SNE.</p>
+<p><strong><code>mantel_result_tsne = mantel.test(...)</code>:</strong> Realiza una prueba de Mantel entre las matrices de distancia; <code>mantel.test</code> del paquete <code>mantel</code> es la función que realiza una prueba de Mantel. El resultado se guarda en el objeto <code>mantel_result_tsne</code>.</p>
+<p><strong><code>mantel.test(mt_dist_pinturas, mt_dist_tsne, ...)</code>:</strong> las matrices de distancia evaluadas son la matriz de distancias de los datos de las pinturas <code>mt_dist_pinturas</code> y la matriz de distancias de la representación de los datos en el espacio t-SNE <code>mt_dist_tsne</code>.</p>
+<p><strong><code>mantel.test(..., perms, method, tail)</code>:</strong> Utiliza los mismos parámetros que la prueba de Mantel anterior.</p>
+<p><strong><code>mantel_result_tsne.r</code>:</strong> Muestra el coeficiente de correlación de Mantel obtenido en la prueba de Mantel para <code>tb_tsne</code>.</p>
+<p><strong><code>mantel_result_tsne.p</code>:</strong> Muestra el p-valor asociado con la prueba de Mantel para <code>tb_tsne</code>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="interpretación" class="level1">
+<h1>Interpretación</h1>
+<p>A continuación, implementamos dos herramientas de interpretación para los resultados de los métodos de reducción de dimensiones.</p>
+<section id="círculo-de-correlaciones" class="level2">
+<h2 class="anchored" data-anchor-id="círculo-de-correlaciones">Círculo de correlaciones</h2>
+<p>El círculo de correlaciones nos ayuda a interpretar el análisis de componentes principales. Las variables son representadas por medio de flechas que se distribuyen en el círculo unitario.</p>
+<ul>
+<li><p>Cada variable se representa por medio de una flecha.</p></li>
+<li><p>La dirección de la flecha indica la dirección del plano hacia donde esa variable crece.</p></li>
+<li><p>La longitud de la flecha indica el nivel de representación que tiene esta variable en el plano de los componentes principales.</p></li>
+<li><p>El ángulo entre dos flechas permite intuir su correlación. Flechas con un ángulo muy agudo suelen representar variables con una correlación positiva fuerte. Flechas opuestas, con un ángulo muy obtuso o muy abierto, suelen representar variables con una alta correlación negativa; y flechas que presentan un ángulo recto están generalmente asociadas a variables con una correlación cercana a cero.</p></li>
+</ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(ls_pca_resultado, <span class="at">geom =</span> <span class="st">"arrow"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unidad_04_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  ls_pca_resultado,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">select.var =</span> <span class="fu">list</span>(<span class="at">cos2 =</span> <span class="fl">0.15</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unidad_04_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Este código genera dos visualizaciones del análisis de componentes principales. La primera muestra la contribución de todas las variables mediante flechas en el espacio de componentes principales. La segunda visualización resalta específicamente las variables con una contribución significativa, utilizando el parámetro <code>select.var</code> para filtrar las variables basándose en su coseno cuadrado. El uso de <code>repel = TRUE</code> ayuda a mejorar la legibilidad de las etiquetas evitando solapamientos.</p>
+<p><strong><code>fviz_pca_var(...)</code>:</strong> La función <code>fviz_pca_var</code> se utiliza para visualizar la contribución de las variables originales en el espacio de componentes principales.</p>
+<p><strong><code>ls_pca_resultado</code>:</strong> es el resultado de un análisis de componentes principales previo.</p>
+<p><strong><code>geom = "arrow"</code>:</strong> El parámetro <code>geom = "arrow"</code> indica que se deben utilizar flechas para representar la contribución de las variables.</p>
+<p><strong><code>repel = TRUE</code>:</strong> indica que las etiquetas de las variables deben colocarse de manera que eviten solapamientos.</p>
+<p><strong><code>select.var = list(cos2 = 0.15)</code>:</strong> selecciona las variables cuyo coseno cuadrado (cos2) es mayor o igual a 0.15, lo que significa que estas variables tienen una contribución sustancial en al menos uno de los ejes principales.</p>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(fig, ax) <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, mod_pca.components_.shape[<span class="dv">1</span>]):</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  ax.arrow(</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    mod_pca.components_[<span class="dv">0</span>, i]<span class="op">*</span><span class="fl">1.5</span>,  </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    mod_pca.components_[<span class="dv">1</span>, i]<span class="op">*</span><span class="fl">1.5</span>,  </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    head_width<span class="op">=</span><span class="fl">0.05</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    head_length<span class="op">=</span><span class="fl">0.08</span>, fc<span class="op">=</span><span class="st">'steelblue'</span>, ec<span class="op">=</span><span class="st">'steelblue'</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>an <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi, <span class="dv">100</span>)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>plt.plot(np.cos(an), np.sin(an))  </span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Variable factor map'</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unidad_04_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.close()</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="fl">0.15</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>max_representation <span class="op">=</span> (np.<span class="bu">abs</span>(mod_pca.components_)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  .take([<span class="dv">0</span>, <span class="dv">1</span>], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  .<span class="bu">max</span>(<span class="dv">0</span>))</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>condition <span class="op">=</span> np.where(max_representation <span class="op">&gt;</span> threshold)[<span class="dv">0</span>]</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>(fig, ax) <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> condition:</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  ax.arrow(</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>    mod_pca.components_[<span class="dv">0</span>, i]<span class="op">*</span><span class="fl">1.5</span>,  </span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>    mod_pca.components_[<span class="dv">1</span>, i]<span class="op">*</span><span class="fl">1.5</span>,  </span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    head_width<span class="op">=</span><span class="fl">0.05</span>,</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>    head_length<span class="op">=</span><span class="fl">0.08</span>, fc<span class="op">=</span><span class="st">'steelblue'</span>, ec<span class="op">=</span><span class="st">'steelblue'</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  plt.text(</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>    mod_pca.components_[<span class="dv">0</span>, i]<span class="op">*</span><span class="fl">1.7</span>,</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>    mod_pca.components_[<span class="dv">1</span>, i]<span class="op">*</span><span class="fl">1.7</span>,</span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>    tb_pinturas_caract.columns.values[i]</span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>an <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi, <span class="dv">100</span>)</span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>plt.plot(np.cos(an), np.sin(an))  </span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Variable factor map'</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unidad_04_files/figure-html/unnamed-chunk-24-2.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este código crea dos visualizaciones del mapa de factores variables en un espacio de componentes principales. La primera visualización muestra todas las variables, mientras que la segunda resalta las variables con contribución significativa según un umbral predefinido.</p>
+<p><strong><code>(fig, ax) = plt.subplots(figsize=(8, 8))</code>:</strong> Se crea una nueva figura y ejes con un tamaño de 8x8.</p>
+<p>Se dibujan las flechas usando un bucle.</p>
+<p><strong><code>for i in range(0, mod_pca.components_.shape[1]):</code>:</strong> Se utiliza un bucle <code>for</code> para iterar sobre todas las variables (columnas) en los componentes principales.</p>
+<p><strong><code>ax.arrow(...)</code>:</strong> Se añade una flecha para cada variable en el espacio de componentes principales.</p>
+<p>Se añade un círculo unitario para proporcionar una escala.</p>
+<p><strong><code>an = np.linspace(...)</code>:</strong> Se genera un conjunto de puntos para un círculo completo.</p>
+<p><strong><code>plt.plot(np.cos(an), np.sin(an))</code></strong> Se añade un círculo unitario utilizando las funciones seno y coseno.</p>
+<p>y finalmente</p>
+<p><strong><code>plt.axis('equal')</code>:</strong> Se ajusta la escala de los ejes para que tengan la misma proporción.</p>
+<p><strong><code>ax.set_title('Variable factor map')</code>:</strong> Se establece el título del gráfico.</p>
+<p><strong><code>plt.show(); plt.close()</code>:</strong> Se muestra la figura y luego se cierra.</p>
+<p>Para el segundo gráfico, seguimos los mismos pasos adicionando un umbral de 0.15.</p>
+<p><strong><code>threshold = 0.15</code>:</strong> Se define un umbral para la contribución significativa de las variables.</p>
+<p><strong><code>(np.abs(...).take(...).max(...))</code>:</strong> Se calcula la representación máxima en los dos primeros componentes principales para cada variable. Este resultado se guarda en el objeto <code>max_representation</code>.</p>
+<p><strong><code>np.where(max_representation &gt; threshold)[0]</code>:</strong> Se encuentran las variables con una contribución mayor que el umbral. Este resultado se guarda en el objeto <code>condition</code>.</p>
+<p><strong><code>(fig, ax) = plt.subplots(figsize=(8, 8))</code>:</strong> Se crea una nueva figura y ejes con un tamaño de 8x8.</p>
+<p>Se dibujan las flechas usando un bucle.</p>
+<p><strong><code>for i in range(0, mod_pca.components_.shape[1]):</code>:</strong> Se utiliza un bucle <code>for</code> para iterar sobre todas las variables (columnas) en los componentes principales.</p>
+<p><strong><code>ax.arrow(...)</code>:</strong> Se añade una flecha para cada variable en el espacio de componentes principales.</p>
+<p><strong><code>plt.text(...)</code>:</strong> Se añaden los nombres de las variables que fueron filtradas por el umbral.</p>
+<p>Se añade un círculo unitario para proporcionar una escala.</p>
+<p><strong><code>an = np.linspace(...)</code>:</strong> Se genera un conjunto de puntos para un círculo completo.</p>
+<p><strong><code>plt.plot(np.cos(an), np.sin(an))</code></strong> Se añade un círculo unitario utilizando las funciones seno y coseno.</p>
+<p>Por último, se agregan algunos detalles</p>
+<p><strong><code>plt.axis('equal')</code>:</strong> Se ajusta la escala de los ejes para que tengan la misma proporción.</p>
+<p><strong><code>ax.set_title('Variable factor map')</code>:</strong> Se establece el título del gráfico.</p>
+<p><strong><code>plt.show(); plt.close()</code>:</strong> Se muestra la figura y luego se cierra.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="visualización-de-datos-reducidos" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-de-datos-reducidos">Visualización de datos reducidos</h2>
+<p>En el transcurso del proyecto hemos aprendido a visualizar nuestros resultados utilizando las técnicas de reducción de dimensiones. En esta unidad abordamos dos visualizaciones más. El biplot, para visualizar los resultados del análisis de componentes principales, y el diccionario de gráficos para los resultados del algoritmo t-SNE.</p>
+<p>El biplot consiste en generar, en una sola visualización, la nube de puntos acompañada del círculo de correlaciones. De manera que se interpreta para cada dato en qué variables tiene mayores valores.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_biplot</span>(</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  ls_pca_resultado, <span class="at">geom.ind =</span> <span class="st">"point"</span>, </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom.var =</span>  <span class="fu">c</span>(<span class="st">"arrow"</span>, <span class="st">"text"</span>), <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">select.var =</span> <span class="fu">list</span>(<span class="at">cos2 =</span> <span class="fl">0.15</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unidad_04_files/figure-html/unnamed-chunk-25-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Este código utiliza la función <code>fviz_pca_biplot</code> para crear un biplot que representa las observaciones como puntos y las variables como flechas con etiquetas de texto. Se destacan las variables con un coseno cuadrado (cos2) mayor al 0.15. Este tipo de visualización es común en análisis de componentes principales para entender la relación entre observaciones y variables.</p>
+<p><strong><code>fviz_pca_biplot</code>:</strong> es una función que crea un biplot a partir de los resultados de un análisis de componentes principales.</p>
+<p><strong><code>geom.ind = "point"</code>:</strong> indica que las observaciones deben representarse como puntos en el biplot.</p>
+<p><strong><code>geom.var = c("arrow", "text")</code>:</strong> especifica que las variables se deben representar como flechas y con etiquetas de texto en el biplot.</p>
+<p><strong><code>repel = TRUE</code>:</strong> indica que las etiquetas de las variables deben ajustarse automáticamente para evitar superposiciones.</p>
+<p><strong><code>select.var = list(cos2 = 0.15)</code>:</strong> selecciona las variables basadas en un umbral de coseno cuadrado (cos2). En este caso, las variables con un cos2 mayor al 0.15 serán resaltadas en el biplot.</p>
+</div>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="fl">0.15</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>max_representation <span class="op">=</span> (np.<span class="bu">abs</span>(mod_pca.components_)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  .take([<span class="dv">0</span>, <span class="dv">1</span>], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  .<span class="bu">max</span>(<span class="dv">0</span>))</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>condition <span class="op">=</span> np.where(max_representation <span class="op">&gt;</span> threshold)[<span class="dv">0</span>]</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>(fig, ax) <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>ax.plot(tb_pca[<span class="st">"X"</span>], tb_pca[<span class="st">"Y"</span>], <span class="st">"ko"</span>, markersize <span class="op">=</span> <span class="fl">1.5</span>)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> condition:</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  ax.arrow(</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    mod_pca.components_[<span class="dv">0</span>, i]<span class="op">*</span><span class="dv">10</span>,  </span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    mod_pca.components_[<span class="dv">1</span>, i]<span class="op">*</span><span class="dv">10</span>,  </span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>    head_width<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>    head_length<span class="op">=</span><span class="fl">0.3</span>, fc<span class="op">=</span><span class="st">'steelblue'</span>, ec<span class="op">=</span><span class="st">'steelblue'</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  ax.text(</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    mod_pca.components_[<span class="dv">0</span>, i]<span class="op">*</span><span class="dv">15</span>,</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>    mod_pca.components_[<span class="dv">1</span>, i]<span class="op">*</span><span class="dv">15</span>,</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>    tb_pinturas_caract.columns.values[i]</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Biplot'</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unidad_04_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este código crea un biplot que muestra tanto las observaciones como las variables en el espacio de los dos primeros componentes principales. Las variables significativas se destacan con flechas y etiquetas en el biplot.</p>
+<p><strong><code>threshold = 0.15</code>:</strong> Se define un umbral para la contribución significativa de las variables.</p>
+<p><strong><code>(np.abs(...).take(...).max(...))</code>:</strong> Se calcula la representación máxima en los dos primeros componentes principales para cada variable. Este resultado se guarda en el objeto <code>max_representation</code>.</p>
+<p><strong><code>np.where(max_representation &gt; threshold)[0]</code>:</strong> Se encuentran las variables con una contribución mayor que el umbral. Este resultado se guarda en el objeto <code>condition</code>.</p>
+<p><strong><code>(fig, ax) = plt.subplots(figsize=(8, 8))</code>:</strong> Se crea una nueva figura y ejes con un tamaño de 8x8.</p>
+<p><strong><code>ax.plot(tb_pca["X"], tb_pca["Y"], "ko", markersize = 1.5)</code>:</strong> Se grafican los puntos del espacio de componentes principales.</p>
+<p>Mediante un bucle se dibujan las flechas y los textos:</p>
+<p><strong><code>for i in range(0, mod_pca.components_.shape[1]):</code>:</strong> Se utiliza un bucle <code>for</code> para iterar sobre todas las variables (columnas) en los componentes principales.</p>
+<p><strong><code>ax.arrow(...)</code>:</strong> Se añade una flecha para cada variable en el espacio de componentes principales.</p>
+<p><strong><code>plt.text(...)</code>:</strong> Se añaden los nombres de las variables que fueron filtradas por el umbral.</p>
+<p>Se realizan ajustes a los ejes y al título del gráfico.</p>
+<p><strong><code>plt.axis('equal')</code>:</strong> Se ajusta la escala de los ejes para que tengan la misma proporción.</p>
+<p><strong><code>ax.set_title('Biplot')</code>:</strong> Se establece el título del gráfico.</p>
+<p><strong><code>plt.show(); plt.close()</code>:</strong> Se muestra la figura y luego se cierra.</p>
+</div>
+</div>
+</div>
+<p>En el caso del t-SNE podemos visualizar un gráfico para cada variable de interés. Este diccionario de gráficos nos ayuda a interpretar el resultado, conociendo cuáles variables se expresan mejor en qué regiones del plano.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"OCEAN"</span>, <span class="st">"MOUNTAIN"</span>, <span class="st">"WINTER"</span>,<span class="st">"STRUCTURE"</span>,</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TREE"</span>, <span class="st">"CONIFER"</span>, <span class="st">"DECIDUOUS"</span>, <span class="st">"SNOWY_MOUNTAIN"</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> nm_items_relevantes</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>tb_pinturas_caract <span class="sc">%&gt;%</span> </span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(nm_items_relevantes)) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(tb_tsne) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">all_of</span>(nm_items_relevantes),</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"objeto"</span>,</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"presencia"</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>  ggplot <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">colour =</span> <span class="fu">as.character</span>(presencia)) <span class="sc">+</span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">guide =</span> <span class="st">"none"</span>, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"#AA8888"</span>, <span class="st">"#88aa88"</span>)) <span class="sc">+</span></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>objeto, <span class="at">nrow =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unidad_04_files/figure-html/unnamed-chunk-27-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Este código crea un gráfico de dispersión facetado que representa la presencia o ausencia de objetos relevantes en un espacio bidimensional (X e Y de tb_tsne). Cada panel del gráfico representa un objeto, y los puntos están coloreados según su presencia o ausencia.</p>
+<p><strong><code>c(...) -&gt; nm_items_relevantes</code>:</strong> crea un vector llamado <code>nm_items_relevantes</code> que contiene los nombres de las columnas relevantes.</p>
+<p><strong><code>tb_pint.. %&gt;% select(all_of(nm_items_relevantes))</code>:</strong> selecciona las columnas relevantes del dataframe <code>tb_pinturas_caract</code></p>
+<p><strong><code>... %&gt;% bind_cols(tb_tsne)</code>:</strong> combina las columnas seleccionadas horizontalmente (<code>bind_cols</code>) con el dataframe <code>tb_tsne</code>.</p>
+<p><strong><code>pivot_longer(...)</code>:</strong> utiliza la función <code>pivot_longer</code> para convertir los datos de formato ancho a largo.</p>
+<p><strong><code>all_of(nm_items_relevantes)</code>:</strong> Las columnas definidas en <code>nm_items_relevantes</code> se transforman en las columnas <code>objeto</code> y <code>presencia</code>.</p>
+<p><strong><code>names_to = "objeto", values_to = "presencia"</code>:</strong> Una nueva columna denominada <code>objeto</code> contiene los nombres de las variables relevantes, mientras una nueva columna denominada <code>presencia</code> contiene sus valores.</p>
+<p><strong><code>ggplot + aes(...) + geom_point()</code></strong> es la estructura básica de un gráfico de dispersión.</p>
+<p><strong><code>aes(x = X, y = Y, colour = as.character(presencia))</code>:</strong> Las estéticas (<code>aes</code>) definen la posición en X, Y y el color de los puntos según la presencia de objetos definidos en <code>nm_items_relevantes</code>.</p>
+<p><strong><code>scale_color_discrete(...)</code></strong> personaliza los colores que señalan la presencia o ausencia de las características relevantes.</p>
+<p><strong><code>facet_wrap(~objeto, ..)</code></strong> distribuye el gráfico en diferentes paneles para cada objeto definido en <code>nm_items_relevantes</code>.</p>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>nm_items_relevantes <span class="op">=</span> [[<span class="st">"CONIFER"</span>, <span class="st">"DECIDUOUS"</span>], [<span class="st">"MOUNTAIN"</span>, <span class="st">"OCEAN"</span>], [<span class="st">"SNOWY_MOUNTAIN"</span>, <span class="st">"STRUCTURE"</span>], [<span class="st">"TREE"</span>,  <span class="st">"WINTER"</span>]] </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> {<span class="dv">0</span>: <span class="st">'rosybrown'</span>, <span class="dv">1</span>: <span class="st">'darkolivegreen'</span>}</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(nrows <span class="op">=</span> <span class="dv">4</span>, ncols<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, sublist <span class="kw">in</span> <span class="bu">enumerate</span>(nm_items_relevantes):</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j, item <span class="kw">in</span> <span class="bu">enumerate</span>(sublist):</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    col <span class="op">=</span> [colors[i] <span class="cf">for</span> i <span class="kw">in</span> tb_pinturas_caract[item].to_list()]</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    ax[i, j].scatter(tb_tsne[<span class="st">"X"</span>], tb_tsne[<span class="st">"Y"</span>], c <span class="op">=</span> col, s <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    ax[i, j].set_title(item)</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="unidad_04_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este código crea subgráficos para cada par de elementos relevantes y visualiza los puntos en un espacio bidimensional. Los puntos están coloreados según la presencia de los elementos en las pinturas, que se registra en el dataframe <code>tb_pinturas_caract</code>; cada subgráfico representa una variable.</p>
+<p><strong><code>nm_items_relevantes</code>:</strong> es una lista de listas que contiene grupos de elementos relevantes.</p>
+<p><strong><code>colors</code>:</strong> es un diccionario que asigna valores (0 o 1) a colores (‘rosybrown’ o ‘darkolivegreen’).</p>
+<p><strong><code>fig, ax = plt.subplots(nrows=4, ncols=2)</code>:</strong> crea subgráficos en una matriz de 4 filas y 2 columnas.</p>
+<p><strong><code>for i, sublist in ...: for j, item in ...</code>:</strong> Es un bucle anidado itera sobre las listas de objetos en <code>nm_items_relevantes.</code>.</p>
+<p><strong><code>for i, sublist in ...: for j, item in ...</code>:</strong> Es un bucle anidado itera sobre las listas de objetos en nm_items_relevantes.</p>
+<p><strong><code>col = [colors[i] for i in ...]</code>:</strong> Para cada objeto en la variable <code>item</code>, se asigna un color según el diccionario <code>colors</code>.</p>
+<p><strong><code>.scatter(...)</code>:</strong> agrega puntos al gráfico de dispersión en los subgráficos.</p>
+<p><strong><code>set_title(...)</code>:</strong> Se establece el título de cada subgráfico como el nombre del objeto.</p>
+<p><strong><code>fig.tight_layout()</code>:</strong> ajusta automáticamente la disposición de los subgráficos para evitar superposiciones.</p>
+<p><strong><code>plt.show(); plt.close()</code>:</strong> Se muestra la figura y luego se cierra.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusiones" class="level1">
+<h1>Conclusiones</h1>
+<p>Con esta unidad finalizamos exitosamente nuestro proyecto. Vemos que nuestro conjunto de datos no se comporta de manera lineal, por lo que el gráfico de sedimentación muestra valores bajos. El test de Mantel nos indica que el desempeño de ambos métodos es parecido, con una correlación de 0.67 y un p-valor menor a 0.05. A partir de este proyecto tenemos un conocimiento más profundo de nuestros datos; hemos identificado las tendencias principales dentro de nuestras pinturas y las hemos visualizado e interpretado.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

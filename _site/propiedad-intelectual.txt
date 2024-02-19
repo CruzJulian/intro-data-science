@@ -1,0 +1,3 @@
+El presente material hace parte del repositorio https://github.com/CruzJulian/intro-data-science cuya propiedad intelectual se remite a la licencia GPL3.
+
+Es pertinente usarlo en cualquier contexto educativo o productivo.
