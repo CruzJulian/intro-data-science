@@ -1,0 +1,823 @@
+---
+title: "Proyecto: The joy of programming"
+subtitle: "Etapa 1 de 4"
+format: 
+  html:
+    toc: true
+    toc-location: left
+    toc-title: Contenido
+    df-print: default
+execute: 
+  eval: true
+  echo: true
+  output: false
+  warning: false
+  error: false
+
+---
+
+
+```{r}
+#| echo: false
+
+library("reticulate")
+# reticulate::install_miniconda()
+use_python(file.path(miniconda_path(), "bin", "python3.11"))
+# py_install("pandas")
+# py_install("matplotlib")
+# py_install("seaborn")
+# py_install("scipy")
+# py_install("scikit-learn")
+# py_install("tabulate")
+# py_install("pygments")
+
+set.seed(0)
+
+```
+
+
+```{python}
+#| echo: false
+from IPython.display import HTML
+import numpy as np
+import random
+
+np.random.seed(0)
+random.seed(0)
+
+
+```
+
+
+
+# Introducción
+
+En esta etapa aplicamos los algoritmos de agregación presentados a nuestro dataset de pinturas de Bob Ross. Es necesario que tengamos muy claro el contexto de nuestro trabajo, en caso de que haya dudas podemos volver a la presentación del proyecto.
+
+Los algoritmos que vamos a aplicar son $k$-means, agregación jerárquica y DBSCAN. Para ejecutarlos utilizamos código en R y en Python. Al final, revisamos en una tabla cuántos grupos tenemos y cuántas pinturas tiene cada grupo. Esto con el fin de interpretar estos resultados con precisión en las siguientes unidades.
+
+## Objetivo actual
+
+La primera etapa del proyecto está orientada a cumplir el primer objetivo específico:
+
+> Aplicar algoritmos de agregación al dataset e identificar los grupos subyacentes de las pinturas.
+
+
+
+# Preliminares
+
+En primer lugar debemos cargar las librerías que vamos a utilizar. 
+
+
+::: {.panel-tabset}
+## R
+
+```{r}
+library("knitr")
+library("purrr")
+library("ggplot2")
+library("dplyr")
+library("magrittr")
+library("readr")
+library("dbscan")
+library("factoextra")
+
+```
+
+
+Este código llama las librerías necesarias para los procedimientos.
+
+**`library("purrr")`:** Carga la biblioteca "purrr", que proporciona herramientas para trabajar de manera más eficiente con funciones y estructuras de datos.
+
+**`library("ggplot2")`:** Carga la biblioteca "ggplot2", una poderosa biblioteca para crear gráficos en R.
+
+**`library("dplyr")`:** Carga la biblioteca "dplyr", que proporciona funciones para realizar operaciones de manipulación de datos de manera fácil y eficiente.
+
+**`library("magrittr")`:** Carga la biblioteca "magrittr", que proporciona el operador `%>%` para facilitar la escritura de código en estilo de canal (pipe).
+
+**`library("readr")`:** Carga la biblioteca "readr", que facilita la lectura de datos en formatos planos y bien estructurados.
+
+
+**`library("dbscan")`:** Carga la biblioteca "dbscan", que implementa el algoritmo DBSCAN para la agrupación de datos basada en la densidad.
+
+**`library("factoextra")`:** Carga la biblioteca "factoextra", que proporciona funciones para manipular y visualizar resultados multivariados.
+
+## Python
+
+Este código llama las librerías necesarias para los procedimientos.
+
+```{python}
+import pandas as pd
+import numpy as np
+import os
+from matplotlib import pyplot as plt
+import scipy.cluster.hierarchy as sch
+from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN
+
+
+```
+
+
+**`import pandas as pd:`** Importa la biblioteca pandas y la renombra como "pd". pandas es una biblioteca para el manejo y análisis de datos.
+
+**`import numpy as np:`** Importa la biblioteca NumPy y la renombra como "np". NumPy proporciona estructuras de datos y funciones para trabajar con arreglos numéricos.
+
+**`import os:`** Importa el módulo os, que proporciona funciones para interactuar con el sistema operativo, como trabajar con rutas de archivos.
+
+**`import scipy.cluster.hierarchy as sch:`** Importa el módulo de jerarquía de agrupamiento de la biblioteca SciPy, que incluye funciones para realizar agrupamientos jerárquicos.
+
+**`from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN:`** Importa varias funciones de la biblioteca scikit-learn, que proporcionan modelos de agrupamiento.
+
+:::
+
+
+Generamos una lista de configuración. Esto es una buena práctica de programación en ciencia de datos. En esta lista vamos a almacenar información que utilizaremos en el código de forma reiterada.
+
+::: {.panel-tabset}
+
+## R
+
+
+```{r}
+mi_setup <- list(
+  datos_pinturas = file.path("01_data", "bob-ross.csv"),
+  archivo_resultados = file.path("01_data", "resultados_r_01.csv")
+)
+
+```
+
+
+
+Este código genera una lista de configuración. En esta lista se guardan las rutas y otros parámetros que se usan más adelante en el desarrollo.
+
+- **`datos_pinturas`**: Ruta del archivo "bob-ross.csv" ubicado en la carpeta "01_data". Este archivo contiene datos relacionados con pinturas de Bob Ross.
+
+- **`archivo_resultados`**: Ruta del archivo "resultados_r_01.csv" ubicado en la carpeta "01_data". En este archivo se guardan los resultados de los grupos obtenidos en el análisis.
+
+
+## Python
+
+```{python}
+mi_setup = {
+  "datos_pinturas": os.path.join("01_data", "bob-ross.csv"), 
+  "archivo_resultados": os.path.join("01_data", "resultados_py_01.csv")
+}
+
+```
+
+
+
+Este código genera una lista de configuración. En esta lista se guardan las rutas y otros parámetros que se usan más adelante en el desarrollo.
+
+- **`datos_pinturas`**: Ruta del archivo "bob-ross.csv" ubicado en la carpeta "01_data". Este archivo contiene datos relacionados con pinturas de Bob Ross.
+
+- **`archivo_resultados`**: Ruta del archivo "resultados_r_01.csv" ubicado en la carpeta "01_data". En este archivo se guardan los resultados de los grupos obtenidos en el análisis.
+
+
+:::
+
+Leemos nuestro archivo de datos.
+
+::: {.panel-tabset}
+## R
+
+
+```{r}
+read_csv(mi_setup$datos_pinturas) -> tb_pinturas
+
+
+```
+
+
+Se utiliza la función `read_csv` para leer archivos CSV y se asignan los resultados a un dataframes `tb_pinturas`. Aquí está la explicación:
+
+
+**`mi_setup$datos_pinturas`:** Accede al valor asociado con la clave "datos_pinturas" en el objeto `mi_setup`, que representa la ruta al archivo CSV que contiene los datos de pinturas de Bob Ross.
+
+**`read_csv(...)`:** Utiliza la función `read_csv()` del paquete `readr` para leer los datos desde el archivo CSV especificado.
+
+
+## Python
+
+
+```{python}
+tb_pinturas = pd.read_csv(mi_setup["datos_pinturas"])
+
+```
+
+
+Utilizando la librería `pandas`, mediante la función `pd.read_csv` se lee el archivo CSV y se asignan los resultados a un DataFrames `tb_pinturas`. Aquí está la explicación:
+
+
+**`mi_setup["datos_pinturas"]`**: Accede al valor asociado con la clave "datos_pinturas" en el diccionario `mi_setup`, que representa la ruta al archivo CSV que contiene los datos de pinturas de Bob Ross.
+
+**`pd.read_csv(...)`**: Utiliza la función `read_csv()` de pandas para leer los datos desde el archivo CSV especificado. El resultado se asigna al objeto `tb_pinturas`, que se convierte en un DataFrame de pandas. Este DataFrame puede ser utilizado para manipulación y análisis de los datos de pinturas de Bob Ross en Python.
+
+:::
+
+# Preparación de los datos
+
+Selección de columnas: Seleccionamos las columnas que tengan una mayor cantidad de información para el entrenamiento de los algoritmos y se genera una tabla para guardar los grupos que vamos a encontrar.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+tb_pinturas %>% 
+  select(- EPISODE, - TITLE) %>% 
+  map_dbl(var) %>% 
+  as_tibble(rownames = "item") %>% 
+  top_n(45, value) %>% 
+  pull(item) -> nm_items_relevantes
+
+
+tb_pinturas %>% 
+  extract(nm_items_relevantes) -> tb_pinturas_caract
+
+tb_pinturas %>% 
+  select(EPISODE, TITLE) -> tb_grupos
+
+```
+
+**`select(-EPISODE, -TITLE)`:** Excluye las columnas "EPISODE" y "TITLE" del DataFrame `tb_pinturas`.
+
+**`map_dbl(var)`:** Calcula la varianza para cada columna del DataFrame resultante.
+
+**`as_tibble(rownames = "item")`:** Convierte el resultado en un tibble y asigna el nombre de la fila como "item".
+
+**`top_n(45, value)`:** Selecciona las 45 filas con los mayores valores de varianza.
+
+**`pull(item) -> nm_items_relevantes`:** Extrae los nombres de las filas seleccionadas y los asigna a un vector llamado `nm_items_relevantes`.
+
+**`extract(nm_items_relevantes)`:** Extrae las columnas relevantes utilizando los nombres previamente seleccionados y crea un nuevo DataFrame llamado `tb_pinturas_caract`.
+
+**`select(EPISODE, TITLE)`:** Selecciona solo las columnas "EPISODE" y "TITLE" del DataFrame original y crea un nuevo DataFrame llamado `tb_grupos`.
+
+
+## Python
+
+```{python}
+nm_items_relevantes = (tb_pinturas
+  .drop(["EPISODE", "TITLE"], axis=1)
+  .apply(np.var, axis = 0)
+  .sort_values()[-45 :]
+  .index)
+
+tb_pinturas_caract = tb_pinturas.loc[: , nm_items_relevantes]
+
+tb_grupos = tb_pinturas.loc[: , ("EPISODE", "TITLE")]
+
+```
+
+**`.drop(["EPISODE", "TITLE"], axis=1)`:**/ Excluye las columnas "EPISODE" y "TITLE" del DataFrame `tb_pinturas`.
+
+**`.apply(np.var, axis=0)`:** Calcula la varianza para cada columna del DataFrame resultante.
+
+**`.sort_values()[-45:].index`:** Ordena las varianzas de menor a mayor y selecciona las 45 mayores. Se extraen los índices de estas columnas relevantes y se asignan a `nm_items_relevantes`.
+
+**`tb_pinturas_caract = tb_pinturas[nm_items_relevantes]`:** Crea un nuevo DataFrame llamado `tb_pinturas_caract` que contiene solo las columnas seleccionadas como relevantes.
+
+**`tb_grupos = tb_pinturas[["EPISODE", "TITLE"]]`:** Crea un nuevo DataFrame llamado `tb_grupos` que contiene solo las columnas "EPISODE" y "TITLE" del DataFrame original.
+
+
+:::
+
+Una vez preparados los datos, podemos corroborar su composición. El dataset original sigue igual, se han creado dos datasets adicionales, `tb_pinturas caract` que contiene las características de las pinturas y `tb_grupos` que contiene el identificador de las pinturas (episodio y título). Veamos rápidamente un resumen de nuestros datos.
+
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| output: true
+tb_pinturas %>% glimpse
+tb_pinturas_caract %>% glimpse
+tb_grupos %>% glimpse
+
+```
+
+## Python
+
+```{python}
+#| output: true
+tb_pinturas.info()
+tb_pinturas_caract.info()
+tb_grupos.info()
+
+
+```
+
+
+:::
+
+
+
+# Algoritmos de agrupación
+
+A continuación, aplicamos los distintos algoritmos de agregación a las pinturas.
+
+
+## Algoritmo jerárquico
+
+
+El siguiente es el código para el algoritmo jerárquico. En primer lugar calculamos la matriz de distancias del conjunto de datos. y luego aplicamos el algoritmo especificando la distancia entre grupos, en este caso es `"ward"`.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+tb_pinturas_caract %>% 
+  dist(method = "euclidean") %>% 
+  hclust(method = "ward.D2") -> ls_jerarquico 
+
+
+```
+
+    
+**`tb_pinturas_caract %>% dist()`:** Calcula la matriz de distancias entre las filas del DataFrame `tb_pinturas_caract`. El operador `%>%` (pipe) se utiliza para encadenar funciones en un flujo.
+
+**`-> mt_dist_pint`:** Asigna la matriz de distancias resultante a un objeto llamado `mt_dist_pint`.
+
+**`mt_dist_pint %>% hclust(method = "ward.D2")`:** Realiza un clúster jerárquico utilizando el método de enlace "ward.D2" en la matriz de distancias `mt_dist_pint`.
+
+**`-> ls_jerarquico`:** Asigna el resultado del clúster jerárquico a un objeto llamado `ls_jerarquico`.
+
+
+## Python
+
+
+```{python}
+mod_jerarquico = AgglomerativeClustering(
+    n_clusters = 6, 
+    metric = 'euclidean', 
+    linkage ='ward'
+    )
+mod_jerarquico = mod_jerarquico.fit(tb_pinturas_caract)
+
+```
+
+
+**`AgglomerativeClustering(...)`**: Se instancia un objeto del tipo `AgglomerativeClustering`, que implementa el algoritmo de agrupamiento jerárquico.
+
+**`n_clusters=6`:** Especifica el número de clústeres deseados, en este caso, se establece en 6.
+    
+**`metric='euclidean'`:** Define la métrica de distancia utilizada para calcular la similaridad entre puntos. En este caso, se utiliza la distancia euclidiana.
+    
+**`linkage='ward'`:** Especifica el método de enlace utilizado en el algoritmo, en este caso, el enlace "ward" que minimiza la varianza entre los clústeres.
+
+**`mod_jerarquico.fit(tb_pinturas_caract)`**: Se ajusta el modelo de agrupamiento jerárquico a los datos en `tb_pinturas_caract`. El modelo aprenderá a asignar las observaciones en el número especificado de clústeres utilizando la distancia euclidiana y el método de enlace "ward".
+
+
+:::
+
+
+
+A continuación, elaboramos el dendrograma. En este observamos que al hacer un corte podemos obtener 6 grupos bien definidos.
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+#| fig-show: "asis"
+#| fig-align: "center"
+
+ls_jerarquico %>% 
+  fviz_dend(6, show_labels = FALSE, horiz = TRUE) +
+  geom_hline(yintercept = 9.5)
+
+
+```
+
+**`ls_jerarquico %>% as.dendrogram() %>% ...`**: Convierte el resultado del clúster jerárquico (`ls_jerarquico`) en un dendrograma utilizando la función `as.dendrogram()` y luego encadena varias funciones de configuración y visualización utilizando el operador `%>%` (pipe).
+
+**`set("labels_col", k=6)`:** Establece colores diferentes para las etiquetas según los grupos definidos por `k=6` clústeres.
+
+**`set("branches_k_color", k=6)`:** Asigna colores diferentes a las ramas del dendrograma según los grupos definidos por `k=6` clústeres.
+
+**`set("labels", NULL)`:** Elimina las etiquetas originales del dendrograma.
+
+**`plot(horiz=TRUE, axes=FALSE)`:** Realiza la visualización del dendrograma con orientación horizontal y sin mostrar ejes.
+
+**`abline(v = 9, lty = 2)`**: Agrega una línea vertical discontinua en la posición 9 en el dendrograma. Esta línea nos proporciona la _altura_ a la que se realiza la partición en 6 grupos.
+
+
+## Python
+
+```{python}
+#| fig-show: "asis"
+#| fig-align: "center"
+
+plt.figure(figsize=(10,8))
+dendrogram = sch.dendrogram(
+  sch.linkage(tb_pinturas_caract, method  = "ward"),
+  color_threshold = 10, orientation = "left", no_labels = True)
+plt.title('Dendrogram')
+plt.show()
+plt.close()
+
+
+
+
+
+
+```
+
+
+**`plt.figure(figsize=(10,8))`**: Crea una nueva figura de tamaño 10x8 pulgadas utilizando `matplotlib.pyplot`.
+
+**`dendrogram = sch.dendrogram(...)`**: Calcula y genera el dendrograma utilizando la función `dendrogram` de `scipy.cluster.hierarchy`. Se utiliza `sch.linkage` para realizar el agrupamiento jerárquico con el método de enlace "ward".
+
+**`sch.linkage(tb_pinturas_caract, method="ward")`:** Realiza el agrupamiento jerárquico con el método de enlace "ward" en los datos contenidos en `tb_pinturas_caract`.
+
+**`color_threshold=9`:** Define el umbral de color para resaltar los clústeres en el dendrograma. Las ramas por debajo de este umbral se muestran en el mismo color.
+
+**`orientation="left"`:** Orienta el dendrograma hacia la izquierda.
+
+**`no_labels=True`:** Suprime las etiquetas de las hojas del dendrograma.
+
+**`plt.title('Dendrogram')`**: Agrega un título al dendrograma.
+
+**`plt.show()`**: Muestra la figura con el dendrograma.
+
+**`plt.close()`**: Cierra la figura, liberando recursos y previniendo posibles superposiciones en visualizaciones futuras.
+
+
+:::
+
+
+Luego extraemos los grupos y los guardamos en una nueva columna de nuestros datos. Adicionalmente, revisamos el tamaño de cada grupo.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+tb_grupos %<>% 
+  mutate(
+    grupos_jerar = ls_jerarquico %>% 
+  cutree(6) 
+  )
+
+tb_grupos %>% 
+  count(grupos_jerar) -> tb_cuenta_grupos
+```
+
+
+```{r}
+#| echo: false
+#| output: true
+#| tbl-colwidths: [50,50]
+
+tb_cuenta_grupos %>% 
+  kable
+  
+```
+
+
+
+**`tb_grupos %<>%`**: Utiliza el operador `%<>%` para realizar la asignación en el propio objeto `tb_grupos`, es decir, modifica `tb_grupos` in-place.
+
+**`mutate(...)`**: Crea o modifica columnas en el DataFrame.
+
+**`grupos_jerar`:** Se crea una nueva columna llamada `grupos_jerar` en el DataFrame `tb_grupos`.
+
+**`ls_jerarquico %>% cutree(6)`:** Utiliza la función `cutree` para asignar a cada observación en `ls_jerarquico` un número de grupo (clúster) según la división en 6 grupos realizada previamente.
+
+**`tb_grupos %>% count(grupos_jerar)`**: Utiliza la función `count` de `dplyr` para contar la frecuencia de cada valor único en la columna `grupos_jerar` de `tb_grupos`.
+
+
+## Python
+
+
+```{python}
+tb_grupos['grupos_jerar'] = (mod_jerarquico
+  .fit_predict(tb_pinturas_caract)
+  .tolist())
+
+tb_cuenta_grupos = (tb_grupos.grupos_jerar
+  .value_counts()
+  .rename('count')
+  .reset_index())
+
+```
+
+
+```{python}
+#| echo: false
+#| output: true
+
+HTML(tb_cuenta_grupos.to_html())
+
+```
+
+**`tb_grupos["grupos_jerar"] = mod_jerarquico.fit_predict(tb_pinturas_caract)`**:
+
+**`mod_jerarquico.fit_predict(tb_pinturas_caract)`:** Utiliza el método `fit_predict` de `AgglomerativeClustering` para realizar el ajuste y predicción de grupos jerárquicos en los datos contenidos en `tb_pinturas_caract`. Los resultados se asignan a una nueva columna llamada `grupos_jerar` en el DataFrame `tb_grupos`.
+
+**`tb_grupos.grupos_jerar.value_counts()`**:
+
+**`tb_grupos.grupos_jerar`:** Accede a la columna `grupos_jerar` en el DataFrame `tb_grupos`.
+
+**`value_counts()`:** Calcula la frecuencia de cada valor único en la columna `grupos_jerar`.
+
+
+:::
+
+
+## Algoritmo $k$-means
+
+El algoritmo $k$-means se ejecuta con el siguiente código.
+
+
+::: {.panel-tabset}
+## R
+
+```{r}
+tb_pinturas_caract %>% 
+  kmeans(6) -> ls_kmeans
+
+```
+
+
+**`tb_pinturas_caract %>% kmeans(6) -> ls_kmeans`**:
+
+**`%>%`:** Operador pipe que pasa el resultado de la operación anterior como el primer argumento de la siguiente operación.
+
+**`kmeans(6)`:** Aplica el algoritmo k-Means para realizar el agrupamiento en `tb_pinturas_caract` con 6 clústeres.
+
+**`-> ls_kmeans`:** Asigna el resultado del agrupamiento a un objeto llamado `ls_kmeans`.
+
+
+## Python
+
+```{python}
+mod_kmeans = KMeans(
+        init="random",
+        n_clusters=6,
+        n_init = 1
+    )
+
+mod_kmeans = mod_kmeans.fit(tb_pinturas_caract)
+
+
+```
+
+**`KMeans`:** Crea una instancia del modelo de k-Means utilizando la clase `KMeans` de `scikit-learn`.
+
+**`init="random"`:** Especifica que la inicialización de los centroides se realice de manera aleatoria.
+
+**`n_clusters=6`:** Define el número de clústeres deseados, en este caso, se establece en 6.
+
+**`fit(tb_pinturas_caract)`:** Ajusta el modelo de k-Means a los datos contenidos en `tb_pinturas_caract`. El modelo aprenderá a asignar las observaciones en el número especificado de clústeres.
+
+
+:::
+
+
+
+Luego extraemos los grupos y los guardamos en una nueva columna de nuestros datos. Adicionalmente, revisamos el tamaño de cada grupo.
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+tb_grupos %<>% 
+  mutate(
+    grupos_kmeans = ls_kmeans %>% 
+  pluck("cluster") 
+  )
+
+tb_grupos %>% 
+  count(grupos_kmeans) -> tb_cuenta_grupos
+
+```
+
+
+
+```{r}
+#| echo: false
+#| output: true
+#| tbl-colwidths: [50,50]
+
+tb_cuenta_grupos %>% 
+  kable
+
+  
+```
+
+**`%<>%`:** Operador pipe que realiza la asignación in-place al propio objeto.
+
+**`mutate(...)`:** Crea o modifica columnas en el DataFrame.
+
+**`grupos_kmeans`:** Se crea una nueva columna llamada `grupos_kmeans` en el DataFrame `tb_grupos`.
+
+**`ls_kmeans %>% pluck("cluster")`:** Extrae la información de los clústeres asignados por el modelo de k-Means (`ls_kmeans`) utilizando la función `pluck` y la clave "cluster".
+
+**`tb_grupos %>% count(grupos_kmeans)`:** Utiliza la función `count` de `dplyr` para contar la frecuencia de cada valor único en la columna `grupos_kmeans` de `tb_grupos`.
+
+## Python
+
+
+```{python}
+tb_grupos['grupos_kmeans'] = mod_kmeans.labels_
+
+tb_cuenta_grupos = (tb_grupos.grupos_kmeans
+  .value_counts()
+  .rename('count')
+  .reset_index())
+
+```
+
+
+```{python}
+#| echo: false
+#| output: true
+
+HTML(tb_cuenta_grupos.to_html())
+
+
+```
+
+**`mod_kmeans.labels_`:** Accede a los resultados de la asignación de clústeres realizada por el modelo de k-Means (`mod_kmeans`). Los resultados se encuentran en el atributo `labels_`.
+
+**`tb_grupos['grupos_kmeans']`:** Crea una nueva columna llamada `grupos_kmeans` en el DataFrame `tb_grupos` y asigna los resultados de la asignación de clústeres.
+
+**`tb_grupos.grupos_kmeans`:** Accede a la columna `grupos_kmeans` en el DataFrame `tb_grupos`.
+
+**`value_counts()`:** Calcula la frecuencia de cada valor único en la columna `grupos_kmeans`.
+
+
+:::
+
+
+## Algoritmo DBSCAN
+
+El algoritmo DBSCAN se ejecuta con el siguiente código. Es importante probar distintas configuraciones para los hiperparámetros $\epsilon$ y $n_{min}$. En este caso se utilizamos $\epsilon = 1.5$ y $n_{min} = 3$.
+
+::: {.panel-tabset}
+## R
+
+
+
+```{r}
+tb_pinturas_caract %>% 
+  dbscan(eps = 1.5, minPts = 3) -> ls_dbscan
+
+
+```
+
+**`%>%`:** Operador pipe que pasa el resultado de la operación anterior como el primer argumento de la siguiente operación.
+
+**`dbscan(eps = 1.5, minPts = 3)`:** Aplica el algoritmo DBSCAN para realizar el agrupamiento en `tb_pinturas_caract`. Se especifican los parámetros `eps` (radio máximo para formar un clúster) y `minPts` (número mínimo de puntos para formar un clúster).
+
+**`-> ls_dbscan`:** Asigna el resultado del agrupamiento a un objeto llamado `ls_dbscan`.
+
+
+## Python
+
+```{python}
+mod_dbscan = DBSCAN(eps=1.5, min_samples=3)
+
+mod_dbscan = mod_dbscan.fit(tb_pinturas_caract)
+
+
+```
+
+
+**`DBSCAN`:** Crea una instancia del modelo de DBSCAN utilizando la clase `DBSCAN` de `scikit-learn`.
+
+**`eps=1.5`:** Especifica el radio máximo para formar un clúster.
+
+**`min_samples=3`:** Especifica el número mínimo de puntos para formar un clúster.
+
+**`fit(tb_pinturas_caract)`:** Ajusta el modelo DBSCAN a los datos contenidos en `tb_pinturas_caract`. El modelo aprenderá a asignar las observaciones en clústeres según los parámetros especificados.
+
+
+:::
+
+
+Luego extraemos los grupos y los guardamos en una nueva columna de nuestros datos. Adicionalmente, revisamos el tamaño de cada grupo.
+
+
+::: {.panel-tabset}
+## R
+
+```{r}
+tb_grupos %<>% 
+  mutate(
+    grupos_dbscan = ls_dbscan %>% 
+  pluck("cluster") 
+  )
+
+tb_grupos %>% 
+  count(grupos_dbscan) -> tb_cuenta_grupos
+
+```
+
+
+
+```{r}
+#| output: true
+#| tbl-colwidths: [50,50]
+#| echo: false
+tb_cuenta_grupos %>% 
+  kable
+  
+```
+
+**`%<>%`:** Operador pipe que realiza la asignación in-place al propio objeto.
+
+**`mutate(...)`:** Crea o modifica columnas en el DataFrame.
+
+**`grupos_dbscan`:** Se crea una nueva columna llamada `grupos_dbscan` en el DataFrame `tb_pinturas`.
+
+**`ls_dbscan %>% pluck("cluster")`:** Extrae la información de los clústeres asignados por el modelo DBSCAN (`ls_dbscan`) utilizando la función `pluck` y la clave "cluster".
+
+**`tb_pinturas %>% count(grupos_dbscan)`:** Utiliza la función `count` de `dplyr` para contar la frecuencia de cada valor único en la columna `grupos_dbscan` de `tb_pinturas`.
+
+
+## Python
+
+
+```{python}
+tb_grupos['grupos_dbscan'] = mod_dbscan.labels_
+
+tb_cuenta_grupos = (tb_grupos.grupos_dbscan
+  .value_counts()
+  .rename('count')
+  .reset_index())
+
+```
+
+
+```{python}
+#| echo: false
+#| output: true
+
+HTML(tb_cuenta_grupos.to_html())
+
+```
+
+**`mod_dbscan.labels_`:** Accede a los resultados de la asignación de clústeres realizada por el modelo de DBSCAN (`mod_dbscan`). Los resultados se encuentran en el atributo `labels_`.
+
+**`tb_grupos['grupos_dbscan']`:** Crea una nueva columna llamada `grupos_dbscan` en el DataFrame `tb_grupos` y asigna los resultados de la asignación de clústeres.
+
+**`tb_grupos.grupos_dbscan`:** Accede a la columna `grupos_dbscan` en el DataFrame `tb_grupos`.
+
+**`value_counts()`:** Calcula la frecuencia de cada valor único en la columna `grupos_dbscan`.
+
+
+:::
+
+## Guardar los resultados
+
+No se nos puede olvidar guardar nuestros resultados. Para esto podemos utilizar archivos tipo `.csv`.
+
+
+::: {.panel-tabset}
+
+## R
+
+
+```{r}
+write_csv(tb_grupos, mi_setup$archivo_resultados)
+
+
+```
+
+
+Este código guarda los resultados de los procedimientos realizados. Explicación:
+
+ - **`write_csv`:** Es una función del paquete `readr` que permite guardar datos en texto plano.
+
+ - **`tb_grupos`:** Es el dataframe que contiene los resultados obtenidos.
+ 
+ - **`mi_setup$archivo_resultados`:** Es la entrada en la lista de configuración que contiene la ruta del archivo donde se guardan los resultados.
+
+## Python
+
+
+```{python}
+tb_grupos.to_csv(mi_setup["archivo_resultados"], index = False)
+
+```
+
+Este código guarda los resultados de los procedimientos realizados. Explicación:
+
+ - **`.to_csv`:** es el método de la librería `pandas` para escribir datos en texto plano. Se utiliza la instrucción `index = False` para indicar se omita en el archivo resultado la columna del índice de fila.
+
+ - **`tb_grupos`:** Es el dataframe que contiene los resultados obtenidos.
+ 
+ - **`mi_setup["archivo_resultados"]`:** Es la entrada en la lista de configuración que contiene la ruta del archivo donde se guardan los resultados.
+
+
+:::
+
+
+
+
+# Conclusión
+
+
+Con esto terminamos la práctica de la conformación de los grupos para nuestro proyecto. Hemos cumplido con el objetivo de esta actividad. En las siguientes unidades utilizaremos estos mismos códigos para obtener una agrupación óptima de nuestras pinturas y poder extraer las tendencias principales del dataset.
