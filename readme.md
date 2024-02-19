@@ -6,4 +6,3 @@ El material aquí desarrollado puede ser usado y compartido bajo licencia GPL3, 
 
 Se aconseja el uso de estos materiales con fines educativos, toda vez que el uso de material privativo restringe la ejecución, copia, reproducción y distribución del código presentado, lo que se opone al propósito mismo del material.
 
-Acceda al material completo en [este link](/_site/index.html)
