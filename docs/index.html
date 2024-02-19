@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MNS - Proyecto: The joy of programming</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">MNS</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./unidad_01.html" rel="" target="">
+ <span class="menu-text">Unidad 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./unidad_02.html" rel="" target="">
+ <span class="menu-text">Unidad 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./unidad_03.html" rel="" target="">
+ <span class="menu-text">Unidad 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./unidad_04.html" rel="" target="">
+ <span class="menu-text">Unidad 4</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenido</h2>
+   
+  <ul>
+  <li><a href="#contexto" id="toc-contexto" class="nav-link active" data-scroll-target="#contexto">Contexto</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  </ul></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a>
+  <ul class="collapse">
+  <li><a href="#objetivos-específicos" id="toc-objetivos-específicos" class="nav-link" data-scroll-target="#objetivos-específicos">Objetivos específicos</a></li>
+  </ul></li>
+  <li><a href="#descripción-de-los-datos." id="toc-descripción-de-los-datos." class="nav-link" data-scroll-target="#descripción-de-los-datos.">Descripción de los datos.</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Proyecto: The joy of programming</h1>
+<p class="subtitle lead">Presentación</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="contexto" class="level1">
+<h1>Contexto</h1>
+<p>En los siguientes recursos se encuentra la documentación contextual del proyecto. Es necesario estar en contexto para entender a profundidad lo que estamos haciendo. El contexto es el mismo en todas las etapas del proyecto.</p>
+<p><a href="https://medium.com/fathominfo/the-joy-of-parsing-4addce08969a">The Joy of Parsing</a></p>
+<p><a href="https://youtu.be/rDs3o1uLEdU">Where Are All the Bob Ross Paintings? We Found Them.</a></p>
+<p><a href="https://www.twoinchbrush.com/all-paintings">TwoInchBrush</a></p>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Puedes descargar la <a href="proyecto.zip">carpeta del proyecto</a> donde puedes encontrar:</p>
+<ul>
+<li><p>01_data: carpeta para almacenamiento de datos, allí está la base de datos y la carpeta de pinturas.</p></li>
+<li><p>02_doc: carpeta para la documentación del proyecto. En esta carpeta puedes guardar los documentos del proyecto que sean relevantes.</p></li>
+<li><p>03_scripts: carpeta de programación. En esta carpeta puedes guardar los scripts que elabores.</p></li>
+</ul>
+<p>Los datos porvienen de los siguientes recursos, puedes visitarlos y revisar su funcionamiento.</p>
+<p><a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-06">Base de datos</a></p>
+<p><a href="https://github.com/jwilber/Bob_Ross_Paintings">Scrapping</a></p>
+</section>
+</section>
+<section id="objetivos" class="level1">
+<h1>Objetivos</h1>
+<p>El objetivo general de nuestro proyecto es examinar en detalle las pinturas de Bob Ross encontrando e interpretando las tendencias más fuertes dentro de las pinturas y generando visualizaciones de estas tendencias.</p>
+<p>El objetivo general del proyecto se mantiene a través de las etapas.</p>
+<section id="objetivos-específicos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos-específicos">Objetivos específicos</h2>
+<p>Los objetivos específicos del proyecto son:</p>
+<ul>
+<li>Aplicar algoritmos de agregación al dataset e identificar los grupos subyacentes de las pinturas.</li>
+<li>Aplicar algoritmos de reducción de dimensiones a las pinturas con el fin de crear visualizaciones e interpretaciones.</li>
+<li>Evaluar las tendencias identificadas en los datos de las pinturas y seleccionar el mejor resultado. Caracterizarlo e interpretarlo.</li>
+<li>Evaluar los resultados de los algoritmos de reducción de dimensiones y crear las visualizaciones e interpretaciones correspondientes.</li>
+</ul>
+</section>
+</section>
+<section id="descripción-de-los-datos." class="level1">
+<h1>Descripción de los datos.</h1>
+<p>Los datos que vamos a utilizar en nuestra práctica corresponden a las pinturas de Bob Ross</p>
+<p>Puedes revisarlos, están compuestos por</p>
+<ul>
+<li><p>Una carpeta con las imágenes de todas las pinturas realizadas en la serie, numeradas por episodio.</p></li>
+<li><p>Un archivo <code>.csv</code> que contiene la siguiente estructura:</p></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 18%">
+<col style="width: 74%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Número</th>
+<th>Columna</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>EPISODE</td>
+<td>Número o identificador del episodio.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>TITLE</td>
+<td>Título del episodio.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>APPLE_FRAME</td>
+<td>Presencia de un marco con forma de manzana en la pintura.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>AURORA_BOREALIS</td>
+<td>Presencia de auroras boreales en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>BARN</td>
+<td>Presencia de un granero en la pintura.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>BEACH</td>
+<td>Presencia de una playa en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>BOAT</td>
+<td>Presencia de un bote en la pintura.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>BRIDGE</td>
+<td>Presencia de un puente en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>BUILDING</td>
+<td>Presencia de un edificio en la pintura.</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>BUSHES</td>
+<td>Presencia de arbustos en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>CABIN</td>
+<td>Presencia de una cabaña en la pintura.</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>CACTUS</td>
+<td>Presencia de un cactus en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>CIRCLE_FRAME</td>
+<td>Presencia de un marco circular en la pintura.</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>CIRRUS</td>
+<td>Presencia de nubes cirrus en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>CLIFF</td>
+<td>Presencia de un acantilado en la pintura.</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>CLOUDS</td>
+<td>Presencia de nubes en general en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>CONIFER</td>
+<td>Presencia de árboles de hoja perenne (coníferas) en la pintura.</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td>CUMULUS</td>
+<td>Presencia de nubes cúmulos en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td>DECIDUOUS</td>
+<td>Presencia de árboles de hoja caduca en la pintura.</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>DIANE_ANDRE</td>
+<td>Referencia a Diane Andre, un colaborador de Bob Ross.</td>
+</tr>
+<tr class="odd">
+<td>21</td>
+<td>DOCK</td>
+<td>Presencia de un muelle en la pintura.</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td>DOUBLE_OVAL_FRAME</td>
+<td>Presencia de un marco doble ovalado en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>23</td>
+<td>FARM</td>
+<td>Presencia de una granja en la pintura.</td>
+</tr>
+<tr class="even">
+<td>24</td>
+<td>FENCE</td>
+<td>Presencia de una cerca en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>25</td>
+<td>FIRE</td>
+<td>Presencia de fuego en la pintura.</td>
+</tr>
+<tr class="even">
+<td>26</td>
+<td>FLORIDA_FRAME</td>
+<td>Presencia de un marco con elementos de Florida en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>27</td>
+<td>FLOWERS</td>
+<td>Presencia de flores en la pintura.</td>
+</tr>
+<tr class="even">
+<td>28</td>
+<td>FOG</td>
+<td>Presencia de niebla en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>29</td>
+<td>FRAMED</td>
+<td>Indica si la pintura está enmarcada.</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td>GRASS</td>
+<td>Presencia de hierba en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>31</td>
+<td>GUEST</td>
+<td>Indica si hay un invitado en el episodio.</td>
+</tr>
+<tr class="even">
+<td>32</td>
+<td>HALF_CIRCLE_FRAME</td>
+<td>Presencia de un marco semicircular en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>33</td>
+<td>HALF_OVAL_FRAME</td>
+<td>Presencia de un marco semiovalado en la pintura.</td>
+</tr>
+<tr class="even">
+<td>34</td>
+<td>HILLS</td>
+<td>Presencia de colinas en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>35</td>
+<td>LAKE</td>
+<td>Presencia de un lago en la pintura.</td>
+</tr>
+<tr class="even">
+<td>36</td>
+<td>LAKES</td>
+<td>Presencia de lagos en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>37</td>
+<td>LIGHTHOUSE</td>
+<td>Presencia de un faro en la pintura.</td>
+</tr>
+<tr class="even">
+<td>38</td>
+<td>MILL</td>
+<td>Presencia de un molino en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>39</td>
+<td>MOON</td>
+<td>Presencia de la luna en la pintura.</td>
+</tr>
+<tr class="even">
+<td>40</td>
+<td>MOUNTAIN</td>
+<td>Presencia de una montaña en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>41</td>
+<td>MOUNTAINS</td>
+<td>Presencia de montañas en general en la pintura.</td>
+</tr>
+<tr class="even">
+<td>42</td>
+<td>NIGHT</td>
+<td>Indica si la pintura representa una escena nocturna.</td>
+</tr>
+<tr class="odd">
+<td>43</td>
+<td>OCEAN</td>
+<td>Presencia de océano en la pintura.</td>
+</tr>
+<tr class="even">
+<td>44</td>
+<td>OVAL_FRAME</td>
+<td>Presencia de un marco ovalado en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>45</td>
+<td>PALM_TREES</td>
+<td>Presencia de palmeras en la pintura.</td>
+</tr>
+<tr class="even">
+<td>46</td>
+<td>PATH</td>
+<td>Presencia de un camino en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>47</td>
+<td>PERSON</td>
+<td>Presencia de una persona en la pintura.</td>
+</tr>
+<tr class="even">
+<td>48</td>
+<td>PORTRAIT</td>
+<td>Indica si la pintura es un retrato.</td>
+</tr>
+<tr class="odd">
+<td>49</td>
+<td>RECTANGLE_3D_FRAME</td>
+<td>Presencia de un marco rectangular en 3D en la pintura.</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>RECTANGULAR_FRAME</td>
+<td>Presencia de un marco rectangular en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>51</td>
+<td>RIVER</td>
+<td>Presencia de un río en la pintura.</td>
+</tr>
+<tr class="even">
+<td>52</td>
+<td>ROCKS</td>
+<td>Presencia de rocas en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>53</td>
+<td>SEASHELL_FRAME</td>
+<td>Presencia de un marco con elementos de concha marina en la pintura.</td>
+</tr>
+<tr class="even">
+<td>54</td>
+<td>SNOW</td>
+<td>Presencia de nieve en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>55</td>
+<td>SNOWY_MOUNTAIN</td>
+<td>Presencia de una montaña nevada en la pintura.</td>
+</tr>
+<tr class="even">
+<td>56</td>
+<td>SPLIT_FRAME</td>
+<td>Presencia de un marco dividido en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>57</td>
+<td>STEVE_ROSS</td>
+<td>Referencia a Steve Ross, el hijo de Bob Ross.</td>
+</tr>
+<tr class="even">
+<td>58</td>
+<td>STRUCTURE</td>
+<td>Presencia de alguna estructura en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>59</td>
+<td>SUN</td>
+<td>Presencia del sol en la pintura.</td>
+</tr>
+<tr class="even">
+<td>60</td>
+<td>TOMB_FRAME</td>
+<td>Presencia de un marco con elementos de tumba en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>61</td>
+<td>TREE</td>
+<td>Presencia de un árbol en la pintura.</td>
+</tr>
+<tr class="even">
+<td>62</td>
+<td>TREES</td>
+<td>Presencia de árboles en general en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>63</td>
+<td>TRIPLE_FRAME</td>
+<td>Presencia de un marco triple en la pintura.</td>
+</tr>
+<tr class="even">
+<td>64</td>
+<td>WATERFALL</td>
+<td>Presencia de una cascada en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>65</td>
+<td>WAVES</td>
+<td>Presencia de olas en la pintura.</td>
+</tr>
+<tr class="even">
+<td>66</td>
+<td>WINDMILL</td>
+<td>Presencia de un molino de viento en la pintura.</td>
+</tr>
+<tr class="odd">
+<td>67</td>
+<td>WINDOW_FRAME</td>
+<td>Presencia de un marco con ventana en la pintura.</td>
+</tr>
+<tr class="even">
+<td>68</td>
+<td>WINTER</td>
+<td>Indica si la pintura representa una escena invernal.</td>
+</tr>
+<tr class="odd">
+<td>69</td>
+<td>WOOD_FRAMED</td>
+<td>Indica si la pintura tiene un marco de madera.</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
