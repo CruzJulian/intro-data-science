@@ -3,6 +3,12 @@ project:
   output-dir: docs
   render: 
     - "index.qmd"
+    - "data-vis_00_intro.qmd"
+    - "data-vis_01_r-graphics.qmd"
+    - "data-vis_02_ggplot.qmd"
+    - "data-vis_03_matplotlib.qmd"
+    - "data-vis_04_seaborn.qmd"
+    - "unidad_00.qmd"
     - "unidad_01.qmd"
     - "unidad_02.qmd"
     - "unidad_03.qmd"
@@ -13,20 +19,36 @@ website:
   search: false
   navbar:
     left:
-      - href: index.qmd
-        text: Inicio
-      - href: unidad_01.qmd
-        text: Unidad 1
-      - href: unidad_02.qmd
-        text: Unidad 2
-      - href: unidad_03.qmd
-        text: Unidad 3
-      - href: unidad_04.qmd
-        text: Unidad 4
+      - text: "Inicio"
+        href: index.qmd
+      - text: "Data-vis"
+        menu:
+          - text: "Presentación"
+            href: data-vis_00_intro.qmd
+          - text: "R base"
+            href: data-vis_01_r-graphics.qmd
+          - text: "R ggplot"
+            href: data-vis_02_ggplot.qmd
+          - text: "Python matplotlib"
+            href: data-vis_03_matplotlib.qmd
+          - text: "Python seaborn"
+            href: data-vis_04_seaborn.qmd
+      - text: "Taller"
+        menu:
+          - text: "Presentación"
+            href: unidad_00.qmd
+          - text: "Unidad 1"
+            href: unidad_01.qmd
+          - text: "Unidad 2"
+            href: unidad_02.qmd
+          - text: "Unidad 3"
+            href: unidad_03.qmd
+          - text: "Unidad 4"
+            href: unidad_04.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: superhero
     css: styles.css
     toc: true
 

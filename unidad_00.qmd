@@ -1,0 +1,139 @@
+---
+title: "Taller: The joy of programming"
+subtitle: "Presentación"
+format: 
+  html:
+    toc: true
+    toc-location: left
+    toc-title: Contenido
+    df-print: default
+---
+
+# Contexto
+
+En los siguientes recursos se encuentra la documentación contextual del proyecto. Es necesario estar en contexto para entender a profundidad lo que estamos haciendo. El contexto es el mismo en todas las etapas del proyecto.
+
+[The Joy of Parsing](https://medium.com/fathominfo/the-joy-of-parsing-4addce08969a)
+
+[Where Are All the Bob Ross Paintings? We Found Them.](https://youtu.be/rDs3o1uLEdU)
+
+[TwoInchBrush](https://www.twoinchbrush.com/all-paintings)
+
+## Data
+
+Puedes descargar la [carpeta del proyecto](proyecto.zip) donde puedes encontrar:
+
+ - 01_data: carpeta para almacenamiento de datos, allí está la base de datos y la carpeta de pinturas.
+ 
+ - 02_doc: carpeta para la documentación del proyecto. En esta carpeta puedes guardar los documentos del proyecto que sean relevantes.
+ 
+ - 03_scripts: carpeta de programación. En esta carpeta puedes guardar los scripts que elabores.
+
+Los datos porvienen de los siguientes recursos, puedes visitarlos y revisar su funcionamiento.
+
+[Base de datos](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-06)
+
+[Scrapping](https://github.com/jwilber/Bob_Ross_Paintings)
+
+
+
+# Objetivos
+
+El objetivo general de nuestro proyecto es examinar en detalle las pinturas de Bob Ross encontrando e interpretando las tendencias más fuertes dentro de las pinturas y generando visualizaciones de estas tendencias.
+
+El objetivo general del proyecto se mantiene a través de las etapas.
+
+## Objetivos específicos
+
+Los objetivos específicos del proyecto son:
+
+ - Aplicar algoritmos de agregación al dataset e identificar los grupos subyacentes de las pinturas.
+ - Aplicar algoritmos de reducción de dimensiones a las pinturas con el fin de crear visualizaciones e interpretaciones.
+ - Evaluar las tendencias identificadas en los datos de las pinturas y seleccionar el mejor resultado. Caracterizarlo e interpretarlo.
+ - Evaluar los resultados de los algoritmos de reducción de dimensiones y crear las visualizaciones e interpretaciones correspondientes.
+ 
+# Descripción de los datos.
+
+Los datos que vamos a utilizar en nuestra práctica corresponden a las pinturas de Bob Ross
+
+Puedes revisarlos, están compuestos por 
+
+ - Una carpeta con las imágenes de todas las pinturas realizadas en la serie, numeradas por episodio.
+
+ - Un archivo `.csv` que contiene la siguiente estructura:
+ 
+| Número | Columna               | Descripción                                                                               |
+|--------|-----------------------|-------------------------------------------------------------------------------------------|
+| 1      | EPISODE               | Número o identificador del episodio.                                                     |
+| 2      | TITLE                 | Título del episodio.                                                                     |
+| 3      | APPLE_FRAME           | Presencia de un marco con forma de manzana en la pintura.                                 |
+| 4      | AURORA_BOREALIS       | Presencia de auroras boreales en la pintura.                                              |
+| 5      | BARN                  | Presencia de un granero en la pintura.                                                    |
+| 6      | BEACH                 | Presencia de una playa en la pintura.                                                     |
+| 7      | BOAT                  | Presencia de un bote en la pintura.                                                      |
+| 8      | BRIDGE                | Presencia de un puente en la pintura.                                                    |
+| 9      | BUILDING              | Presencia de un edificio en la pintura.                                                  |
+| 10     | BUSHES                | Presencia de arbustos en la pintura.                                                     |
+| 11     | CABIN                 | Presencia de una cabaña en la pintura.                                                   |
+| 12     | CACTUS                | Presencia de un cactus en la pintura.                                                    |
+| 13     | CIRCLE_FRAME          | Presencia de un marco circular en la pintura.                                            |
+| 14     | CIRRUS                | Presencia de nubes cirrus en la pintura.                                                 |
+| 15     | CLIFF                 | Presencia de un acantilado en la pintura.                                                |
+| 16     | CLOUDS                | Presencia de nubes en general en la pintura.                                             |
+| 17     | CONIFER               | Presencia de árboles de hoja perenne (coníferas) en la pintura.                          |
+| 18     | CUMULUS               | Presencia de nubes cúmulos en la pintura.                                                |
+| 19     | DECIDUOUS             | Presencia de árboles de hoja caduca en la pintura.                                       |
+| 20     | DIANE_ANDRE           | Referencia a Diane Andre, un colaborador de Bob Ross.                                     |
+| 21     | DOCK                  | Presencia de un muelle en la pintura.                                                    |
+| 22     | DOUBLE_OVAL_FRAME     | Presencia de un marco doble ovalado en la pintura.                                       |
+| 23     | FARM                  | Presencia de una granja en la pintura.                                                   |
+| 24     | FENCE                 | Presencia de una cerca en la pintura.                                                    |
+| 25     | FIRE                  | Presencia de fuego en la pintura.                                                        |
+| 26     | FLORIDA_FRAME         | Presencia de un marco con elementos de Florida en la pintura.                             |
+| 27     | FLOWERS               | Presencia de flores en la pintura.                                                       |
+| 28     | FOG                   | Presencia de niebla en la pintura.                                                       |
+| 29     | FRAMED                | Indica si la pintura está enmarcada.                                                     |
+| 30     | GRASS                 | Presencia de hierba en la pintura.                                                       |
+| 31     | GUEST                 | Indica si hay un invitado en el episodio.                                                |
+| 32     | HALF_CIRCLE_FRAME     | Presencia de un marco semicircular en la pintura.                                        |
+| 33     | HALF_OVAL_FRAME       | Presencia de un marco semiovalado en la pintura.                                         |
+| 34     | HILLS                 | Presencia de colinas en la pintura.                                                      |
+| 35     | LAKE                  | Presencia de un lago en la pintura.                                                      |
+| 36     | LAKES                 | Presencia de lagos en la pintura.                                                        |
+| 37     | LIGHTHOUSE            | Presencia de un faro en la pintura.                                                      |
+| 38     | MILL                  | Presencia de un molino en la pintura.                                                    |
+| 39     | MOON                  | Presencia de la luna en la pintura.                                                      |
+| 40     | MOUNTAIN              | Presencia de una montaña en la pintura.                                                  |
+| 41     | MOUNTAINS             | Presencia de montañas en general en la pintura.                                          |
+| 42     | NIGHT                 | Indica si la pintura representa una escena nocturna.                                     |
+| 43     | OCEAN                 | Presencia de océano en la pintura.                                                       |
+| 44     | OVAL_FRAME            | Presencia de un marco ovalado en la pintura.                                             |
+| 45     | PALM_TREES            | Presencia de palmeras en la pintura.                                                     |
+| 46     | PATH                  | Presencia de un camino en la pintura.                                                    |
+| 47     | PERSON                | Presencia de una persona en la pintura.                                                  |
+| 48     | PORTRAIT              | Indica si la pintura es un retrato.                                                      |
+| 49     | RECTANGLE_3D_FRAME    | Presencia de un marco rectangular en 3D en la pintura.                                    |
+| 50     | RECTANGULAR_FRAME     | Presencia de un marco rectangular en la pintura.                                         |
+| 51     | RIVER                 | Presencia de un río en la pintura.                                                       |
+| 52     | ROCKS                 | Presencia de rocas en la pintura.                                                        |
+| 53     | SEASHELL_FRAME        | Presencia de un marco con elementos de concha marina en la pintura.                       |
+| 54     | SNOW                  | Presencia de nieve en la pintura.                                                         |
+| 55     | SNOWY_MOUNTAIN        | Presencia de una montaña nevada en la pintura.                                           |
+| 56     | SPLIT_FRAME           | Presencia de un marco dividido en la pintura.                                            |
+| 57     | STEVE_ROSS            | Referencia a Steve Ross, el hijo de Bob Ross.                                            |
+| 58     | STRUCTURE             | Presencia de alguna estructura en la pintura.                                            |
+| 59     | SUN                   | Presencia del sol en la pintura.                                                         |
+| 60     | TOMB_FRAME            | Presencia de un marco con elementos de tumba en la pintura.                               |
+| 61     | TREE                  | Presencia de un árbol en la pintura.                                                     |
+| 62     | TREES                 | Presencia de árboles en general en la pintura.                                           |
+| 63     | TRIPLE_FRAME          | Presencia de un marco triple en la pintura.                                              |
+| 64     | WATERFALL             | Presencia de una cascada en la pintura.                                                  |
+| 65     | WAVES                 | Presencia de olas en la pintura.                                                         |
+| 66     | WINDMILL              | Presencia de un molino de viento en la pintura.                                          |
+| 67     | WINDOW_FRAME          | Presencia de un marco con ventana en la pintura.                                         |
+| 68     | WINTER                | Indica si la pintura representa una escena invernal.                                     |
+| 69     | WOOD_FRAMED           | Indica si la pintura tiene un marco de madera.                                           |
+
+ 
+
+
