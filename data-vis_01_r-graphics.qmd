@@ -1,0 +1,100 @@
+---
+title: "Data-vis"
+subtitle: "Gráficos en R"
+format: 
+  html:
+    toc: true
+toc-location: left
+toc-title: Contenido
+df-print: default
+---
+
+
+# Package graphics
+
+## What is
+
+The default package for creating graphics in R is called "graphics." This package comes pre-installed with the basic R libraries and is known for its versatility in producing high-quality graphics.
+
+In R, "graphics" is a built-in package that provides a wide range of functions and tools for creating various types of plots and charts. It's commonly used for basic data visualization tasks, making it a handy choice for creating simple yet effective graphics. Since it's included in the standard R installation, you don't need to install any additional packages to start using it.
+
+Here are some key points about the "graphics" package in R:
+
+ - Default Graphics Package: When you start working with R, you can use the "graphics" package without any additional installations. It's the go-to choice for basic plotting and graphing.
+
+ - Versatility: The "graphics" package offers a versatile set of functions that allow you to create a wide range of plots, including scatter plots, bar charts, histograms, and more. You can customize these plots to suit your specific needs.
+
+ - Good-Quality Graphics: While "graphics" is a basic graphics package, it is capable of producing high-quality graphics for data visualization and exploration. It may not have all the advanced features of specialized packages, but it gets the job done for many common plotting tasks.
+
+## How it works
+
+The "graphics" package in R is a fundamental tool for creating a wide variety of plots and charts. It has a well-defined structure consisting of several functions that allow you to create and customize plots. Here, we'll delve deeper into the structure of the "graphics" package using the provided text.
+
+```{r, eval = FALSE}
+# Functions for plotting
+
+plot()
+barplot()
+boxplot()
+hist()
+contour()
+assocplot()
+pairs()
+pie()
+polygon()
+persp()
+
+# helpers
+
+lines()
+abline()
+
+title()
+legend()
+text()
+
+
+```
+
+
+
+Functions for Plot Creation:
+
+The core of the "graphics" package is its collection of functions for creating plots. These functions are designed to work primarily with vectors, although they can also work with data structures. These functions are the building blocks for generating different types of visualizations in R.
+
+Working with Vectors and Data:
+
+The functions within the "graphics" package are primarily designed to work with vectors, which are one-dimensional data structures. Vectors can represent numerical or categorical data. These functions can take vectors as input to create a wide range of plots, such as scatter plots, line charts, histograms, and more.
+
+Customizable Plots:
+
+One of the key features of the "graphics" package is its ability to customize plots. You can control various aspects of the visualizations, including colors, labels, axes, titles, and more. This level of customization allows you to tailor the plots to your specific needs.
+
+Extensibility:
+
+While the "graphics" package offers a wide range of plotting functions, it's also extensible. This means you can build more complex visualizations by combining these basic functions and adding additional elements to your plots. This extensibility allows for creative and sophisticated data visualization.
+
+## Common Plot Types:
+
+The package provides functions for creating common types of plots, including:
+
+ - Scatter Plots: Visualizing the relationship between two variables.
+
+ - Line Charts: Representing data trends over time or another continuous variable.
+
+ - Bar Charts: Showing categorical data with bars.
+
+ - Histograms: Displaying the distribution of continuous data.
+
+ - Box Plots: Illustrating the distribution and variability of data.
+
+ - Pie Charts: Representing parts of a whole.
+
+## Further reading
+
+Read [the documentation of the package](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html)
+
+Visit [The R Graph Gallery](https://r-graph-gallery.com/) to view a collection of charts made with the graphics package.
+
+
+

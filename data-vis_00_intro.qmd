@@ -1,0 +1,21 @@
+---
+title: "Data-vis"
+subtitle: "Presentación"
+format: 
+  html:
+    toc: true
+toc-location: left
+toc-title: Contenido
+df-print: default
+---
+
+# What is this
+
+This is a notebook for the use in a data visualization course.
+
+I dont have structured it yet. But I can link here some of the chapters.
+
+Here I will explain some things about visualizationa from my understanding. this work has a lot of opportunities for growing, be kind to inform mistakes and collaborate in the way you want.
+
+
+![Use of visualization libraries](structure.png)

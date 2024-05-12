@@ -1,0 +1,415 @@
+---
+title: "Data-vis"
+subtitle: "Introducción a ggplot"
+format: 
+  html:
+    toc: true
+toc-location: left
+toc-title: Contenido
+df-print: default
+---
+
+# Package ggplot2
+
+
+## What is
+
+Based on the PhD wor of [Hadley Wickham](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf), **ggplot2** is a widely used and powerful R package for creating data visualizations. It was created by Hadley Wickham and is based on the "Grammar of Graphics" concept. Here's a comprehensive explanation of the ggplot2 package:
+
+1. Grammar of Graphics: ggplot2 is based on the Grammar of Graphics, an abstract framework for describing and constructing data visualizations. This concept breaks down the process of creating plots into distinct components, making it highly flexible and customizable.
+
+2. High-Level Plotting: ggplot2 is known for its high-level approach to plotting. Instead of specifying each detail of a plot individually, you describe the plot in terms of data and mappings, and ggplot2 handles the details automatically.
+
+3. Layered Approach: In ggplot2, you build plots by adding layers, starting with a data source and progressively adding components like geoms (geometric objects representing data points), aesthetic mappings, and statistical transformations. This layering approach allows for complex and informative visualizations.
+
+4. Data-Driven Aesthetics: ggplot2 allows you to map data variables to aesthetics, such as color, size, shape, and position. This data-driven approach enables you to create visualizations that reveal patterns and relationships in your data.
+
+5. Extensive Geometric Objects: The package provides a wide range of geometric objects (geoms) that allow you to represent your data in various ways. Common geoms include points, lines, bars, and text labels, but there are many more to choose from.
+
+6. Faceting: ggplot2 supports faceting, which is the process of creating multiple plots based on a categorical variable in your data. This allows you to explore how different categories affect your visualizations.
+
+7. Themes and Customization: ggplot2 provides themes that allow you to customize the appearance of your plots. You can change fonts, colors, grid lines, and more to match your preferred style or to adhere to specific branding requirements.
+
+8. Statistical Transformations: The package offers a variety of statistical transformations that can be applied to your data before plotting. For example, you can calculate summary statistics like means, medians, or quantiles within your plot.
+
+9. Elegant Code: ggplot2 encourages clean and elegant code through its layered structure and use of the pipe operator (%>%), making it easier to read and understand complex visualizations.
+
+10. Data Exploration and Communication: ggplot2 is a valuable tool for both data exploration and communication. It allows you to quickly generate meaningful visualizations for data analysis, as well as create publication-ready graphics for reports and presentations.
+
+## How it works
+
+The layering system can be confusing initially, which has led to explanations that are not entirely accurate. In this regard, it is important to ensure that you fully understand ggplot2's layering system before attempting to explain it to others.
+
+![Wrong layer system of ggplot 2.](ggplot_layers.jpeg)
+
+
+The code structure of ggplot2:
+
+```{}
+Create a plot with:
+  One layer that includes:
+    Data
+    Statistics
+    Aesthetic components
+    Geometry
+  Another layer that includes:
+    Data
+    Statistics
+    Aesthetic components
+    Geometry
+  Refinements to the plot
+  Styling
+
+```
+
+![Structure of a plot](structure-ggplot.jpeg)
+
+
+```{r, eval = FALSE}
+ggplot(...) +
+  layer(...) +
+  layer(...) +
+  helper(...) +
+  helper(...) +
+  theme(...)
+
+```
+
+It is like a cake.
+
+![Correct layer system of ggplot 2.](ggplot2_layer.jpeg)
+
+
+
+## Further reading
+
+Read [the documentation of the package](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html)
+
+
+Visit [The R Graph Gallery](https://r-graph-gallery.com/) to view a collection of charts made with the graphics package.
+
+Read the [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf):
+
+![ggplot cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/data-visualization-cheatsheet-thumbs.png)
+
+For inspiration visit the [Top 50 ggplot2 Visualizations - The Master List](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) (With Full R Code)
+
+Searching expand the posibilities, visit the [ggplot2 extensions](https://exts.ggplot2.tidyverse.org/) page.
+
+## Basics
+
+
+
+```{r}
+library("ggplot2")
+library("magrittr")
+library("dplyr")
+
+diamonds %<>%
+  sample_n(5000) # obtener una muestra de los datos
+
+
+# diamonds %>% 
+#   glimpse
+
+
+
+
+```
+
+
+
+### Layers
+
+```{r}
+ggplot() +
+  layer(
+    data = diamonds, 
+    mapping = aes(x = carat, y = price),
+    geom = "point", 
+    stat = "identity", 
+    position = "identity"
+    ) +
+  scale_y_continuous() +
+  scale_x_continuous() +
+  coord_cartesian() +
+  theme_minimal()
+
+
+```
+
+
+```{r}
+ggplot() +
+  layer(
+    data = mtcars, 
+    mapping = aes(x = mpg, y = cyl),
+    geom = "point", 
+    stat = "identity", 
+    position = "identity"
+    ) +
+  scale_y_continuous() +
+  scale_x_continuous() +
+  coord_cartesian() +
+  theme_minimal()
+
+```
+
+
+### Overlaping layers
+
+
+```{r}
+ggplot() +
+  layer(
+    data = diamonds, 
+    mapping = aes(x = carat, y = price),
+    geom = "point", 
+    stat = "identity", 
+    position = "identity"
+    ) +
+  layer(
+    data = mtcars, 
+    mapping = aes(x = mpg, y = cyl),
+    geom = "point", 
+    stat = "identity", 
+    position = "identity"
+    ) +
+  scale_y_continuous(name = "Y axis") +
+  scale_x_continuous(name = " X axis") +
+  coord_cartesian() +
+  theme_minimal()
+
+
+```
+
+
+### factorize data and mapping
+
+```{r}
+ggplot(
+  data = diamonds, 
+  mapping = aes(x = carat, y = price),
+) +
+  layer(
+    geom = "point", 
+    stat = "identity", 
+    position = "identity"
+  ) +
+  scale_y_continuous() +
+  scale_x_continuous() +
+  coord_cartesian() +
+  theme_minimal()
+
+
+
+```
+
+
+
+```{r}
+ggplot(
+  data = diamonds, 
+  mapping = aes(x = carat, y = price),
+) +
+  layer(
+    geom = "smooth", 
+    stat = "smooth", 
+    position = "identity",
+    params = list(se = TRUE, colour = "#ac4875")
+  ) +
+  scale_y_continuous() +
+  scale_x_continuous() +
+  coord_cartesian() +
+  theme_minimal()
+
+
+```
+
+
+
+
+```{r}
+ggplot(
+  data = diamonds, 
+  mapping = aes(x = carat, y = price),
+) +
+  layer(
+    geom = "point", 
+    stat = "identity", 
+    position = "identity"
+  ) +
+  layer(
+    geom = "smooth", 
+    stat = "smooth", 
+    position = "identity",
+    params = list(se = TRUE, colour = "#ac4875")
+  ) +
+  scale_y_continuous() +
+  scale_x_continuous() +
+  coord_cartesian() +
+  theme_minimal()
+
+
+```
+
+
+### geoms
+
+
+```{r}
+ggplot(
+  data = diamonds, 
+  mapping = aes(x = carat, y = price),
+) +
+  # layer(
+  #   geom = "point", 
+  #   stat = "identity", 
+  #   position = "identity"
+  # ) + 
+  geom_point() + # This line resumes the four ones below
+  layer(
+    geom = "smooth", 
+    stat = "smooth", 
+    position = "identity",
+    params = list(se = TRUE, colour = "#ac4875", method = "gam")
+  ) +
+  scale_y_continuous() +
+  scale_x_continuous() +
+  coord_cartesian() +
+  theme_minimal()
+
+
+```
+
+
+
+```{r}
+
+ggplot(
+  data = diamonds, 
+  mapping = aes(x = carat, y = price),
+) +
+  geom_point() +
+  # layer(
+  #   geom = "smooth", 
+  #   stat = "smooth", 
+  #   position = "identity",
+  #   params = list(se = TRUE, colour = "#ac4875", method = "gam")
+  # ) +
+  geom_smooth(colour = "#ac4875") +  # This line resumes the four ones below
+  scale_y_continuous(name = "Precio") +
+  scale_x_continuous(name = "Quilates") +
+  theme_minimal()
+
+
+```
+
+
+### most extended use
+
+```{r}
+ggplot(diamonds) +
+  aes(x = carat, y = price) + 
+  geom_point() +
+  stat_smooth(colour = "#ac4875") +
+  theme_minimal()
+
+```
+
+### Facets
+
+
+```{r}
+ggplot(diamonds) +
+  aes(x = carat, y = price) + 
+  geom_point() +
+  stat_smooth(colour = "#ac4875") +
+  facet_wrap(~ color) +
+  theme_minimal()
+
+```
+
+
+
+```{r}
+library("esquisse")
+# esquisser(data = diamonds)
+
+
+```
+
+
+
+```{r}
+ggplot(diamonds) +
+  aes(x = carat, y = price) +
+  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  theme_minimal() +
+  facet_wrap(vars(color))
+
+
+```
+
+
+## Examples
+
+```{r}
+ggplot(diamonds) + 
+  aes(x = carat, y = price, colour = color) + 
+  geom_point() 
+
+```
+
+```{r}
+ggplot(diamonds) + 
+  aes(x = cut, y = price, fill = color) + 
+  geom_boxplot()
+
+```
+
+
+```{r}
+diamonds %>% 
+  group_by(color) %>% 
+  summarise(carat_avg = mean(carat, na.rm = TRUE)) %>% 
+  ggplot() + 
+  aes(x = color, y = carat_avg) + 
+  geom_bar(stat = "identity") 
+
+```
+
+
+
+## Exercise
+
+Generate the following charts.
+
+```{r, echo=FALSE}
+ggplot(diamonds) +
+  aes(x = carat, y = price) +
+  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  theme_minimal() 
+
+```
+
+
+```{r, echo=FALSE}
+ggplot(diamonds) +
+  aes(x = cut, y = price) +
+  geom_boxplot() +
+  theme_minimal() 
+
+```
+
+
+```{r, echo=FALSE,  fig.width = 6,  fig.height = 8}
+ggplot(diamonds) +
+  aes(x = price) +
+  geom_histogram() +
+  theme_minimal() +
+  facet_wrap(ncol = 1, vars(color))
+
+
+```
+
