@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science Intro - Limpieza de datos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Science Intro</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programación" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Programación</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-programación">    
+        <li>
+    <a class="dropdown-item" href="./program_00_setup.html">
+ <span class="dropdown-text">Setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_01_loading-data.html">
+ <span class="dropdown-text">Lectura de datos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_02_basics.html">
+ <span class="dropdown-text">Hola R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_03_tidy.html">
+ <span class="dropdown-text">Limpieza de datos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_04_eda.html">
+ <span class="dropdown-text">Análisis exploratorio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_05_asociacion.html">
+ <span class="dropdown-text">Asociación</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-vis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data-vis</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-vis">    
+        <li>
+    <a class="dropdown-item" href="./data-vis_00_intro.html">
+ <span class="dropdown-text">Presentación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_01_r-graphics.html">
+ <span class="dropdown-text">R base</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_02_ggplot.html">
+ <span class="dropdown-text">R ggplot</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_03_matplotlib.html">
+ <span class="dropdown-text">Python matplotlib</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_04_seaborn.html">
+ <span class="dropdown-text">Python seaborn</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-taller" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Taller</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-taller">    
+        <li>
+    <a class="dropdown-item" href="./unidad_00.html">
+ <span class="dropdown-text">Presentación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_01.html">
+ <span class="dropdown-text">Unidad 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_02.html">
+ <span class="dropdown-text">Unidad 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_03.html">
+ <span class="dropdown-text">Unidad 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_04.html">
+ <span class="dropdown-text">Unidad 4</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenido</h2>
+   
+  <ul>
+  <li><a href="#flujo-de-trabajo" id="toc-flujo-de-trabajo" class="nav-link active" data-scroll-target="#flujo-de-trabajo">Flujo de trabajo</a></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#síntomas-de-datos-desordenados" id="toc-síntomas-de-datos-desordenados" class="nav-link" data-scroll-target="#síntomas-de-datos-desordenados">Síntomas de datos desordenados</a></li>
+  <li><a href="#buena-práctica-1-tener-información-de-contexto-del-problema-de-estudio" id="toc-buena-práctica-1-tener-información-de-contexto-del-problema-de-estudio" class="nav-link" data-scroll-target="#buena-práctica-1-tener-información-de-contexto-del-problema-de-estudio">Buena práctica #1: tener información de contexto del problema de estudio</a></li>
+  <li><a href="#buena-práctica-2-construir-diccionario-de-datos" id="toc-buena-práctica-2-construir-diccionario-de-datos" class="nav-link" data-scroll-target="#buena-práctica-2-construir-diccionario-de-datos">Buena práctica #2: construir diccionario de datos</a></li>
+  <li><a href="#práctica" id="toc-práctica" class="nav-link" data-scroll-target="#práctica">Práctica</a></li>
+  <li><a href="#datos-faltantes" id="toc-datos-faltantes" class="nav-link" data-scroll-target="#datos-faltantes">Datos faltantes</a>
+  <ul class="collapse">
+  <li><a href="#imputación-usando-la-media" id="toc-imputación-usando-la-media" class="nav-link" data-scroll-target="#imputación-usando-la-media">Imputación usando la media</a></li>
+  <li><a href="#imputación-mediante-hotdeck" id="toc-imputación-mediante-hotdeck" class="nav-link" data-scroll-target="#imputación-mediante-hotdeck">Imputación mediante Hotdeck</a></li>
+  <li><a href="#imputación-medidante-imputación-múltiple" id="toc-imputación-medidante-imputación-múltiple" class="nav-link" data-scroll-target="#imputación-medidante-imputación-múltiple">Imputación medidante imputación múltiple</a></li>
+  </ul></li>
+  <li><a href="#datos-atípicos" id="toc-datos-atípicos" class="nav-link" data-scroll-target="#datos-atípicos">Datos atípicos</a></li>
+  <li><a href="#nombrado-adecuado-de-las-variables" id="toc-nombrado-adecuado-de-las-variables" class="nav-link" data-scroll-target="#nombrado-adecuado-de-las-variables">Nombrado adecuado de las variables</a></li>
+  <li><a href="#valores-duplicados" id="toc-valores-duplicados" class="nav-link" data-scroll-target="#valores-duplicados">Valores duplicados</a></li>
+  <li><a href="#discretización-de-variables" id="toc-discretización-de-variables" class="nav-link" data-scroll-target="#discretización-de-variables">Discretización de variables</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Limpieza de datos</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="flujo-de-trabajo" class="level2">
+<h2 class="anchored" data-anchor-id="flujo-de-trabajo">Flujo de trabajo</h2>
+<p><img src="flujo-trabajo.png" class="img-fluid" style="width:80.0%"></p>
+</section>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<p>Vamos a trabajar con datos tabulares. Existen 3 reglas que logran que un conjunto de datos tabulares esté “limpio”:</p>
+<ul>
+<li>Cada variable debe tener su propia columna</li>
+<li>Cada observación debe tener su propia fila</li>
+<li>Cada valor debe estar en su propia celda</li>
+</ul>
+<p><img src="data-tidy-table.png" class="img-fluid" style="width:80.0%"></p>
+</section>
+<section id="síntomas-de-datos-desordenados" class="level2">
+<h2 class="anchored" data-anchor-id="síntomas-de-datos-desordenados">Síntomas de datos desordenados</h2>
+<ul>
+<li>Los encabezados de las columnas son valores, no nombres de variables</li>
+<li>En una misma columna se guardan múltiples valores</li>
+<li>Las variables están tanto en columnas como en filas</li>
+<li>Múltiples tipos de unidades observacionales se guardan en la misma tabla</li>
+<li>Una misma unidad observacional está alojada en múltiples tablas</li>
+</ul>
+</section>
+<section id="buena-práctica-1-tener-información-de-contexto-del-problema-de-estudio" class="level2">
+<h2 class="anchored" data-anchor-id="buena-práctica-1-tener-información-de-contexto-del-problema-de-estudio">Buena práctica #1: tener información de contexto del problema de estudio</h2>
+<p>Para todos los conjuntos de datos con los que trabajemos es importante tener un contexto que nos brinde información sobre cómo fueron recolectados, en qué año(s), qué técnicas de muestreo y recolección se usaron para obtener las observaciones y qué personas o entidades fueron los responsables.</p>
+<ul>
+<li>Si los datos los recolectamos nosotros hablamos de <strong>información primaria</strong> y en nuestros reportes/informes debemos hacer explícito el contexto referido.</li>
+<li>Si los datos los obtuvimos de otra fuenta hablamos de <strong>información secundaria</strong> y en los reportes derivados igualmente debemos procurar obtener y referenciar el contexto referido para los datos.</li>
+</ul>
+</section>
+<section id="buena-práctica-2-construir-diccionario-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="buena-práctica-2-construir-diccionario-de-datos">Buena práctica #2: construir diccionario de datos</h2>
+<ul>
+<li>Consiste en asignar atributos a cada variable de nuestras bases de datos.</li>
+<li>Facilita la lectura y tratamiento de los datos.</li>
+<li>Aporta a la reproducibilidad y repetibilidad de los análisis.</li>
+</ul>
+<p>Ejemplo:</p>
+<p><img src="diccionario.png" class="img-fluid" style="width:80.0%"></p>
+<blockquote class="blockquote">
+<p>Para profundizar: revise el material sobre <a href="https://www.jstatsoft.org/article/view/v059i10/v59i10.pdf">cómo limpiar tablas</a>.</p>
+</blockquote>
+</section>
+<section id="práctica" class="level2">
+<h2 class="anchored" data-anchor-id="práctica">Práctica</h2>
+<p>En esta práctica vamos a trabajar con la base de datos <em>Boston Housing</em>, y podemos consultar el contexto de dichos datos haciendo clic en <a href="https://www.kaggle.com/c/boston-housing/overview/description">este tunel secreto</a>.</p>
+<p>¿Qué aprenderemos?</p>
+<ul>
+<li>Detección y tratamiento de datos faltantes</li>
+<li>Detección y tratamiento de datos atípicos</li>
+<li>Naming</li>
+<li>Detección y tratamiento de datos duplicados</li>
+<li>Discretización de variables</li>
+</ul>
+<p>Carguemos los datos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos los paquetes</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Leemos los datos desde un archivo de Excel</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">read_xlsx</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"01_data/programacion/Boston_Housing.xlsx"</span>, </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet=</span><span class="st">"Data"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> boston_housing_xlsx</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(boston_housing_xlsx)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convierto variables respectivas a factores</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Esto es muy importante para procesos de limpieza de datos</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>factores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"CHAS"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>boston_housing_xlsx <span class="sc">%&gt;%</span> <span class="fu">mutate_at</span>(factores,factor) <span class="ot">-&gt;</span> boston_housing_xlsx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>En cualquier escenario, es posible que tengamos datos faltantes. Veámos cómo abordar esta situación.</p>
+</blockquote>
+</section>
+<section id="datos-faltantes" class="level2">
+<h2 class="anchored" data-anchor-id="datos-faltantes">Datos faltantes</h2>
+<p>Los datos faltantes (<em>missing data</em>) son un problema frecuente en todos los tipos de estudios y análisis, sin importar que el diseño sea muy estricto o que los investigadores/analistas traten de prevenirlo.</p>
+<p>En ciencia de datos podemos realizar un proceso de imputación de datos, que consiste en asignar un valor a un ítem para el que previamente no se tenia información.</p>
+<p>Existen numerosos métodos de imputación de datos, entre otros:</p>
+<ul>
+<li>Usando la media de la variable
+<ul>
+<li>Los datos faltantes de cada columna son reemplazados con la media de los datos disponibles de dicha. Útil para variables numéricas con distribuciones aproximadamente normales.</li>
+</ul></li>
+</ul>
+<p><img src="mean-imputation.png" class="img-fluid" style="width:70.0%"></p>
+<ul>
+<li>HotDeck
+<ul>
+<li>Los datos faltantes son reemplazados por valores tomados de registros similares. Útil en conjuntos de datos grandes.</li>
+</ul></li>
+</ul>
+<p><img src="hotdeck.png" class="img-fluid" style="width:70.0%"></p>
+<ul>
+<li>ColdDeck
+<ul>
+<li>Los datos faltantes son reemplazados por valores tomados de registros similares de una fuente externa de datos.</li>
+</ul></li>
+<li><a href="https://www.youtube.com/watch?v=J4Wdy0Wc_xQ">Algoritmos Random Forest</a>
+<ul>
+<li>Los datos faltantes son reemplazados a partir de ensamblar árboles de decisión. Útil en conjuntos de datos grandes.</li>
+</ul></li>
+<li>Imputación múltiple - <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3074241/">MICE</a>
+<ul>
+<li>Los datos faltantes son reemplazados mediante estimaciones obtenidas por una mezcla de métodos de simulación y ponderación de varianzas o errores estándar. Útil para automatizar procesos de limpieza de datos.</li>
+</ul></li>
+</ul>
+<p><img src="mice-detailed.png" class="img-fluid" style="width:70.0%"></p>
+<p>Vamos a retirar algunos datos de la base de forma aleatoria.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalamos el paquete mice</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("mice")</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos mice</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"mice"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Hacemos una copia de la base de datos en otro objeto llamado datos_completos</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>datos_completos <span class="ot">&lt;-</span> boston_housing_xlsx</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># "amputamos" datos usando el método MCAR: missing completely at random</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ampute</span>(datos_completos, <span class="at">prop =</span> <span class="fl">0.5</span>, <span class="at">mech =</span> <span class="st">"MCAR"</span>, <span class="at">run =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>amp <span class="ot">-&gt;</span> datos_incompletos</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapeamos el número de NAs por cada columna</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>datos_incompletos <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(is.na) <span class="sc">%&gt;%</span> <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora que tenemos datos perdidos en la base de datos, algo que sucede con (mucha) frecuencia, debemos examinar el “comportamiento” de la pérdida de datos, esto es, identificar si existen patrones o situaciones que nos den indicio de por qué se perdieron los datos.</p>
+<p>Podemos tener tres patrones de pérdida de datos:</p>
+<ul>
+<li>MCAR (<em>Missing completely at random</em>) - <em>Los datos se pierden de forma aleatoria.</em></li>
+<li>MAR (<em>Missing at random</em>) - <em>Los datos se pierden de forma aleatoria pero es factible pensar en una variable observada que lo explique.</em></li>
+<li>NMAR (<em>Not missing at random</em>) - <em>Los datos no se pierden de forma aleatoria</em></li>
+</ul>
+<blockquote class="blockquote">
+<p>Es <strong>deseable</strong> que si tenemos datos perdidos esto se deba al azar, y en ese caso, podríamos proceder a imputar los datos faltantes en las covariables (no es tan deseable en la variable objetivo/feature). Si tenemos patrones irregulares de pérdida de datos, sería un indicio de que podemos tener problemas en la captura, sistematización, almacenamiento o distribución de los datos.</p>
+</blockquote>
+<p>Podemos hacer distintas visualizaciones para entender el comportamiento de los datos perdidos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalamos los paquetes naniar y VIM</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("naniar")</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("VIM")</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos los paquetes</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"naniar"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"VIM"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización de patrones con naniar</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficamos en orden descendente las variables con más datos perdidos</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Nos muestra también si hay relaciones de pérdida de datos entre distintas variables</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_upset</span>(datos_incompletos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_03_tidy_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización de patrones con VIM</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficamos la proporción de datos incompletos por variable</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Nos muestra también si hay relaciones de pérdida de datos entre distintas variables</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">aggr</span>(datos_incompletos,<span class="at">numbers=</span>T,<span class="at">sortVar=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_03_tidy_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización de patrones con mice</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Se enfoca en mostrar si hay relaciones de pérdida de datos entre distintas variables</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">md.pattern</span>(datos_incompletos, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_03_tidy_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Advertencia: este tipo de análisis tienen sentido si por la naturaleza del problema esperamos tener todos los datos completos. Si hay columnas en donde es esperable tener datos faltantes (por ejemplo, por respuestas opcionales o variables que parten una muestra) deberíamos realizar la gráfica anterior solamente con las columnas (variables) de las que esperamos datos completos.</p>
+</blockquote>
+<p>Habiendo comprobado que en nuestros datos los valores perdidos se deben al azar y no superan umbrales de trabajo en ciencia de datos, podemos ahora así aplicar métodos de imputación de datos.</p>
+<section id="imputación-usando-la-media" class="level3">
+<h3 class="anchored" data-anchor-id="imputación-usando-la-media">Imputación usando la media</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtramos únicamente variables numéricas</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>datos_incompletos_num <span class="ot">&lt;-</span> <span class="fu">Filter</span>(is.numeric, datos_incompletos)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Llamamos el comando mice para imputar los datos</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignamos unos parámetros de imputación</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mice</span>(datos_incompletos_num, </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">m =</span> <span class="dv">1</span>,              <span class="co"># Número de imputaciones múltiples</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">maxit =</span> <span class="dv">1</span>,          <span class="co"># Número de iteraciones</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">method =</span> <span class="st">"mean"</span>,    <span class="co"># Método de imputación</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">printFlag =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  mice<span class="sc">::</span><span class="fu">complete</span>() <span class="ot">-&gt;</span> base_datos_imputados_promedios_mice</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificamos que efectivamente ya no hayan datos faltantes</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>base_datos_imputados_promedios_mice <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(is.na) <span class="sc">%&gt;%</span> <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="imputación-mediante-hotdeck" class="level3">
+<h3 class="anchored" data-anchor-id="imputación-mediante-hotdeck">Imputación mediante Hotdeck</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Llamamos el comando hotdeck</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hotdeck</span>(datos_incompletos) <span class="ot">-&gt;</span> datos_imputados_hd</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificamos que efectivamente ya no hayan datos faltantes</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>datos_imputados_hd[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(datos_incompletos))] <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(is.na) <span class="sc">%&gt;%</span> <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="imputación-medidante-imputación-múltiple" class="level3">
+<h3 class="anchored" data-anchor-id="imputación-medidante-imputación-múltiple">Imputación medidante imputación múltiple</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Llamamos el comando mice para imputar los datos</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mice</span>(datos_incompletos, <span class="at">printFlag =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  mice<span class="sc">::</span><span class="fu">complete</span>() <span class="ot">-&gt;</span> datos_imputados_mice</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificamos que efectivamente ya no hayan datos faltantes</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>datos_imputados_mice <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(is.na) <span class="sc">%&gt;%</span> <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="datos-atípicos" class="level2">
+<h2 class="anchored" data-anchor-id="datos-atípicos">Datos atípicos</h2>
+<p>En nuestros análisis debemos examinar la presencia de datos atípicos, en la medida que pueden afectar los resultados de las estimaciones, modelos y pruebas de hipótesis.</p>
+<p>Para detectar datos atípicos podemos seguir dos caminos:</p>
+<ul>
+<li>Buscar datos atípicos para cada variable (columna). Para esto podríamos usar criterios numéricos o gráficos.</li>
+<li>Buscar filas que consistentemente tengan datos atípicos en todas las celdas.</li>
+</ul>
+<p>Veamos dos ejemplos usando la base de datos de Boston Housing.</p>
+<p>Primero, una detección de atípicos en una variable en específico (<em>MEDV</em> que es una variable objetivo).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico de resumen para una variable</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(boston_housing_xlsx<span class="sc">$</span>MEDV)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot de una variable</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(boston_housing_xlsx<span class="sc">$</span>MEDV)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de potenciales outliers</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot.stats</span>(boston_housing_xlsx<span class="sc">$</span>MEDV)<span class="sc">$</span>out</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Filas donde se ubican las observaciones atípicas</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> <span class="fu">boxplot</span>(boston_housing_xlsx<span class="sc">$</span>MEDV)<span class="sc">$</span>out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>outliers_filas <span class="ot">&lt;-</span> <span class="fu">which</span>(boston_housing_xlsx<span class="sc">$</span>MEDV <span class="sc">%in%</span> <span class="fu">c</span>(outliers))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>outliers_filas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Segundo, una detección de atípicos basado en un análisis multivariado por medio de componentes principales (hay otras técnicas más, por ejemplo, la distancia de Cook).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalamos paquetes</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("FactoMineR")</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("factoextra")</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("ggpubr")</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("magrittr")</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos paquetes</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"FactoMineR"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"factoextra"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggpubr"</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"magrittr"</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Estandarizamos las variables</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>datos_numericos <span class="ot">&lt;-</span> <span class="fu">Filter</span>(is.numeric, datos_completos)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>datos_numericos <span class="sc">%&gt;%</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(scale) <span class="ot">-&gt;</span> data_estandarizada</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajusto componentes principales usando el método PCA()</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>acp <span class="ot">=</span> <span class="fu">PCA</span>(data_estandarizada, <span class="at">graph=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de individuos del ACP</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Esto puede tardar un poco</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(acp, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="acp_ind.png" class="img-fluid"></p>
+<p>Con el siguiente código calculamos la <strong>distancia</strong> al vecino más cercano.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_estandarizada <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  dist <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">add</span>(<span class="fu">diag</span>(<span class="cn">Inf</span>, <span class="fu">ncol</span>(.))) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(<span class="dv">1</span>, min) <span class="sc">%&gt;%</span> <span class="fu">enframe</span>() <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>Por medio de diversos procedimientos estadísticos podemos detectar datos atípicos. ¿Qué hacer con ellos? Depende. Hay que sopesar el contexto de los datos, la naturaleza del problema y de cada variable, así como combinar elementos de juicio estadístico como elementos de juicio profesionales de otras áreas.</p>
+</blockquote>
+</section>
+<section id="nombrado-adecuado-de-las-variables" class="level2">
+<h2 class="anchored" data-anchor-id="nombrado-adecuado-de-las-variables">Nombrado adecuado de las variables</h2>
+<p>Recuerde que en programación <a href="https://felipe-calvo.github.io/r-101/resources/naming.pdf">los nombres importan (naming)</a>. Siguiendo ese marco de referencia, asegúrese de que las variables (columnas):</p>
+<ul>
+<li>No tengan acentos</li>
+<li>No tengan caracteres especiales (@, #, ?, &amp;, *, $, entre otros)</li>
+<li>No tengan espacios (reemplácelos por un guion medio o bajo)</li>
+<li>De ser necesario, que sea identificable una relación de orden</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de variables en la base de datos</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(datos_completos)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtiene el nombre de las variables de una base de datos</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(datos_completos)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Podríamos declarar un vector con los nuevos nombres que necesitemos</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># nombres_adecuados &lt;- c(</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   "nombre_variable_1",</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   "nombre_variable_2",</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   ...,</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Y luego asignarlos a nuestra base de datos</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># nombres_adecuados -&gt; names(datos_completos)</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Otro ejemplo</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Si tuviésemos variables con espacios, podríamos reemplazar todos los espacios así</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># names(datos_completos) &lt;- str_replace_all(names(datos_completos), c(" " = "_"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="valores-duplicados" class="level2">
+<h2 class="anchored" data-anchor-id="valores-duplicados">Valores duplicados</h2>
+<p>Podemos buscar y eliminar duplicados basados en un columna, por ejemplo, cuando esperamos tener datos únicos de un individuo y tenemos una columna para identificarlo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Ejemplo: acá dejamos valores únicos en la columna MEDV</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(datos_completos, MEDV, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="ot">-&gt;</span> datos_completos_MEDV_unico</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Ejemplo: acá dejamos valores únicos en la columna DIS</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(datos_completos, DIS, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="ot">-&gt;</span> datos_completos_DIS_unico</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>También podemos buscar y eliminar duplicados basados en toda la fila.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(datos_completos) <span class="ot">-&gt;</span> datos_completos_sin_filas_duplicadas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="discretización-de-variables" class="level2">
+<h2 class="anchored" data-anchor-id="discretización-de-variables">Discretización de variables</h2>
+<p>En algunos problemas, conviene convertir variables que son continuas en variables agrupadas por intervalos. Este proceso se llama discretización. Veamos un ejemplo creando un rango de edad para las viviendas de la base de datos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalamos paquete lubridate</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("lubridate")</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos paquete lubridate</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lubridate"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Discretizamos la edad (AGE) de los datos del censo</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># mutate() anexa/crea variables a la base de datos</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>datos_completos <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">edad_hoy =</span> datos_completos<span class="sc">$</span>AGE<span class="sc">+</span><span class="dv">50</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">rango_edad =</span> <span class="fu">cut</span>(edad_hoy, <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">90</span>, <span class="dv">105</span>, <span class="dv">120</span>, <span class="dv">135</span>, <span class="cn">Inf</span>))</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> datos_completos_fechas</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos_completos_fechas[(<span class="fu">ncol</span>(datos_completos_fechas)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">:</span><span class="fu">ncol</span>(datos_completos_fechas)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este mismo principio podría servir para crear rangos etarios en poblaciones, niveles de ingresos, niveles de pobreza, etc.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

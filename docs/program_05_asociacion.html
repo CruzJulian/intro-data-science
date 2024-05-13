@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Docente: Felipe Calvo Cepeda - fcalvoc@unal.edu.co | Universidad Nacional de Colombia">
+
+<title>Data Science Intro - Asociación e independencia entre variables</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Science Intro</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programación" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Programación</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-programación">    
+        <li>
+    <a class="dropdown-item" href="./program_00_setup.html">
+ <span class="dropdown-text">Setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_01_loading-data.html">
+ <span class="dropdown-text">Lectura de datos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_02_basics.html">
+ <span class="dropdown-text">Hola R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_03_tidy.html">
+ <span class="dropdown-text">Limpieza de datos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_04_eda.html">
+ <span class="dropdown-text">Análisis exploratorio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_05_asociacion.html">
+ <span class="dropdown-text">Asociación</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-vis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data-vis</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-vis">    
+        <li>
+    <a class="dropdown-item" href="./data-vis_00_intro.html">
+ <span class="dropdown-text">Presentación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_01_r-graphics.html">
+ <span class="dropdown-text">R base</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_02_ggplot.html">
+ <span class="dropdown-text">R ggplot</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_03_matplotlib.html">
+ <span class="dropdown-text">Python matplotlib</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_04_seaborn.html">
+ <span class="dropdown-text">Python seaborn</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-taller" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Taller</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-taller">    
+        <li>
+    <a class="dropdown-item" href="./unidad_00.html">
+ <span class="dropdown-text">Presentación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_01.html">
+ <span class="dropdown-text">Unidad 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_02.html">
+ <span class="dropdown-text">Unidad 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_03.html">
+ <span class="dropdown-text">Unidad 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_04.html">
+ <span class="dropdown-text">Unidad 4</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cargar-librerías" id="toc-cargar-librerías" class="nav-link active" data-scroll-target="#cargar-librerías">Cargar librerías</a></li>
+  <li><a href="#importar-datos" id="toc-importar-datos" class="nav-link" data-scroll-target="#importar-datos">Importar datos</a></li>
+  <li><a href="#información-sobre-el-conjunto-de-datos" id="toc-información-sobre-el-conjunto-de-datos" class="nav-link" data-scroll-target="#información-sobre-el-conjunto-de-datos">Información sobre el conjunto de datos</a>
+  <ul class="collapse">
+  <li><a href="#información-general" id="toc-información-general" class="nav-link" data-scroll-target="#información-general">Información general</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
+  <li><a href="#fuente" id="toc-fuente" class="nav-link" data-scroll-target="#fuente">Fuente</a></li>
+  </ul></li>
+  <li><a href="#dimensionalidad-de-los-datos" id="toc-dimensionalidad-de-los-datos" class="nav-link" data-scroll-target="#dimensionalidad-de-los-datos">Dimensionalidad de los datos</a></li>
+  <li><a href="#limpieza-de-los-datos" id="toc-limpieza-de-los-datos" class="nav-link" data-scroll-target="#limpieza-de-los-datos">Limpieza de los datos</a></li>
+  <li><a href="#enriquecimiento-de-datos" id="toc-enriquecimiento-de-datos" class="nav-link" data-scroll-target="#enriquecimiento-de-datos">Enriquecimiento de datos</a></li>
+  <li><a href="#análisis-descriptivo" id="toc-análisis-descriptivo" class="nav-link" data-scroll-target="#análisis-descriptivo">Análisis descriptivo</a>
+  <ul class="collapse">
+  <li><a href="#resumen-numérico" id="toc-resumen-numérico" class="nav-link" data-scroll-target="#resumen-numérico">Resumen numérico</a></li>
+  <li><a href="#resumen-gráfico" id="toc-resumen-gráfico" class="nav-link" data-scroll-target="#resumen-gráfico">Resumen gráfico</a></li>
+  </ul></li>
+  <li><a href="#efectos-de-una-variable-sobre-otra" id="toc-efectos-de-una-variable-sobre-otra" class="nav-link" data-scroll-target="#efectos-de-una-variable-sobre-otra">Efectos de una variable sobre otra</a>
+  <ul class="collapse">
+  <li><a href="#asociación-entre-dos-variables-contínuas" id="toc-asociación-entre-dos-variables-contínuas" class="nav-link" data-scroll-target="#asociación-entre-dos-variables-contínuas">Asociación entre dos variables contínuas</a></li>
+  </ul></li>
+  <li><a href="#visualización-de-la-relación-entre-variables" id="toc-visualización-de-la-relación-entre-variables" class="nav-link" data-scroll-target="#visualización-de-la-relación-entre-variables">Visualización de la relación entre variables</a>
+  <ul class="collapse">
+  <li><a href="#examen-detallado-de-variables-de-interés" id="toc-examen-detallado-de-variables-de-interés" class="nav-link" data-scroll-target="#examen-detallado-de-variables-de-interés">Examen detallado de variables de interés</a></li>
+  <li><a href="#escenario-1-asociación-entre-dos-variables-contínuas" id="toc-escenario-1-asociación-entre-dos-variables-contínuas" class="nav-link" data-scroll-target="#escenario-1-asociación-entre-dos-variables-contínuas">Escenario 1: Asociación entre dos variables contínuas</a></li>
+  <li><a href="#escenario-2-asociación-entre-una-variable-categórica-y-una-variable-contínua" id="toc-escenario-2-asociación-entre-una-variable-categórica-y-una-variable-contínua" class="nav-link" data-scroll-target="#escenario-2-asociación-entre-una-variable-categórica-y-una-variable-contínua">Escenario 2: Asociación entre una variable categórica y una variable contínua</a></li>
+  <li><a href="#escenario-3-asociación-entre-dos-variables-categóricas" id="toc-escenario-3-asociación-entre-dos-variables-categóricas" class="nav-link" data-scroll-target="#escenario-3-asociación-entre-dos-variables-categóricas">Escenario 3: Asociación entre dos variables categóricas</a></li>
+  </ul></li>
+  <li><a href="#observaciones-de-cierre" id="toc-observaciones-de-cierre" class="nav-link" data-scroll-target="#observaciones-de-cierre">Observaciones de cierre</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Asociación e independencia entre variables</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Docente: Felipe Calvo Cepeda - fcalvoc@unal.edu.co | Universidad Nacional de Colombia </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="cargar-librerías" class="level2">
+<h2 class="anchored" data-anchor-id="cargar-librerías">Cargar librerías</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos tidyverse</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+</section>
+<section id="importar-datos" class="level2">
+<h2 class="anchored" data-anchor-id="importar-datos">Importar datos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos datos</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_delim</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"01_data/programacion/winequality-red.csv"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">delim =</span> <span class="st">","</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale=</span><span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">"."</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> wine_raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1599 Columns: 12
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (12): fixed acidity, volatile acidity, citric acid, residual sugar, chlo...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Revisar la estructura de los datos</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(wine_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [1,599 × 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ fixed acidity       : num [1:1599] 7.4 7.8 7.8 11.2 7.4 7.4 7.9 7.3 7.8 7.5 ...
+ $ volatile acidity    : num [1:1599] 0.7 0.88 0.76 0.28 0.7 0.66 0.6 0.65 0.58 0.5 ...
+ $ citric acid         : num [1:1599] 0 0 0.04 0.56 0 0 0.06 0 0.02 0.36 ...
+ $ residual sugar      : num [1:1599] 1.9 2.6 2.3 1.9 1.9 1.8 1.6 1.2 2 6.1 ...
+ $ chlorides           : num [1:1599] 0.076 0.098 0.092 0.075 0.076 0.075 0.069 0.065 0.073 0.071 ...
+ $ free sulfur dioxide : num [1:1599] 11 25 15 17 11 13 15 15 9 17 ...
+ $ total sulfur dioxide: num [1:1599] 34 67 54 60 34 40 59 21 18 102 ...
+ $ density             : num [1:1599] 0.998 0.997 0.997 0.998 0.998 ...
+ $ pH                  : num [1:1599] 3.51 3.2 3.26 3.16 3.51 3.51 3.3 3.39 3.36 3.35 ...
+ $ sulphates           : num [1:1599] 0.56 0.68 0.65 0.58 0.56 0.56 0.46 0.47 0.57 0.8 ...
+ $ alcohol             : num [1:1599] 9.4 9.8 9.8 9.8 9.4 9.4 9.4 10 9.5 10.5 ...
+ $ quality             : num [1:1599] 5 5 5 6 5 5 5 7 7 5 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   `fixed acidity` = col_double(),
+  ..   `volatile acidity` = col_double(),
+  ..   `citric acid` = col_double(),
+  ..   `residual sugar` = col_double(),
+  ..   chlorides = col_double(),
+  ..   `free sulfur dioxide` = col_double(),
+  ..   `total sulfur dioxide` = col_double(),
+  ..   density = col_double(),
+  ..   pH = col_double(),
+  ..   sulphates = col_double(),
+  ..   alcohol = col_double(),
+  ..   quality = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+</div>
+</section>
+<section id="información-sobre-el-conjunto-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="información-sobre-el-conjunto-de-datos">Información sobre el conjunto de datos</h2>
+<section id="información-general" class="level3">
+<h3 class="anchored" data-anchor-id="información-general">Información general</h3>
+<p>Los datos corresponden a una variación de un vino tradicional portugués llamado <em>“Vinho Verde”</em> proveniente de una región llamada Vinho, ubicada muy al norte de Portugal.</p>
+</section>
+<section id="variables" class="level3">
+<h3 class="anchored" data-anchor-id="variables">Variables</h3>
+<ul>
+<li><strong>fixed acidity</strong>: ácidos del vino que no se evaporan fácilmente.</li>
+<li><strong>volatile acidity</strong>: cantidad de ácido acético en el vino, el cual en altas cantidades genera sensaciones no placenteras y un sabor vinagroso.</li>
+<li><strong>citric acid</strong>: cantidad de ácido cítrico en pequeñas cantidades, el cual añade cierta <em>frescura</em> y sabor al vino.</li>
+<li><strong>residual sugar</strong>: cantidad de azucar residual luego del proceso de fermentación. Es raro tener menos de 1g/litro y los vinos con más de 45g/litro se consideran dulces.</li>
+<li><strong>chlorides</strong>: cantidad de sal en el vino.</li>
+<li><strong>free sulfur dioxide</strong>: cantidad de dióxido de azufre (S0<sub>2</sub>) libre, el cual previene el crecimiento de microbios y la oxidación del vino.</li>
+<li><strong>total sulfur dioxide</strong>: cantidad total de dióxido de azufre (S0<sub>2</sub>) en forma libre y fija; en bajas concentraciones es indetectable, en concentraciones superiores a 50ppm el SO<sub>2</sub> es evidente para la nariz y el sabor del vino.</li>
+<li><strong>density</strong>: la densidad del vino es cercana a la del agua dependiendo de la cantidad de azucar y alcohol.</li>
+<li><strong>pH</strong>: describe qué tan ácido o básico es un vino en un escala desde cero (muy ácido) hasta 14 (muy básico); la gran mayoría de vinos tienen un pH entre 3-4.</li>
+<li><strong>sulphates</strong>: un aditivo que contribuye a regular los niveles de dióxido de azufre (S0<sub>2</sub>), el cual actúa como antimicrobios y antioxidante.</li>
+<li><strong>alcohol</strong>: porcentaje del alcohol del vino.</li>
+<li><strong>quality</strong>: puntuación del vino basada en datos sensoriales, en una escala entre 0 y 10.</li>
+</ul>
+</section>
+<section id="fuente" class="level3">
+<h3 class="anchored" data-anchor-id="fuente">Fuente</h3>
+<p>Cortez, P., Cerdeira, A., Almeida, F., Matos, T., &amp; Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. Decision Support Systems, 47(4), 547-553.</p>
+<blockquote class="blockquote">
+<p>Note que es <strong>muy importante</strong> tener un contexto sobre el conjunto de datos.</p>
+</blockquote>
+</section>
+</section>
+<section id="dimensionalidad-de-los-datos" class="level2">
+<h2 class="anchored" data-anchor-id="dimensionalidad-de-los-datos">Dimensionalidad de los datos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(wine_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1599   12</code></pre>
+</div>
+</div>
+<ul>
+<li>1599 individuos - Número de filas</li>
+<li>12 variables - Número de columnas</li>
+</ul>
+<blockquote class="blockquote">
+<p>Todos los cálculos y procedimientos matemáticos y estadísticos, a nivel computacional, se realizan mediante operaciones sobre las estructuras de datos vistas en la práctica de programación básica.</p>
+</blockquote>
+<p><img src="img/estructura-datos.png" class="img-fluid" style="width:70.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Obtener solo el número de filas</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(wine_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1599</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Obtener solo el número de columnas</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(wine_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
+</div>
+</section>
+<section id="limpieza-de-los-datos" class="level2">
+<h2 class="anchored" data-anchor-id="limpieza-de-los-datos">Limpieza de los datos</h2>
+<p>En la práctica la calidad de los datos puede estar afectada por los procesos de captura, sistematización y distribución. <strong>Siempre</strong> hay que verificar la calidad de nuestros datos.</p>
+<ul>
+<li>Limpieza de tablas (3 principios vistos en clase)</li>
+<li>Nombrado adecuado de las variables</li>
+<li>Datos faltantes</li>
+<li>Datos atípicos</li>
+<li>Valores duplicados</li>
+</ul>
+<blockquote class="blockquote">
+<p>Para mayor detalle, consulte el material de la practica de limpieza de datos.</p>
+</blockquote>
+<p>En este caso la base de datos proporcionada ya tiene una estructura adecuada para el procesamiento, salvo que los nombres de las columnas tienen espacios y no siguen las convenciones del <em>naming</em> de variavbles, por lo que vamos a ponerles <a href="http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf">un buen nombre</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(wine_raw) <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="fu">names</span>(wine_raw), <span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="st">"_"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="enriquecimiento-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="enriquecimiento-de-datos">Enriquecimiento de datos</h2>
+<p>Dado que inicialmente todas las variables son cuantitativas, vamos a realizar una operación sobre nuestro conjunto de datos para agregar dos nuevas columnas categóricas, de tal manera que podemos explorar algunas medidas y gráficas relevantes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Partimos de la base de datos 'wine_raw'</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">## y la ontroducimos a un algoritmo de operaciones</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>wine_raw <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## mutate() crea una nueva variable llamada 'calidad'</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## basada en los rangos ya conocidos de la variable quality</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">calidad =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">==</span> <span class="st">'3'</span> <span class="sc">|</span> quality <span class="sc">==</span> <span class="st">'4'</span>,<span class="st">'baja'</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        quality <span class="sc">==</span> <span class="st">'5'</span> <span class="sc">|</span> quality <span class="sc">==</span> <span class="st">'6'</span>,<span class="st">'media'</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'alta'</span>))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="do">## mutate_at() recibe la columna 'calidad' y la convierte en un factor</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">'calidad'</span>, factor) <span class="sc">%&gt;%</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="do">## mutate() crea una nueva variable llamada 'acetico'</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="do">## basada en rangos conocidos de la variable 'volatile_acidity'</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">acetico =</span> <span class="fu">ifelse</span>(volatile_acidity <span class="sc">&lt;</span> <span class="fl">0.7</span>, <span class="st">'bajo'</span>, <span class="st">'alto'</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="do">## mutate_at() recibe la columna 'acetico' y la convierte en un factor</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  <span class="do">## el resultado de todas las operaciones se guarda en 'wine_processed'</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">'acetico'</span>, factor) <span class="ot">-&gt;</span> wine_processed</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificamos el orden de los factores que acabamos de crear</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>wine_processed<span class="sc">$</span>calidad <span class="ot">&lt;-</span> <span class="fu">factor</span>(wine_processed<span class="sc">$</span>calidad, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"baja"</span>,<span class="st">"media"</span>,<span class="st">"alta"</span>))</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>wine_processed<span class="sc">$</span>acetico <span class="ot">&lt;-</span> <span class="fu">factor</span>(wine_processed<span class="sc">$</span>acetico, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"bajo"</span>,<span class="st">"alto"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="análisis-descriptivo" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-descriptivo">Análisis descriptivo</h2>
+<section id="resumen-numérico" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-numérico">Resumen numérico</h3>
+<p>El método <strong>summary()</strong> que trae por defecto R nos brinda estadísticas de resumen para cada una de las variables de nuestro conjunto de datos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Resumen básico de datos</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wine_processed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> fixed_acidity   volatile_acidity  citric_acid    residual_sugar  
+ Min.   : 4.60   Min.   :0.1200   Min.   :0.000   Min.   : 0.900  
+ 1st Qu.: 7.10   1st Qu.:0.3900   1st Qu.:0.090   1st Qu.: 1.900  
+ Median : 7.90   Median :0.5200   Median :0.260   Median : 2.200  
+ Mean   : 8.32   Mean   :0.5278   Mean   :0.271   Mean   : 2.539  
+ 3rd Qu.: 9.20   3rd Qu.:0.6400   3rd Qu.:0.420   3rd Qu.: 2.600  
+ Max.   :15.90   Max.   :1.5800   Max.   :1.000   Max.   :15.500  
+   chlorides       free_sulfur_dioxide total_sulfur_dioxide    density      
+ Min.   :0.01200   Min.   : 1.00       Min.   :  6.00       Min.   :0.9901  
+ 1st Qu.:0.07000   1st Qu.: 7.00       1st Qu.: 22.00       1st Qu.:0.9956  
+ Median :0.07900   Median :14.00       Median : 38.00       Median :0.9968  
+ Mean   :0.08747   Mean   :15.87       Mean   : 46.47       Mean   :0.9967  
+ 3rd Qu.:0.09000   3rd Qu.:21.00       3rd Qu.: 62.00       3rd Qu.:0.9978  
+ Max.   :0.61100   Max.   :72.00       Max.   :289.00       Max.   :1.0037  
+       pH          sulphates         alcohol         quality       calidad    
+ Min.   :2.740   Min.   :0.3300   Min.   : 8.40   Min.   :3.000   baja :  63  
+ 1st Qu.:3.210   1st Qu.:0.5500   1st Qu.: 9.50   1st Qu.:5.000   media:1319  
+ Median :3.310   Median :0.6200   Median :10.20   Median :6.000   alta : 217  
+ Mean   :3.311   Mean   :0.6581   Mean   :10.42   Mean   :5.636               
+ 3rd Qu.:3.400   3rd Qu.:0.7300   3rd Qu.:11.10   3rd Qu.:6.000               
+ Max.   :4.010   Max.   :2.0000   Max.   :14.90   Max.   :8.000               
+ acetico    
+ bajo:1366  
+ alto: 233  
+            
+            
+            
+            </code></pre>
+</div>
+</div>
+</section>
+<section id="resumen-gráfico" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-gráfico">Resumen gráfico</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Cargamos la librería ggplot2</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Usamos el método para graficar histogramas</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Seleccionamos como objetivo la variable quality</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wine_processed, <span class="fu">aes</span>(quality)) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Note que podemos hacer histogramas para las demás variables. Además, podríamos realizar otros tipos de gráficos univariados.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Nuestro interés ahora será construir resúmenes numéricos y resúmenes gráficos entre dos o más variables.</p>
+</blockquote>
+</section>
+</section>
+<section id="efectos-de-una-variable-sobre-otra" class="level2">
+<h2 class="anchored" data-anchor-id="efectos-de-una-variable-sobre-otra">Efectos de una variable sobre otra</h2>
+<p>En una investigación o estudio podemos sospechar de la influencia o efecto de un conjunto de variables sobre una variable particular de interés (<strong>target / label / variable crítica / variable explicada</strong>). Una parte esencial de la fase de análisis es reunir evidencia para seleccionar las variables que tengan mayor probabilidad de tener un efecto sobre nuestra variable de interés.</p>
+<p><img src="x_y_desing.png" class="img-fluid"></p>
+<p>Existen distintas herramientas estadísticas para tener una idea bien formada de cómo se relacionan dos o más variables entre sí.</p>
+<p>Antes de explorar dichas herramientas, conviene hacer una revisión sobre algunos conceptos.</p>
+<section id="asociación-entre-dos-variables-contínuas" class="level3">
+<h3 class="anchored" data-anchor-id="asociación-entre-dos-variables-contínuas">Asociación entre dos variables contínuas</h3>
+<p>La <strong>covarianza</strong> es una medida numérica que nos permite cuantificar la relación (lineal) entre dos variables contínuas.</p>
+<embed style="margin:12px auto;display:block;background-color:white;padding:12px;" src="cov-def.svg" type="image/svg+xml">
+<p>Su estimador es la covarianza muestral:</p>
+<embed style="margin:12px auto;display:block;background-color:white;padding:12px;" src="cov-estimator.svg" type="image/svg+xml">
+<ul>
+<li>Si dos variables son <strong>independientes</strong> su covarianza es nula. El reciproco no es cierto en general, si dos variables tienen covarianza nula se dice que son incorreladas (no hay relación lineal, aunque puede haber una relación no lineal).</li>
+<li>Si la covarianza es positiva indica que a valores grandes de X le corresponden valores grandes de Y (i.e.&nbsp;al incrementar X se incrementa Y) y se dice que hay una relación lineal positiva.</li>
+<li>Si la covarianza es negativa indica que a valores grandes de X le corresponden valores pequeños de Y (i.e.&nbsp;al incrementar X, Y disminuye) y se dice que hay una relación lineal negativa.</li>
+</ul>
+<p>Cuanto mayor es el valor (absoluto) de la covarianza, mayor es el grado de relación lineal entre las variables. Sin embargo, su valor depende de las escala de las variables por lo que es difícil determinar cuando es grande o pequeña. Para medir el grado de relación lineal puede ser preferible reescalarla, i.e.&nbsp;emplear el <strong>coeficiente de correlación</strong>:</p>
+<embed style="margin:12px auto;display:block;background-color:white;padding:12px;" src="cor-def.svg" type="image/svg+xml">
+<p>Su estimador es el coeficiente de correlación muestral:</p>
+<embed style="margin:12px auto;display:block;background-color:white;padding:12px;" src="cor-estimator.svg" type="image/svg+xml">
+<ul>
+<li>Una correlación positiva entre dos variables indica que a medida que los valores de una variable crecen los valores de la otra variable también crecen. Y viceversa. El máximo valor de una correlación positiva es 1.</li>
+<li>Una correlación negativa entre dos variables indica que a medida que los valores de una variable crecen los valores de la otra variable decrecen. El máximo valor de una correlación negativa es -1.</li>
+<li>Una correlación de cero entre dos variables indica que no existe una asociación lineal entre ellas.</li>
+</ul>
+<p>Dado que el trabajo estadístico de datos es principalmente matricial y tenemos un número finito de <strong>variables aleatorias</strong>, en vez de calcular la covarianza entre dos variables podemos construir una <strong>matriz de covarianzas</strong> y calcular las covarianzas entre todas las variables.</p>
+<p><strong>Covarianzas en R</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Covarianzas entre dos variables</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(wine_processed<span class="sc">$</span>fixed_acidity, wine_processed<span class="sc">$</span>quality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1744236</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(wine_processed<span class="sc">$</span>chlorides, wine_processed<span class="sc">$</span>quality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.004899545</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Matriz de varianzas y covarianzas</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Note que filtramos la base de datos para solamente calcular correlaciones entre variables cuantitativas </span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(<span class="fu">Filter</span>(is.numeric, wine_processed))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     fixed_acidity volatile_acidity   citric_acid
+fixed_acidity          3.031416389    -7.985142e-02  0.2278200037
+volatile_acidity      -0.079851417     3.206238e-02 -0.0192716208
+citric_acid            0.227820004    -1.927162e-02  0.0379474831
+residual_sugar         0.281756262     4.841910e-04  0.0394342700
+chlorides              0.007678692     5.165869e-04  0.0018687248
+free_sulfur_dioxide   -2.800921493    -1.967359e-02 -0.1242521139
+total_sulfur_dioxide  -6.482345858     4.504257e-01  0.2276972740
+density                0.002195224     7.443665e-06  0.0001341746
+pH                    -0.183585704     6.494699e-03 -0.0162975823
+sulphates              0.054010092    -7.921434e-03  0.0103277145
+alcohol               -0.114421153    -3.860022e-02  0.0228151729
+quality                0.174423588    -5.647588e-02  0.0356118929
+                     residual_sugar     chlorides free_sulfur_dioxide
+fixed_acidity          0.2817562623  7.678692e-03       -2.800921e+00
+volatile_acidity       0.0004841910  5.165869e-04       -1.967359e-02
+citric_acid            0.0394342700  1.868725e-03       -1.242521e-01
+residual_sugar         1.9878971330  3.690176e-03        2.758611e+00
+chlorides              0.0036901759  2.215143e-03        2.738303e-03
+free_sulfur_dioxide    2.7586114522  2.738303e-03        1.094149e+02
+total_sulfur_dioxide   9.4164414790  7.338675e-02        2.297375e+02
+density                0.0009454109  1.782176e-05       -4.332504e-04
+pH                    -0.0186442890 -1.925745e-03        1.136531e-01
+sulphates              0.0013209414  2.961878e-03        9.159247e-02
+alcohol                0.0632189598 -1.109152e-02       -7.736984e-01
+quality                0.0156350457 -4.899545e-03       -4.279071e-01
+                     total_sulfur_dioxide       density            pH
+fixed_acidity               -6.482346e+00  2.195224e-03 -1.835857e-01
+volatile_acidity             4.504257e-01  7.443665e-06  6.494699e-03
+citric_acid                  2.276973e-01  1.341746e-04 -1.629758e-02
+residual_sugar               9.416441e+00  9.454109e-04 -1.864429e-02
+chlorides                    7.338675e-02  1.782176e-05 -1.925745e-03
+free_sulfur_dioxide          2.297375e+02 -4.332504e-04  1.136531e-01
+total_sulfur_dioxide         1.082102e+03  4.424727e-03 -3.376988e-01
+density                      4.424727e-03  3.562029e-06 -9.956395e-05
+pH                          -3.376988e-01 -9.956395e-05  2.383518e-02
+sulphates                    2.394710e-01  4.750962e-05 -5.146186e-03
+alcohol                     -7.209298e+00 -9.979518e-04  3.383162e-02
+quality                     -4.917237e+00 -2.666037e-04 -7.197822e-03
+                         sulphates       alcohol       quality
+fixed_acidity         5.401009e-02 -0.1144211534  0.1744235876
+volatile_acidity     -7.921434e-03 -0.0386002214 -0.0564758833
+citric_acid           1.032771e-02  0.0228151729  0.0356118929
+residual_sugar        1.320941e-03  0.0632189598  0.0156350457
+chlorides             2.961878e-03 -0.0110915178 -0.0048995449
+free_sulfur_dioxide   9.159247e-02 -0.7736984004 -0.4279070696
+total_sulfur_dioxide  2.394710e-01 -7.2092978950 -4.9172370717
+density               4.750962e-05 -0.0009979518 -0.0002666037
+pH                   -5.146186e-03  0.0338316166 -0.0071978223
+sulphates             2.873262e-02  0.0169067772  0.0344134084
+alcohol               1.690678e-02  1.1356473950  0.4097890108
+quality               3.441341e-02  0.4097890108  0.6521684000</code></pre>
+</div>
+</div>
+<p><strong>Correlaciones en R</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Correlaciones entre dos variables</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(wine_processed<span class="sc">$</span>fixed_acidity, wine_processed<span class="sc">$</span>quality, <span class="at">method =</span> <span class="st">'pearson'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1240516</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(wine_processed<span class="sc">$</span>chlorides, wine_processed<span class="sc">$</span>quality, <span class="at">method =</span> <span class="st">'pearson'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.1289066</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Matriz de correlaciones</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Note que filtramos la base de datos para solamente calcular correlaciones entre variables cuantitativas</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">Filter</span>(is.numeric, wine_processed), <span class="at">method =</span> <span class="st">'pearson'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     fixed_acidity volatile_acidity citric_acid residual_sugar
+fixed_acidity           1.00000000     -0.256130895  0.67170343    0.114776724
+volatile_acidity       -0.25613089      1.000000000 -0.55249568    0.001917882
+citric_acid             0.67170343     -0.552495685  1.00000000    0.143577162
+residual_sugar          0.11477672      0.001917882  0.14357716    1.000000000
+chlorides               0.09370519      0.061297772  0.20382291    0.055609535
+free_sulfur_dioxide    -0.15379419     -0.010503827 -0.06097813    0.187048995
+total_sulfur_dioxide   -0.11318144      0.076470005  0.03553302    0.203027882
+density                 0.66804729      0.022026232  0.36494718    0.355283371
+pH                     -0.68297819      0.234937294 -0.54190414   -0.085652422
+sulphates               0.18300566     -0.260986685  0.31277004    0.005527121
+alcohol                -0.06166827     -0.202288027  0.10990325    0.042075437
+quality                 0.12405165     -0.390557780  0.22637251    0.013731637
+                        chlorides free_sulfur_dioxide total_sulfur_dioxide
+fixed_acidity         0.093705186        -0.153794193          -0.11318144
+volatile_acidity      0.061297772        -0.010503827           0.07647000
+citric_acid           0.203822914        -0.060978129           0.03553302
+residual_sugar        0.055609535         0.187048995           0.20302788
+chlorides             1.000000000         0.005562147           0.04740047
+free_sulfur_dioxide   0.005562147         1.000000000           0.66766645
+total_sulfur_dioxide  0.047400468         0.667666450           1.00000000
+density               0.200632327        -0.021945831           0.07126948
+pH                   -0.265026131         0.070377499          -0.06649456
+sulphates             0.371260481         0.051657572           0.04294684
+alcohol              -0.221140545        -0.069408354          -0.20565394
+quality              -0.128906560        -0.050656057          -0.18510029
+                         density          pH    sulphates     alcohol
+fixed_acidity         0.66804729 -0.68297819  0.183005664 -0.06166827
+volatile_acidity      0.02202623  0.23493729 -0.260986685 -0.20228803
+citric_acid           0.36494718 -0.54190414  0.312770044  0.10990325
+residual_sugar        0.35528337 -0.08565242  0.005527121  0.04207544
+chlorides             0.20063233 -0.26502613  0.371260481 -0.22114054
+free_sulfur_dioxide  -0.02194583  0.07037750  0.051657572 -0.06940835
+total_sulfur_dioxide  0.07126948 -0.06649456  0.042946836 -0.20565394
+density               1.00000000 -0.34169933  0.148506412 -0.49617977
+pH                   -0.34169933  1.00000000 -0.196647602  0.20563251
+sulphates             0.14850641 -0.19664760  1.000000000  0.09359475
+alcohol              -0.49617977  0.20563251  0.093594750  1.00000000
+quality              -0.17491923 -0.05773139  0.251397079  0.47616632
+                         quality
+fixed_acidity         0.12405165
+volatile_acidity     -0.39055778
+citric_acid           0.22637251
+residual_sugar        0.01373164
+chlorides            -0.12890656
+free_sulfur_dioxide  -0.05065606
+total_sulfur_dioxide -0.18510029
+density              -0.17491923
+pH                   -0.05773139
+sulphates             0.25139708
+alcohol               0.47616632
+quality               1.00000000</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Por defecto el método <strong>cor()</strong> calcula una correlación de Pearson, por tanto, el resultado numerico asume que la relación entre las variables es lineal. Dado que en la practica hay muchas relaciones no lineales, una forma más robusta de calcular la asociación es calculando una <strong>correlación de Spearman</strong> (<em>method = ‘spearman’</em>) o el estadístico <strong>Tau de Kendall</strong> (<em>method = ‘kendall’</em>).</p>
+</blockquote>
+<p><strong>Otra forma más bonita de mostrar correlaciones usando el paquete correlation</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalamos el paquete correlation</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"correlation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos el paquete</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"correlation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creamos una matriz detallada de correlaciones</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note que acá no estamos filtrando las columnas numéricas como lo hicimos antes</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Esto debido a que el paquete automáticamente hace el filtrado. Uno debe verificar</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>correlaciones <span class="ot">&lt;-</span> <span class="fu">correlation</span>(wine_processed)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>correlaciones</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Correlation Matrix (pearson-method)
+
+Parameter1           |           Parameter2 |        r |         95% CI | t(1597) |         p
+---------------------------------------------------------------------------------------------
+fixed_acidity        |     volatile_acidity |    -0.26 | [-0.30, -0.21] |  -10.59 | &lt; .001***
+fixed_acidity        |          citric_acid |     0.67 | [ 0.64,  0.70] |   36.23 | &lt; .001***
+fixed_acidity        |       residual_sugar |     0.11 | [ 0.07,  0.16] |    4.62 | &lt; .001***
+fixed_acidity        |            chlorides |     0.09 | [ 0.04,  0.14] |    3.76 | 0.005**  
+fixed_acidity        |  free_sulfur_dioxide |    -0.15 | [-0.20, -0.11] |   -6.22 | &lt; .001***
+fixed_acidity        | total_sulfur_dioxide |    -0.11 | [-0.16, -0.06] |   -4.55 | &lt; .001***
+fixed_acidity        |              density |     0.67 | [ 0.64,  0.69] |   35.88 | &lt; .001***
+fixed_acidity        |                   pH |    -0.68 | [-0.71, -0.66] |  -37.37 | &lt; .001***
+fixed_acidity        |            sulphates |     0.18 | [ 0.14,  0.23] |    7.44 | &lt; .001***
+fixed_acidity        |              alcohol |    -0.06 | [-0.11, -0.01] |   -2.47 | 0.246    
+fixed_acidity        |              quality |     0.12 | [ 0.08,  0.17] |    5.00 | &lt; .001***
+volatile_acidity     |          citric_acid |    -0.55 | [-0.59, -0.52] |  -26.49 | &lt; .001***
+volatile_acidity     |       residual_sugar | 1.92e-03 | [-0.05,  0.05] |    0.08 | &gt; .999   
+volatile_acidity     |            chlorides |     0.06 | [ 0.01,  0.11] |    2.45 | 0.246    
+volatile_acidity     |  free_sulfur_dioxide |    -0.01 | [-0.06,  0.04] |   -0.42 | &gt; .999   
+volatile_acidity     | total_sulfur_dioxide |     0.08 | [ 0.03,  0.13] |    3.06 | 0.051    
+volatile_acidity     |              density |     0.02 | [-0.03,  0.07] |    0.88 | &gt; .999   
+volatile_acidity     |                   pH |     0.23 | [ 0.19,  0.28] |    9.66 | &lt; .001***
+volatile_acidity     |            sulphates |    -0.26 | [-0.31, -0.21] |  -10.80 | &lt; .001***
+volatile_acidity     |              alcohol |    -0.20 | [-0.25, -0.15] |   -8.25 | &lt; .001***
+volatile_acidity     |              quality |    -0.39 | [-0.43, -0.35] |  -16.95 | &lt; .001***
+citric_acid          |       residual_sugar |     0.14 | [ 0.10,  0.19] |    5.80 | &lt; .001***
+citric_acid          |            chlorides |     0.20 | [ 0.16,  0.25] |    8.32 | &lt; .001***
+citric_acid          |  free_sulfur_dioxide |    -0.06 | [-0.11, -0.01] |   -2.44 | 0.246    
+citric_acid          | total_sulfur_dioxide |     0.04 | [-0.01,  0.08] |    1.42 | &gt; .999   
+citric_acid          |              density |     0.36 | [ 0.32,  0.41] |   15.66 | &lt; .001***
+citric_acid          |                   pH |    -0.54 | [-0.58, -0.51] |  -25.77 | &lt; .001***
+citric_acid          |            sulphates |     0.31 | [ 0.27,  0.36] |   13.16 | &lt; .001***
+citric_acid          |              alcohol |     0.11 | [ 0.06,  0.16] |    4.42 | &lt; .001***
+citric_acid          |              quality |     0.23 | [ 0.18,  0.27] |    9.29 | &lt; .001***
+residual_sugar       |            chlorides |     0.06 | [ 0.01,  0.10] |    2.23 | 0.366    
+residual_sugar       |  free_sulfur_dioxide |     0.19 | [ 0.14,  0.23] |    7.61 | &lt; .001***
+residual_sugar       | total_sulfur_dioxide |     0.20 | [ 0.16,  0.25] |    8.29 | &lt; .001***
+residual_sugar       |              density |     0.36 | [ 0.31,  0.40] |   15.19 | &lt; .001***
+residual_sugar       |                   pH |    -0.09 | [-0.13, -0.04] |   -3.44 | 0.015*   
+residual_sugar       |            sulphates | 5.53e-03 | [-0.04,  0.05] |    0.22 | &gt; .999   
+residual_sugar       |              alcohol |     0.04 | [-0.01,  0.09] |    1.68 | 0.860    
+residual_sugar       |              quality |     0.01 | [-0.04,  0.06] |    0.55 | &gt; .999   
+chlorides            |  free_sulfur_dioxide | 5.56e-03 | [-0.04,  0.05] |    0.22 | &gt; .999   
+chlorides            | total_sulfur_dioxide |     0.05 | [ 0.00,  0.10] |    1.90 | 0.639    
+chlorides            |              density |     0.20 | [ 0.15,  0.25] |    8.18 | &lt; .001***
+chlorides            |                   pH |    -0.27 | [-0.31, -0.22] |  -10.98 | &lt; .001***
+chlorides            |            sulphates |     0.37 | [ 0.33,  0.41] |   15.98 | &lt; .001***
+chlorides            |              alcohol |    -0.22 | [-0.27, -0.17] |   -9.06 | &lt; .001***
+chlorides            |              quality |    -0.13 | [-0.18, -0.08] |   -5.19 | &lt; .001***
+free_sulfur_dioxide  | total_sulfur_dioxide |     0.67 | [ 0.64,  0.69] |   35.84 | &lt; .001***
+free_sulfur_dioxide  |              density |    -0.02 | [-0.07,  0.03] |   -0.88 | &gt; .999   
+free_sulfur_dioxide  |                   pH |     0.07 | [ 0.02,  0.12] |    2.82 | 0.102    
+free_sulfur_dioxide  |            sulphates |     0.05 | [ 0.00,  0.10] |    2.07 | 0.505    
+free_sulfur_dioxide  |              alcohol |    -0.07 | [-0.12, -0.02] |   -2.78 | 0.110    
+free_sulfur_dioxide  |              quality |    -0.05 | [-0.10,  0.00] |   -2.03 | 0.514    
+total_sulfur_dioxide |              density |     0.07 | [ 0.02,  0.12] |    2.86 | 0.096    
+total_sulfur_dioxide |                   pH |    -0.07 | [-0.12, -0.02] |   -2.66 | 0.149    
+total_sulfur_dioxide |            sulphates |     0.04 | [-0.01,  0.09] |    1.72 | 0.860    
+total_sulfur_dioxide |              alcohol |    -0.21 | [-0.25, -0.16] |   -8.40 | &lt; .001***
+total_sulfur_dioxide |              quality |    -0.19 | [-0.23, -0.14] |   -7.53 | &lt; .001***
+density              |                   pH |    -0.34 | [-0.38, -0.30] |  -14.53 | &lt; .001***
+density              |            sulphates |     0.15 | [ 0.10,  0.20] |    6.00 | &lt; .001***
+density              |              alcohol |    -0.50 | [-0.53, -0.46] |  -22.84 | &lt; .001***
+density              |              quality |    -0.17 | [-0.22, -0.13] |   -7.10 | &lt; .001***
+pH                   |            sulphates |    -0.20 | [-0.24, -0.15] |   -8.02 | &lt; .001***
+pH                   |              alcohol |     0.21 | [ 0.16,  0.25] |    8.40 | &lt; .001***
+pH                   |              quality |    -0.06 | [-0.11, -0.01] |   -2.31 | 0.314    
+sulphates            |              alcohol |     0.09 | [ 0.04,  0.14] |    3.76 | 0.005**  
+sulphates            |              quality |     0.25 | [ 0.20,  0.30] |   10.38 | &lt; .001***
+alcohol              |              quality |     0.48 | [ 0.44,  0.51] |   21.64 | &lt; .001***
+
+p-value adjustment method: Holm (1979)
+Observations: 1599</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Que exista una asociación <em>fuerte</em> entre dos variables no implica una relación causal. Para testear la causalidad veremos otras herramientas más adelante.</p>
+</blockquote>
+</section>
+</section>
+<section id="visualización-de-la-relación-entre-variables" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-de-la-relación-entre-variables">Visualización de la relación entre variables</h2>
+<p>Hemos visto que podemos crear gráficos univariados para tener una <em>fotografía</em> del comportamiento de una variable. De igual manera, es posible construir gráficos que muestren la asociación entre dos o más variables.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Variable 1</th>
+<th style="text-align: center;">Variable 2</th>
+<th style="text-align: center;">Visualización frecuente</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Categórica</td>
+<td style="text-align: center;">Categórica</td>
+<td style="text-align: center;">Tablas de contingencia</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Categórica</td>
+<td style="text-align: center;">Contínua</td>
+<td style="text-align: center;">Boxplot por grupos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Contínua</td>
+<td style="text-align: center;">Contínua</td>
+<td style="text-align: center;">Diagrama de dispersión</td>
+</tr>
+</tbody>
+</table>
+<p>Para nuestro ejemplo del vino rojo, siguiendo las recomendaciones de la tabla, conviene crear diagramas de dispersión.</p>
+<p><strong>Diagrama de dispersión</strong></p>
+<p>Son útiles porque al <em>cruzar</em> los valores de un par de variables podemos encontrar posibles relaciones matemáticas entre ellas.</p>
+<p><img src="img/relaciones.png" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("hrbrthemes")</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"hrbrthemes"</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Una relación lineal inexistente</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wine_processed, <span class="fu">aes</span>(<span class="at">x=</span>residual_sugar, <span class="at">y=</span>quality)) <span class="sc">+</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm , <span class="at">color=</span><span class="st">"red"</span>, <span class="at">fill=</span><span class="st">"#69b3a2"</span>, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Una relación lineal positiva</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wine_processed, <span class="fu">aes</span>(<span class="at">x=</span>alcohol, <span class="at">y=</span>quality)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm , <span class="at">color=</span><span class="st">"red"</span>, <span class="at">fill=</span><span class="st">"#69b3a2"</span>, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Una relación lineal negativa</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wine_processed, <span class="fu">aes</span>(<span class="at">x=</span>volatile_acidity, <span class="at">y=</span>quality)) <span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm , <span class="at">color=</span><span class="st">"red"</span>, <span class="at">fill=</span><span class="st">"#69b3a2"</span>, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Correlogramas</strong></p>
+<p>Podemos crear una visualización donde se muestren todos los posibles diagramas de dispersión entre parejas de variables con sus respectivos coeficientes de correlación.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Instalamos la librería GGally</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'GGally'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Cargamos la librería</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'GGally'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'GGally':
+  method from   
+  +.gg   ggplot2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Creamos la visualización usando el método ggpairs()</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  wine_processed, </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title=</span><span class="st">"Correlograma"</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos graficar filtrando ciertas variables de interés. En este caso, vamos a remover aquellas que tengan un coeficiente de correlación menor a 0.2 con nuestra variable <strong>target</strong> (quality).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Declaramos un vector con nuestras variables de interés</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>var_interes <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'volatile_acidity'</span>,<span class="st">'citric_acid'</span>,<span class="st">'sulphates'</span>,<span class="st">'alcohol'</span>,<span class="st">'quality'</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Creamos la visualización usando el método ggpairs() agregando el parámetro columns</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  wine_processed, </span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">title=</span><span class="st">"Correlograma"</span>,</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> var_interes</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Otra forma de visualizar la correlación entre variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorr</span>(</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Filter</span>(is.numeric, wine_processed), </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="fu">c</span>(<span class="st">"everything"</span>, <span class="st">"pearson"</span>),</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>De las anteriores matrices y gráficas podemos observar algunas nuevas correlaciones de interés, por ejemplo, entre el pH y la acidéz. Podemos observar además que para la variable target aproximadamente la mitad de las variables independientes correlacionan positivamente y la otra mitad negativamente.</p>
+<p>En la práctica, se pueden seleccionar las variables independientes que tienen las medidas de asociación más altas en la medida que sospechamos que nos aportan más información. Una regla de oro sencilla es excluir variables que tengan una correlación menor (en valor absoluto) a 0.2.</p>
+<section id="examen-detallado-de-variables-de-interés" class="level3">
+<h3 class="anchored" data-anchor-id="examen-detallado-de-variables-de-interés">Examen detallado de variables de interés</h3>
+<p>De nuestro conjunto de datos iniciales hemos detectado ciertas variables independientes o explicativas que nos pueden aportar mayor información para explicar la calidad del vino.</p>
+<ul>
+<li>volatile_acidity</li>
+<li>citric_acid</li>
+<li>sulphates</li>
+<li>alcohol</li>
+</ul>
+<p>Adicionalmente, tenemos la calidad del vino expresada como una variable contínua (<em>quality</em>) y también de forma categórica (<em>calidad</em>).</p>
+<p>¿Qué deberíamos hacer? Analizar el comportamiento conjunto de cada una de nuestras variables explicativas con la variable crítica. Dicho esto, vamos ahora a realizar estos cruces bivariados en tres escenarios:</p>
+<p><img src="img/asociacion-ruta.png" class="img-fluid"></p>
+</section>
+<section id="escenario-1-asociación-entre-dos-variables-contínuas" class="level3">
+<h3 class="anchored" data-anchor-id="escenario-1-asociación-entre-dos-variables-contínuas">Escenario 1: Asociación entre dos variables contínuas</h3>
+<p>Ya vimos cómo hacer el cálculo de coeficientes de correlación. Examinemos ahora en diagramas de dispersión las relaciones entre las variables de interés y la variable crítica cuantitativa <em>quality</em>.</p>
+<p>Al ver los diagramas de dispersión, ¿es plausible pensar que hay una relación entre las variables?</p>
+<p><strong>volatile_acidity</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wine_processed, <span class="fu">aes</span>(<span class="at">x=</span>volatile_acidity, <span class="at">y=</span>quality)) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm , <span class="at">color=</span><span class="st">"red"</span>, <span class="at">fill=</span><span class="st">"#69b3a2"</span>, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>citric_acid</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wine_processed, <span class="fu">aes</span>(<span class="at">x=</span>citric_acid, <span class="at">y=</span>quality)) <span class="sc">+</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm , <span class="at">color=</span><span class="st">"red"</span>, <span class="at">fill=</span><span class="st">"#69b3a2"</span>, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>sulphates</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wine_processed, <span class="fu">aes</span>(<span class="at">x=</span>sulphates, <span class="at">y=</span>quality)) <span class="sc">+</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm , <span class="at">color=</span><span class="st">"red"</span>, <span class="at">fill=</span><span class="st">"#69b3a2"</span>, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>alcohol</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wine_processed, <span class="fu">aes</span>(<span class="at">x=</span>alcohol, <span class="at">y=</span>quality)) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm , <span class="at">color=</span><span class="st">"red"</span>, <span class="at">fill=</span><span class="st">"#69b3a2"</span>, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>En nuestro conjunto de datos original todas las variables son contínuas. El cálculo de medidas de resumen bivariadas como las covarianzas o coeficientes de correlación, así como los resúmenes gráficos vistos, nos permiten tener una idea bien formada de si existen relaciones entre las variables y el sentido de dichas relaciones.</p>
+</blockquote>
+</section>
+<section id="escenario-2-asociación-entre-una-variable-categórica-y-una-variable-contínua" class="level3">
+<h3 class="anchored" data-anchor-id="escenario-2-asociación-entre-una-variable-categórica-y-una-variable-contínua">Escenario 2: Asociación entre una variable categórica y una variable contínua</h3>
+<!-- https://medium.com/@outside2SDs/an-overview-of-correlation-measures-between-categorical-and-continuous-variables-4c7f85610365 -->
+<p>En este escenario no podemos calcular covarianzas ni correlaciones de Pearson, luego debemos disponer de otro conjunto de herramientas para testear las relaciones entre las variables.</p>
+<ul>
+<li>Correlación biserial-puntual</li>
+<li>Regresión logística</li>
+<li>Prueba de Kruskall-Wallis</li>
+<li>Entre otras</li>
+</ul>
+<p>Por facilidad, haremos una <strong>prueba de Kruskall-Wallis</strong> cuyo p-valor testeará la hipótesis de si existe una relación significante entre las variables.</p>
+<ul>
+<li><strong>Hipótesis nula</strong>: las variables son independientes.</li>
+<li><strong>Hipótesis alternativa</strong>: las variables no son independientes (<em>puede existir un efecto causal</em>).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(wine_processed<span class="sc">$</span>volatile_acidity, wine_processed<span class="sc">$</span>calidad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  wine_processed$volatile_acidity and wine_processed$calidad
+Kruskal-Wallis chi-squared = 168.44, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(wine_processed<span class="sc">$</span>citric_acid, wine_processed<span class="sc">$</span>calidad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  wine_processed$citric_acid and wine_processed$calidad
+Kruskal-Wallis chi-squared = 86.083, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(wine_processed<span class="sc">$</span>sulphates, wine_processed<span class="sc">$</span>calidad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  wine_processed$sulphates and wine_processed$calidad
+Kruskal-Wallis chi-squared = 147.44, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(wine_processed<span class="sc">$</span>alcohol, wine_processed<span class="sc">$</span>calidad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  wine_processed$alcohol and wine_processed$calidad
+Kruskal-Wallis chi-squared = 234.32, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p><strong>Visualización de las relaciones</strong></p>
+<p>En este caso podemos construir boxplot por grupos para cruzar la variable crítica <em>calidad</em> con las variables de interés.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> wine_processed) <span class="sc">+</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> calidad, <span class="at">y =</span> volatile_acidity) <span class="sc">+</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#0c4c8a"</span>) <span class="sc">+</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> wine_processed) <span class="sc">+</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> calidad, <span class="at">y =</span> citric_acid) <span class="sc">+</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#0c4c8a"</span>) <span class="sc">+</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-24-2.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> wine_processed) <span class="sc">+</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> calidad, <span class="at">y =</span> sulphates) <span class="sc">+</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#0c4c8a"</span>) <span class="sc">+</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-24-3.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> wine_processed) <span class="sc">+</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> calidad, <span class="at">y =</span> alcohol) <span class="sc">+</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#0c4c8a"</span>) <span class="sc">+</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_05_asociacion_files/figure-html/unnamed-chunk-24-4.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="escenario-3-asociación-entre-dos-variables-categóricas" class="level3">
+<h3 class="anchored" data-anchor-id="escenario-3-asociación-entre-dos-variables-categóricas">Escenario 3: Asociación entre dos variables categóricas</h3>
+<p>En este caso conviene hacer análisis mediante tablas de contingencia, las cuales cuentan las frecuencias observadas en cada categoría.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">=</span> <span class="fu">table</span>(wine_processed<span class="sc">$</span>acetico, wine_processed<span class="sc">$</span>calidad) </span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      
+       baja media alta
+  bajo   34  1122  210
+  alto   29   197    7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Damos nombre a las columnas y las filas </span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tbl) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Calidad baja"</span>, <span class="st">"Calidad media"</span>, <span class="st">"Calidad alta"</span>)</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tbl) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Ácido acético bajo"</span>,<span class="st">"Ácido acético alto"</span>)</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    
+                     Calidad baja Calidad media Calidad alta
+  Ácido acético bajo           34          1122          210
+  Ácido acético alto           29           197            7</code></pre>
+</div>
+</div>
+<p>Al tener conformada la tabla de contingencia, la forma de revisar si existe una asociación entre las variables es por medio de una <strong>prueba de independencia X<sup>2</sup></strong> (Chi-Cuadrado).</p>
+<p>La prueba indicará si dos características son independientes o tienen una asociación, de manera que las frecuencias elevadas en una de ellas suele ser acompañado con frecuencias altas en la otra.</p>
+<ul>
+<li><strong>Hipótesis nula</strong>: las columnas y las filas de la tabla son independientes.</li>
+<li><strong>Hipótesis alternativa</strong>: las columnas y las filas son dependientes (<em>puede existir un efecto causal</em>).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Prueba Chi-Cuadrado</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  tbl
+X-squared = 72.67, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="observaciones-de-cierre" class="level2">
+<h2 class="anchored" data-anchor-id="observaciones-de-cierre">Observaciones de cierre</h2>
+<p>Identificar las relaciones existentes entre dos o más variables es parte arte y parte ciencia, por lo que se recomienda ganar experiencia leyendo articulos cientificos y viendo soluciones a diversos problemas.</p>
+<p>Además,</p>
+<ol type="1">
+<li>Hay que procurar trabajar con <strong>variables informativas</strong>, es decir, que guarden una relación con la variable objetivo.</li>
+<li>Hay que evitar las redundancias, luego lo ideal es que nuestras variables explicativas/independientes/features sean <strong>independientes</strong> entre sí.</li>
+<li>Nuestra intuición puede fallar en dimensiones superiores a 3. En la mayoría de los casos aumentar la cantidad de variables afecta negativamente el entendimiento de un problema si no contamos con una gran cantidad de datos. Por ultimo, una <strong>cantidad controlada de variables</strong> asegura una mejor interpretabilidad de los análisis y modelos.</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
