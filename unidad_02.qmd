@@ -150,9 +150,9 @@ Generamos una lista de configuración. Esto es una buena práctica de programaci
 
 ```{r}
 mi_setup <- list(
-  datos_pinturas = file.path("01_data", "bob-ross.csv"),
-  carpeta_pinturas = file.path("01_data", "bob-ross_paintings"),
-  archivo_grupos = file.path("01_data", "resultados_r_01.csv"),
+  datos_pinturas = file.path("01_data", "taller_datamining", "bob-ross.csv"),
+  carpeta_pinturas = file.path("01_data", "taller_datamining", "bob-ross_paintings"),
+  archivo_grupos = file.path("01_data", "taller_datamining", "resultados_r_01.csv"),
   gr_acp_file = file.path("gr_acp_r.png"),
   gr_tsne_file =file.path("gr_tsne_r.png")
   
@@ -182,9 +182,9 @@ Adicionalmente, se configura `ggplot2` para usar el tema `minimal` por defecto.
 
 ```{python}
 mi_setup = {
-  "datos_pinturas": os.path.join("01_data", "bob-ross.csv"), 
-  "carpeta_pinturas": os.path.join("01_data", "bob-ross_paintings"),
-  "archivo_grupos": os.path.join("01_data", "resultados_py_01.csv"),
+  "datos_pinturas": os.path.join("01_data", "taller_datamining", "bob-ross.csv"), 
+  "carpeta_pinturas": os.path.join("01_data", "taller_datamining", "bob-ross_paintings"),
+  "archivo_grupos": os.path.join("01_data", "taller_datamining", "resultados_py_01.csv"),
   "gr_acp_file": os.path.join("gr_acp_py.png"),
   "gr_tsne_file": os.path.join("gr_tsne_py.png")
 }

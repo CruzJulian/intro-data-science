@@ -165,8 +165,8 @@ Generamos una lista de configuración. Esto es una buena práctica de programaci
 
 ```{r}
 mi_setup <- list(
-  datos_pinturas = file.path("01_data", "bob-ross.csv"),
-  archivo_grupos = file.path("01_data", "resultados_r_01.csv")
+  datos_pinturas = file.path("01_data", "taller_datamining", "bob-ross.csv"),
+  archivo_grupos = file.path("01_data", "taller_datamining", "resultados_r_01.csv")
 )
 
 theme_set(theme_minimal())
@@ -187,8 +187,8 @@ Adicionalmente, se configura `ggplot2` para usar el tema `minimal` por defecto.
 
 ```{python}
 mi_setup = {
-  "datos_pinturas": os.path.join("01_data", "bob-ross.csv"), 
-  "archivo_grupos": os.path.join("01_data", "resultados_py_01.csv")
+  "datos_pinturas": os.path.join("01_data", "taller_datamining", "bob-ross.csv"), 
+  "archivo_grupos": os.path.join("01_data", "taller_datamining", "resultados_py_01.csv")
 }
 
 sns.set_style('whitegrid')
