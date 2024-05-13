@@ -1,0 +1,201 @@
+---
+title: "Carga de datos"
+format: 
+  html:
+    toc: true
+    toc-location: left
+    toc-title: Contenido
+    df-print: default
+execute: 
+  eval: true
+  echo: true
+  output: false
+  warning: false
+  error: false
+
+---
+
+## Importar datos a R
+
+* [Conjunto de datos](01_data/programacion/data.zip)
+
+> Una vez descargados los archivos de datos, vamos a ubicarlos al interior de una carpeta llamada **data** que a su vez crearemos dentro del directorio de nuestro proyecto.
+
+### Paquetes para importar datos
+
+```{r}
+#| eval: false
+
+# Instalación del paquete tidyverse
+install.packages("tidyverse")
+# Si hay problemas de compatibilidad
+# install.packages("tidyverse", dependencies=TRUE, INSTALL_opts = c("--no-multiarch"))
+# Instalación del paquete DBI
+install.packages("DBI")
+# Instalación del paquete RMariaDB
+install.packages("RMariaDB")
+
+install.packages("readxl")
+
+```
+
+
+```{r}
+# Cargamos los paquetes
+library("tidyverse")
+library("DBI")
+library("RMariaDB")
+library("readxl")
+
+```
+
+Note que **tidyverse** es una colección de paquetes ampliamente usada en la ciencia de datos en R, por lo que al instalarlo se instalan a su vez numerosos paquetes que son útiles para cargar, manipular, limpiar, procesar, modelar y visualizar datos.
+
+Veámonos cómo cargar datos en distintos formatos.
+
+### Archivos de texto plano (.txt)
+
+```{r}
+# Una forma de declararlo usando la función read_delim
+read_delim(
+  file = "01_data/programacion/DataObesidad.txt",
+  delim = "|", 
+  locale=locale(decimal_mark = ".")
+) -> data_txt
+
+# Otra función para leer los datos usando la función read.table
+read.table(
+  file =  "01_data/programacion/DataObesidad.txt",
+  sep =  "|",
+  header = TRUE,
+  dec = ".",
+  fileEncoding = "UTF-8"
+  ) -> data_txt
+```
+
+
+```{r}
+# Herramientas para examinar los datos
+str(data_txt)
+
+```
+
+
+
+```{r}
+# Herramientas para examinar los datos
+glimpse(data_txt)
+
+```
+
+Al importar archivos de texto plano revisar:
+
+* Símbolo separador
+* Símbolo decimal
+* Codificación
+
+### Archivo de valores separados por comas (.csv)
+
+```{r}
+read.csv(
+  file = "01_data/programacion/DataObesidad.csv"
+) -> data_csv
+
+str(data_csv)
+
+```
+
+Al importar archivos separados por comas revisar:
+
+* Símbolo separador (*no siempre se separan con comas*)
+* Símbolo decimal
+* Codificación
+
+### Archivos de Excel (.xls .xlsx)
+
+```{r}
+read_excel(
+  path = "01_data/programacion/DataObesidad.xls"
+) -> data_xls
+
+str(data_xls)
+
+read_xlsx(
+  path = "01_data/programacion/DataObesidad.xlsx", 
+  sheet= "Obesidad"
+) -> data_xlsx
+
+str(data_xlsx)
+```
+
+
+Al importar datos desde Excel, asegúrese de especificar el nombre exacto de la hoja que contiene sus **datos brutos**.
+
+### Archivos de STATA (.dta)
+
+```{r}
+#| eval: false
+
+library("haven")
+read_dta(
+  file = "data/DataObesidad.dta"
+) -> data_dta
+
+str(data_dta)
+```
+
+### Archivos de bases de datos de SPSS
+
+```{r}
+#| eval: false
+
+library("haven")
+read_sav(
+  file = "data/DataObesidad.sav"
+) -> data_sav
+
+str(data_sav)
+```
+
+### Hojas de cálculo en Google Sheets
+
+Podemos leer desde R hojas de cálculo públicas o privadas.
+
+* Hojas públicas
+
+```{r}
+#| eval: false
+library("googlesheets4")
+# Comando para leer sin autenticación
+gs4_deauth()
+# Declaro el enlace
+link = "https://docs.google.com/spreadsheets/d/1iM7i0nd3EPMzH79oZEo48nIcWbyT14ThsJ8ZO9r3F4Y/edit?usp=sharing"
+# Lectura de datos
+data_gs <- read_sheet(link)
+
+str(data_gs)
+```
+
+* Hojas privadas
+
+```{r}
+#| eval: false
+
+# library("googlesheets4")
+# Comando para realizar la autenticación vía web
+gs4_auth()
+# Declaro el enlace
+link = "https://docs.google.com/spreadsheets/d/1iM7i0nd3EPMzH79oZEo48nIcWbyT14ThsJ8ZO9r3F4Y/edit?usp=sharing"
+# Lectura de datos
+data_gs <- read_sheet(link)
+
+str(boston_housing_gs)
+
+```
+
+## Usando la interfaz de RStudio
+
+![](import-rstudio-gui.png){width=70%}
+
+> Ya sabemos importar datos.
+
