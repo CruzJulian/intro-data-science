@@ -4,9 +4,15 @@ subtitle: "Introducción a matplotlib"
 format: 
   html:
     toc: true
-toc-location: left
-toc-title: Contenido
-df-print: default
+    toc-location: left
+    toc-title: Contenido
+    df-print: default
+execute: 
+  eval: true
+  echo: true
+  output: false
+  warning: false
+  error: false
 ---
 
 
@@ -69,6 +75,8 @@ Seaborn's strengths lie in its visual-oriented graphic functions, which allow yo
 
 
 ```{python}
+#| fig-show: asis
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -93,6 +101,7 @@ diamonds = sns.load_dataset(
 The basic usage of seaborn is:
 
 ```{python, eval = FALSE}
+#| fig-show: asis
 
 # Basic structure
 
@@ -130,6 +139,8 @@ Visit the [The Python Graph Gallery](https://python-graph-gallery.com/) for insp
 ## Basics
 
 ```{python}
+#| fig-show: asis
+
 sns.scatterplot(x="carat", y = "price", data = diamonds) #oriented to data manipulation
 
 ```
@@ -137,12 +148,16 @@ sns.scatterplot(x="carat", y = "price", data = diamonds) #oriented to data manip
 ### Count plot
 
 ```{python}
+#| fig-show: asis
+
 sns.countplot(x = "cut", data = diamonds)
 
 ```
 
 
 ```{python}
+#| fig-show: asis
+
 # sns.set(color_codes=True)
 
 cut_percent = (diamonds["cut"]
@@ -157,23 +172,31 @@ sns.barplot(x="cut",y="percent", data = cut_percent)
 ### Histogram
 
 ```{python}
+#| fig-show: asis
+
 sns.histplot(x = "price", data = diamonds)
 
 ```
 
 
 ```{python}
+#| fig-show: asis
+
 sns.histplot(x = "price", hue="color", data = diamonds)
 
 ```
 
 ```{python}
+#| fig-show: asis
+
 sns.histplot(x = "price", data = diamonds, stat="percent")
 
 ```
 
 
 ```{python}
+#| fig-show: asis
+
 sns.histplot(x = "price", hue="color", data = diamonds, stat = "probability")
 
 ```
@@ -181,12 +204,16 @@ sns.histplot(x = "price", hue="color", data = diamonds, stat = "probability")
 ### Kernel density estimation
 
 ```{python}
+#| fig-show: asis
+
 sns.kdeplot(x = "price", data = diamonds)
 
 ```
 
 
 ```{python}
+#| fig-show: asis
+
 sns.kdeplot(x = "price", hue="color", data = diamonds)
 
 ```
@@ -194,12 +221,16 @@ sns.kdeplot(x = "price", hue="color", data = diamonds)
 ### Empirical Cumulative Distribution Function
 
 ```{python}
+#| fig-show: asis
+
 sns.ecdfplot(x = "price", data = diamonds)
 
 ```
 
 
 ```{python}
+#| fig-show: asis
+
 sns.ecdfplot(x = "price", hue="color", data = diamonds)
 
 ```
@@ -207,6 +238,8 @@ sns.ecdfplot(x = "price", hue="color", data = diamonds)
 ### Distribution plots
 
 ```{python}
+#| fig-show: asis
+
 sns_gr = sns.displot(x = "price", data = diamonds, kind = "hist")
 
 
@@ -214,6 +247,8 @@ sns_gr = sns.displot(x = "price", data = diamonds, kind = "hist")
 
 
 ```{python,  fig.width = 8,  fig.height = 8}
+#| fig-show: asis
+
 sns_gr = sns.displot(x = "price", data = diamonds, kind = "hist", row = "cut")
 
 
@@ -221,6 +256,8 @@ sns_gr = sns.displot(x = "price", data = diamonds, kind = "hist", row = "cut")
 
 
 ```{python,  fig.width = 8,  fig.height = 8}
+#| fig-show: asis
+
 sns_gr = sns.displot(x = "price", data = diamonds, kind = "kde", col = "cut")
 
 
@@ -228,6 +265,8 @@ sns_gr = sns.displot(x = "price", data = diamonds, kind = "kde", col = "cut")
 
 
 ```{python,  fig.width = 8,  fig.height = 8}
+#| fig-show: asis
+
 sns_gr = sns.displot(x = "price", hue = "color",data = diamonds, kind = "ecdf", col = "cut")
 
 
@@ -237,11 +276,15 @@ sns_gr = sns.displot(x = "price", hue = "color",data = diamonds, kind = "ecdf", 
 ### Scatterplot
 
 ```{python}
+#| fig-show: asis
+
 sns.scatterplot(x="carat", y = "price", data = diamonds) 
 
 ```
 
 ```{python}
+#| fig-show: asis
+
 sns.scatterplot(x="carat", y = "price", hue = "cut", data = diamonds) 
 
 ```
@@ -249,6 +292,8 @@ sns.scatterplot(x="carat", y = "price", hue = "cut", data = diamonds)
 ### Line plot
 
 ```{python}
+#| fig-show: asis
+
 x0 = np.linspace(0, 5, 11)
 y0 = np.sin(x0)
 
@@ -259,12 +304,16 @@ sns.lineplot(x = x0, y = y0)
 ### Relational plot
 
 ```{python}
+#| fig-show: asis
+
 sns_gr = sns.relplot(x = x0, y = y0, kind = "line") 
 
 
 ```
 
 ```{python}
+#| fig-show: asis
+
 sns_gr = sns.relplot(x="carat", y = "price", data = diamonds, kind = "scatter") 
 
 ```
@@ -272,6 +321,8 @@ sns_gr = sns.relplot(x="carat", y = "price", data = diamonds, kind = "scatter")
 
 
 ```{python}
+#| fig-show: asis
+
 sns_gr = sns.relplot(
   x="carat", 
   y = "price", 
@@ -284,6 +335,8 @@ sns_gr = sns.relplot(
 
 
 ```{python}
+#| fig-show: asis
+
 sns_gr = sns.relplot(
   x="carat", 
   y = "price", 
@@ -298,6 +351,8 @@ sns_gr = sns.relplot(
 ### cat plots
 
 ```{python}
+#| fig-show: asis
+
 sns_gr = sns.catplot(
   x="cut", 
   y = "price", 
@@ -309,6 +364,8 @@ sns_gr = sns.catplot(
 ```
 
 ```{python}
+#| fig-show: asis
+
 sns_gr = sns.catplot(
   x="cut", 
   y = "price", 
@@ -322,6 +379,8 @@ sns_gr = sns.catplot(
 
 
 ```{python}
+#| fig-show: asis
+
 sns_gr = sns.catplot(
   x="cut", 
   y = "price", 
@@ -337,6 +396,8 @@ sns_gr = sns.catplot(
 
 
 ```{python}
+#| fig-show: asis
+
 sns_gr = sns.catplot(
   x="cut", 
   y = "price", 
@@ -353,24 +414,32 @@ sns_gr = sns.catplot(
 ### joint plots
 
 ```{python}
+#| fig-show: asis
+
 sns.jointplot(x="carat", y = "price", data = diamonds)
 
 ```
 
 
 ```{python}
+#| fig-show: asis
+
 sns.jointplot(x="carat", y = "price", data = diamonds, kind = "kde")
 
 ```
 
 
 ```{python}
+#| fig-show: asis
+
 sns.jointplot(x="carat", y = "price", data = diamonds, kind = "hist")
 
 ```
 
 
 ```{python}
+#| fig-show: asis
+
 sns.jointplot(x="carat", y = "price", data = diamonds, kind = "reg")
 
 ```
@@ -378,6 +447,8 @@ sns.jointplot(x="carat", y = "price", data = diamonds, kind = "reg")
 
 
 ```{python}
+#| fig-show: asis
+
 sns.jointplot(x="carat", y = "price", hue = "color", data = diamonds)
 
 ```
@@ -386,7 +457,10 @@ sns.jointplot(x="carat", y = "price", hue = "color", data = diamonds)
 
 Generate the following charts.
 
-```{python echo=FALSE}
+```{python}
+#| echo: false
+#| fig-show: asis
+
 sns_gr = sns.catplot(
   x="cut", 
   y = "price", 
@@ -399,7 +473,10 @@ sns_gr = sns.catplot(
 
 ```
 
-```{python echo=FALSE}
+```{python}
+#| echo: false
+#| fig-show: asis
+
 sns_gr = sns.displot(
   x = "price", 
   data = diamonds,

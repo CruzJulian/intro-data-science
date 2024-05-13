@@ -4,9 +4,15 @@ subtitle: "Introducción a matplotlib"
 format: 
   html:
     toc: true
-toc-location: left
-toc-title: Contenido
-df-print: default
+    toc-location: left
+    toc-title: Contenido
+    df-print: default
+execute: 
+  eval: true
+  echo: true
+  output: false
+  warning: false
+  error: false
 ---
 
 
@@ -111,6 +117,9 @@ z = diamonds["cut"]
 
 
 ```{python}
+#| fig-show: asis
+
+
 plt.plot(x, y, color = 'b', marker = ".", linestyle = "none")
 plt.show()
 plt.close()
@@ -119,6 +128,8 @@ plt.close()
 
 
 ```{python}
+#| fig-show: asis
+
 plt.plot(x, y, 'b.')
 plt.show()
 plt.close()
@@ -126,6 +137,8 @@ plt.close()
 ```
 
 ```{python}
+#| fig-show: asis
+
 plt.plot(x, y, 'rx')
 plt.show()
 plt.close()
@@ -134,6 +147,8 @@ plt.close()
 ```
 
 ```{python}
+#| fig-show: asis
+
 plt.plot(x, y, 'go')
 plt.plot(y, x, 'go')
 plt.show()
@@ -146,6 +161,8 @@ plt.close()
 ### Histogram
 
 ```{python}
+#| fig-show: asis
+
 plt.hist(x)
 plt.show()
 plt.close()
@@ -156,6 +173,8 @@ plt.close()
 ### Scatterplot
 
 ```{python}
+#| fig-show: asis
+
 plt.scatter(x, y)
 plt.show()
 plt.close()
@@ -166,6 +185,8 @@ plt.close()
 ### Pie
 
 ```{python}
+#| fig-show: asis
+
 z_count = z.value_counts()
 
 plot_01 = plt.pie(z_count, labels=z_count.index)
@@ -177,6 +198,7 @@ plt.close()
 
 
 ```{python}
+#| fig-show: asis
 
 plot_01 = plt.pie(z_count)
 plt.plot(x, y, 'b.')
@@ -189,6 +211,8 @@ plt.close()
 ### Barplot
 
 ```{python}
+#| fig-show: asis
+
 plt.bar(z_count.index, z_count)
 plt.show()
 plt.close()
@@ -200,6 +224,8 @@ plt.close()
 ### Boxplot
 
 ```{python}
+#| fig-show: asis
+
 plot_01 = plt.boxplot(x)
 plt.show()
 plt.close()
@@ -211,6 +237,7 @@ plt.close()
 ### Subplot
 
 ```{python}
+#| fig-show: asis
 
 # subplot
 # # de filas
@@ -232,6 +259,8 @@ plt.close()
 
 
 ```{python}
+#| fig-show: asis
+
 fig = plt.figure()
 axes = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 axes.plot(x, y, "b.")
@@ -242,6 +271,8 @@ plt.close()
 
 
 ```{python}
+#| fig-show: asis
+
 fig = plt.figure()
 axes = fig.add_axes([0.1, 0.1, 0.4, 0.5])
 axes.plot(x, y, "gv")
@@ -255,6 +286,8 @@ plt.close()
 
 
 ```{python}
+#| fig-show: asis
+
 fig = plt.figure()
 axes1 = fig.add_axes([0.1, 0.1, .65, 0.65])
 axes1.scatter(x, y)
@@ -271,6 +304,7 @@ plt.close()
 
 
 ```{python}
+#| fig-show: asis
 
 cut_groups = diamonds.groupby("cut")
 
@@ -294,6 +328,8 @@ plt.close()
 
 
 ```{python}
+#| fig-show: asis
+
 # fig = plt.figure()
 # axes = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 fig, axes = plt.subplots(nrows = 1, ncols=2)
@@ -307,6 +343,8 @@ plt.close()
 
 
 ```{python}
+#| fig-show: asis
+
 colors = {'Fair':'blue', 'Good':'orange', 'Very Good':'green', 'Premium':'red', 'Ideal':'purple'}
 
 fig, ax = plt.subplots()
@@ -322,6 +360,8 @@ plt.close()
  
 
 ```{python}
+#| fig-show: asis
+
 fig, [ax1, ax2] = plt.subplots(nrows = 1, ncols=2, sharey = True)
 ax1.plot(x, y, 'b.')
 ax2.plot(x, y, 'ro')
@@ -334,6 +374,8 @@ plt.close()
 
 
 ```{python}
+#| fig-show: asis
+
 x0 = np.linspace(0, 5, 11)
 y1, y2, y3, y4, y5, y6 = np.sin(x0), np.cos(x0), np.tan(x0), x0, x0**2, x0**3
 
@@ -360,6 +402,8 @@ plt.close()
 
 
 ```{python}
+#| fig-show: asis
+
 fig = plt.figure()
 axes1 = fig.add_axes([0.1, 0.1, .65, 0.65])
 axes1.scatter(x, y)
@@ -384,6 +428,8 @@ plt.close()
 
 
 ```{python, fig.width = 6,  fig.height = 6}
+#| fig-show: asis
+
 fig, [ax1, ax2] = plt.subplots(nrows = 2, ncols=1)
 ax1.plot(x0, y1, 'g', label="sen(x)")
 ax1.set_title("Seno")
@@ -405,6 +451,8 @@ plt.close()
 
 
 ```{python, fig.width = 6,  fig.height = 6}
+#| fig-show: asis
+
 plt.subplot(2, 1, 1)
 plt.plot(x0, y1, 'g', label="sen(x)")
 plt.title("Seno")
@@ -428,6 +476,8 @@ plt.close()
 ### Decoration
 
 ```{python}
+#| results: asis
+
 print(plt.style.available)
 
 
@@ -435,7 +485,10 @@ print(plt.style.available)
 
 
 ```{python, fig.width = 6,  fig.height = 6}
+#| fig-show: asis
+
 plt.style.use("ggplot")
+
 fig, [ax1, ax2] = plt.subplots(nrows = 2, ncols=1)
 # ax1.plot(x, y1, color="#ff00ff", alpha = 0.1, linewidth = 10)
 ax1.scatter(x0, y1, label="sen(x)", color="#ff00ff", alpha = 1, linewidth = 1, marker = "p")
@@ -462,6 +515,8 @@ plt.close()
 Generate the following charts.
 
 ```{python echo=FALSE,  fig.width = 8,  fig.height = 8}
+#| fig-show: asis
+
 fig = plt.figure()
 axes1 = fig.add_axes([0.05, 0.05, .7, 0.7])
 axes1.scatter(x, y)

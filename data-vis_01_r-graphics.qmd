@@ -4,9 +4,15 @@ subtitle: "Gráficos en R"
 format: 
   html:
     toc: true
-toc-location: left
-toc-title: Contenido
-df-print: default
+    toc-location: left
+    toc-title: Contenido
+    df-print: default
+execute: 
+  eval: true
+  echo: true
+  output: false
+  warning: false
+  error: false
 ---
 
 
@@ -30,7 +36,9 @@ Here are some key points about the "graphics" package in R:
 
 The "graphics" package in R is a fundamental tool for creating a wide variety of plots and charts. It has a well-defined structure consisting of several functions that allow you to create and customize plots. Here, we'll delve deeper into the structure of the "graphics" package using the provided text.
 
-```{r, eval = FALSE}
+```{r}
+#| eval: FALSE
+
 # Functions for plotting
 
 plot()

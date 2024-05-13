@@ -4,9 +4,9 @@ subtitle: "Presentación"
 format: 
   html:
     toc: true
-toc-location: left
-toc-title: Contenido
-df-print: default
+    toc-location: left
+    toc-title: Contenido
+    df-print: default
 ---
 
 # What is this

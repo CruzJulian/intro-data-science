@@ -4,9 +4,16 @@ subtitle: "Introducción a ggplot"
 format: 
   html:
     toc: true
-toc-location: left
-toc-title: Contenido
-df-print: default
+    toc-location: left
+    toc-title: Contenido
+    df-print: default
+execute: 
+  eval: true
+  echo: true
+  output: false
+  warning: false
+  error: false
+    
 ---
 
 # Package ggplot2
@@ -65,7 +72,9 @@ Create a plot with:
 ![Structure of a plot](structure-ggplot.jpeg)
 
 
-```{r, eval = FALSE}
+```{r}
+#| eval: FALSE
+
 ggplot(...) +
   layer(...) +
   layer(...) +
@@ -122,6 +131,8 @@ diamonds %<>%
 ### Layers
 
 ```{r}
+#| fig-show: asis
+
 ggplot() +
   layer(
     data = diamonds, 
@@ -140,6 +151,8 @@ ggplot() +
 
 
 ```{r}
+#| fig-show: asis
+
 ggplot() +
   layer(
     data = mtcars, 
@@ -160,6 +173,8 @@ ggplot() +
 
 
 ```{r}
+#| fig-show: asis
+
 ggplot() +
   layer(
     data = diamonds, 
@@ -187,6 +202,8 @@ ggplot() +
 ### factorize data and mapping
 
 ```{r}
+#| fig-show: asis
+
 ggplot(
   data = diamonds, 
   mapping = aes(x = carat, y = price),
@@ -208,6 +225,8 @@ ggplot(
 
 
 ```{r}
+#| fig-show: asis
+
 ggplot(
   data = diamonds, 
   mapping = aes(x = carat, y = price),
@@ -230,6 +249,8 @@ ggplot(
 
 
 ```{r}
+#| fig-show: asis
+
 ggplot(
   data = diamonds, 
   mapping = aes(x = carat, y = price),
@@ -258,6 +279,8 @@ ggplot(
 
 
 ```{r}
+#| fig-show: asis
+
 ggplot(
   data = diamonds, 
   mapping = aes(x = carat, y = price),
@@ -285,6 +308,7 @@ ggplot(
 
 
 ```{r}
+#| fig-show: asis
 
 ggplot(
   data = diamonds, 
@@ -309,6 +333,8 @@ ggplot(
 ### most extended use
 
 ```{r}
+#| fig-show: asis
+
 ggplot(diamonds) +
   aes(x = carat, y = price) + 
   geom_point() +
@@ -321,6 +347,8 @@ ggplot(diamonds) +
 
 
 ```{r}
+#| fig-show: asis
+
 ggplot(diamonds) +
   aes(x = carat, y = price) + 
   geom_point() +
@@ -342,6 +370,8 @@ library("esquisse")
 
 
 ```{r}
+#| fig-show: asis
+
 ggplot(diamonds) +
   aes(x = carat, y = price) +
   geom_point(shape = "circle", size = 1.5, colour = "#112446") +
@@ -355,6 +385,8 @@ ggplot(diamonds) +
 ## Examples
 
 ```{r}
+#| fig-show: asis
+
 ggplot(diamonds) + 
   aes(x = carat, y = price, colour = color) + 
   geom_point() 
@@ -362,6 +394,8 @@ ggplot(diamonds) +
 ```
 
 ```{r}
+#| fig-show: asis
+
 ggplot(diamonds) + 
   aes(x = cut, y = price, fill = color) + 
   geom_boxplot()
@@ -370,6 +404,8 @@ ggplot(diamonds) +
 
 
 ```{r}
+#| fig-show: asis
+
 diamonds %>% 
   group_by(color) %>% 
   summarise(carat_avg = mean(carat, na.rm = TRUE)) %>% 
@@ -385,7 +421,10 @@ diamonds %>%
 
 Generate the following charts.
 
-```{r, echo=FALSE}
+```{r}
+#| echo: false
+#| fig-show: asis
+
 ggplot(diamonds) +
   aes(x = carat, y = price) +
   geom_point(shape = "circle", size = 1.5, colour = "#112446") +
@@ -394,7 +433,10 @@ ggplot(diamonds) +
 ```
 
 
-```{r, echo=FALSE}
+```{r}
+#| echo: false
+#| fig-show: asis
+
 ggplot(diamonds) +
   aes(x = cut, y = price) +
   geom_boxplot() +
