@@ -13,14 +13,34 @@ project:
     - "unidad_02.qmd"
     - "unidad_03.qmd"
     - "unidad_04.qmd"
+    - "program_00_setup.qmd"
+    - "program_01_loading-data.qmd"
+    - "program_02_basics.qmd"
+    - "program_03_tidy.qmd"
+    - "program_04_eda.qmd"
+    - "program_05_asociacion.qmd"
 
 website:
-  title: "MNS"
+  title: "Data Science Intro"
   search: false
   navbar:
     left:
       - text: "Inicio"
         href: index.qmd
+      - text: "Programación"
+        menu: 
+          - text: "Setup"
+            href: program_00_setup.qmd
+          - text: "Lectura de datos"
+            href: program_01_loading-data.qmd
+          - text: "Hola R"
+            href: program_02_basics.qmd
+          - text: "Limpieza de datos"
+            href: program_03_tidy.qmd
+          - text: "Análisis exploratorio"
+            href: program_04_eda.qmd
+          - text: "Asociación"
+            href: program_05_asociacion.qmd
       - text: "Data-vis"
         menu:
           - text: "Presentación"
