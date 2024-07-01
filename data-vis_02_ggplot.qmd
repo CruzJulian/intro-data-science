@@ -16,41 +16,39 @@ execute:
     
 ---
 
-# Package ggplot2
+# Paquete ggplot2
 
+## ¿Qué es?
 
-## What is
+Basado en el trabajo de doctorado de [Hadley Wickham](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf), **ggplot2** es un paquete poderoso y ampliamente utilizado en R para la creación de visualizaciones de datos. Fue creado por Hadley Wickham y se basa en el concepto de "Gramática de Gráficos". Aquí tienes una explicación completa del paquete ggplot2:
 
-Based on the PhD wor of [Hadley Wickham](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf), **ggplot2** is a widely used and powerful R package for creating data visualizations. It was created by Hadley Wickham and is based on the "Grammar of Graphics" concept. Here's a comprehensive explanation of the ggplot2 package:
+1. Gramática de Gráficos: ggplot2 se basa en la Gramática de Gráficos, un marco abstracto para describir y construir visualizaciones de datos. Este concepto descompone el proceso de creación de gráficos en componentes distintos, lo que lo hace altamente flexible y personalizable.
 
-1. Grammar of Graphics: ggplot2 is based on the Grammar of Graphics, an abstract framework for describing and constructing data visualizations. This concept breaks down the process of creating plots into distinct components, making it highly flexible and customizable.
+2. Creación de Gráficos de Alto Nivel: ggplot2 es conocido por su enfoque de alto nivel para la creación de gráficos. En lugar de especificar cada detalle de un gráfico individualmente, describes el gráfico en términos de datos y mapeos, y ggplot2 maneja automáticamente los detalles.
 
-2. High-Level Plotting: ggplot2 is known for its high-level approach to plotting. Instead of specifying each detail of a plot individually, you describe the plot in terms of data and mappings, and ggplot2 handles the details automatically.
+3. Enfoque en Capas: En ggplot2, construyes gráficos añadiendo capas, comenzando con una fuente de datos y agregando progresivamente componentes como geoms (objetos geométricos que representan puntos de datos), mapeos estéticos y transformaciones estadísticas. Este enfoque de capas permite visualizaciones complejas e informativas.
 
-3. Layered Approach: In ggplot2, you build plots by adding layers, starting with a data source and progressively adding components like geoms (geometric objects representing data points), aesthetic mappings, and statistical transformations. This layering approach allows for complex and informative visualizations.
+4. Estética Guiada por los Datos: ggplot2 te permite mapear variables de datos a estéticas como color, tamaño, forma y posición. Este enfoque guiado por los datos te permite crear visualizaciones que revelan patrones y relaciones en tus datos.
 
-4. Data-Driven Aesthetics: ggplot2 allows you to map data variables to aesthetics, such as color, size, shape, and position. This data-driven approach enables you to create visualizations that reveal patterns and relationships in your data.
+5. Objetos Geométricos Extensivos: El paquete proporciona una amplia gama de objetos geométricos (geoms) que te permiten representar tus datos de diversas formas. Los geoms comunes incluyen puntos, líneas, barras y etiquetas de texto, pero hay muchos más para elegir.
 
-5. Extensive Geometric Objects: The package provides a wide range of geometric objects (geoms) that allow you to represent your data in various ways. Common geoms include points, lines, bars, and text labels, but there are many more to choose from.
+6. Facetado: ggplot2 admite el facetado, que es el proceso de crear múltiples gráficos basados en una variable categórica en tus datos. Esto te permite explorar cómo diferentes categorías afectan tus visualizaciones.
 
-6. Faceting: ggplot2 supports faceting, which is the process of creating multiple plots based on a categorical variable in your data. This allows you to explore how different categories affect your visualizations.
+7. Temas y Personalización: ggplot2 proporciona temas que te permiten personalizar la apariencia de tus gráficos. Puedes cambiar fuentes, colores, líneas de cuadrícula y más para que coincidan con tu estilo preferido o para cumplir con requisitos específicos de marca.
 
-7. Themes and Customization: ggplot2 provides themes that allow you to customize the appearance of your plots. You can change fonts, colors, grid lines, and more to match your preferred style or to adhere to specific branding requirements.
+8. Transformaciones Estadísticas: El paquete ofrece una variedad de transformaciones estadísticas que se pueden aplicar a tus datos antes de trazarlos. Por ejemplo, puedes calcular estadísticas resumidas como medias, medianas o cuantiles dentro de tu gráfico.
 
-8. Statistical Transformations: The package offers a variety of statistical transformations that can be applied to your data before plotting. For example, you can calculate summary statistics like means, medians, or quantiles within your plot.
+9. Código Elegante: ggplot2 fomenta un código limpio y elegante a través de su estructura de capas y el uso del operador pipe (%>%), lo que facilita la lectura y comprensión de visualizaciones complejas.
 
-9. Elegant Code: ggplot2 encourages clean and elegant code through its layered structure and use of the pipe operator (%>%), making it easier to read and understand complex visualizations.
+10. Exploración y Comunicación de Datos: ggplot2 es una herramienta valiosa tanto para la exploración como para la comunicación de datos. Te permite generar rápidamente visualizaciones significativas para el análisis de datos, así como crear gráficos listos para publicar en informes y presentaciones.
 
-10. Data Exploration and Communication: ggplot2 is a valuable tool for both data exploration and communication. It allows you to quickly generate meaningful visualizations for data analysis, as well as create publication-ready graphics for reports and presentations.
+## Cómo funciona
 
-## How it works
+El sistema de capas puede ser confuso al principio, lo que ha llevado a explicaciones que no son del todo precisas. En este sentido, es importante asegurarse de comprender completamente el sistema de capas de ggplot2 antes de intentar explicarlo a otros.
 
-The layering system can be confusing initially, which has led to explanations that are not entirely accurate. In this regard, it is important to ensure that you fully understand ggplot2's layering system before attempting to explain it to others.
+![Sistema incorrecto de capas de ggplot2](ggplot_layers.jpeg)
 
-![Wrong layer system of ggplot 2.](ggplot_layers.jpeg)
-
-
-The code structure of ggplot2:
+La estructura del código de ggplot2:
 
 ```{}
 Create a plot with:
@@ -84,30 +82,27 @@ ggplot(...) +
 
 ```
 
-It is like a cake.
+Como un pastel.
 
-![Correct layer system of ggplot 2.](ggplot2_layer.jpeg)
-
-
-
-## Further reading
-
-Read [the documentation of the package](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html)
+![Representación correcta del sistema de capas de ggplot 2.](ggplot2_layer.jpeg)
 
 
-Visit [The R Graph Gallery](https://r-graph-gallery.com/) to view a collection of charts made with the graphics package.
+## Lecturas Adicionales
 
-Read the [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf):
-
-![ggplot cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/data-visualization-cheatsheet-thumbs.png)
-
-For inspiration visit the [Top 50 ggplot2 Visualizations - The Master List](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) (With Full R Code)
-
-Searching expand the posibilities, visit the [ggplot2 extensions](https://exts.ggplot2.tidyverse.org/) page.
-
-## Basics
+Lee [la documentación del paquete](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html)
 
 
+Visita [The R Graph Gallery](https://r-graph-gallery.com/) para ver una colección de figuras elaboradas con el paquete `ggplot2`.
+
+Lee [los apuntes de ggplot2](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf):
+
+![apuntes de  ggplot2](https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/data-visualization-cheatsheet-thumbs.png)
+
+Para inspiración visita [Top 50 ggplot2 Visualizations - The Master List](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) (Con el código en R completo.)
+
+Buscando expandir los horizontes, visita la [página de extensiones de ggplot2](https://exts.ggplot2.tidyverse.org/).
+
+## Conceptos Básicos
 
 ```{r}
 library("ggplot2")
@@ -126,9 +121,7 @@ diamonds %<>%
 
 ```
 
-
-
-### Layers
+### Capas
 
 ```{r}
 #| fig-show: asis
@@ -169,7 +162,7 @@ ggplot() +
 ```
 
 
-### Overlaping layers
+### Capas Superpuestas
 
 
 ```{r}
@@ -199,7 +192,7 @@ ggplot() +
 ```
 
 
-### factorize data and mapping
+### Factorización y mapeo
 
 ```{r}
 #| fig-show: asis
@@ -330,7 +323,7 @@ ggplot(
 ```
 
 
-### most extended use
+### Uso más extendido
 
 ```{r}
 #| fig-show: asis
@@ -344,7 +337,6 @@ ggplot(diamonds) +
 ```
 
 ### Facets
-
 
 ```{r}
 #| fig-show: asis
@@ -381,8 +373,7 @@ ggplot(diamonds) +
 
 ```
 
-
-## Examples
+## Ejemplos
 
 ```{r}
 #| fig-show: asis
@@ -415,11 +406,9 @@ diamonds %>%
 
 ```
 
+## Ejercicio
 
-
-## Exercise
-
-Generate the following charts.
+Genera las siguientes gráficas.
 
 ```{r}
 #| echo: false

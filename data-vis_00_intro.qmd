@@ -9,13 +9,13 @@ format:
     df-print: default
 ---
 
-# What is this
+# ¿Qué es esto?
 
-This is a notebook for the use in a data visualization course.
+Esto es un cuaderno para usar en un curso de visualización de datos.
 
-I dont have structured it yet. But I can link here some of the chapters.
+Todavía no lo he estructurado, pero puedo vincular aquí algunos de los capítulos.
 
-Here I will explain some things about visualizationa from my understanding. this work has a lot of opportunities for growing, be kind to inform mistakes and collaborate in the way you want.
+Aquí explicaré algunas cosas sobre la visualización según mi entendimiento. Este trabajo tiene muchas oportunidades de crecimiento, por favor informa errores y colabora de la manera que desees.
 
 
-![Use of visualization libraries](structure.png)
+![Uso de librerías de visualziación](structure.png)
