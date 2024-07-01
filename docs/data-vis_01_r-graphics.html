@@ -209,12 +209,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contenido</h2>
    
   <ul>
-  <li><a href="#package-graphics" id="toc-package-graphics" class="nav-link active" data-scroll-target="#package-graphics">Package graphics</a>
+  <li><a href="#paquete-graphics" id="toc-paquete-graphics" class="nav-link active" data-scroll-target="#paquete-graphics">Paquete graphics</a>
   <ul class="collapse">
-  <li><a href="#what-is" id="toc-what-is" class="nav-link" data-scroll-target="#what-is">What is</a></li>
-  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works">How it works</a></li>
-  <li><a href="#common-plot-types" id="toc-common-plot-types" class="nav-link" data-scroll-target="#common-plot-types">Common Plot Types:</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  <li><a href="#qué-es" id="toc-qué-es" class="nav-link" data-scroll-target="#qué-es">¿Qué es?</a></li>
+  <li><a href="#cómo-funciona" id="toc-cómo-funciona" class="nav-link" data-scroll-target="#cómo-funciona">Cómo funciona</a></li>
+  </ul></li>
+  <li><a href="#funciones-para-la-creación-de-gráficos" id="toc-funciones-para-la-creación-de-gráficos" class="nav-link" data-scroll-target="#funciones-para-la-creación-de-gráficos">Funciones para la Creación de Gráficos:</a>
+  <ul class="collapse">
+  <li><a href="#tipos-comunes-de-gráficos" id="toc-tipos-comunes-de-gráficos" class="nav-link" data-scroll-target="#tipos-comunes-de-gráficos">Tipos Comunes de Gráficos:</a></li>
+  <li><a href="#lecturas-adicionales" id="toc-lecturas-adicionales" class="nav-link" data-scroll-target="#lecturas-adicionales">Lecturas Adicionales</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -246,22 +249,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="package-graphics" class="level1">
-<h1>Package graphics</h1>
-<section id="what-is" class="level2">
-<h2 class="anchored" data-anchor-id="what-is">What is</h2>
-<p>The default package for creating graphics in R is called “graphics.” This package comes pre-installed with the basic R libraries and is known for its versatility in producing high-quality graphics.</p>
-<p>In R, “graphics” is a built-in package that provides a wide range of functions and tools for creating various types of plots and charts. It’s commonly used for basic data visualization tasks, making it a handy choice for creating simple yet effective graphics. Since it’s included in the standard R installation, you don’t need to install any additional packages to start using it.</p>
-<p>Here are some key points about the “graphics” package in R:</p>
+<section id="paquete-graphics" class="level1">
+<h1>Paquete graphics</h1>
+<section id="qué-es" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es">¿Qué es?</h2>
+<p>El paquete predeterminado para crear gráficos en R se llama “graphics”. Este paquete viene preinstalado con las bibliotecas básicas de R y es conocido por su versatilidad en la producción de gráficos de alta calidad.</p>
+<p>En R, “graphics” es un paquete integrado que proporciona una amplia gama de funciones y herramientas para crear diversos tipos de gráficos y diagramas. Se utiliza comúnmente para tareas básicas de visualización de datos, lo que lo convierte en una opción práctica para crear gráficos simples pero efectivos. Debido a que está incluido en la instalación estándar de R, no necesitas instalar paquetes adicionales para empezar a usarlo.</p>
+<p>Aquí hay algunos puntos clave sobre el paquete “graphics” en R:</p>
 <ul>
-<li><p>Default Graphics Package: When you start working with R, you can use the “graphics” package without any additional installations. It’s the go-to choice for basic plotting and graphing.</p></li>
-<li><p>Versatility: The “graphics” package offers a versatile set of functions that allow you to create a wide range of plots, including scatter plots, bar charts, histograms, and more. You can customize these plots to suit your specific needs.</p></li>
-<li><p>Good-Quality Graphics: While “graphics” is a basic graphics package, it is capable of producing high-quality graphics for data visualization and exploration. It may not have all the advanced features of specialized packages, but it gets the job done for many common plotting tasks.</p></li>
+<li><p><strong>Paquete de Gráficos Predeterminado:</strong> Cuando comienzas a trabajar con R, puedes utilizar el paquete “graphics” sin necesidad de instalaciones adicionales. Es la opción predeterminada para hacer gráficos básicos y representaciones gráficas.</p></li>
+<li><p><strong>Versatilidad:</strong> El paquete “graphics” ofrece un conjunto versátil de funciones que te permiten crear una amplia variedad de gráficos, incluyendo gráficos de dispersión, gráficos de barras, histogramas y más. Puedes personalizar estos gráficos según tus necesidades específicas.</p></li>
+<li><p><strong>Gráficos de Buena Calidad:</strong> Aunque “graphics” es un paquete gráfico básico, es capaz de producir gráficos de alta calidad para visualización y exploración de datos. Puede que no tenga todas las funciones avanzadas de paquetes especializados, pero cumple con muchas tareas comunes de trazado.</p></li>
 </ul>
 </section>
-<section id="how-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-it-works">How it works</h2>
-<p>The “graphics” package in R is a fundamental tool for creating a wide variety of plots and charts. It has a well-defined structure consisting of several functions that allow you to create and customize plots. Here, we’ll delve deeper into the structure of the “graphics” package using the provided text.</p>
+<section id="cómo-funciona" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-funciona">Cómo funciona</h2>
+<p>El paquete “graphics” en R es una herramienta fundamental para crear una amplia variedad de gráficos y diagramas. Tiene una estructura bien definida que consiste en varias funciones que te permiten crear y personalizar gráficos. Aquí profundizaremos en la estructura del paquete “graphics” utilizando el texto proporcionado.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Functions for plotting</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -285,31 +288,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>()</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Functions for Plot Creation:</p>
-<p>The core of the “graphics” package is its collection of functions for creating plots. These functions are designed to work primarily with vectors, although they can also work with data structures. These functions are the building blocks for generating different types of visualizations in R.</p>
-<p>Working with Vectors and Data:</p>
-<p>The functions within the “graphics” package are primarily designed to work with vectors, which are one-dimensional data structures. Vectors can represent numerical or categorical data. These functions can take vectors as input to create a wide range of plots, such as scatter plots, line charts, histograms, and more.</p>
-<p>Customizable Plots:</p>
-<p>One of the key features of the “graphics” package is its ability to customize plots. You can control various aspects of the visualizations, including colors, labels, axes, titles, and more. This level of customization allows you to tailor the plots to your specific needs.</p>
-<p>Extensibility:</p>
-<p>While the “graphics” package offers a wide range of plotting functions, it’s also extensible. This means you can build more complex visualizations by combining these basic functions and adding additional elements to your plots. This extensibility allows for creative and sophisticated data visualization.</p>
 </section>
-<section id="common-plot-types" class="level2">
-<h2 class="anchored" data-anchor-id="common-plot-types">Common Plot Types:</h2>
-<p>The package provides functions for creating common types of plots, including:</p>
+</section>
+<section id="funciones-para-la-creación-de-gráficos" class="level1">
+<h1>Funciones para la Creación de Gráficos:</h1>
+<p>El núcleo del paquete “graphics” son sus funciones para la creación de gráficos. Estas funciones están diseñadas principalmente para trabajar con vectores, aunque también pueden manejar estructuras de datos. Estas funciones son los bloques de construcción para generar diferentes tipos de visualizaciones en R.</p>
+<p>Trabajo con Vectores y Datos:</p>
+<p>Las funciones dentro del paquete “graphics” están diseñadas principalmente para trabajar con vectores, que son estructuras de datos unidimensionales. Los vectores pueden representar datos numéricos o categóricos. Estas funciones pueden tomar vectores como entrada para crear una amplia gama de gráficos, como gráficos de dispersión, gráficos de líneas, histogramas y más.</p>
+<p>Gráficos Personalizables:</p>
+<p>Una de las características clave del paquete “graphics” es su capacidad para personalizar gráficos. Puedes controlar varios aspectos de las visualizaciones, incluidos colores, etiquetas, ejes, títulos y más. Este nivel de personalización te permite adaptar los gráficos a tus necesidades específicas.</p>
+<p>Extensibilidad:</p>
+<p>Si bien el paquete “graphics” ofrece una amplia gama de funciones de trazado, también es extensible. Esto significa que puedes construir visualizaciones más complejas combinando estas funciones básicas y agregando elementos adicionales a tus gráficos. Esta extensibilidad permite visualizaciones de datos creativas y sofisticadas.</p>
+<section id="tipos-comunes-de-gráficos" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-comunes-de-gráficos">Tipos Comunes de Gráficos:</h2>
+<p>El paquete proporciona funciones para crear tipos comunes de gráficos, que incluyen:</p>
 <ul>
-<li><p>Scatter Plots: Visualizing the relationship between two variables.</p></li>
-<li><p>Line Charts: Representing data trends over time or another continuous variable.</p></li>
-<li><p>Bar Charts: Showing categorical data with bars.</p></li>
-<li><p>Histograms: Displaying the distribution of continuous data.</p></li>
-<li><p>Box Plots: Illustrating the distribution and variability of data.</p></li>
-<li><p>Pie Charts: Representing parts of a whole.</p></li>
+<li><p>Gráficos de Dispersión: Visualización de la relación entre dos variables.</p></li>
+<li><p>Gráficos de Líneas: Representación de tendencias de datos a lo largo del tiempo u otra variable continua.</p></li>
+<li><p>Gráficos de Barras: Mostrar datos categóricos con barras.</p></li>
+<li><p>Histogramas: Visualización de la distribución de datos continuos.</p></li>
+<li><p>Diagramas de Caja: Ilustración de la distribución y variabilidad de los datos.</p></li>
+<li><p>Gráficos de Tarta: Representación de partes de un todo.</p></li>
 </ul>
 </section>
-<section id="further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
-<p>Read <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html">the documentation of the package</a></p>
-<p>Visit <a href="https://r-graph-gallery.com/">The R Graph Gallery</a> to view a collection of charts made with the graphics package.</p>
+<section id="lecturas-adicionales" class="level2">
+<h2 class="anchored" data-anchor-id="lecturas-adicionales">Lecturas Adicionales</h2>
+<p>Lee <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html">la documentación del paquete</a></p>
+<p>Visita <a href="https://r-graph-gallery.com/">The R Graph Gallery</a> para ver una colección de figuras elaboradas con el paquete graphics.</p>
 
 
 </section>

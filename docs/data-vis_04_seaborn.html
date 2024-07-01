@@ -211,23 +211,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#seaborn" id="toc-seaborn" class="nav-link active" data-scroll-target="#seaborn">Seaborn</a>
   <ul class="collapse">
-  <li><a href="#visual-oriented-graphic-functions" id="toc-visual-oriented-graphic-functions" class="nav-link" data-scroll-target="#visual-oriented-graphic-functions">Visual-Oriented Graphic Functions</a></li>
-  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works">How it works</a></li>
+  <li><a href="#funciones-gráficas-orientadas-a-lo-visual" id="toc-funciones-gráficas-orientadas-a-lo-visual" class="nav-link" data-scroll-target="#funciones-gráficas-orientadas-a-lo-visual">Funciones Gráficas Orientadas a lo Visual</a></li>
+  <li><a href="#cómo-funciona" id="toc-cómo-funciona" class="nav-link" data-scroll-target="#cómo-funciona">Cómo funciona</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   <li><a href="#basics" id="toc-basics" class="nav-link" data-scroll-target="#basics">Basics</a>
   <ul class="collapse">
   <li><a href="#count-plot" id="toc-count-plot" class="nav-link" data-scroll-target="#count-plot">Count plot</a></li>
-  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram">Histogram</a></li>
-  <li><a href="#kernel-density-estimation" id="toc-kernel-density-estimation" class="nav-link" data-scroll-target="#kernel-density-estimation">Kernel density estimation</a></li>
-  <li><a href="#empirical-cumulative-distribution-function" id="toc-empirical-cumulative-distribution-function" class="nav-link" data-scroll-target="#empirical-cumulative-distribution-function">Empirical Cumulative Distribution Function</a></li>
+  <li><a href="#histograma" id="toc-histograma" class="nav-link" data-scroll-target="#histograma">Histograma</a></li>
+  <li><a href="#estimador-de-densidad-kernel" id="toc-estimador-de-densidad-kernel" class="nav-link" data-scroll-target="#estimador-de-densidad-kernel">Estimador de densidad kernel</a></li>
+  <li><a href="#ecdf-plot" id="toc-ecdf-plot" class="nav-link" data-scroll-target="#ecdf-plot">ECDF plot</a></li>
   <li><a href="#distribution-plots" id="toc-distribution-plots" class="nav-link" data-scroll-target="#distribution-plots">Distribution plots</a></li>
   <li><a href="#scatterplot" id="toc-scatterplot" class="nav-link" data-scroll-target="#scatterplot">Scatterplot</a></li>
   <li><a href="#line-plot" id="toc-line-plot" class="nav-link" data-scroll-target="#line-plot">Line plot</a></li>
   <li><a href="#relational-plot" id="toc-relational-plot" class="nav-link" data-scroll-target="#relational-plot">Relational plot</a></li>
-  <li><a href="#cat-plots" id="toc-cat-plots" class="nav-link" data-scroll-target="#cat-plots">cat plots</a></li>
-  <li><a href="#joint-plots" id="toc-joint-plots" class="nav-link" data-scroll-target="#joint-plots">joint plots</a></li>
+  <li><a href="#cat-plots" id="toc-cat-plots" class="nav-link" data-scroll-target="#cat-plots">Cat plots</a></li>
+  <li><a href="#joint-plots" id="toc-joint-plots" class="nav-link" data-scroll-target="#joint-plots">Joint plots</a></li>
   </ul></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio">Ejercicio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -261,28 +261,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="seaborn" class="level1">
 <h1>Seaborn</h1>
-<p>Seaborn is a Python library for data visualization that is built on top of Matplotlib. It’s specifically designed for creating statistical graphics and has the advantage of tight integration with the Pandas library.</p>
-<p>Before you start creating any graphs with Seaborn, it’s important to have a good understanding of your data’s structure and to ensure that your dataset is preprocessed and ready for analysis. Seaborn offers various functions and features, including:</p>
+<p>Seaborn es una biblioteca de Python para la visualización de datos que está construida sobre Matplotlib. Está específicamente diseñada para crear gráficos estadísticos y tiene la ventaja de una integración estrecha con la biblioteca Pandas.</p>
+<p>Antes de comenzar a crear gráficos con Seaborn, es importante tener una buena comprensión de la estructura de tus datos y asegurarte de que tu conjunto de datos esté preprocesado y listo para el análisis. Seaborn ofrece varias funciones y características, incluyendo:</p>
 <ul>
-<li><p>It is oriented towards working with Pandas dataframes, which allows you to examine relationships between multiple variables within your dataset.</p></li>
-<li><p>Seaborn provides strong support for handling categorical variables and visualizing observations and aggregated statistics.</p></li>
-<li><p>You can use it to visualize univariate and bivariate distributions, making it easier to understand your data’s characteristics.</p></li>
-<li><p>It offers automatic estimation features, such as plotting linear regression models, simplifying the visualization of relationships within your data.</p></li>
-<li><p>You can gain insights into the general structure of datasets.</p></li>
-<li><p>Seaborn provides high-level abstractions for creating grid-like arrangements of multiple plots.</p></li>
-<li><p>You can customize the style of your visualizations with various built-in themes.</p></li>
-<li><p>It includes tools for selecting color palettes to make your plots visually appealing and informative.</p></li>
+<li><p>Está orientada a trabajar con dataframes de Pandas, lo que te permite examinar las relaciones entre múltiples variables dentro de tu conjunto de datos.</p></li>
+<li><p>Seaborn proporciona un fuerte soporte para manejar variables categóricas y visualizar observaciones y estadísticas agregadas.</p></li>
+<li><p>Puedes usarla para visualizar distribuciones univariadas y bivariadas, facilitando la comprensión de las características de tus datos.</p></li>
+<li><p>Ofrece características de estimación automática, como la creación de modelos de regresión lineal, simplificando la visualización de relaciones dentro de tus datos.</p></li>
+<li><p>Puedes obtener información sobre la estructura general de los conjuntos de datos.</p></li>
+<li><p>Seaborn proporciona abstracciones de alto nivel para crear arreglos en forma de cuadrícula de múltiples gráficos.</p></li>
+<li><p>Puedes personalizar el estilo de tus visualizaciones con varios temas incorporados.</p></li>
+<li><p>Incluye herramientas para seleccionar paletas de colores, haciendo que tus gráficos sean visualmente atractivos e informativos.</p></li>
 </ul>
-<section id="visual-oriented-graphic-functions" class="level2">
-<h2 class="anchored" data-anchor-id="visual-oriented-graphic-functions">Visual-Oriented Graphic Functions</h2>
-<p>Seaborn’s strengths lie in its visual-oriented graphic functions, which allow you to create visually appealing plots that convey insights from your data. These functions are specifically designed to handle different types of data and visualization tasks. Let’s explore the key functions you mentioned:</p>
-<p><strong>displot</strong> (short for “distribution plot”). It is used for visualizing the distribution of a single numerical variable. With displot, you can create various types of plots, such as histograms, kernel density estimates (KDE), and empirical cumulative distribution function (ECDF) plots. This helps you gain insights into the shape, spread, and central tendencies of your data.</p>
-<p><strong>relplot</strong>, short for “relationship plot,” is used to visualize the relationship between two numerical variables. This function can generate scatter plots, line plots, and other visualizations to depict how two numeric variables are related. It is especially useful for exploring patterns, correlations, and trends in the data.</p>
-<p><strong>catplot</strong>, or “categorical plot,” is primarily used for creating visualizations involving categorical variables. Categorical variables represent different categories or groups, and catplot can generate various types of plots like bar plots, box plots, and violin plots. These plots help you understand the distribution and relationships within your categorical data.</p>
-<p><strong>jointplot</strong> is used for bivariate visualization. It allows you to explore the relationship between two numerical variables simultaneously. This function creates a scatterplot of the two variables along with histograms or density estimates for each variable on the margins. This makes it easier to understand the joint distribution of the variables and identify patterns, correlations, or clusters.</p>
+<section id="funciones-gráficas-orientadas-a-lo-visual" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-gráficas-orientadas-a-lo-visual">Funciones Gráficas Orientadas a lo Visual</h2>
+<p>Las fortalezas de Seaborn radican en sus funciones gráficas orientadas a lo visual, que te permiten crear gráficos visualmente atractivos que transmiten información de tus datos. Estas funciones están específicamente diseñadas para manejar diferentes tipos de datos y tareas de visualización. Vamos a explorar las funciones clave que mencionaste:</p>
+<p><strong>displot</strong> (abreviatura de “distribution plot”). Se utiliza para visualizar la distribución de una sola variable numérica. Con displot, puedes crear varios tipos de gráficos, como histogramas, estimaciones de densidad de kernel (KDE) y gráficos de función de distribución acumulativa empírica (ECDF). Esto te ayuda a comprender la forma, la dispersión y las tendencias centrales de tus datos.</p>
+<p><strong>relplot</strong>, abreviatura de “relationship plot”, se utiliza para visualizar la relación entre dos variables numéricas. Esta función puede generar gráficos de dispersión, gráficos de líneas y otras visualizaciones para mostrar cómo están relacionadas dos variables numéricas. Es especialmente útil para explorar patrones, correlaciones y tendencias en los datos.</p>
+<p><strong>catplot</strong>, o “categorical plot”, se utiliza principalmente para crear visualizaciones que involucren variables categóricas. Las variables categóricas representan diferentes categorías o grupos, y catplot puede generar varios tipos de gráficos como gráficos de barras, gráficos de cajas y gráficos de violín. Estos gráficos te ayudan a comprender la distribución y las relaciones dentro de tus datos categóricos.</p>
+<p><strong>jointplot</strong> se utiliza para la visualización bivariada. Te permite explorar la relación entre dos variables numéricas simultáneamente. Esta función crea un gráfico de dispersión de las dos variables junto con histogramas o estimaciones de densidad para cada variable en los márgenes. Esto facilita la comprensión de la distribución conjunta de las variables e identificar patrones, correlaciones o agrupaciones.</p>
 </section>
-<section id="how-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-it-works">How it works</h2>
+<section id="cómo-funciona" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-funciona">Cómo funciona</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -297,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># You can uncomment this line to change the style of the graphs.</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.style.use('ggplot')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The basic usage of seaborn is:</p>
+<p>El uso básico de Seaborn es:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic structure</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -323,9 +323,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
-<p>Read the <a href="https://www.datacamp.com/tutorial/seaborn-python-tutorial">Datacamp tutorial</a></p>
-<p>Read the <a href="https://seaborn.pydata.org/">Documentation of Seaborn</a></p>
-<p>Visit the <a href="https://python-graph-gallery.com/">The Python Graph Gallery</a> for inspiration.</p>
+<p>Lee el <a href="https://www.datacamp.com/tutorial/seaborn-python-tutorial">tutorial de Datacamp</a></p>
+<p>Lee la <a href="https://seaborn.pydata.org/">documentation de Seaborn</a></p>
+<p>Visita <a href="https://python-graph-gallery.com/">The Python Graph Gallery</a> para inspiración.</p>
 </section>
 <section id="basics" class="level2">
 <h2 class="anchored" data-anchor-id="basics">Basics</h2>
@@ -369,8 +369,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="histogram" class="level3">
-<h3 class="anchored" data-anchor-id="histogram">Histogram</h3>
+<section id="histograma" class="level3">
+<h3 class="anchored" data-anchor-id="histograma">Histograma</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(x <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -412,8 +412,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="kernel-density-estimation" class="level3">
-<h3 class="anchored" data-anchor-id="kernel-density-estimation">Kernel density estimation</h3>
+<section id="estimador-de-densidad-kernel" class="level3">
+<h3 class="anchored" data-anchor-id="estimador-de-densidad-kernel">Estimador de densidad kernel</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(x <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -435,8 +435,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="empirical-cumulative-distribution-function" class="level3">
-<h3 class="anchored" data-anchor-id="empirical-cumulative-distribution-function">Empirical Cumulative Distribution Function</h3>
+<section id="ecdf-plot" class="level3">
+<h3 class="anchored" data-anchor-id="ecdf-plot">ECDF plot</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sns.ecdfplot(x <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -596,7 +596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="cat-plots" class="level3">
-<h3 class="anchored" data-anchor-id="cat-plots">cat plots</h3>
+<h3 class="anchored" data-anchor-id="cat-plots">Cat plots</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.catplot(</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"cut"</span>, </span>
@@ -664,7 +664,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="joint-plots" class="level3">
-<h3 class="anchored" data-anchor-id="joint-plots">joint plots</h3>
+<h3 class="anchored" data-anchor-id="joint-plots">Joint plots</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"carat"</span>, y <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -717,9 +717,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p>Generate the following charts.</p>
+<section id="ejercicio" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio">Ejercicio</h2>
+<p>Genera las siguientes gráficas.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>

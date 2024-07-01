@@ -211,9 +211,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link active" data-scroll-target="#matplotlib">Matplotlib</a>
   <ul class="collapse">
-  <li><a href="#first-steps" id="toc-first-steps" class="nav-link" data-scroll-target="#first-steps">First steps</a></li>
+  <li><a href="#primeros-pasos" id="toc-primeros-pasos" class="nav-link" data-scroll-target="#primeros-pasos">Primeros pasos</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
-  <li><a href="#basics" id="toc-basics" class="nav-link" data-scroll-target="#basics">Basics</a>
+  <li><a href="#conecptos-básicos" id="toc-conecptos-básicos" class="nav-link" data-scroll-target="#conecptos-básicos">Conecptos básicos</a>
   <ul class="collapse">
   <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a></li>
   <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram">Histogram</a></li>
@@ -222,12 +222,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#barplot" id="toc-barplot" class="nav-link" data-scroll-target="#barplot">Barplot</a></li>
   <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot">Boxplot</a></li>
   <li><a href="#subplot" id="toc-subplot" class="nav-link" data-scroll-target="#subplot">Subplot</a></li>
-  <li><a href="#object-oriented-use" id="toc-object-oriented-use" class="nav-link" data-scroll-target="#object-oriented-use">Object oriented use</a></li>
-  <li><a href="#subplots-is-not-subplot" id="toc-subplots-is-not-subplot" class="nav-link" data-scroll-target="#subplots-is-not-subplot">Subplots is not subplot</a></li>
-  <li><a href="#figure-information" id="toc-figure-information" class="nav-link" data-scroll-target="#figure-information">Figure information</a></li>
-  <li><a href="#decoration" id="toc-decoration" class="nav-link" data-scroll-target="#decoration">Decoration</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#uso-orientado-a-objetos" id="toc-uso-orientado-a-objetos" class="nav-link" data-scroll-target="#uso-orientado-a-objetos">Uso orientado a objetos</a></li>
+  <li><a href="#subplots-no-es-subplot" id="toc-subplots-no-es-subplot" class="nav-link" data-scroll-target="#subplots-no-es-subplot">Subplots no es subplot</a></li>
+  <li><a href="#información-de-la-figura" id="toc-información-de-la-figura" class="nav-link" data-scroll-target="#información-de-la-figura">Información de la figura</a></li>
+  <li><a href="#decoración" id="toc-decoración" class="nav-link" data-scroll-target="#decoración">Decoración</a></li>
   </ul></li>
+  <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio">Ejercicio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -261,18 +261,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="matplotlib" class="level1">
 <h1>Matplotlib</h1>
-<p>Matplotlib is a versatile and robust tool for creating high-quality, customizable graphics. While it is a Python library, it can also be used in other environments like Jupyter Notebook. It is compatible with common data analysis packages such as Pandas and NumPy, and it serves as the foundation for more advanced packages used for visualization and analysis, such as Seaborn, HoloViews, Basemap, GeoPandas, and Canopy.</p>
-<p>When using Matplotlib locally, it is recommended to install it through a Python package manager, like the well-known “pip.” You can do this by running the command “pip install matplotlib” in your terminal or command prompt, as shown in the image. If you are working in a cloud-based environment, you will also need to install the necessary packages as demonstrated.</p>
-<section id="first-steps" class="level2">
-<h2 class="anchored" data-anchor-id="first-steps">First steps</h2>
-<p>Matplotlib is a library used for creating visualizations and graphs in Python. After installing the library, you need to import it into your working environment. It’s important to understand that Matplotlib works with two main components or “interaction zones”:</p>
-<p><strong>Figure:</strong> This is the top-level container that encompasses all elements, essentially acting as the “window” that holds the graph. You can find more details in the matplotlib.figure module.</p>
-<p><strong>Axes:</strong> Axes contain the elements of the figure and allow you to control aspects like plotting, axes, appearance, and more. Detailed information about axes can be found in the matplotlib.axes module.</p>
-<p>Matplotlib provides three ways to use the library:</p>
-<p>Using the pylab module: By importing the library with the command from pylab import *, you get a style similar to MATLAB. This approach is suitable for quick testing and command-line interactions, although it’s less recommended in general usage.</p>
-<p>Using the pyplot module: This is a state-based interface for Matplotlib, also similar to MATLAB. It automates the creation of the necessary instances for drawing the graph and is recommended for both interactive and static plotting. You can find more information and a list of functions in the matplotlib.pyplot module.</p>
+<p>Matplotlib es una herramienta versátil y robusta para crear gráficos de alta calidad y personalizables. Aunque es una biblioteca de Python, también se puede usar en otros entornos como Jupyter Notebook. Es compatible con paquetes comunes de análisis de datos como Pandas y NumPy, y sirve como base para paquetes más avanzados utilizados para visualización y análisis, como Seaborn, HoloViews, Basemap, GeoPandas y Canopy.</p>
+<p>Cuando se usa Matplotlib localmente, se recomienda instalarlo a través de un gestor de paquetes de Python, como el conocido “pip”. Puedes hacer esto ejecutando el comando “pip install matplotlib” en tu terminal o símbolo del sistema, como se muestra en la imagen. Si estás trabajando en un entorno basado en la nube, también necesitarás instalar los paquetes necesarios según se muestra.</p>
+<section id="primeros-pasos" class="level2">
+<h2 class="anchored" data-anchor-id="primeros-pasos">Primeros pasos</h2>
+<p>Matplotlib es una biblioteca utilizada para crear visualizaciones y gráficos en Python. Después de instalar la biblioteca, necesitas importarla a tu entorno de trabajo. Es importante entender que Matplotlib trabaja con dos componentes principales o “zonas de interacción”:</p>
+<p><strong>Figura:</strong> Este es el contenedor de nivel superior que engloba todos los elementos, actuando esencialmente como la “ventana” que contiene el gráfico. Puedes encontrar más detalles en el módulo matplotlib.figure.</p>
+<p><strong>Ejes:</strong> Los ejes contienen los elementos de la figura y te permiten controlar aspectos como la representación gráfica, los ejes, la apariencia y más. Puedes encontrar información detallada sobre los ejes en el módulo matplotlib.axes.</p>
+<p>Matplotlib proporciona tres formas de usar la biblioteca:</p>
+<ul>
+<li><p>Usando el módulo pylab: Importando la biblioteca con el comando from pylab import *, obtienes un estilo similar a MATLAB. Este enfoque es adecuado para pruebas rápidas e interacciones en línea de comandos, aunque generalmente se recomienda menos para un uso general.</p></li>
+<li><p>Usando el módulo pyplot: Esta es una interfaz basada en estado para Matplotlib, también similar a MATLAB. Automatiza la creación de las instancias necesarias para dibujar el gráfico y se recomienda tanto para gráficos interactivos como estáticos. Puedes encontrar más información y una lista de funciones en el módulo matplotlib.pyplot.</p></li>
+<li><p>Usando una interfaz orientada a objetos: Este es el método más complejo pero ofrece más control. Permite la generación de gráficos avanzados porque tienes un mayor control sobre el código para crear instancias y aplicar métodos a ellas. Este enfoque es ampliamente recomendado para la generación de gráficos no interactivos y se puede integrar fácilmente en funciones y scripts dentro de proyectos más grandes.</p></li>
+</ul>
 <p><img src="matplotlib-structure.png" class="img-fluid"></p>
-<p>Using an object-oriented interface: This is the most complex method but offers more control. It allows the generation of advanced graphics because you have greater control over the code to create instances and apply methods to them. This approach is widely recommended for non-interactive graphic generation and can be easily integrated into functions and scripts within larger projects.</p>
+<p>Usando una interfaz orientada a objetos: Este es el método más complejo pero ofrece más control. Permite la generación de gráficos avanzados porque tienes mayor control sobre el código para crear instancias y aplicar métodos a ellas. Este enfoque es ampliamente recomendado para la generación de gráficos no interactivos y puede integrarse fácilmente en funciones y scripts dentro de proyectos más grandes.</p>
 <p><img src="componentesgrafico.png" class="img-fluid"></p>
 </section>
 <section id="further-reading" class="level2">
@@ -288,8 +291,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="basics" class="level2">
-<h2 class="anchored" data-anchor-id="basics">Basics</h2>
+<section id="conecptos-básicos" class="level2">
+<h2 class="anchored" data-anchor-id="conecptos-básicos">Conecptos básicos</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -474,8 +477,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="object-oriented-use" class="level3">
-<h3 class="anchored" data-anchor-id="object-oriented-use">Object oriented use</h3>
+<section id="uso-orientado-a-objetos" class="level3">
+<h3 class="anchored" data-anchor-id="uso-orientado-a-objetos">Uso orientado a objetos</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> fig.add_axes([<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.8</span>, <span class="fl">0.8</span>])</span>
@@ -543,8 +546,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="subplots-is-not-subplot" class="level3">
-<h3 class="anchored" data-anchor-id="subplots-is-not-subplot">Subplots is not subplot</h3>
+<section id="subplots-no-es-subplot" class="level3">
+<h3 class="anchored" data-anchor-id="subplots-no-es-subplot">Subplots no es subplot</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fig = plt.figure()</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># axes = fig.add_axes([0.1, 0.1, 0.8, 0.8])</span></span>
@@ -620,8 +623,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="figure-information" class="level3">
-<h3 class="anchored" data-anchor-id="figure-information">Figure information</h3>
+<section id="información-de-la-figura" class="level3">
+<h3 class="anchored" data-anchor-id="información-de-la-figura">Información de la figura</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>axes1 <span class="op">=</span> fig.add_axes([<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">.65</span>, <span class="fl">0.65</span>])</span>
@@ -696,8 +699,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="decoration" class="level3">
-<h3 class="anchored" data-anchor-id="decoration">Decoration</h3>
+<section id="decoración" class="level3">
+<h3 class="anchored" data-anchor-id="decoración">Decoración</h3>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(plt.style.available)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[‘Solarize_Light2’, ’_classic_test_patch’, ’_mpl-gallery’, ’_mpl-gallery-nogrid’, ‘bmh’, ‘classic’, ‘dark_background’, ‘fast’, ‘fivethirtyeight’, ‘ggplot’, ‘grayscale’, ‘seaborn-v0_8’, ‘seaborn-v0_8-bright’, ‘seaborn-v0_8-colorblind’, ‘seaborn-v0_8-dark’, ‘seaborn-v0_8-dark-palette’, ‘seaborn-v0_8-darkgrid’, ‘seaborn-v0_8-deep’, ‘seaborn-v0_8-muted’, ‘seaborn-v0_8-notebook’, ‘seaborn-v0_8-paper’, ‘seaborn-v0_8-pastel’, ‘seaborn-v0_8-poster’, ‘seaborn-v0_8-talk’, ‘seaborn-v0_8-ticks’, ‘seaborn-v0_8-white’, ‘seaborn-v0_8-whitegrid’, ‘tableau-colorblind10’]</p>
 <div class="cell">
@@ -728,9 +731,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exercise" class="level3">
-<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
-<p>Generate the following charts.</p>
+</section>
+<section id="ejercicio" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio">Ejercicio</h2>
+<p>Genera las siguientes gráficas.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -742,7 +746,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
-</section>
 </section>
 </section>
 

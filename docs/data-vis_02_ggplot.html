@@ -209,22 +209,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contenido</h2>
    
   <ul>
-  <li><a href="#package-ggplot2" id="toc-package-ggplot2" class="nav-link active" data-scroll-target="#package-ggplot2">Package ggplot2</a>
+  <li><a href="#paquete-ggplot2" id="toc-paquete-ggplot2" class="nav-link active" data-scroll-target="#paquete-ggplot2">Paquete ggplot2</a>
   <ul class="collapse">
-  <li><a href="#what-is" id="toc-what-is" class="nav-link" data-scroll-target="#what-is">What is</a></li>
-  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works">How it works</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
-  <li><a href="#basics" id="toc-basics" class="nav-link" data-scroll-target="#basics">Basics</a>
+  <li><a href="#qué-es" id="toc-qué-es" class="nav-link" data-scroll-target="#qué-es">¿Qué es?</a></li>
+  <li><a href="#cómo-funciona" id="toc-cómo-funciona" class="nav-link" data-scroll-target="#cómo-funciona">Cómo funciona</a></li>
+  <li><a href="#lecturas-adicionales" id="toc-lecturas-adicionales" class="nav-link" data-scroll-target="#lecturas-adicionales">Lecturas Adicionales</a></li>
+  <li><a href="#conceptos-básicos" id="toc-conceptos-básicos" class="nav-link" data-scroll-target="#conceptos-básicos">Conceptos Básicos</a>
   <ul class="collapse">
-  <li><a href="#layers" id="toc-layers" class="nav-link" data-scroll-target="#layers">Layers</a></li>
-  <li><a href="#overlaping-layers" id="toc-overlaping-layers" class="nav-link" data-scroll-target="#overlaping-layers">Overlaping layers</a></li>
-  <li><a href="#factorize-data-and-mapping" id="toc-factorize-data-and-mapping" class="nav-link" data-scroll-target="#factorize-data-and-mapping">factorize data and mapping</a></li>
+  <li><a href="#capas" id="toc-capas" class="nav-link" data-scroll-target="#capas">Capas</a></li>
+  <li><a href="#capas-superpuestas" id="toc-capas-superpuestas" class="nav-link" data-scroll-target="#capas-superpuestas">Capas Superpuestas</a></li>
+  <li><a href="#factorización-y-mapeo" id="toc-factorización-y-mapeo" class="nav-link" data-scroll-target="#factorización-y-mapeo">Factorización y mapeo</a></li>
   <li><a href="#geoms" id="toc-geoms" class="nav-link" data-scroll-target="#geoms">geoms</a></li>
-  <li><a href="#most-extended-use" id="toc-most-extended-use" class="nav-link" data-scroll-target="#most-extended-use">most extended use</a></li>
+  <li><a href="#uso-más-extendido" id="toc-uso-más-extendido" class="nav-link" data-scroll-target="#uso-más-extendido">Uso más extendido</a></li>
   <li><a href="#facets" id="toc-facets" class="nav-link" data-scroll-target="#facets">Facets</a></li>
   </ul></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos</a></li>
+  <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio">Ejercicio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -256,34 +256,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="package-ggplot2" class="level1">
-<h1>Package ggplot2</h1>
-<section id="what-is" class="level2">
-<h2 class="anchored" data-anchor-id="what-is">What is</h2>
-<p>Based on the PhD wor of <a href="https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf">Hadley Wickham</a>, <strong>ggplot2</strong> is a widely used and powerful R package for creating data visualizations. It was created by Hadley Wickham and is based on the “Grammar of Graphics” concept. Here’s a comprehensive explanation of the ggplot2 package:</p>
+<section id="paquete-ggplot2" class="level1">
+<h1>Paquete ggplot2</h1>
+<section id="qué-es" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es">¿Qué es?</h2>
+<p>Basado en el trabajo de doctorado de <a href="https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf">Hadley Wickham</a>, <strong>ggplot2</strong> es un paquete poderoso y ampliamente utilizado en R para la creación de visualizaciones de datos. Fue creado por Hadley Wickham y se basa en el concepto de “Gramática de Gráficos”. Aquí tienes una explicación completa del paquete ggplot2:</p>
 <ol type="1">
-<li><p>Grammar of Graphics: ggplot2 is based on the Grammar of Graphics, an abstract framework for describing and constructing data visualizations. This concept breaks down the process of creating plots into distinct components, making it highly flexible and customizable.</p></li>
-<li><p>High-Level Plotting: ggplot2 is known for its high-level approach to plotting. Instead of specifying each detail of a plot individually, you describe the plot in terms of data and mappings, and ggplot2 handles the details automatically.</p></li>
-<li><p>Layered Approach: In ggplot2, you build plots by adding layers, starting with a data source and progressively adding components like geoms (geometric objects representing data points), aesthetic mappings, and statistical transformations. This layering approach allows for complex and informative visualizations.</p></li>
-<li><p>Data-Driven Aesthetics: ggplot2 allows you to map data variables to aesthetics, such as color, size, shape, and position. This data-driven approach enables you to create visualizations that reveal patterns and relationships in your data.</p></li>
-<li><p>Extensive Geometric Objects: The package provides a wide range of geometric objects (geoms) that allow you to represent your data in various ways. Common geoms include points, lines, bars, and text labels, but there are many more to choose from.</p></li>
-<li><p>Faceting: ggplot2 supports faceting, which is the process of creating multiple plots based on a categorical variable in your data. This allows you to explore how different categories affect your visualizations.</p></li>
-<li><p>Themes and Customization: ggplot2 provides themes that allow you to customize the appearance of your plots. You can change fonts, colors, grid lines, and more to match your preferred style or to adhere to specific branding requirements.</p></li>
-<li><p>Statistical Transformations: The package offers a variety of statistical transformations that can be applied to your data before plotting. For example, you can calculate summary statistics like means, medians, or quantiles within your plot.</p></li>
-<li><p>Elegant Code: ggplot2 encourages clean and elegant code through its layered structure and use of the pipe operator (%&gt;%), making it easier to read and understand complex visualizations.</p></li>
-<li><p>Data Exploration and Communication: ggplot2 is a valuable tool for both data exploration and communication. It allows you to quickly generate meaningful visualizations for data analysis, as well as create publication-ready graphics for reports and presentations.</p></li>
+<li><p>Gramática de Gráficos: ggplot2 se basa en la Gramática de Gráficos, un marco abstracto para describir y construir visualizaciones de datos. Este concepto descompone el proceso de creación de gráficos en componentes distintos, lo que lo hace altamente flexible y personalizable.</p></li>
+<li><p>Creación de Gráficos de Alto Nivel: ggplot2 es conocido por su enfoque de alto nivel para la creación de gráficos. En lugar de especificar cada detalle de un gráfico individualmente, describes el gráfico en términos de datos y mapeos, y ggplot2 maneja automáticamente los detalles.</p></li>
+<li><p>Enfoque en Capas: En ggplot2, construyes gráficos añadiendo capas, comenzando con una fuente de datos y agregando progresivamente componentes como geoms (objetos geométricos que representan puntos de datos), mapeos estéticos y transformaciones estadísticas. Este enfoque de capas permite visualizaciones complejas e informativas.</p></li>
+<li><p>Estética Guiada por los Datos: ggplot2 te permite mapear variables de datos a estéticas como color, tamaño, forma y posición. Este enfoque guiado por los datos te permite crear visualizaciones que revelan patrones y relaciones en tus datos.</p></li>
+<li><p>Objetos Geométricos Extensivos: El paquete proporciona una amplia gama de objetos geométricos (geoms) que te permiten representar tus datos de diversas formas. Los geoms comunes incluyen puntos, líneas, barras y etiquetas de texto, pero hay muchos más para elegir.</p></li>
+<li><p>Facetado: ggplot2 admite el facetado, que es el proceso de crear múltiples gráficos basados en una variable categórica en tus datos. Esto te permite explorar cómo diferentes categorías afectan tus visualizaciones.</p></li>
+<li><p>Temas y Personalización: ggplot2 proporciona temas que te permiten personalizar la apariencia de tus gráficos. Puedes cambiar fuentes, colores, líneas de cuadrícula y más para que coincidan con tu estilo preferido o para cumplir con requisitos específicos de marca.</p></li>
+<li><p>Transformaciones Estadísticas: El paquete ofrece una variedad de transformaciones estadísticas que se pueden aplicar a tus datos antes de trazarlos. Por ejemplo, puedes calcular estadísticas resumidas como medias, medianas o cuantiles dentro de tu gráfico.</p></li>
+<li><p>Código Elegante: ggplot2 fomenta un código limpio y elegante a través de su estructura de capas y el uso del operador pipe (%&gt;%), lo que facilita la lectura y comprensión de visualizaciones complejas.</p></li>
+<li><p>Exploración y Comunicación de Datos: ggplot2 es una herramienta valiosa tanto para la exploración como para la comunicación de datos. Te permite generar rápidamente visualizaciones significativas para el análisis de datos, así como crear gráficos listos para publicar en informes y presentaciones.</p></li>
 </ol>
 </section>
-<section id="how-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-it-works">How it works</h2>
-<p>The layering system can be confusing initially, which has led to explanations that are not entirely accurate. In this regard, it is important to ensure that you fully understand ggplot2’s layering system before attempting to explain it to others.</p>
+<section id="cómo-funciona" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-funciona">Cómo funciona</h2>
+<p>El sistema de capas puede ser confuso al principio, lo que ha llevado a explicaciones que no son del todo precisas. En este sentido, es importante asegurarse de comprender completamente el sistema de capas de ggplot2 antes de intentar explicarlo a otros.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ggplot_layers.jpeg" class="img-fluid figure-img"></p>
-<figcaption>Wrong layer system of ggplot 2.</figcaption>
+<figcaption>Sistema incorrecto de capas de ggplot2</figcaption>
 </figure>
 </div>
-<p>The code structure of ggplot2:</p>
+<p>La estructura del código de ggplot2:</p>
 <pre><code>Create a plot with:
   One layer that includes:
     Data
@@ -312,30 +312,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">helper</span>(...) <span class="sc">+</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>It is like a cake.</p>
+<p>Como un pastel.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ggplot2_layer.jpeg" class="img-fluid figure-img"></p>
-<figcaption>Correct layer system of ggplot 2.</figcaption>
+<figcaption>Representación correcta del sistema de capas de ggplot 2.</figcaption>
 </figure>
 </div>
 </section>
-<section id="further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
-<p>Read <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html">the documentation of the package</a></p>
-<p>Visit <a href="https://r-graph-gallery.com/">The R Graph Gallery</a> to view a collection of charts made with the graphics package.</p>
-<p>Read the <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf">ggplot2 cheat sheet</a>:</p>
+<section id="lecturas-adicionales" class="level2">
+<h2 class="anchored" data-anchor-id="lecturas-adicionales">Lecturas Adicionales</h2>
+<p>Lee <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html">la documentación del paquete</a></p>
+<p>Visita <a href="https://r-graph-gallery.com/">The R Graph Gallery</a> para ver una colección de figuras elaboradas con el paquete <code>ggplot2</code>.</p>
+<p>Lee <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf">los apuntes de ggplot2</a>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/data-visualization-cheatsheet-thumbs.png" class="img-fluid figure-img"></p>
-<figcaption>ggplot cheat sheet</figcaption>
+<figcaption>apuntes de ggplot2</figcaption>
 </figure>
 </div>
-<p>For inspiration visit the <a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">Top 50 ggplot2 Visualizations - The Master List</a> (With Full R Code)</p>
-<p>Searching expand the posibilities, visit the <a href="https://exts.ggplot2.tidyverse.org/">ggplot2 extensions</a> page.</p>
+<p>Para inspiración visita <a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">Top 50 ggplot2 Visualizations - The Master List</a> (Con el código en R completo.)</p>
+<p>Buscando expandir los horizontes, visita la <a href="https://exts.ggplot2.tidyverse.org/">página de extensiones de ggplot2</a>.</p>
 </section>
-<section id="basics" class="level2">
-<h2 class="anchored" data-anchor-id="basics">Basics</h2>
+<section id="conceptos-básicos" class="level2">
+<h2 class="anchored" data-anchor-id="conceptos-básicos">Conceptos Básicos</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"magrittr"</span>)</span>
@@ -348,8 +348,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># diamonds %&gt;% </span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   glimpse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="layers" class="level3">
-<h3 class="anchored" data-anchor-id="layers">Layers</h3>
+<section id="capas" class="level3">
+<h3 class="anchored" data-anchor-id="capas">Capas</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer</span>(</span>
@@ -393,8 +393,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="overlaping-layers" class="level3">
-<h3 class="anchored" data-anchor-id="overlaping-layers">Overlaping layers</h3>
+<section id="capas-superpuestas" class="level3">
+<h3 class="anchored" data-anchor-id="capas-superpuestas">Capas Superpuestas</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer</span>(</span>
@@ -424,8 +424,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="factorize-data-and-mapping" class="level3">
-<h3 class="anchored" data-anchor-id="factorize-data-and-mapping">factorize data and mapping</h3>
+<section id="factorización-y-mapeo" class="level3">
+<h3 class="anchored" data-anchor-id="factorización-y-mapeo">Factorización y mapeo</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> diamonds, </span>
@@ -556,8 +556,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="most-extended-use" class="level3">
-<h3 class="anchored" data-anchor-id="most-extended-use">most extended use</h3>
+<section id="uso-más-extendido" class="level3">
+<h3 class="anchored" data-anchor-id="uso-más-extendido">Uso más extendido</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price) <span class="sc">+</span> </span>
@@ -610,8 +610,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<section id="ejemplos" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplos">Ejemplos</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">colour =</span> color) <span class="sc">+</span> </span>
@@ -652,9 +652,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p>Generate the following charts.</p>
+<section id="ejercicio" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio">Ejercicio</h2>
+<p>Genera las siguientes gráficas.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
