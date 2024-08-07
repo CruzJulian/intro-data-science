@@ -11,3 +11,22 @@ format:
 
 
 # Bienvenidos
+
+
+```{r}
+#| echo: false
+
+# - Programación
+# 
+#   - Intro sumas y restas
+#   - dataframes
+#   - Joins y pivotes
+#   - SQL proxys
+#   - feature eng
+#   - Statisticasl concepts
+#   - load an write data
+#   - EDA
+# 
+
+```
+
