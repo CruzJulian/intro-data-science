@@ -10,7 +10,7 @@ format:
 execute: 
   eval: true
   echo: true
-  output: false
+  output: true
   warning: false
   error: false
 engine: jupyter
@@ -301,17 +301,12 @@ plt.close()
 ```
 
 
-
-
-
 ### Subplots no es subplot
 
 
 ```{python}
 #| fig-show: asis
 
-# fig = plt.figure()
-# axes = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 fig, axes = plt.subplots(nrows = 1, ncols=2)
 axes[0].plot(x, y, 'b.')
 axes[1].plot(x, y, 'ro')
@@ -407,8 +402,10 @@ plt.close()
 
 
 
-```{python, fig.width = 6,  fig.height = 6}
+```{python}
 #| fig-show: asis
+#| fig-width: 6
+#| fig-height: 6
 
 fig, [ax1, ax2] = plt.subplots(nrows = 2, ncols=1)
 ax1.plot(x0, y1, 'g', label="sen(x)")
@@ -430,8 +427,10 @@ plt.close()
 ```
 
 
-```{python, fig.width = 6,  fig.height = 6}
+```{python}
 #| fig-show: asis
+#| fig-width: 6
+#| fig-height: 6
 
 plt.subplot(2, 1, 1)
 plt.plot(x0, y1, 'g', label="sen(x)")
@@ -464,8 +463,10 @@ print(plt.style.available)
 ```
 
 
-```{python, fig.width = 6,  fig.height = 6}
+```{python}
 #| fig-show: asis
+#| fig-width: 6
+#| fig-height: 6
 
 plt.style.use("ggplot")
 
@@ -494,8 +495,11 @@ plt.close()
 
 Genera las siguientes gráficas.
 
-```{python echo=FALSE,  fig.width = 8,  fig.height = 8}
+```{python}
 #| fig-show: asis
+#| echo: false
+#| fig-width: 8
+#| fig-height: 8
 
 fig = plt.figure()
 axes1 = fig.add_axes([0.05, 0.05, .7, 0.7])

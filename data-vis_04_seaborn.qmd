@@ -7,10 +7,12 @@ format:
     toc-location: left
     toc-title: Contenido
     df-print: default
+    fig-width: 8
+    fig-height: 6
 execute: 
   eval: true
   echo: true
-  output: false
+  output: true
   warning: false
   error: false
 engine: jupyter
@@ -54,8 +56,6 @@ Las fortalezas de Seaborn radican en sus funciones gráficas orientadas a lo vis
 ## Cómo funciona
 
 ```{python}
-#| fig-show: asis
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -78,7 +78,6 @@ diamonds = sns.load_dataset(
 El uso básico de Seaborn es:
 
 ```{python}
-#| fig-show: asis
 #| eval: false
 # Basic structure
 
@@ -223,8 +222,11 @@ sns_gr = sns.displot(x = "price", data = diamonds, kind = "hist")
 ```
 
 
-```{python,  fig.width = 8,  fig.height = 8}
+```{python}
 #| fig-show: asis
+#| fig-width: 8
+#| fig-height: 8
+
 
 sns_gr = sns.displot(x = "price", data = diamonds, kind = "hist", row = "cut")
 
@@ -232,8 +234,11 @@ sns_gr = sns.displot(x = "price", data = diamonds, kind = "hist", row = "cut")
 ```
 
 
-```{python,  fig.width = 8,  fig.height = 8}
+```{python}
 #| fig-show: asis
+#| fig-width: 8
+#| fig-height: 8
+
 
 sns_gr = sns.displot(x = "price", data = diamonds, kind = "kde", col = "cut")
 
@@ -241,8 +246,10 @@ sns_gr = sns.displot(x = "price", data = diamonds, kind = "kde", col = "cut")
 ```
 
 
-```{python,  fig.width = 8,  fig.height = 8}
+```{python}
 #| fig-show: asis
+#| fig-width: 8
+#| fig-height: 8
 
 sns_gr = sns.displot(x = "price", hue = "color",data = diamonds, kind = "ecdf", col = "cut")
 
