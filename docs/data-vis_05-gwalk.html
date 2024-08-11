@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Science Intro - Configuración del ambiente de trabajo en R</title>
+<title>Data Science Intro - Data-vis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -209,28 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contenido</h2>
-   
-  <ul>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
-  <ul class="collapse">
-  <li><a href="#qué-es-r" id="toc-qué-es-r" class="nav-link" data-scroll-target="#qué-es-r">¿Qué es R?</a></li>
-  <li><a href="#por-qué-nos-gusta" id="toc-por-qué-nos-gusta" class="nav-link" data-scroll-target="#por-qué-nos-gusta">¿Por qué nos gusta?</a></li>
-  <li><a href="#particularmente-útil-para" id="toc-particularmente-útil-para" class="nav-link" data-scroll-target="#particularmente-útil-para">Particularmente útil para</a></li>
-  <li><a href="#advertencias" id="toc-advertencias" class="nav-link" data-scroll-target="#advertencias">Advertencias</a></li>
-  <li><a href="#instalación-de-r" id="toc-instalación-de-r" class="nav-link" data-scroll-target="#instalación-de-r">Instalación de R</a></li>
-  <li><a href="#interfaces-de-usuario" id="toc-interfaces-de-usuario" class="nav-link" data-scroll-target="#interfaces-de-usuario">Interfaces de usuario</a></li>
-  <li><a href="#front-ends-gráficos" id="toc-front-ends-gráficos" class="nav-link" data-scroll-target="#front-ends-gráficos">Front-ends gráficos</a></li>
-  <li><a href="#cómo-correr-comandoscódigo" id="toc-cómo-correr-comandoscódigo" class="nav-link" data-scroll-target="#cómo-correr-comandoscódigo">¿Cómo correr comandos/código?</a></li>
-  <li><a href="#grupos-de-funciones-paquetes" id="toc-grupos-de-funciones-paquetes" class="nav-link" data-scroll-target="#grupos-de-funciones-paquetes">Grupos de funciones (Paquetes)</a></li>
-  <li><a href="#actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes" id="toc-actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes" class="nav-link" data-scroll-target="#actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes">Actualizar R (si ya lo tenías instalado) y los paquetes</a></li>
-  <li><a href="#buenas-prácticas" id="toc-buenas-prácticas" class="nav-link" data-scroll-target="#buenas-prácticas">Buenas prácticas</a></li>
-  <li><a href="#informes-automáticos" id="toc-informes-automáticos" class="nav-link" data-scroll-target="#informes-automáticos">Informes automáticos</a></li>
-  <li><a href="#creación-de-nuestro-primer-proyecto" id="toc-creación-de-nuestro-primer-proyecto" class="nav-link" data-scroll-target="#creación-de-nuestro-primer-proyecto">Creación de nuestro primer proyecto</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -241,7 +220,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Configuración del ambiente de trabajo en R</h1>
+<h1 class="title">Data-vis</h1>
+<p class="subtitle lead">Gwalk</p>
 </div>
 
 
@@ -258,158 +238,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introducción" class="level1">
-<h1>Introducción</h1>
-<section id="qué-es-r" class="level2">
-<h2 class="anchored" data-anchor-id="qué-es-r">¿Qué es R?</h2>
-<ul>
-<li>R es un lenguaje de programación de acceso libre, inicialmente diseñado y utilizado para realizar análisis estadístico.</li>
-<li>R también es un programa que instalamos para interpretar el código que escribimos.</li>
-<li>No fue creado por ingenieros de software para el desarrollo de software, sino por estadísticos como un ambiente interactivo para el análisis de datos.</li>
-<li>Además de R trabajaremos con RStudio, un IDE (Integrated Development Environment) que funciona como una “máscara” sobre R, con más herramientas y facilidades.</li>
-<li>La forma en que trabajaremos en R será a través de secuencias de comandos, conocidos como <em>script</em>, que se pueden ejecutar en cualquier momento. Estos <em>scripts</em> sirven como un registro del análisis realizamos.</li>
-</ul>
-</section>
-<section id="por-qué-nos-gusta" class="level2">
-<h2 class="anchored" data-anchor-id="por-qué-nos-gusta">¿Por qué nos gusta?</h2>
-<ul>
-<li>Se ejecuta en todos los sistemas operativos principales: Windows, Mac Os, UNIX/Linux.</li>
-<li>Los <em>scripts</em> y los objetos de datos se pueden compartir sin problemas entre plataformas.</li>
-<li>No solamente permite realizar análisis estadístico, tambien es posible capturar información de páginas web, crear aplicaciones web, procesar texto, entre otras cosas.</li>
-<li>La comunidad que lo usa es muy amplia (= muchísima ayuda e información en internet).
-<ul>
-<li><a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a></li>
-<li><a href="https://r-universe.dev/search/">R-Universe</a></li>
-<li><a href="https://www.r-bloggers.com/2015/12/how-to-learn-r-2/">R-Bloggers</a></li>
-<li><a href="https://towardsdatascience.com/tagged/r">Towards Data Science</a></li>
-<li>Entre otros.</li>
-</ul></li>
-<li>Es muy versátil para la creación de gráficos.</li>
-<li>Tiene disponibles muchos paquetes para diferentes tipos de análisis.</li>
-<li>¡ES GRATIS!.</li>
-</ul>
-</section>
-<section id="particularmente-útil-para" class="level2">
-<h2 class="anchored" data-anchor-id="particularmente-útil-para">Particularmente útil para</h2>
-<ol type="1">
-<li>Manejar, combinar, limpiar y reorganizar datos.</li>
-<li>Análisis estadístico, álgebra matricial, modelado, estadística avanzada.</li>
-<li>Usar un entorno gráfico poderoso para explorar datos o para publicar.</li>
-<li>Trabajar de forma reproducible a partir de <em>scripts</em>.</li>
-</ol>
-</section>
-<section id="advertencias" class="level2">
-<h2 class="anchored" data-anchor-id="advertencias">Advertencias</h2>
-<ul>
-<li>La documentación a veces es muy técnica o muy compacta.</li>
-<li>No todo el código ha sido exhaustivamente testeado, es decir, no siempre hay garantías que las cosas funcionen.</li>
-<li>La curva de aprendizaje es más difícil que programas como SPSS o Minitab (frente a Python, Stata o SAS es similar).</li>
-</ul>
-</section>
-<section id="instalación-de-r" class="level2">
-<h2 class="anchored" data-anchor-id="instalación-de-r">Instalación de R</h2>
-<p><a href="https://cran.r-project.org/">https://cran.r-project.org/</a></p>
-<p><img src="r-gui-1.png" class="img-fluid" style="width:70.0%"></p>
-<blockquote class="blockquote">
-<p>Luego de instalar R, se recomienda instalar <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a>.</p>
-</blockquote>
-</section>
-<section id="interfaces-de-usuario" class="level2">
-<h2 class="anchored" data-anchor-id="interfaces-de-usuario">Interfaces de usuario</h2>
-<ul>
-<li>Por defecto</li>
-<li><a href="https://posit.co/downloads/">RStudio</a> - Recomendada. Es la que usaremos en este curso.</li>
-<li><a href="https://jupyter.org/">Jupyter</a></li>
-<li><a href="http://www.eclipse.org/eclipse">Eclipse</a></li>
-<li>Entre otras</li>
-</ul>
-<p><img src="rstudio-1.png" class="img-fluid"></p>
-</section>
-<section id="front-ends-gráficos" class="level2">
-<h2 class="anchored" data-anchor-id="front-ends-gráficos">Front-ends gráficos</h2>
-<ul>
-<li><a href="https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/">Rcmdr</a></li>
-<li><a href="https://rkward.kde.org/">RKWard</a></li>
-</ul>
-</section>
-<section id="cómo-correr-comandoscódigo" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-correr-comandoscódigo">¿Cómo correr comandos/código?</h2>
-<ul>
-<li>Si se está trabajando en el panel <strong>console</strong> solamente es necesario presionar “Enter”.</li>
-<li>Si se está trabajando en un <strong>script</strong> es posible ejecutar los comandos presionando “Ctrl+Enter”, o haciendo clic en el botón <em>Run</em> en la parte derecha superior del panel de edición.</li>
-</ul>
-</section>
-<section id="grupos-de-funciones-paquetes" class="level2">
-<h2 class="anchored" data-anchor-id="grupos-de-funciones-paquetes">Grupos de funciones (Paquetes)</h2>
-<ul>
-<li>Cuando varias funciones son desarrolladas con un objetivos similar se suelen agrupar en <em>paquetes</em>, los cuales son colaborativamente distribuidos de forma gratuita.</li>
-<li>Para utilizar las funciones de un paquete es necesario instalar este paquete primero usando <strong>install.packages()</strong> y luego cargarlo en nuestro ambiente de trabajo usando <strong>library()</strong>.</li>
-<li>Se instalan una vez y se llaman muchas veces.</li>
-<li><a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">Lista de paquetes del CRAN</a></li>
-<li><a href="https://www.bioconductor.org/packages/release/bioc/">Lista de paquetes de Bioconductor</a></li>
-<li><a href="https://rdrr.io/">rdrr.io</a></li>
-</ul>
-</section>
-<section id="actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes" class="level2">
-<h2 class="anchored" data-anchor-id="actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes">Actualizar R (si ya lo tenías instalado) y los paquetes</h2>
+<p>En R</p>
+<p><a href="https://youtu.be/5cIq2lZDVB0?si=vf_B6pwCeFk6iS7a">Video tutorial</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar el paquete installr</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"installr"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el paquete</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(installr) </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Comando para actualizar R</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">updateR</span>()</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Comando para actualizar paquetes</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">checkBuilt =</span> <span class="cn">TRUE</span>, <span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("GWalkR")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"GWalkR"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gwalkr</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="buenas-prácticas" class="level2">
-<h2 class="anchored" data-anchor-id="buenas-prácticas">Buenas prácticas</h2>
-<ul>
-<li>Usar <strong>projects</strong> (proyectos) para ajustar el ambiente de trabajo para un proyecto.</li>
-<li>Por reproducibilidad, facilidad y para tener los proyectos mejor organizados es mucho mejor usar <strong>projects</strong>.</li>
-<li>La idea es que cada proyecto tenga su propio espacio y esté <em>aislado</em>, de tal manera que los recursos y códigos de uno no interfieran con otros proyectos.</li>
-<li>Como en todo lenguaje de programación, a todo lo que le pongamos un nombre (variables, funciones, datos) <a href="resources/naming.pdf">hay que ponerle un <em>buen</em> nombre</a>.</li>
-<li>¡Siempre usa <strong>scripts</strong>! (si nunca antes has creado un <em>‘programa para un computador’</em> en este curso lo vas a hacer)</li>
-<li>Si aparecen errores, se puede copiar y pegar el error en Google, ChatGPT o Gemini.</li>
-<li>Comentar el código anteponiendo el símbolo “#” en la línea donde se desea insertar el comentario. Este proceso se puede hacer apoyándose de herramientas de programación asistida.</li>
-<li>A R podemos preguntarle cosas.</li>
-</ul>
+<p>En Python</p>
+<p><a href="https://youtu.be/znQnb5hZ2ls?si=wN8fNpFem0jWAoKT">Video tutorial</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>?ayuda</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>?cualquier_cosa</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>?mean</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>??mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ! pip install pygwalker</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygwalker <span class="im">as</span> pyg</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>diamonds <span class="op">=</span> sns.load_dataset(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"diamonds"</span>, cache<span class="op">=</span><span class="va">True</span>, data_home<span class="op">=</span><span class="va">None</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>pyg.walk(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="informes-automáticos" class="level2">
-<h2 class="anchored" data-anchor-id="informes-automáticos">Informes automáticos</h2>
-<p>R cuenta con un paquete llamado <em>knitr</em> con el cual podemos generar dinámicamente reportes, análisis y documentos. La técnica es la misma para darle formato a los cuadernos de Jupyter/notebooks de Google Colab que ven en el curso de Python.</p>
-<ul>
-<li><a href="https://yihui.org/knitr/">Elegant, flexible, and fast dynamic report generation with R</a></li>
-<li><a href="https://rmarkdown.rstudio.com/">RMarkdwon</a></li>
-</ul>
-<p><img src="markdown-example.png" class="img-fluid" style="width:70.0%"></p>
-<p><img src="knit.png" class="img-fluid" style="width:70.0%"></p>
-</section>
-<section id="creación-de-nuestro-primer-proyecto" class="level2">
-<h2 class="anchored" data-anchor-id="creación-de-nuestro-primer-proyecto">Creación de nuestro primer proyecto</h2>
-<ol type="1">
-<li>Abrir RStudio.</li>
-<li>Clic en <strong>File &gt; New Project</strong>
-<ul>
-<li><strong>New Directory &gt; New Project</strong> si queremos crear una nueva carpeta en nuestro equipo.</li>
-<li><strong>Existing Directory</strong> si queremos alojar nuestro proyecto en una carpeta ya creada.</li>
-</ul></li>
-<li>Una vez creado el proyecto, podemos verificar que la ventana del programa se renombra y apunta a la carpeta donde está alojado.</li>
-<li>Clic en <strong>File &gt; New File &gt; R Script</strong>. En la ventana que se carga ya podemos empezar a ejecutar nuestro código.</li>
-</ol>
-<p><img src="project-tree.png" class="img-fluid" style="width:70.0%"></p>
-<p>&nbsp;</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
