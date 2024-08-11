@@ -1,0 +1,60 @@
+---
+title: "Data-vis"
+subtitle: "Gwalk"
+format: 
+  html:
+    toc: true
+    toc-location: left
+    toc-title: Contenido
+    df-print: default
+    fig-width: 8
+    fig-height: 6
+execute: 
+  eval: false
+  echo: true
+  output: true
+  warning: false
+  error: false
+engine: knitr
+
+---
+
+En R
+
+[Video tutorial](https://youtu.be/5cIq2lZDVB0?si=vf_B6pwCeFk6iS7a)
+
+
+```{r}
+# install.packages("GWalkR")
+library("ggplot2")
+library("GWalkR")
+
+gwalkr(diamonds)
+
+```
+
+En Python
+
+[Video tutorial](https://youtu.be/znQnb5hZ2ls?si=wN8fNpFem0jWAoKT)
+
+
+```{python}
+## ! pip install pygwalker
+
+import pandas as pd
+import seaborn as sns
+import pygwalker as pyg
+
+diamonds = sns.load_dataset(
+  "diamonds", cache=True, data_home=None
+  )
+
+
+pyg.walk(diamonds)
+
+
+
+
+```
+
+
