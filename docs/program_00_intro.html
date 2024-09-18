@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Programación básica en R – Data Science Intro</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Science Intro</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programación" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Programación</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-programación">    
+        <li>
+    <a class="dropdown-item" href="./program_00_intro.html">
+ <span class="dropdown-text">Intro</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_02_basics.html">
+ <span class="dropdown-text">Hola R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_03_tidy.html">
+ <span class="dropdown-text">Limpieza de datos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_04_eda.html">
+ <span class="dropdown-text">Análisis exploratorio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_05_asociacion.html">
+ <span class="dropdown-text">Asociación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_00_setup.html">
+ <span class="dropdown-text">Setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_01_loading-data.html">
+ <span class="dropdown-text">Lectura de datos</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-vis" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data-vis</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-vis">    
+        <li>
+    <a class="dropdown-item" href="./data-vis_00_intro.html">
+ <span class="dropdown-text">Presentación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_01_r-graphics.html">
+ <span class="dropdown-text">R base</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_02_ggplot.html">
+ <span class="dropdown-text">R ggplot</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_03_matplotlib.html">
+ <span class="dropdown-text">Python matplotlib</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_04_seaborn.html">
+ <span class="dropdown-text">Python seaborn</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-taller" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Taller</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-taller">    
+        <li>
+    <a class="dropdown-item" href="./unidad_00.html">
+ <span class="dropdown-text">Presentación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_01.html">
+ <span class="dropdown-text">Unidad 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_02.html">
+ <span class="dropdown-text">Unidad 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_03.html">
+ <span class="dropdown-text">Unidad 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_04.html">
+ <span class="dropdown-text">Unidad 4</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenido</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-r" id="toc-qué-es-r" class="nav-link" data-scroll-target="#qué-es-r">¿Qué es R?</a></li>
+  <li><a href="#por-qué-nos-gusta" id="toc-por-qué-nos-gusta" class="nav-link" data-scroll-target="#por-qué-nos-gusta">¿Por qué nos gusta?</a></li>
+  <li><a href="#particularmente-útil-para" id="toc-particularmente-útil-para" class="nav-link" data-scroll-target="#particularmente-útil-para">Particularmente útil para</a></li>
+  <li><a href="#advertencias" id="toc-advertencias" class="nav-link" data-scroll-target="#advertencias">Advertencias</a></li>
+  </ul></li>
+  <li><a href="#paquetes" id="toc-paquetes" class="nav-link" data-scroll-target="#paquetes">Paquetes</a>
+  <ul class="collapse">
+  <li><a href="#el-ecosistema-tidyverse" id="toc-el-ecosistema-tidyverse" class="nav-link" data-scroll-target="#el-ecosistema-tidyverse">El ecosistema tidyverse</a></li>
+  <li><a href="#visualización-usando-ggplot" id="toc-visualización-usando-ggplot" class="nav-link" data-scroll-target="#visualización-usando-ggplot">Visualización usando ggplot</a></li>
+  <li><a href="#shiny" id="toc-shiny" class="nav-link" data-scroll-target="#shiny">Shiny</a></li>
+  <li><a href="#reportería" id="toc-reportería" class="nav-link" data-scroll-target="#reportería">Reportería</a>
+  <ul class="collapse">
+  <li><a href="#knitr" id="toc-knitr" class="nav-link" data-scroll-target="#knitr">knitr</a></li>
+  <li><a href="#rmarkdown" id="toc-rmarkdown" class="nav-link" data-scroll-target="#rmarkdown">rmarkdown</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">quarto</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio">RStudio</a>
+  <ul class="collapse">
+  <li><a href="#proyectos-de-rstudio" id="toc-proyectos-de-rstudio" class="nav-link" data-scroll-target="#proyectos-de-rstudio">Proyectos de RStudio</a></li>
+  <li><a href="#buenas-prácticas" id="toc-buenas-prácticas" class="nav-link" data-scroll-target="#buenas-prácticas">Buenas prácticas</a>
+  <ul class="collapse">
+  <li><a href="#usar-scripts" id="toc-usar-scripts" class="nav-link" data-scroll-target="#usar-scripts">Usar scripts</a></li>
+  <li><a href="#manejo-de-mensajes-de-advertencia-y-errores" id="toc-manejo-de-mensajes-de-advertencia-y-errores" class="nav-link" data-scroll-target="#manejo-de-mensajes-de-advertencia-y-errores">Manejo de mensajes de advertencia y errores</a></li>
+  <li><a href="#comentar-el-código" id="toc-comentar-el-código" class="nav-link" data-scroll-target="#comentar-el-código">Comentar el código</a></li>
+  <li><a href="#consultar-la-ayuda-en-r" id="toc-consultar-la-ayuda-en-r" class="nav-link" data-scroll-target="#consultar-la-ayuda-en-r">Consultar la ayuda en R</a></li>
+  </ul></li>
+  <li><a href="#creación-de-nuestro-primer-proyecto" id="toc-creación-de-nuestro-primer-proyecto" class="nav-link" data-scroll-target="#creación-de-nuestro-primer-proyecto">Creación de nuestro primer proyecto</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Programación básica en R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<section id="qué-es-r" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-r">¿Qué es R?</h2>
+<ul>
+<li>R es un lenguaje de programación de acceso libre, inicialmente diseñado y utilizado para realizar análisis estadístico.</li>
+<li>R también es un programa que instalamos para interpretar el código que escribimos.</li>
+<li>No fue creado por ingenieros de software para el desarrollo de software, sino por estadísticos como un ambiente interactivo para el análisis de datos.</li>
+<li>Además de R trabajaremos con RStudio, un IDE (Integrated Development Environment) que funciona como una “máscara” sobre R, con más herramientas y facilidades.</li>
+<li>La forma en que trabajaremos en R será a través de secuencias de comandos, conocidos como <em>script</em>, que se pueden ejecutar en cualquier momento. Estos <em>scripts</em> sirven como un registro del análisis realizamos.</li>
+</ul>
+</section>
+<section id="por-qué-nos-gusta" class="level2">
+<h2 class="anchored" data-anchor-id="por-qué-nos-gusta">¿Por qué nos gusta?</h2>
+<ul>
+<li>Se ejecuta en todos los sistemas operativos principales: Windows, Mac Os, UNIX/Linux.</li>
+<li>Los <em>scripts</em> y los objetos de datos se pueden compartir sin problemas entre plataformas.</li>
+<li>No solamente permite realizar análisis estadístico, tambien es posible capturar información de páginas web, crear aplicaciones web, procesar texto, entre otras cosas.</li>
+<li>La comunidad que lo usa es muy amplia (= muchísima ayuda e información en internet).
+<ul>
+<li><a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a></li>
+<li><a href="https://r-universe.dev/search/">R-Universe</a></li>
+<li><a href="https://www.r-bloggers.com/2015/12/how-to-learn-r-2/">R-Bloggers</a></li>
+<li><a href="https://towardsdatascience.com/tagged/r">Towards Data Science</a></li>
+<li>Entre otros.</li>
+</ul></li>
+<li>Es muy versátil para la creación de gráficos.</li>
+<li>Tiene disponibles muchos paquetes para diferentes tipos de análisis.</li>
+<li>¡ES GRATIS!.</li>
+</ul>
+</section>
+<section id="particularmente-útil-para" class="level2">
+<h2 class="anchored" data-anchor-id="particularmente-útil-para">Particularmente útil para</h2>
+<ol type="1">
+<li>Manejar, combinar, limpiar y reorganizar datos.</li>
+<li>Análisis estadístico, álgebra matricial, modelado, estadística avanzada.</li>
+<li>Usar un entorno gráfico poderoso para explorar datos o para publicar.</li>
+<li>Trabajar de forma reproducible a partir de <em>scripts</em>.</li>
+</ol>
+</section>
+<section id="advertencias" class="level2">
+<h2 class="anchored" data-anchor-id="advertencias">Advertencias</h2>
+<ul>
+<li>La documentación a veces es muy técnica o muy compacta.</li>
+<li>No todo el código ha sido exhaustivamente testeado, es decir, no siempre hay garantías que las cosas funcionen.</li>
+<li>La curva de aprendizaje es más difícil que programas como SPSS o Minitab (frente a Python, Stata o SAS es similar).</li>
+</ul>
+</section>
+</section>
+<section id="paquetes" class="level1">
+<h1>Paquetes</h1>
+<p>Cuando varias funciones son desarrolladas con un objetivos similar se suelen agrupar en <em>paquetes</em>, los cuales son colaborativamente distribuidos de forma gratuita.</p>
+<p>Para utilizar las funciones de un paquete es necesario instalar este paquete primero usando <strong>install.packages()</strong> y luego cargarlo en nuestro ambiente de trabajo usando <strong>library()</strong>.</p>
+<ul>
+<li>Se instalan una vez y se llaman muchas veces.</li>
+<li><a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">Lista de paquetes del CRAN</a></li>
+<li><a href="https://www.bioconductor.org/packages/release/bioc/">Lista de paquetes de Bioconductor</a></li>
+<li><a href="https://rdrr.io/">rdrr.io</a></li>
+</ul>
+<section id="el-ecosistema-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="el-ecosistema-tidyverse">El ecosistema tidyverse</h2>
+<p><strong>Tidyverse</strong> es un conjunto de paquetes de R diseñados para hacer el análisis de datos más intuitivo y consistente. Estos paquetes comparten principios y sintaxis comunes, lo que permite trabajar de manera eficiente con datos estructurados. El núcleo de <code>tidyverse</code> incluye paquetes populares como:</p>
+<ul>
+<li><strong>ggplot2</strong>: Para visualización de datos.</li>
+<li><strong>dplyr</strong>: Para manipulación y transformación de datos.</li>
+<li><strong>tidyr</strong>: Para ordenar y reorganizar datos.</li>
+<li><strong>readr</strong>: Para leer datos en diferentes formatos.</li>
+<li><strong>tibble</strong>: Para trabajar con tablas de datos mejoradas.</li>
+<li><strong>stringr</strong>: Para manipulación de cadenas de caracteres.</li>
+<li><strong>purrr</strong>: Para trabajar con programación funcional.</li>
+</ul>
+<p>El enfoque principal de <code>tidyverse</code> es organizar los datos en un formato “ordenado” (tidy), donde cada variable es una columna, cada observación es una fila, y cada tipo de unidad observacional forma una tabla. Esto facilita tanto la manipulación como el análisis, haciendo que el flujo de trabajo sea más eficiente y claro.</p>
+<p><img src="data-tidy-table.png" class="img-fluid"></p>
+</section>
+<section id="visualización-usando-ggplot" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-usando-ggplot">Visualización usando ggplot</h2>
+<p><strong>ggplot2</strong> es un <strong>paquete específico</strong> dentro del ecosistema <code>tidyverse</code> para la visualización de datos en R. Está basado en la gramática de gráficos (grammer of graphics), lo que permite crear gráficos complejos a partir de componentes simples.</p>
+<p>Con <code>ggplot2</code>, es posible construir gráficos declarando los diferentes elementos que lo componen (ejes, datos, geometrías, capas, colores, etc.) y combinándolos de manera flexible. A diferencia de otros enfoques, en lugar de especificar un tipo de gráfico desde el principio, en <code>ggplot2</code> construyes los gráficos de manera incremental a través de capas.</p>
+<p>Las <strong>extensiones de ggplot2</strong> son paquetes adicionales que amplían la funcionalidad de <code>ggplot2</code>, permitiendo crear gráficos más complejos o personalizar las visualizaciones de manera más específica. Estas extensiones se construyen sobre la estructura básica de <code>ggplot2</code> y ofrecen nuevas geometrías, temas, escalas, y otras características.</p>
+<p>Algunas de las extensiones más populares son:</p>
+<ul>
+<li><p><strong>ggthemes</strong>: Proporciona una amplia variedad de temas predefinidos para personalizar el estilo de los gráficos, como temas inspirados en periódicos o plataformas como Excel o Stata.</p></li>
+<li><p><strong>ggplotly</strong>: Convierte gráficos de <code>ggplot2</code> en gráficos interactivos utilizando la librería <code>plotly</code>. Ideal para visualizaciones dinámicas.</p></li>
+<li><p><strong>gghighlight</strong>: Permite resaltar ciertas observaciones en un gráfico basado en una condición, sin necesidad de manipular manualmente los datos.</p></li>
+<li><p><strong>gganimate</strong>: Añade una dimensión temporal a los gráficos, creando animaciones para mostrar cómo los datos cambian con el tiempo.</p></li>
+</ul>
+</section>
+<section id="shiny" class="level2">
+<h2 class="anchored" data-anchor-id="shiny">Shiny</h2>
+<p><strong>Shiny</strong> es un paquete de R que permite construir aplicaciones web interactivas de manera sencilla, sin necesidad de tener conocimientos avanzados de desarrollo web. Fue creado por <strong>RStudio</strong> y se utiliza principalmente para compartir análisis de datos y visualizaciones interactivas con otros usuarios a través de un navegador web.</p>
+<p>Shiny combina el poder de R para análisis estadístico y visualización con herramientas de diseño web (HTML, CSS, y JavaScript), lo que permite crear aplicaciones dinámicas que responden a entradas del usuario, actualizando gráficos, tablas y modelos en tiempo real. Sus características principales son:</p>
+<ul>
+<li><p><strong>Interactividad</strong>: Los usuarios pueden modificar la entrada (input) y ver cambios instantáneos en la salida (output), como gráficos, tablas, o resultados estadísticos.</p></li>
+<li><p><strong>Flexibilidad</strong>: Permite integrar elementos HTML, CSS y JavaScript para mejorar la apariencia y funcionalidad de las aplicaciones.</p></li>
+<li><p><strong>Servidor y UI</strong>: Las aplicaciones en Shiny se estructuran en dos partes principales:</p>
+<ul>
+<li><p><strong>UI (User Interface)</strong>: Define el diseño de la interfaz que el usuario ve, como botones, campos de entrada, menús desplegables, etc.</p></li>
+<li><p><strong>Server</strong>: Contiene la lógica y el procesamiento que ocurre cuando el usuario interactúa con la interfaz.</p></li>
+</ul></li>
+</ul>
+<p>Shiny es ampliamente utilizado en ciencia de datos para crear dashboards, herramientas de visualización y aplicaciones de análisis interactivo, y permite compartir análisis de manera efectiva con personas que no necesariamente conocen R.</p>
+</section>
+<section id="reportería" class="level2">
+<h2 class="anchored" data-anchor-id="reportería">Reportería</h2>
+<p>Los paquetes <strong><code>knitr</code></strong>, <strong><code>rmarkdown</code></strong> y <strong><code>quarto</code></strong> son herramientas complementarias en el ecosistema R para la creación de documentos reproducibles y la generación de informes. Cada uno de estos paquetes tiene una función específica, pero a menudo se utilizan juntos para producir documentos de alta calidad.</p>
+<section id="knitr" class="level3">
+<h3 class="anchored" data-anchor-id="knitr">knitr</h3>
+<p><strong><code>knitr</code></strong> se utiliza para integrar código R dentro de documentos de texto, permitiendo la generación de informes dinámicos. Se encarga de ejecutar el código R y mostrar los resultados (tablas, gráficos, etc.) directamente en el documento. <code>knitr</code> convierte los bloques de código R en resultados formateados y los inserta en el documento de salida, facilitando la creación de informes reproducibles.</p>
+<ul>
+<li><strong>Características</strong>:
+<ul>
+<li>Ejecución de código R y generación de resultados.</li>
+<li>Inserción de resultados en documentos de texto.</li>
+<li>Soporte para diversos formatos de salida a través de paquetes complementarios (como <code>rmarkdown</code>).</li>
+</ul></li>
+</ul>
+</section>
+<section id="rmarkdown" class="level3">
+<h3 class="anchored" data-anchor-id="rmarkdown">rmarkdown</h3>
+<p><strong><code>rmarkdown</code></strong> amplía la funcionalidad de <code>knitr</code> permitiendo la creación de documentos dinámicos y de presentación en varios formatos, como HTML, PDF y Word. Utiliza Markdown para estructurar el contenido del documento, lo que facilita la combinación de texto, código y resultados en un formato de salida estéticamente agradable.</p>
+<ul>
+<li><strong>Características</strong>:
+<ul>
+<li>Soporte para múltiples formatos de salida: HTML, PDF, Word.</li>
+<li>Uso de Markdown para la estructuración del texto.</li>
+<li>Integración con <code>knitr</code> para ejecutar y mostrar código R.</li>
+<li>Opciones avanzadas para personalizar la apariencia y el contenido del documento.</li>
+</ul></li>
+</ul>
+</section>
+<section id="quarto" class="level3">
+<h3 class="anchored" data-anchor-id="quarto">quarto</h3>
+<p><strong><code>quarto</code></strong> es una herramienta más reciente que ofrece una alternativa moderna y flexible a <code>rmarkdown</code>. Está diseñada para crear documentos reproducibles, informes y presentaciones, y se basa en un formato de archivo y un flujo de trabajo similar a <code>rmarkdown</code>, pero con mejoras en la funcionalidad y la integración con otros sistemas.</p>
+<ul>
+<li><strong>Características</strong>:
+<ul>
+<li>Soporte para la creación de documentos, presentaciones, libros y sitios web.</li>
+<li>Mejora en la compatibilidad con varios lenguajes de programación además de R, como Python.</li>
+<li>Facilita la integración de contenido y la creación de documentos reproducibles en un formato más moderno.</li>
+<li>Permite la creación de informes interactivos y contenido dinámico.</li>
+</ul></li>
+</ul>
+<p>Estos paquetes se utilizan en conjunto para crear documentos reproducibles que combinan texto, código y resultados en un formato de salida atractivo y profesional. Mientras que <code>knitr</code> y <code>rmarkdown</code> han sido herramientas establecidas durante años, <code>quarto</code> representa una evolución en la creación de documentos dinámicos y reproducibles, con un enfoque más amplio y flexible.</p>
+<ul>
+<li><a href="https://yihui.org/knitr/">Elegant, flexible, and fast dynamic report generation with R</a></li>
+<li><a href="https://rmarkdown.rstudio.com/">RMarkdwon</a></li>
+</ul>
+<p><img src="markdown-example.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="knit.png" class="img-fluid" style="width:70.0%"></p>
+</section>
+</section>
+</section>
+<section id="rstudio" class="level1">
+<h1>RStudio</h1>
+<p><strong>RStudio</strong> es un entorno de desarrollo integrado (IDE) para el lenguaje de programación R, diseñado para facilitar la escritura de código, la visualización de datos y la creación de informes reproducibles. Ofrece una serie de herramientas y características que mejoran la productividad y la eficiencia en el trabajo con R. RStudio es desarrollado por <strong>Posit</strong>.</p>
+<p><strong>Posit</strong> es una empresa social que desarrolla herramientas de código abierto para el análisis de datos y la ciencia de datos. Desde su cambio de nombre de RStudio a Posit en 2023, la empresa ha seguido comprometida con la misión de mejorar la accesibilidad y el impacto del análisis de datos a través de software libre y colaborativo.</p>
+<section id="proyectos-de-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="proyectos-de-rstudio">Proyectos de RStudio</h2>
+<p>En RStudio, los <strong>proyectos</strong> son una característica que ayuda a organizar y gestionar el trabajo de forma estructurada y eficiente. Un proyecto en RStudio es un contenedor para archivos y configuraciones que se usan en un análisis o en una investigación específica. Aquí están algunas de las principales características y ventajas de utilizar proyectos en RStudio:</p>
+<p>Características de los proyectos en RStudio:</p>
+<ul>
+<li><p><strong>Aislamiento del Entorno</strong>: Cada proyecto tiene su propio entorno de trabajo, con sus propios archivos, paquetes y configuraciones. Esto evita conflictos entre diferentes proyectos y facilita el manejo de múltiples análisis simultáneamente.</p></li>
+<li><p><strong>Directorio de Trabajo</strong>: Cuando se abre un proyecto, RStudio establece automáticamente el directorio de trabajo en la carpeta del proyecto. Esto significa que todos los archivos y datos se referencian con rutas relativas al proyecto, simplificando la gestión de archivos.</p></li>
+<li><p><strong>Configuración del Proyecto</strong>: Los proyectos guardan configuraciones específicas, como opciones de R y ajustes de paquetes. Esto incluye la posibilidad de establecer opciones como la versión de R, el directorio de datos, y configuraciones personalizadas.</p></li>
+<li><p><strong>Historial y Scripts</strong>: RStudio mantiene el historial de comandos y los scripts utilizados en cada proyecto, lo que permite una fácil recuperación y seguimiento del trabajo realizado.</p></li>
+<li><p><strong>Archivos de Proyecto</strong>: Los proyectos suelen incluir un archivo <code>.Rproj</code>, que almacena la configuración del proyecto y ayuda a RStudio a identificar y abrir el proyecto correctamente. También puedes incluir otros archivos como scripts, datos, documentos, entre otros.</p></li>
+<li><p><strong>Integración con Control de Versiones</strong>: Los proyectos pueden integrarse con sistemas de control de versiones como Git, facilitando la gestión de versiones y la colaboración en proyectos de análisis de datos.</p></li>
+</ul>
+</section>
+<section id="buenas-prácticas" class="level2">
+<h2 class="anchored" data-anchor-id="buenas-prácticas">Buenas prácticas</h2>
+<p>Al trabajar con R y en la programación en general, es importante seguir ciertas buenas prácticas para mantener el código limpio, eficiente y fácil de mantener. Aquí algunas recomendaciones clave:</p>
+<section id="usar-scripts" class="level3">
+<h3 class="anchored" data-anchor-id="usar-scripts">Usar scripts</h3>
+<ul>
+<li><strong>Uso de scripts</strong>: Aunque es común ejecutar código directamente en la consola durante las primeras interacciones con R, es una buena práctica guardar el código en <strong>scripts</strong>. Los scripts permiten documentar y reutilizar el código de manera más organizada.
+<ul>
+<li><strong>Archivos <code>.r</code></strong>: Son los scripts de R tradicionales.</li>
+<li><strong>Archivos <code>.rmd</code></strong>: Archivos de R Markdown que combinan texto y código en un solo documento, permitiendo generar informes dinámicos.</li>
+<li><strong>Archivos <code>.qmd</code></strong>: Archivos de Quarto que también combinan texto y código, pero con una estructura más moderna y flexible.</li>
+</ul></li>
+</ul>
+</section>
+<section id="manejo-de-mensajes-de-advertencia-y-errores" class="level3">
+<h3 class="anchored" data-anchor-id="manejo-de-mensajes-de-advertencia-y-errores">Manejo de mensajes de advertencia y errores</h3>
+<ul>
+<li><strong>Copiar y buscar</strong>: Si encuentras mensajes de advertencia (<code>warning</code>) o errores (<code>error</code>), copia el mensaje y realiza una búsqueda en Google, ChatGPT, o Gemini para encontrar soluciones. Estos recursos pueden ofrecer soluciones a problemas comunes y explicaciones detalladas.</li>
+</ul>
+</section>
+<section id="comentar-el-código" class="level3">
+<h3 class="anchored" data-anchor-id="comentar-el-código">Comentar el código</h3>
+<ul>
+<li><strong>Uso de comentarios</strong>: Añadir comentarios al código es fundamental para la comprensión y mantenimiento. Los comentarios se insertan anteponiendo el símbolo <code>#</code> en la línea deseada.
+<ul>
+<li><strong>Herramientas de asistencia</strong>: Utiliza herramientas como GitHub Copilot para obtener sugerencias de comentarios y documentación.</li>
+<li><strong>Atajo de teclado</strong>: En RStudio, puedes usar el atajo <code>Ctrl</code> + <code>Shift</code> + <code>R</code> (Windows/Linux) o <code>Cmd</code> + <code>Shift</code> + <code>R</code> (Mac) para comentar o descomentar líneas de código de forma rápida.</li>
+</ul></li>
+</ul>
+</section>
+<section id="consultar-la-ayuda-en-r" class="level3">
+<h3 class="anchored" data-anchor-id="consultar-la-ayuda-en-r">Consultar la ayuda en R</h3>
+<ul>
+<li><strong>Uso de funciones de ayuda</strong>: R ofrece varias maneras de acceder a la documentación y ayuda sobre funciones y paquetes:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Consulta la ayuda de la función específica</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>?function_name</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Consulta ayuda sobre un término o función con una búsqueda más amplia</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>??search_term</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Por ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>?mean          <span class="co"># Muestra la documentación para la función mean</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>??mean          <span class="co"># Realiza una búsqueda sobre el término "mean" en la documentación</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Estas prácticas nos ayudan a mantener un flujo de trabajo eficiente y organizado, facilitando tanto el desarrollo como el mantenimiento de proyectos en R.</p>
+</section>
+</section>
+<section id="creación-de-nuestro-primer-proyecto" class="level2">
+<h2 class="anchored" data-anchor-id="creación-de-nuestro-primer-proyecto">Creación de nuestro primer proyecto</h2>
+<ol type="1">
+<li>Abrir RStudio.</li>
+<li>Clic en <strong>File &gt; New Project</strong>
+<ul>
+<li><strong>New Directory &gt; New Project</strong> si queremos crear una nueva carpeta en nuestro equipo.</li>
+<li><strong>Existing Directory</strong> si queremos alojar nuestro proyecto en una carpeta ya creada.</li>
+</ul></li>
+<li>Una vez creado el proyecto, podemos verificar que la ventana del programa se renombra y apunta a la carpeta donde está alojado.</li>
+<li>Clic en <strong>File &gt; New File &gt; R Script</strong>. En la ventana que se carga ya podemos empezar a ejecutar nuestro código.</li>
+<li>Descargamos <a href="02_recursos/informe.zip">la carpeta</a> con algunos recursos para informes automáticos y los llevamos a nuestra carpeta de proyecto.</li>
+<li>Configuramos RStudio para que use la carpeta de proyecto como directorio principal.</li>
+<li>Iniciamos la programación.</li>
+</ol>
+<p><img src="project-tree.png" class="img-fluid" style="width:70.0%"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
