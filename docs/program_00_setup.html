@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Science Intro - Configuración del ambiente de trabajo en R</title>
+<title>Configuración del ambiente de trabajo en R – Data Science Intro</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">Data Science Intro</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -110,17 +110,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Inicio</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programación" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programación" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Programación</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-programación">    
         <li>
-    <a class="dropdown-item" href="./program_00_setup.html">
- <span class="dropdown-text">Setup</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./program_01_loading-data.html">
- <span class="dropdown-text">Lectura de datos</span></a>
+    <a class="dropdown-item" href="./program_00_intro.html">
+ <span class="dropdown-text">Intro</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./program_02_basics.html">
@@ -138,10 +134,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./program_05_asociacion.html">
  <span class="dropdown-text">Asociación</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./program_00_setup.html">
+ <span class="dropdown-text">Setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_01_loading-data.html">
+ <span class="dropdown-text">Lectura de datos</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-vis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-vis" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Data-vis</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-data-vis">    
@@ -165,14 +169,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./data-vis_04_seaborn.html">
  <span class="dropdown-text">Python seaborn</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aprendizaje-no-supervisado" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Aprendizaje no supervisado</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-aprendizaje-no-supervisado">    
         <li>
-    <a class="dropdown-item" href="./data-vis_05-gwalk.html">
- <span class="dropdown-text">GWalkr</span></a>
+    <a class="dropdown-item" href="./macn_00.html">
+ <span class="dropdown-text">0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./macn_01.html">
+ <span class="dropdown-text">1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./macn_02.html">
+ <span class="dropdown-text">2</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-taller" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-taller" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Taller</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-taller">    
@@ -200,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -215,26 +234,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
   <ul class="collapse">
-  <li><a href="#qué-es-r" id="toc-qué-es-r" class="nav-link" data-scroll-target="#qué-es-r">¿Qué es R?</a></li>
-  <li><a href="#por-qué-nos-gusta" id="toc-por-qué-nos-gusta" class="nav-link" data-scroll-target="#por-qué-nos-gusta">¿Por qué nos gusta?</a></li>
-  <li><a href="#particularmente-útil-para" id="toc-particularmente-útil-para" class="nav-link" data-scroll-target="#particularmente-útil-para">Particularmente útil para</a></li>
-  <li><a href="#advertencias" id="toc-advertencias" class="nav-link" data-scroll-target="#advertencias">Advertencias</a></li>
   <li><a href="#instalación-de-r" id="toc-instalación-de-r" class="nav-link" data-scroll-target="#instalación-de-r">Instalación de R</a></li>
   <li><a href="#interfaces-de-usuario" id="toc-interfaces-de-usuario" class="nav-link" data-scroll-target="#interfaces-de-usuario">Interfaces de usuario</a></li>
   <li><a href="#front-ends-gráficos" id="toc-front-ends-gráficos" class="nav-link" data-scroll-target="#front-ends-gráficos">Front-ends gráficos</a></li>
   <li><a href="#cómo-correr-comandoscódigo" id="toc-cómo-correr-comandoscódigo" class="nav-link" data-scroll-target="#cómo-correr-comandoscódigo">¿Cómo correr comandos/código?</a></li>
-  <li><a href="#grupos-de-funciones-paquetes" id="toc-grupos-de-funciones-paquetes" class="nav-link" data-scroll-target="#grupos-de-funciones-paquetes">Grupos de funciones (Paquetes)</a></li>
   <li><a href="#actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes" id="toc-actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes" class="nav-link" data-scroll-target="#actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes">Actualizar R (si ya lo tenías instalado) y los paquetes</a></li>
-  <li><a href="#buenas-prácticas" id="toc-buenas-prácticas" class="nav-link" data-scroll-target="#buenas-prácticas">Buenas prácticas</a></li>
-  <li><a href="#informes-automáticos" id="toc-informes-automáticos" class="nav-link" data-scroll-target="#informes-automáticos">Informes automáticos</a></li>
-  <li><a href="#creación-de-nuestro-primer-proyecto" id="toc-creación-de-nuestro-primer-proyecto" class="nav-link" data-scroll-target="#creación-de-nuestro-primer-proyecto">Creación de nuestro primer proyecto</a></li>
   </ul></li>
   </ul>
 </nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -260,52 +271,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introducción" class="level1">
 <h1>Introducción</h1>
-<section id="qué-es-r" class="level2">
-<h2 class="anchored" data-anchor-id="qué-es-r">¿Qué es R?</h2>
-<ul>
-<li>R es un lenguaje de programación de acceso libre, inicialmente diseñado y utilizado para realizar análisis estadístico.</li>
-<li>R también es un programa que instalamos para interpretar el código que escribimos.</li>
-<li>No fue creado por ingenieros de software para el desarrollo de software, sino por estadísticos como un ambiente interactivo para el análisis de datos.</li>
-<li>Además de R trabajaremos con RStudio, un IDE (Integrated Development Environment) que funciona como una “máscara” sobre R, con más herramientas y facilidades.</li>
-<li>La forma en que trabajaremos en R será a través de secuencias de comandos, conocidos como <em>script</em>, que se pueden ejecutar en cualquier momento. Estos <em>scripts</em> sirven como un registro del análisis realizamos.</li>
-</ul>
-</section>
-<section id="por-qué-nos-gusta" class="level2">
-<h2 class="anchored" data-anchor-id="por-qué-nos-gusta">¿Por qué nos gusta?</h2>
-<ul>
-<li>Se ejecuta en todos los sistemas operativos principales: Windows, Mac Os, UNIX/Linux.</li>
-<li>Los <em>scripts</em> y los objetos de datos se pueden compartir sin problemas entre plataformas.</li>
-<li>No solamente permite realizar análisis estadístico, tambien es posible capturar información de páginas web, crear aplicaciones web, procesar texto, entre otras cosas.</li>
-<li>La comunidad que lo usa es muy amplia (= muchísima ayuda e información en internet).
-<ul>
-<li><a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a></li>
-<li><a href="https://r-universe.dev/search/">R-Universe</a></li>
-<li><a href="https://www.r-bloggers.com/2015/12/how-to-learn-r-2/">R-Bloggers</a></li>
-<li><a href="https://towardsdatascience.com/tagged/r">Towards Data Science</a></li>
-<li>Entre otros.</li>
-</ul></li>
-<li>Es muy versátil para la creación de gráficos.</li>
-<li>Tiene disponibles muchos paquetes para diferentes tipos de análisis.</li>
-<li>¡ES GRATIS!.</li>
-</ul>
-</section>
-<section id="particularmente-útil-para" class="level2">
-<h2 class="anchored" data-anchor-id="particularmente-útil-para">Particularmente útil para</h2>
-<ol type="1">
-<li>Manejar, combinar, limpiar y reorganizar datos.</li>
-<li>Análisis estadístico, álgebra matricial, modelado, estadística avanzada.</li>
-<li>Usar un entorno gráfico poderoso para explorar datos o para publicar.</li>
-<li>Trabajar de forma reproducible a partir de <em>scripts</em>.</li>
-</ol>
-</section>
-<section id="advertencias" class="level2">
-<h2 class="anchored" data-anchor-id="advertencias">Advertencias</h2>
-<ul>
-<li>La documentación a veces es muy técnica o muy compacta.</li>
-<li>No todo el código ha sido exhaustivamente testeado, es decir, no siempre hay garantías que las cosas funcionen.</li>
-<li>La curva de aprendizaje es más difícil que programas como SPSS o Minitab (frente a Python, Stata o SAS es similar).</li>
-</ul>
-</section>
 <section id="instalación-de-r" class="level2">
 <h2 class="anchored" data-anchor-id="instalación-de-r">Instalación de R</h2>
 <p><a href="https://cran.r-project.org/">https://cran.r-project.org/</a></p>
@@ -339,17 +304,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Si se está trabajando en un <strong>script</strong> es posible ejecutar los comandos presionando “Ctrl+Enter”, o haciendo clic en el botón <em>Run</em> en la parte derecha superior del panel de edición.</li>
 </ul>
 </section>
-<section id="grupos-de-funciones-paquetes" class="level2">
-<h2 class="anchored" data-anchor-id="grupos-de-funciones-paquetes">Grupos de funciones (Paquetes)</h2>
-<ul>
-<li>Cuando varias funciones son desarrolladas con un objetivos similar se suelen agrupar en <em>paquetes</em>, los cuales son colaborativamente distribuidos de forma gratuita.</li>
-<li>Para utilizar las funciones de un paquete es necesario instalar este paquete primero usando <strong>install.packages()</strong> y luego cargarlo en nuestro ambiente de trabajo usando <strong>library()</strong>.</li>
-<li>Se instalan una vez y se llaman muchas veces.</li>
-<li><a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">Lista de paquetes del CRAN</a></li>
-<li><a href="https://www.bioconductor.org/packages/release/bioc/">Lista de paquetes de Bioconductor</a></li>
-<li><a href="https://rdrr.io/">rdrr.io</a></li>
-</ul>
-</section>
 <section id="actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes" class="level2">
 <h2 class="anchored" data-anchor-id="actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes">Actualizar R (si ya lo tenías instalado) y los paquetes</h2>
 <div class="cell">
@@ -362,50 +316,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Comando para actualizar paquetes</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">checkBuilt =</span> <span class="cn">TRUE</span>, <span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="buenas-prácticas" class="level2">
-<h2 class="anchored" data-anchor-id="buenas-prácticas">Buenas prácticas</h2>
-<ul>
-<li>Usar <strong>projects</strong> (proyectos) para ajustar el ambiente de trabajo para un proyecto.</li>
-<li>Por reproducibilidad, facilidad y para tener los proyectos mejor organizados es mucho mejor usar <strong>projects</strong>.</li>
-<li>La idea es que cada proyecto tenga su propio espacio y esté <em>aislado</em>, de tal manera que los recursos y códigos de uno no interfieran con otros proyectos.</li>
-<li>Como en todo lenguaje de programación, a todo lo que le pongamos un nombre (variables, funciones, datos) <a href="resources/naming.pdf">hay que ponerle un <em>buen</em> nombre</a>.</li>
-<li>¡Siempre usa <strong>scripts</strong>! (si nunca antes has creado un <em>‘programa para un computador’</em> en este curso lo vas a hacer)</li>
-<li>Si aparecen errores, se puede copiar y pegar el error en Google, ChatGPT o Gemini.</li>
-<li>Comentar el código anteponiendo el símbolo “#” en la línea donde se desea insertar el comentario. Este proceso se puede hacer apoyándose de herramientas de programación asistida.</li>
-<li>A R podemos preguntarle cosas.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>?ayuda</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>?cualquier_cosa</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>?mean</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>??mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="informes-automáticos" class="level2">
-<h2 class="anchored" data-anchor-id="informes-automáticos">Informes automáticos</h2>
-<p>R cuenta con un paquete llamado <em>knitr</em> con el cual podemos generar dinámicamente reportes, análisis y documentos. La técnica es la misma para darle formato a los cuadernos de Jupyter/notebooks de Google Colab que ven en el curso de Python.</p>
-<ul>
-<li><a href="https://yihui.org/knitr/">Elegant, flexible, and fast dynamic report generation with R</a></li>
-<li><a href="https://rmarkdown.rstudio.com/">RMarkdwon</a></li>
-</ul>
-<p><img src="markdown-example.png" class="img-fluid" style="width:70.0%"></p>
-<p><img src="knit.png" class="img-fluid" style="width:70.0%"></p>
-</section>
-<section id="creación-de-nuestro-primer-proyecto" class="level2">
-<h2 class="anchored" data-anchor-id="creación-de-nuestro-primer-proyecto">Creación de nuestro primer proyecto</h2>
-<ol type="1">
-<li>Abrir RStudio.</li>
-<li>Clic en <strong>File &gt; New Project</strong>
-<ul>
-<li><strong>New Directory &gt; New Project</strong> si queremos crear una nueva carpeta en nuestro equipo.</li>
-<li><strong>Existing Directory</strong> si queremos alojar nuestro proyecto en una carpeta ya creada.</li>
-</ul></li>
-<li>Una vez creado el proyecto, podemos verificar que la ventana del programa se renombra y apunta a la carpeta donde está alojado.</li>
-<li>Clic en <strong>File &gt; New File &gt; R Script</strong>. En la ventana que se carga ya podemos empezar a ejecutar nuestro código.</li>
-</ol>
-<p><img src="project-tree.png" class="img-fluid" style="width:70.0%"></p>
-<p>&nbsp;</p>
 
 
 </section>
@@ -447,18 +357,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -490,7 +389,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -498,7 +419,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

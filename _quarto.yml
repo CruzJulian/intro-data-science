@@ -20,6 +20,9 @@ project:
     - "program_03_tidy.qmd"
     - "program_04_eda.qmd"
     - "program_05_asociacion.qmd"
+    - "macn_00.qmd"
+    - "macn_01.qmd"
+    - "macn_02.qmd"
 
 website:
   title: "Data Science Intro"
@@ -56,6 +59,14 @@ website:
             href: data-vis_03_matplotlib.qmd
           - text: "Python seaborn"
             href: data-vis_04_seaborn.qmd
+      - text: "Aprendizaje no supervisado"
+        menu:
+          - text: "0"
+            href: macn_00.qmd
+          - text: "1"
+            href: macn_01.qmd
+          - text: "2"
+            href: macn_02.qmd
       - text: "Taller"
         menu:
           - text: "Presentación"

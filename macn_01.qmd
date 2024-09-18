@@ -1,0 +1,16 @@
+---
+title: "1"
+format: 
+  html:
+    toc: true
+    toc-location: left
+    toc-title: Contenido
+    df-print: default
+execute: 
+  eval: true
+  echo: true
+  output: false
+  warning: false
+  error: false
+
+---
