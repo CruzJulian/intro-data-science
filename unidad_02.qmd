@@ -24,14 +24,15 @@ execute:
 library("knitr")
 library("reticulate")
 # reticulate::install_miniconda()
-use_python(file.path(miniconda_path(), "bin", "python3.11"))
+# use_python(file.path(miniconda_path(), "bin", "python3.11"))
+# use_python(file.path(miniconda_path(), "python.exe"))
 # py_install("pandas")
 # py_install("matplotlib")
 # py_install("seaborn")
 # py_install("scipy")
 # py_install("scikit-learn")
 # py_install("tabulate")
-
+# 
 set.seed(0)
 
 ```

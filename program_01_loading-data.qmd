@@ -51,7 +51,7 @@ library("readxl")
 
 Note que **tidyverse** es una colección de paquetes ampliamente usada en la ciencia de datos en R, por lo que al instalarlo se instalan a su vez numerosos paquetes que son útiles para cargar, manipular, limpiar, procesar, modelar y visualizar datos.
 
-Veámonos cómo cargar datos en distintos formatos.
+Veamos cómo cargar datos en distintos formatos.
 
 ### Archivos de texto plano (.txt)
 
@@ -71,6 +71,7 @@ read.table(
   dec = ".",
   fileEncoding = "UTF-8"
   ) -> data_txt
+
 ```
 
 

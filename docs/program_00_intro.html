@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Configuración del ambiente de trabajo en R – Data Science Intro</title>
+<title>Programación básica en R – Data Science Intro</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -234,11 +234,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
   <ul class="collapse">
-  <li><a href="#instalación-de-r" id="toc-instalación-de-r" class="nav-link" data-scroll-target="#instalación-de-r">Instalación de R</a></li>
-  <li><a href="#interfaces-de-usuario" id="toc-interfaces-de-usuario" class="nav-link" data-scroll-target="#interfaces-de-usuario">Interfaces de usuario</a></li>
-  <li><a href="#front-ends-gráficos" id="toc-front-ends-gráficos" class="nav-link" data-scroll-target="#front-ends-gráficos">Front-ends gráficos</a></li>
-  <li><a href="#cómo-correr-comandoscódigo" id="toc-cómo-correr-comandoscódigo" class="nav-link" data-scroll-target="#cómo-correr-comandoscódigo">¿Cómo correr comandos/código?</a></li>
-  <li><a href="#actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes" id="toc-actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes" class="nav-link" data-scroll-target="#actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes">Actualizar R (si ya lo tenías instalado) y los paquetes</a></li>
+  <li><a href="#qué-es-r" id="toc-qué-es-r" class="nav-link" data-scroll-target="#qué-es-r">¿Qué es R?</a></li>
+  <li><a href="#por-qué-nos-gusta" id="toc-por-qué-nos-gusta" class="nav-link" data-scroll-target="#por-qué-nos-gusta">¿Por qué nos gusta?</a></li>
+  <li><a href="#particularmente-útil-para" id="toc-particularmente-útil-para" class="nav-link" data-scroll-target="#particularmente-útil-para">Particularmente útil para</a></li>
+  <li><a href="#advertencias" id="toc-advertencias" class="nav-link" data-scroll-target="#advertencias">Advertencias</a></li>
+  </ul></li>
+  <li><a href="#paquetes" id="toc-paquetes" class="nav-link" data-scroll-target="#paquetes">Paquetes</a>
+  <ul class="collapse">
+  <li><a href="#el-ecosistema-tidyverse" id="toc-el-ecosistema-tidyverse" class="nav-link" data-scroll-target="#el-ecosistema-tidyverse">El ecosistema tidyverse</a></li>
+  <li><a href="#visualización-usando-ggplot" id="toc-visualización-usando-ggplot" class="nav-link" data-scroll-target="#visualización-usando-ggplot">Visualización usando ggplot</a></li>
+  <li><a href="#shiny" id="toc-shiny" class="nav-link" data-scroll-target="#shiny">Shiny</a></li>
+  <li><a href="#reportería" id="toc-reportería" class="nav-link" data-scroll-target="#reportería">Reportería</a>
+  <ul class="collapse">
+  <li><a href="#knitr" id="toc-knitr" class="nav-link" data-scroll-target="#knitr">knitr</a></li>
+  <li><a href="#rmarkdown" id="toc-rmarkdown" class="nav-link" data-scroll-target="#rmarkdown">rmarkdown</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">quarto</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio">RStudio</a>
+  <ul class="collapse">
+  <li><a href="#proyectos-de-rstudio" id="toc-proyectos-de-rstudio" class="nav-link" data-scroll-target="#proyectos-de-rstudio">Proyectos de RStudio</a></li>
+  <li><a href="#buenas-prácticas" id="toc-buenas-prácticas" class="nav-link" data-scroll-target="#buenas-prácticas">Buenas prácticas</a>
+  <ul class="collapse">
+  <li><a href="#usar-scripts" id="toc-usar-scripts" class="nav-link" data-scroll-target="#usar-scripts">Usar scripts</a></li>
+  <li><a href="#manejo-de-mensajes-de-advertencia-y-errores" id="toc-manejo-de-mensajes-de-advertencia-y-errores" class="nav-link" data-scroll-target="#manejo-de-mensajes-de-advertencia-y-errores">Manejo de mensajes de advertencia y errores</a></li>
+  <li><a href="#comentar-el-código" id="toc-comentar-el-código" class="nav-link" data-scroll-target="#comentar-el-código">Comentar el código</a></li>
+  <li><a href="#consultar-la-ayuda-en-r" id="toc-consultar-la-ayuda-en-r" class="nav-link" data-scroll-target="#consultar-la-ayuda-en-r">Consultar la ayuda en R</a></li>
+  </ul></li>
+  <li><a href="#creación-de-nuestro-primer-proyecto" id="toc-creación-de-nuestro-primer-proyecto" class="nav-link" data-scroll-target="#creación-de-nuestro-primer-proyecto">Creación de nuestro primer proyecto</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -252,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Configuración del ambiente de trabajo en R</h1>
+<h1 class="title">Programación básica en R</h1>
 </div>
 
 
@@ -271,51 +294,240 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introducción" class="level1">
 <h1>Introducción</h1>
-<section id="instalación-de-r" class="level2">
-<h2 class="anchored" data-anchor-id="instalación-de-r">Instalación de R</h2>
-<p><a href="https://cran.r-project.org/">https://cran.r-project.org/</a></p>
-<p><img src="r-gui-1.png" class="img-fluid" style="width:70.0%"></p>
-<blockquote class="blockquote">
-<p>Luego de instalar R, se recomienda instalar <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a>.</p>
-</blockquote>
-</section>
-<section id="interfaces-de-usuario" class="level2">
-<h2 class="anchored" data-anchor-id="interfaces-de-usuario">Interfaces de usuario</h2>
+<section id="qué-es-r" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-r">¿Qué es R?</h2>
 <ul>
-<li>Por defecto</li>
-<li><a href="https://posit.co/downloads/">RStudio</a> - Recomendada. Es la que usaremos en este curso.</li>
-<li><a href="https://jupyter.org/">Jupyter</a></li>
-<li><a href="http://www.eclipse.org/eclipse">Eclipse</a></li>
-<li>Entre otras</li>
-</ul>
-<p><img src="rstudio-1.png" class="img-fluid"></p>
-</section>
-<section id="front-ends-gráficos" class="level2">
-<h2 class="anchored" data-anchor-id="front-ends-gráficos">Front-ends gráficos</h2>
-<ul>
-<li><a href="https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/">Rcmdr</a></li>
-<li><a href="https://rkward.kde.org/">RKWard</a></li>
+<li>R es un lenguaje de programación de acceso libre, inicialmente diseñado y utilizado para realizar análisis estadístico.</li>
+<li>R también es un programa que instalamos para interpretar el código que escribimos.</li>
+<li>No fue creado por ingenieros de software para el desarrollo de software, sino por estadísticos como un ambiente interactivo para el análisis de datos.</li>
+<li>Además de R trabajaremos con RStudio, un IDE (Integrated Development Environment) que funciona como una “máscara” sobre R, con más herramientas y facilidades.</li>
+<li>La forma en que trabajaremos en R será a través de secuencias de comandos, conocidos como <em>script</em>, que se pueden ejecutar en cualquier momento. Estos <em>scripts</em> sirven como un registro del análisis realizamos.</li>
 </ul>
 </section>
-<section id="cómo-correr-comandoscódigo" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-correr-comandoscódigo">¿Cómo correr comandos/código?</h2>
+<section id="por-qué-nos-gusta" class="level2">
+<h2 class="anchored" data-anchor-id="por-qué-nos-gusta">¿Por qué nos gusta?</h2>
 <ul>
-<li>Si se está trabajando en el panel <strong>console</strong> solamente es necesario presionar “Enter”.</li>
-<li>Si se está trabajando en un <strong>script</strong> es posible ejecutar los comandos presionando “Ctrl+Enter”, o haciendo clic en el botón <em>Run</em> en la parte derecha superior del panel de edición.</li>
+<li>Se ejecuta en todos los sistemas operativos principales: Windows, Mac Os, UNIX/Linux.</li>
+<li>Los <em>scripts</em> y los objetos de datos se pueden compartir sin problemas entre plataformas.</li>
+<li>No solamente permite realizar análisis estadístico, tambien es posible capturar información de páginas web, crear aplicaciones web, procesar texto, entre otras cosas.</li>
+<li>La comunidad que lo usa es muy amplia (= muchísima ayuda e información en internet).
+<ul>
+<li><a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a></li>
+<li><a href="https://r-universe.dev/search/">R-Universe</a></li>
+<li><a href="https://www.r-bloggers.com/2015/12/how-to-learn-r-2/">R-Bloggers</a></li>
+<li><a href="https://towardsdatascience.com/tagged/r">Towards Data Science</a></li>
+<li>Entre otros.</li>
+</ul></li>
+<li>Es muy versátil para la creación de gráficos.</li>
+<li>Tiene disponibles muchos paquetes para diferentes tipos de análisis.</li>
+<li>¡ES GRATIS!.</li>
 </ul>
 </section>
-<section id="actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes" class="level2">
-<h2 class="anchored" data-anchor-id="actualizar-r-si-ya-lo-tenías-instalado-y-los-paquetes">Actualizar R (si ya lo tenías instalado) y los paquetes</h2>
+<section id="particularmente-útil-para" class="level2">
+<h2 class="anchored" data-anchor-id="particularmente-útil-para">Particularmente útil para</h2>
+<ol type="1">
+<li>Manejar, combinar, limpiar y reorganizar datos.</li>
+<li>Análisis estadístico, álgebra matricial, modelado, estadística avanzada.</li>
+<li>Usar un entorno gráfico poderoso para explorar datos o para publicar.</li>
+<li>Trabajar de forma reproducible a partir de <em>scripts</em>.</li>
+</ol>
+</section>
+<section id="advertencias" class="level2">
+<h2 class="anchored" data-anchor-id="advertencias">Advertencias</h2>
+<ul>
+<li>La documentación a veces es muy técnica o muy compacta.</li>
+<li>No todo el código ha sido exhaustivamente testeado, es decir, no siempre hay garantías que las cosas funcionen.</li>
+<li>La curva de aprendizaje es más difícil que programas como SPSS o Minitab (frente a Python, Stata o SAS es similar).</li>
+</ul>
+</section>
+</section>
+<section id="paquetes" class="level1">
+<h1>Paquetes</h1>
+<p>Cuando varias funciones son desarrolladas con un objetivos similar se suelen agrupar en <em>paquetes</em>, los cuales son colaborativamente distribuidos de forma gratuita.</p>
+<p>Para utilizar las funciones de un paquete es necesario instalar este paquete primero usando <strong>install.packages()</strong> y luego cargarlo en nuestro ambiente de trabajo usando <strong>library()</strong>.</p>
+<ul>
+<li>Se instalan una vez y se llaman muchas veces.</li>
+<li><a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">Lista de paquetes del CRAN</a></li>
+<li><a href="https://www.bioconductor.org/packages/release/bioc/">Lista de paquetes de Bioconductor</a></li>
+<li><a href="https://rdrr.io/">rdrr.io</a></li>
+</ul>
+<section id="el-ecosistema-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="el-ecosistema-tidyverse">El ecosistema tidyverse</h2>
+<p><strong>Tidyverse</strong> es un conjunto de paquetes de R diseñados para hacer el análisis de datos más intuitivo y consistente. Estos paquetes comparten principios y sintaxis comunes, lo que permite trabajar de manera eficiente con datos estructurados. El núcleo de <code>tidyverse</code> incluye paquetes populares como:</p>
+<ul>
+<li><strong>ggplot2</strong>: Para visualización de datos.</li>
+<li><strong>dplyr</strong>: Para manipulación y transformación de datos.</li>
+<li><strong>tidyr</strong>: Para ordenar y reorganizar datos.</li>
+<li><strong>readr</strong>: Para leer datos en diferentes formatos.</li>
+<li><strong>tibble</strong>: Para trabajar con tablas de datos mejoradas.</li>
+<li><strong>stringr</strong>: Para manipulación de cadenas de caracteres.</li>
+<li><strong>purrr</strong>: Para trabajar con programación funcional.</li>
+</ul>
+<p>El enfoque principal de <code>tidyverse</code> es organizar los datos en un formato “ordenado” (tidy), donde cada variable es una columna, cada observación es una fila, y cada tipo de unidad observacional forma una tabla. Esto facilita tanto la manipulación como el análisis, haciendo que el flujo de trabajo sea más eficiente y claro.</p>
+<p><img src="data-tidy-table.png" class="img-fluid"></p>
+</section>
+<section id="visualización-usando-ggplot" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-usando-ggplot">Visualización usando ggplot</h2>
+<p><strong>ggplot2</strong> es un <strong>paquete específico</strong> dentro del ecosistema <code>tidyverse</code> para la visualización de datos en R. Está basado en la gramática de gráficos (grammer of graphics), lo que permite crear gráficos complejos a partir de componentes simples.</p>
+<p>Con <code>ggplot2</code>, es posible construir gráficos declarando los diferentes elementos que lo componen (ejes, datos, geometrías, capas, colores, etc.) y combinándolos de manera flexible. A diferencia de otros enfoques, en lugar de especificar un tipo de gráfico desde el principio, en <code>ggplot2</code> construyes los gráficos de manera incremental a través de capas.</p>
+<p>Las <strong>extensiones de ggplot2</strong> son paquetes adicionales que amplían la funcionalidad de <code>ggplot2</code>, permitiendo crear gráficos más complejos o personalizar las visualizaciones de manera más específica. Estas extensiones se construyen sobre la estructura básica de <code>ggplot2</code> y ofrecen nuevas geometrías, temas, escalas, y otras características.</p>
+<p>Algunas de las extensiones más populares son:</p>
+<ul>
+<li><p><strong>ggthemes</strong>: Proporciona una amplia variedad de temas predefinidos para personalizar el estilo de los gráficos, como temas inspirados en periódicos o plataformas como Excel o Stata.</p></li>
+<li><p><strong>ggplotly</strong>: Convierte gráficos de <code>ggplot2</code> en gráficos interactivos utilizando la librería <code>plotly</code>. Ideal para visualizaciones dinámicas.</p></li>
+<li><p><strong>gghighlight</strong>: Permite resaltar ciertas observaciones en un gráfico basado en una condición, sin necesidad de manipular manualmente los datos.</p></li>
+<li><p><strong>gganimate</strong>: Añade una dimensión temporal a los gráficos, creando animaciones para mostrar cómo los datos cambian con el tiempo.</p></li>
+</ul>
+</section>
+<section id="shiny" class="level2">
+<h2 class="anchored" data-anchor-id="shiny">Shiny</h2>
+<p><strong>Shiny</strong> es un paquete de R que permite construir aplicaciones web interactivas de manera sencilla, sin necesidad de tener conocimientos avanzados de desarrollo web. Fue creado por <strong>RStudio</strong> y se utiliza principalmente para compartir análisis de datos y visualizaciones interactivas con otros usuarios a través de un navegador web.</p>
+<p>Shiny combina el poder de R para análisis estadístico y visualización con herramientas de diseño web (HTML, CSS, y JavaScript), lo que permite crear aplicaciones dinámicas que responden a entradas del usuario, actualizando gráficos, tablas y modelos en tiempo real. Sus características principales son:</p>
+<ul>
+<li><p><strong>Interactividad</strong>: Los usuarios pueden modificar la entrada (input) y ver cambios instantáneos en la salida (output), como gráficos, tablas, o resultados estadísticos.</p></li>
+<li><p><strong>Flexibilidad</strong>: Permite integrar elementos HTML, CSS y JavaScript para mejorar la apariencia y funcionalidad de las aplicaciones.</p></li>
+<li><p><strong>Servidor y UI</strong>: Las aplicaciones en Shiny se estructuran en dos partes principales:</p>
+<ul>
+<li><p><strong>UI (User Interface)</strong>: Define el diseño de la interfaz que el usuario ve, como botones, campos de entrada, menús desplegables, etc.</p></li>
+<li><p><strong>Server</strong>: Contiene la lógica y el procesamiento que ocurre cuando el usuario interactúa con la interfaz.</p></li>
+</ul></li>
+</ul>
+<p>Shiny es ampliamente utilizado en ciencia de datos para crear dashboards, herramientas de visualización y aplicaciones de análisis interactivo, y permite compartir análisis de manera efectiva con personas que no necesariamente conocen R.</p>
+</section>
+<section id="reportería" class="level2">
+<h2 class="anchored" data-anchor-id="reportería">Reportería</h2>
+<p>Los paquetes <strong><code>knitr</code></strong>, <strong><code>rmarkdown</code></strong> y <strong><code>quarto</code></strong> son herramientas complementarias en el ecosistema R para la creación de documentos reproducibles y la generación de informes. Cada uno de estos paquetes tiene una función específica, pero a menudo se utilizan juntos para producir documentos de alta calidad.</p>
+<section id="knitr" class="level3">
+<h3 class="anchored" data-anchor-id="knitr">knitr</h3>
+<p><strong><code>knitr</code></strong> se utiliza para integrar código R dentro de documentos de texto, permitiendo la generación de informes dinámicos. Se encarga de ejecutar el código R y mostrar los resultados (tablas, gráficos, etc.) directamente en el documento. <code>knitr</code> convierte los bloques de código R en resultados formateados y los inserta en el documento de salida, facilitando la creación de informes reproducibles.</p>
+<ul>
+<li><strong>Características</strong>:
+<ul>
+<li>Ejecución de código R y generación de resultados.</li>
+<li>Inserción de resultados en documentos de texto.</li>
+<li>Soporte para diversos formatos de salida a través de paquetes complementarios (como <code>rmarkdown</code>).</li>
+</ul></li>
+</ul>
+</section>
+<section id="rmarkdown" class="level3">
+<h3 class="anchored" data-anchor-id="rmarkdown">rmarkdown</h3>
+<p><strong><code>rmarkdown</code></strong> amplía la funcionalidad de <code>knitr</code> permitiendo la creación de documentos dinámicos y de presentación en varios formatos, como HTML, PDF y Word. Utiliza Markdown para estructurar el contenido del documento, lo que facilita la combinación de texto, código y resultados en un formato de salida estéticamente agradable.</p>
+<ul>
+<li><strong>Características</strong>:
+<ul>
+<li>Soporte para múltiples formatos de salida: HTML, PDF, Word.</li>
+<li>Uso de Markdown para la estructuración del texto.</li>
+<li>Integración con <code>knitr</code> para ejecutar y mostrar código R.</li>
+<li>Opciones avanzadas para personalizar la apariencia y el contenido del documento.</li>
+</ul></li>
+</ul>
+</section>
+<section id="quarto" class="level3">
+<h3 class="anchored" data-anchor-id="quarto">quarto</h3>
+<p><strong><code>quarto</code></strong> es una herramienta más reciente que ofrece una alternativa moderna y flexible a <code>rmarkdown</code>. Está diseñada para crear documentos reproducibles, informes y presentaciones, y se basa en un formato de archivo y un flujo de trabajo similar a <code>rmarkdown</code>, pero con mejoras en la funcionalidad y la integración con otros sistemas.</p>
+<ul>
+<li><strong>Características</strong>:
+<ul>
+<li>Soporte para la creación de documentos, presentaciones, libros y sitios web.</li>
+<li>Mejora en la compatibilidad con varios lenguajes de programación además de R, como Python.</li>
+<li>Facilita la integración de contenido y la creación de documentos reproducibles en un formato más moderno.</li>
+<li>Permite la creación de informes interactivos y contenido dinámico.</li>
+</ul></li>
+</ul>
+<p>Estos paquetes se utilizan en conjunto para crear documentos reproducibles que combinan texto, código y resultados en un formato de salida atractivo y profesional. Mientras que <code>knitr</code> y <code>rmarkdown</code> han sido herramientas establecidas durante años, <code>quarto</code> representa una evolución en la creación de documentos dinámicos y reproducibles, con un enfoque más amplio y flexible.</p>
+<ul>
+<li><a href="https://yihui.org/knitr/">Elegant, flexible, and fast dynamic report generation with R</a></li>
+<li><a href="https://rmarkdown.rstudio.com/">RMarkdwon</a></li>
+</ul>
+<p><img src="markdown-example.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="knit.png" class="img-fluid" style="width:70.0%"></p>
+</section>
+</section>
+</section>
+<section id="rstudio" class="level1">
+<h1>RStudio</h1>
+<p><strong>RStudio</strong> es un entorno de desarrollo integrado (IDE) para el lenguaje de programación R, diseñado para facilitar la escritura de código, la visualización de datos y la creación de informes reproducibles. Ofrece una serie de herramientas y características que mejoran la productividad y la eficiencia en el trabajo con R. RStudio es desarrollado por <strong>Posit</strong>.</p>
+<p><strong>Posit</strong> es una empresa social que desarrolla herramientas de código abierto para el análisis de datos y la ciencia de datos. Desde su cambio de nombre de RStudio a Posit en 2023, la empresa ha seguido comprometida con la misión de mejorar la accesibilidad y el impacto del análisis de datos a través de software libre y colaborativo.</p>
+<section id="proyectos-de-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="proyectos-de-rstudio">Proyectos de RStudio</h2>
+<p>En RStudio, los <strong>proyectos</strong> son una característica que ayuda a organizar y gestionar el trabajo de forma estructurada y eficiente. Un proyecto en RStudio es un contenedor para archivos y configuraciones que se usan en un análisis o en una investigación específica. Aquí están algunas de las principales características y ventajas de utilizar proyectos en RStudio:</p>
+<p>Características de los proyectos en RStudio:</p>
+<ul>
+<li><p><strong>Aislamiento del Entorno</strong>: Cada proyecto tiene su propio entorno de trabajo, con sus propios archivos, paquetes y configuraciones. Esto evita conflictos entre diferentes proyectos y facilita el manejo de múltiples análisis simultáneamente.</p></li>
+<li><p><strong>Directorio de Trabajo</strong>: Cuando se abre un proyecto, RStudio establece automáticamente el directorio de trabajo en la carpeta del proyecto. Esto significa que todos los archivos y datos se referencian con rutas relativas al proyecto, simplificando la gestión de archivos.</p></li>
+<li><p><strong>Configuración del Proyecto</strong>: Los proyectos guardan configuraciones específicas, como opciones de R y ajustes de paquetes. Esto incluye la posibilidad de establecer opciones como la versión de R, el directorio de datos, y configuraciones personalizadas.</p></li>
+<li><p><strong>Historial y Scripts</strong>: RStudio mantiene el historial de comandos y los scripts utilizados en cada proyecto, lo que permite una fácil recuperación y seguimiento del trabajo realizado.</p></li>
+<li><p><strong>Archivos de Proyecto</strong>: Los proyectos suelen incluir un archivo <code>.Rproj</code>, que almacena la configuración del proyecto y ayuda a RStudio a identificar y abrir el proyecto correctamente. También puedes incluir otros archivos como scripts, datos, documentos, entre otros.</p></li>
+<li><p><strong>Integración con Control de Versiones</strong>: Los proyectos pueden integrarse con sistemas de control de versiones como Git, facilitando la gestión de versiones y la colaboración en proyectos de análisis de datos.</p></li>
+</ul>
+</section>
+<section id="buenas-prácticas" class="level2">
+<h2 class="anchored" data-anchor-id="buenas-prácticas">Buenas prácticas</h2>
+<p>Al trabajar con R y en la programación en general, es importante seguir ciertas buenas prácticas para mantener el código limpio, eficiente y fácil de mantener. Aquí algunas recomendaciones clave:</p>
+<section id="usar-scripts" class="level3">
+<h3 class="anchored" data-anchor-id="usar-scripts">Usar scripts</h3>
+<ul>
+<li><strong>Uso de scripts</strong>: Aunque es común ejecutar código directamente en la consola durante las primeras interacciones con R, es una buena práctica guardar el código en <strong>scripts</strong>. Los scripts permiten documentar y reutilizar el código de manera más organizada.
+<ul>
+<li><strong>Archivos <code>.r</code></strong>: Son los scripts de R tradicionales.</li>
+<li><strong>Archivos <code>.rmd</code></strong>: Archivos de R Markdown que combinan texto y código en un solo documento, permitiendo generar informes dinámicos.</li>
+<li><strong>Archivos <code>.qmd</code></strong>: Archivos de Quarto que también combinan texto y código, pero con una estructura más moderna y flexible.</li>
+</ul></li>
+</ul>
+</section>
+<section id="manejo-de-mensajes-de-advertencia-y-errores" class="level3">
+<h3 class="anchored" data-anchor-id="manejo-de-mensajes-de-advertencia-y-errores">Manejo de mensajes de advertencia y errores</h3>
+<ul>
+<li><strong>Copiar y buscar</strong>: Si encuentras mensajes de advertencia (<code>warning</code>) o errores (<code>error</code>), copia el mensaje y realiza una búsqueda en Google, ChatGPT, o Gemini para encontrar soluciones. Estos recursos pueden ofrecer soluciones a problemas comunes y explicaciones detalladas.</li>
+</ul>
+</section>
+<section id="comentar-el-código" class="level3">
+<h3 class="anchored" data-anchor-id="comentar-el-código">Comentar el código</h3>
+<ul>
+<li><strong>Uso de comentarios</strong>: Añadir comentarios al código es fundamental para la comprensión y mantenimiento. Los comentarios se insertan anteponiendo el símbolo <code>#</code> en la línea deseada.
+<ul>
+<li><strong>Herramientas de asistencia</strong>: Utiliza herramientas como GitHub Copilot para obtener sugerencias de comentarios y documentación.</li>
+<li><strong>Atajo de teclado</strong>: En RStudio, puedes usar el atajo <code>Ctrl</code> + <code>Shift</code> + <code>R</code> (Windows/Linux) o <code>Cmd</code> + <code>Shift</code> + <code>R</code> (Mac) para comentar o descomentar líneas de código de forma rápida.</li>
+</ul></li>
+</ul>
+</section>
+<section id="consultar-la-ayuda-en-r" class="level3">
+<h3 class="anchored" data-anchor-id="consultar-la-ayuda-en-r">Consultar la ayuda en R</h3>
+<ul>
+<li><strong>Uso de funciones de ayuda</strong>: R ofrece varias maneras de acceder a la documentación y ayuda sobre funciones y paquetes:</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar el paquete installr</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"installr"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el paquete</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(installr) </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Comando para actualizar R</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">updateR</span>()</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Comando para actualizar paquetes</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">checkBuilt =</span> <span class="cn">TRUE</span>, <span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Consulta la ayuda de la función específica</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>?function_name</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Consulta ayuda sobre un término o función con una búsqueda más amplia</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>??search_term</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Por ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>?mean          <span class="co"># Muestra la documentación para la función mean</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>??mean          <span class="co"># Realiza una búsqueda sobre el término "mean" en la documentación</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Estas prácticas nos ayudan a mantener un flujo de trabajo eficiente y organizado, facilitando tanto el desarrollo como el mantenimiento de proyectos en R.</p>
+</section>
+</section>
+<section id="creación-de-nuestro-primer-proyecto" class="level2">
+<h2 class="anchored" data-anchor-id="creación-de-nuestro-primer-proyecto">Creación de nuestro primer proyecto</h2>
+<ol type="1">
+<li>Abrir RStudio.</li>
+<li>Clic en <strong>File &gt; New Project</strong>
+<ul>
+<li><strong>New Directory &gt; New Project</strong> si queremos crear una nueva carpeta en nuestro equipo.</li>
+<li><strong>Existing Directory</strong> si queremos alojar nuestro proyecto en una carpeta ya creada.</li>
+</ul></li>
+<li>Una vez creado el proyecto, podemos verificar que la ventana del programa se renombra y apunta a la carpeta donde está alojado.</li>
+<li>Clic en <strong>File &gt; New File &gt; R Script</strong>. En la ventana que se carga ya podemos empezar a ejecutar nuestro código.</li>
+<li>Descargamos <a href="02_recursos/informe.zip">la carpeta</a> con algunos recursos para informes automáticos y los llevamos a nuestra carpeta de proyecto.</li>
+<li>Configuramos RStudio para que use la carpeta de proyecto como directorio principal.</li>
+<li>Iniciamos la programación.</li>
+</ol>
+<p><img src="project-tree.png" class="img-fluid" style="width:70.0%"></p>
 
 
 </section>

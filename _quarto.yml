@@ -13,12 +13,16 @@ project:
     - "unidad_02.qmd"
     - "unidad_03.qmd"
     - "unidad_04.qmd"
+    - "program_00_intro.qmd"
     - "program_00_setup.qmd"
     - "program_01_loading-data.qmd"
     - "program_02_basics.qmd"
     - "program_03_tidy.qmd"
     - "program_04_eda.qmd"
     - "program_05_asociacion.qmd"
+    - "macn_00.qmd"
+    - "macn_01.qmd"
+    - "macn_02.qmd"
 
 website:
   title: "Data Science Intro"
@@ -29,10 +33,8 @@ website:
         href: index.qmd
       - text: "Programación"
         menu: 
-          - text: "Setup"
-            href: program_00_setup.qmd
-          - text: "Lectura de datos"
-            href: program_01_loading-data.qmd
+          - text: "Intro"
+            href: program_00_intro.qmd
           - text: "Hola R"
             href: program_02_basics.qmd
           - text: "Limpieza de datos"
@@ -41,6 +43,10 @@ website:
             href: program_04_eda.qmd
           - text: "Asociación"
             href: program_05_asociacion.qmd
+          - text: "Setup"
+            href: program_00_setup.qmd
+          - text: "Lectura de datos"
+            href: program_01_loading-data.qmd
       - text: "Data-vis"
         menu:
           - text: "Presentación"
@@ -53,6 +59,14 @@ website:
             href: data-vis_03_matplotlib.qmd
           - text: "Python seaborn"
             href: data-vis_04_seaborn.qmd
+      - text: "Aprendizaje no supervisado"
+        menu:
+          - text: "0"
+            href: macn_00.qmd
+          - text: "1"
+            href: macn_01.qmd
+          - text: "2"
+            href: macn_02.qmd
       - text: "Taller"
         menu:
           - text: "Presentación"
