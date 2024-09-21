@@ -60,7 +60,7 @@ Download the [Datacamp matplotlib cheat sheet](https://res.cloudinary.com/dyd911
 ![Datacamp matplotlib cheat sheet](matplotlib-datacamp-cheat-sheet.png)
 
 
-## Conecptos básicos
+## Conceptos básicos
 
 
 ```{python}

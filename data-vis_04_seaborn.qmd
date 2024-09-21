@@ -1,6 +1,6 @@
 ---
 title: "Data-vis"
-subtitle: "Introducción a matplotlib"
+subtitle: "Introducción a seaborn"
 format: 
   html:
     toc: true
