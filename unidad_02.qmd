@@ -13,6 +13,7 @@ execute:
   output: false
   warning: false
   error: false
+  cache: true
 
 ---
 

@@ -8,6 +8,7 @@ project:
     - "data-vis_02_ggplot.qmd"
     - "data-vis_03_matplotlib.qmd"
     - "data-vis_04_seaborn.qmd"
+    - "data-vis_05-gwalk.qmd"
     - "unidad_00.qmd"
     - "unidad_01.qmd"
     - "unidad_02.qmd"
@@ -59,6 +60,8 @@ website:
             href: data-vis_03_matplotlib.qmd
           - text: "Python seaborn"
             href: data-vis_04_seaborn.qmd
+          - text: "GWalkr"
+            href: data-vis_05-gwalk.qmd
       - text: "Aprendizaje no supervisado"
         menu:
           - text: "0"

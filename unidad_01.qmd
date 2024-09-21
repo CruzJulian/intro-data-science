@@ -13,7 +13,7 @@ execute:
   output: false
   warning: false
   error: false
-
+  cache: true
 ---
 
 
@@ -22,8 +22,8 @@ execute:
 
 library("reticulate")
 # reticulate::install_miniconda()
-use_python(file.path(miniconda_path(), "envs/r-reticulate/python.exe"))
-# use_python(file.path(miniconda_path(), "bin", "python3.11"))
+# use_python(file.path(miniconda_path(), "envs/r-reticulate/python.exe"))
+use_python(file.path(miniconda_path(), "bin", "python3.11"))
 # py_install("pandas")
 # py_install("matplotlib")
 # py_install("seaborn")

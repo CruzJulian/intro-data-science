@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science Intro - Programación básica en R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Science Intro</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programación" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Programación</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-programación">    
+        <li>
+    <a class="dropdown-item" href="./program_00_intro.html">
+ <span class="dropdown-text">Intro</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_02_basics.html">
+ <span class="dropdown-text">Hola R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_03_tidy.html">
+ <span class="dropdown-text">Limpieza de datos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_04_eda.html">
+ <span class="dropdown-text">Análisis exploratorio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_05_asociacion.html">
+ <span class="dropdown-text">Asociación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_00_setup.html">
+ <span class="dropdown-text">Setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_01_loading-data.html">
+ <span class="dropdown-text">Lectura de datos</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-vis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data-vis</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-vis">    
+        <li>
+    <a class="dropdown-item" href="./data-vis_00_intro.html">
+ <span class="dropdown-text">Presentación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_01_r-graphics.html">
+ <span class="dropdown-text">R base</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_02_ggplot.html">
+ <span class="dropdown-text">R ggplot</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_03_matplotlib.html">
+ <span class="dropdown-text">Python matplotlib</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_04_seaborn.html">
+ <span class="dropdown-text">Python seaborn</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-vis_05-gwalk.html">
+ <span class="dropdown-text">GWalkr</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aprendizaje-no-supervisado" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Aprendizaje no supervisado</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-aprendizaje-no-supervisado">    
+        <li>
+    <a class="dropdown-item" href="./macn_00.html">
+ <span class="dropdown-text">0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./macn_01.html">
+ <span class="dropdown-text">1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./macn_02.html">
+ <span class="dropdown-text">2</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-taller" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Taller</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-taller">    
+        <li>
+    <a class="dropdown-item" href="./unidad_00.html">
+ <span class="dropdown-text">Presentación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_01.html">
+ <span class="dropdown-text">Unidad 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_02.html">
+ <span class="dropdown-text">Unidad 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_03.html">
+ <span class="dropdown-text">Unidad 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unidad_04.html">
+ <span class="dropdown-text">Unidad 4</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenido</h2>
+   
+  <ul>
+  <li><a href="#datos-y-variables" id="toc-datos-y-variables" class="nav-link active" data-scroll-target="#datos-y-variables">Datos y variables</a>
+  <ul class="collapse">
+  <li><a href="#variables-y-datos" id="toc-variables-y-datos" class="nav-link" data-scroll-target="#variables-y-datos">Variables y datos</a>
+  <ul class="collapse">
+  <li><a href="#asignación" id="toc-asignación" class="nav-link" data-scroll-target="#asignación">Asignación</a></li>
+  </ul></li>
+  <li><a href="#tipos-de-variables-y-operaciones" id="toc-tipos-de-variables-y-operaciones" class="nav-link" data-scroll-target="#tipos-de-variables-y-operaciones">Tipos de variables y operaciones</a>
+  <ul class="collapse">
+  <li><a href="#enfoque-teórico" id="toc-enfoque-teórico" class="nav-link" data-scroll-target="#enfoque-teórico">Enfoque teórico</a></li>
+  <li><a href="#enfoque-desde-la-programación" id="toc-enfoque-desde-la-programación" class="nav-link" data-scroll-target="#enfoque-desde-la-programación">Enfoque desde la programación</a></li>
+  </ul></li>
+  <li><a href="#tipos-de-objetos-en-r" id="toc-tipos-de-objetos-en-r" class="nav-link" data-scroll-target="#tipos-de-objetos-en-r">Tipos de objetos en R</a>
+  <ul class="collapse">
+  <li><a href="#cadenas-de-caracteres" id="toc-cadenas-de-caracteres" class="nav-link" data-scroll-target="#cadenas-de-caracteres">Cadenas de caracteres</a></li>
+  <li><a href="#booleanos-lógicos" id="toc-booleanos-lógicos" class="nav-link" data-scroll-target="#booleanos-lógicos">Booleanos (lógicos)</a></li>
+  <li><a href="#numéricos" id="toc-numéricos" class="nav-link" data-scroll-target="#numéricos">Numéricos</a></li>
+  <li><a href="#fechas" id="toc-fechas" class="nav-link" data-scroll-target="#fechas">Fechas</a></li>
+  <li><a href="#valores-especiales-en-r" id="toc-valores-especiales-en-r" class="nav-link" data-scroll-target="#valores-especiales-en-r">Valores especiales en R</a></li>
+  <li><a href="#identificación-y-conversión-de-tipos-en-r" id="toc-identificación-y-conversión-de-tipos-en-r" class="nav-link" data-scroll-target="#identificación-y-conversión-de-tipos-en-r">Identificación y conversión de tipos en R</a></li>
+  <li><a href="#conversiones" id="toc-conversiones" class="nav-link" data-scroll-target="#conversiones">Conversiones</a></li>
+  </ul></li>
+  <li><a href="#operaciones" id="toc-operaciones" class="nav-link" data-scroll-target="#operaciones">Operaciones</a>
+  <ul class="collapse">
+  <li><a href="#operadores-matemáticos" id="toc-operadores-matemáticos" class="nav-link" data-scroll-target="#operadores-matemáticos">Operadores matemáticos</a></li>
+  <li><a href="#operadores-para-comparación" id="toc-operadores-para-comparación" class="nav-link" data-scroll-target="#operadores-para-comparación">Operadores para comparación</a></li>
+  <li><a href="#operadores-lógicos" id="toc-operadores-lógicos" class="nav-link" data-scroll-target="#operadores-lógicos">Operadores lógicos</a></li>
+  <li><a href="#orden-de-las-operaciones" id="toc-orden-de-las-operaciones" class="nav-link" data-scroll-target="#orden-de-las-operaciones">Orden de las operaciones</a></li>
+  </ul></li>
+  <li><a href="#objetos-variables" id="toc-objetos-variables" class="nav-link" data-scroll-target="#objetos-variables">Objetos (variables)</a>
+  <ul class="collapse">
+  <li><a href="#vectores-matrices-arreglos-listas-y-tablas" id="toc-vectores-matrices-arreglos-listas-y-tablas" class="nav-link" data-scroll-target="#vectores-matrices-arreglos-listas-y-tablas">Vectores, matrices, arreglos, listas y tablas</a></li>
+  <li><a href="#un-tipo-especial-de-variables-factores" id="toc-un-tipo-especial-de-variables-factores" class="nav-link" data-scroll-target="#un-tipo-especial-de-variables-factores">Un tipo especial de variables: factores</a></li>
+  <li><a href="#vectores" id="toc-vectores" class="nav-link" data-scroll-target="#vectores">Vectores</a></li>
+  <li><a href="#factores" id="toc-factores" class="nav-link" data-scroll-target="#factores">Factores</a></li>
+  <li><a href="#funciones-sobre-vectores" id="toc-funciones-sobre-vectores" class="nav-link" data-scroll-target="#funciones-sobre-vectores">Funciones sobre vectores</a></li>
+  <li><a href="#operaciones-entre-vectores" id="toc-operaciones-entre-vectores" class="nav-link" data-scroll-target="#operaciones-entre-vectores">Operaciones entre vectores</a></li>
+  <li><a href="#operaciones-entre-vectores-conjuntos" id="toc-operaciones-entre-vectores-conjuntos" class="nav-link" data-scroll-target="#operaciones-entre-vectores-conjuntos">Operaciones entre vectores (conjuntos)</a></li>
+  <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices">Matrices</a></li>
+  <li><a href="#operaciones-sobre-matrices" id="toc-operaciones-sobre-matrices" class="nav-link" data-scroll-target="#operaciones-sobre-matrices">Operaciones sobre matrices</a></li>
+  <li><a href="#funciones-sobre-matrices" id="toc-funciones-sobre-matrices" class="nav-link" data-scroll-target="#funciones-sobre-matrices">Funciones sobre matrices</a></li>
+  <li><a href="#tablas" id="toc-tablas" class="nav-link" data-scroll-target="#tablas">Tablas</a></li>
+  <li><a href="#extracción-." id="toc-extracción-." class="nav-link" data-scroll-target="#extracción-.">Extracción [.</a></li>
+  <li><a href="#ejemplo-prueba-t" id="toc-ejemplo-prueba-t" class="nav-link" data-scroll-target="#ejemplo-prueba-t">Ejemplo: Prueba T</a></li>
+  <li><a href="#ejemplo-modelo-de-regresión-lineal" id="toc-ejemplo-modelo-de-regresión-lineal" class="nav-link" data-scroll-target="#ejemplo-modelo-de-regresión-lineal">Ejemplo: Modelo de regresión lineal</a></li>
+  </ul></li>
+  <li><a href="#algoritmos" id="toc-algoritmos" class="nav-link" data-scroll-target="#algoritmos">Algoritmos</a></li>
+  <li><a href="#control-flow" id="toc-control-flow" class="nav-link" data-scroll-target="#control-flow">Control flow</a>
+  <ul class="collapse">
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops">Loops</a></li>
+  </ul></li>
+  <li><a href="#for" id="toc-for" class="nav-link" data-scroll-target="#for">for</a></li>
+  <li><a href="#while" id="toc-while" class="nav-link" data-scroll-target="#while">while</a></li>
+  <li><a href="#if-else" id="toc-if-else" class="nav-link" data-scroll-target="#if-else">if, else</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Programación básica en R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="datos-y-variables" class="level1">
+<h1>Datos y variables</h1>
+<section id="variables-y-datos" class="level2">
+<h2 class="anchored" data-anchor-id="variables-y-datos">Variables y datos</h2>
+<ul>
+<li><strong>Variables</strong>: característica observable o un aspecto discernible en un objeto de estudio, que puede adoptar diferentes valores o expresarse en varias categorías.</li>
+<li><strong>Dato</strong>: realización, representación o valor observado de una variable.</li>
+</ul>
+<section id="asignación" class="level3">
+<h3 class="anchored" data-anchor-id="asignación">Asignación</h3>
+<p>En R, la <strong>asignación</strong> se refiere al proceso de almacenar un valor o conjunto de valores en una variable. Esto permite reutilizar esos valores más adelante en el código. La asignación en R se realiza mediante los operadores <code>&lt;-</code>, <code>=</code> o <code>-&gt;</code>. El operador más común y recomendado en R es <code>&lt;-</code> tiene un atajo en Windows/Linux <code>Alt</code> + <code>-</code> y en Mac <code>Option</code> + <code>-</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Una forma de hacer asignación</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>objeto <span class="ot">&lt;-</span> <span class="st">"valor"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Otra forma</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>objeto <span class="ot">=</span> <span class="st">"valor"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Otro forma</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">"valor"</span> <span class="ot">-&gt;</span> objeto</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplos</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>pais <span class="ot">=</span> <span class="st">"Colombia"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>departamentos <span class="ot">=</span> <span class="dv">32</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>trm <span class="ot">=</span> <span class="fl">4000.5</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tenemos_mar <span class="ot">=</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="tipos-de-variables-y-operaciones" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-de-variables-y-operaciones">Tipos de variables y operaciones</h2>
+<section id="enfoque-teórico" class="level3">
+<h3 class="anchored" data-anchor-id="enfoque-teórico">Enfoque teórico</h3>
+<p>Una apriximación muy completa se encuentra en <a href="https://dialnet.unirioja.es/descarga/articulo/4942056.pdf">este material</a>. En resumen</p>
+<p>En estadística, las variables se pueden clasificar de distintas maneras dependiendo de su naturaleza y de los valores que pueden tomar. Aquí te detallo los tipos más comunes:</p>
+<section id="según-la-naturaleza-de-los-datos" class="level4">
+<h4 class="anchored" data-anchor-id="según-la-naturaleza-de-los-datos">Según la naturaleza de los datos:</h4>
+<p><strong>Variables cualitativas (categóricas)</strong> Son aquellas que expresan cualidades o atributos y no se pueden medir numéricamente de manera directa. Se clasifican en:</p>
+<ul>
+<li><p><strong>Nominales</strong>: No tienen un orden natural, simplemente diferencian categorías. Ejemplos: color de ojos (azul, verde, marrón), estado civil (soltero, casado).</p></li>
+<li><p><strong>Ordinales</strong>: Tienen un orden o jerarquía, pero las diferencias entre categorías no son numéricas. Ejemplos: nivel educativo (primaria, secundaria, universidad), nivel de satisfacción (bajo, medio, alto).</p></li>
+</ul>
+<p><strong>Variables cuantitativas (numéricas)</strong> Son aquellas que se pueden medir numéricamente y permiten realizar operaciones matemáticas. Se dividen en:</p>
+<ul>
+<li><p><strong>Discretas</strong>: Solo toman valores enteros y finitos. Son el resultado de un conteo. Ejemplos: número de hijos, número de autos en un estacionamiento.</p></li>
+<li><p><strong>Continuas</strong>: Pueden tomar cualquier valor dentro de un intervalo en la escala de medición. Generalmente son el resultado de una medición. Ejemplos: peso, altura, temperatura.</p></li>
+</ul>
+</section>
+<section id="según-el-nivel-de-medición" class="level4">
+<h4 class="anchored" data-anchor-id="según-el-nivel-de-medición">Según el nivel de medición:</h4>
+<p>En este caso tenemos cuatro categorías:</p>
+<ul>
+<li><p><strong>Escala nominal</strong>: Clasifica los datos en categorías sin ningún orden. Ejemplo: género (masculino, femenino).</p></li>
+<li><p><strong>Escala ordinal</strong>: Clasifica los datos en categorías que tienen un orden. Ejemplo: calificación de un servicio (bueno, regular, malo).</p></li>
+<li><p><strong>Escala de intervalo</strong>: Las diferencias entre valores tienen sentido, pero no existe un cero absoluto. Ejemplo: temperatura en grados Celsius.</p></li>
+<li><p><strong>Escala de razón</strong>: Tiene todas las propiedades de la escala de intervalo, pero con un cero absoluto, lo que permite interpretar razones. Ejemplo: peso, altura, tiempo.</p></li>
+</ul>
+<p><img src="var-classification.png" class="img-fluid" style="width:70.0%"></p>
+</section>
+</section>
+<section id="enfoque-desde-la-programación" class="level3">
+<h3 class="anchored" data-anchor-id="enfoque-desde-la-programación">Enfoque desde la programación</h3>
+<p>En R, existen varios tipos de datos fundamentales que sirven para almacenar y manipular información. A continuación, te enumero los principales:</p>
+<section id="objetos-atómicos" class="level4">
+<h4 class="anchored" data-anchor-id="objetos-atómicos">Objetos atómicos</h4>
+<p><strong>Cadenas de caracteres (character)</strong>: Son datos que almacenan texto. Se representan entre comillas dobles o simples. Ejemplo: <code>"Hola"</code> o <code>'Mundo'</code>.</p>
+<p><strong>Numéricos</strong>: Son datos numéricos y pueden ser tanto enteros como números con decimales. Ejemplos: - Entero: <code>5</code> - Decimal: <code>3.14</code></p>
+<p><strong>Enteros</strong>: Un subconjunto de los datos numéricos que almacena solo números enteros. Para declarar explícitamente un entero, se utiliza la función <code>as.integer()</code> o se añade una “L” después del número. Ejemplo: <code>4L</code>.</p>
+<p><strong>Lógicos (booleanos)</strong>: Tienen solo dos valores posibles: <code>TRUE</code> o <code>FALSE</code>. Estos son útiles en operaciones de comparación o condicionales.</p>
+</section>
+<section id="objetos-anidados" class="level4">
+<h4 class="anchored" data-anchor-id="objetos-anidados">Objetos anidados</h4>
+<p><strong>Factores</strong>: Se utilizan para variables categóricas, donde cada categoría tiene un valor asociado. Los factores se usan frecuentemente en análisis estadístico para variables cualitativas. Ejemplo: <code>factor(c("rojo", "azul", "verde"))</code>.</p>
+<p><strong>Vectores</strong>: Son secuencias de elementos del mismo tipo de datos (numéricos, lógicos, etc.). Ejemplo: <code>c(1, 2, 3)</code> o <code>c("a", "b", "c")</code>.</p>
+<p><strong>Listas</strong>: Pueden contener elementos de diferentes tipos de datos, como números, caracteres, o incluso otros vectores o listas. Ejemplo: <code>list(1, "a", TRUE)</code>.</p>
+<p><strong>Matrices</strong>: Son arreglos bidimensionales donde todos los elementos son del mismo tipo. Ejemplo: <code>matrix(1:6, nrow = 2, ncol = 3)</code>.</p>
+<p><strong>Arreglos (arrays)</strong>: Son como matrices, pero pueden tener más de dos dimensiones. Ejemplo: <code>array(1:12, dim = c(3, 2, 2))</code>.</p>
+<p><strong>Data frames</strong>: Son estructuras de datos tabulares que permiten almacenar columnas de diferentes tipos de datos (como una tabla en Excel). Ejemplo: <code>data.frame(nombre = c("Juan", "Ana"), edad = c(25, 30))</code>.</p>
+</section>
+<section id="objetos-especiales" class="level4">
+<h4 class="anchored" data-anchor-id="objetos-especiales">Objetos especiales</h4>
+<p><strong>NA (Not Available)</strong>: Representa un valor perdido o no disponible. Se utiliza comúnmente en datasets incompletos.</p>
+</section>
+</section>
+</section>
+<section id="tipos-de-objetos-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-de-objetos-en-r">Tipos de objetos en R</h2>
+<section id="cadenas-de-caracteres" class="level3">
+<h3 class="anchored" data-anchor-id="cadenas-de-caracteres">Cadenas de caracteres</h3>
+<p>En R, las <strong>cadenas de caracteres</strong> (<em>strings</em>) son secuencias de caracteres alfanuméricos que se almacenan en objetos. Estas cadenas se delimitan utilizando comillas dobles (<code>" "</code>) o simples (<code>' '</code>). Se utilizan para representar palabras, frases o cualquier tipo de texto. Por medio de la sintaxis, pueden ser manipuladas y procesadas; para ello se usan diversas funciones de R, como concatenación, búsqueda de patrones o modificación de contenido.</p>
+<p>Algunas funciones para trabajar con cadenas de caracteres son:</p>
+<ul>
+<li><code>toupper()</code> y <code>tolower()</code>: Convierte el texto a mayúsculas o minúsculas.</li>
+<li><code>nchar()</code>: Devuelve la longitud de la cadena.</li>
+<li><code>paste()</code>: Combina cadenas.</li>
+<li><code>substr()</code>: Extrae partes de una cadena.</li>
+</ul>
+<p>Las cadenas son un tipo de dato fundamental para trabajar con texto en análisis de datos y procesamiento de información textual.</p>
+<p>Adicionalmente, el paquete <code>stringr</code> del ecosistema <code>tidyverse</code> implementa funciones específicas para manipular y procesar cadenas de caracteres de manera más eficiente y consistente. Algunas de las funciones más comunes de <code>stringr</code> incluyen:</p>
+<ul>
+<li><code>str_length()</code>: Calcula la longitud de una cadena.</li>
+<li><code>str_c()</code>: Concatenar varias cadenas.</li>
+<li><code>str_sub()</code>: Extraer o reemplazar partes de una cadena según la posición.</li>
+<li><code>str_detect()</code>: Detectar la presencia de un patrón en una cadena.</li>
+<li><code>str_replace()</code> y <code>str_replace_all()</code>: Reemplazar partes de una cadena que coinciden con un patrón.</li>
+<li><code>str_split()</code>: Dividir una cadena en partes basadas en un delimitador.</li>
+<li><code>str_to_upper()</code> y <code>str_to_lower()</code>: Convertir cadenas a mayúsculas o minúsculas.</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi <span class="ot">&lt;-</span> <span class="st">"hola mundo"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(objeto_nombrado_por_mi)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(objeto_nombrado_por_mi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="booleanos-lógicos" class="level3">
+<h3 class="anchored" data-anchor-id="booleanos-lógicos">Booleanos (lógicos)</h3>
+<p>En R, los <strong>booleanos</strong> o <strong>lógicos</strong> son un tipo de dato fundamental que representa valores de verdad. Los objetos lógicos en R se utilizan para realizar operaciones de comparación y para controlar el flujo de ejecución en el código.</p>
+<ul>
+<li><p><strong>Valores posibles</strong>: Los valores lógicos en R son <code>TRUE</code> y <code>FALSE</code>.</p></li>
+<li><p><strong>Uso en comparaciones</strong>: Se utilizan para evaluar condiciones en expresiones lógicas, como en las declaraciones <code>if</code> y <code>while</code>.</p></li>
+<li><p><strong>Operadores lógicos</strong>:</p>
+<ul>
+<li><p><strong>AND lógico</strong>: <code>&amp;</code> (elemento a elemento) y <code>&amp;&amp;</code> (solo el primer elemento de cada vector).</p></li>
+<li><p><strong>OR lógico</strong>: <code>|</code> (elemento a elemento) y <code>||</code> (solo el primer elemento de cada vector).</p></li>
+<li><p><strong>NOT lógico</strong>: <code>!</code> (negación de una expresión lógica).</p></li>
+</ul></li>
+</ul>
+<p><strong>Creación de valores lógicos</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Operaciones lógicas básicas</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaciones</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">3</span>        <span class="co"># TRUE</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&lt;</span> <span class="dv">3</span>        <span class="co"># FALSE</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Operadores lógicos</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&amp;</span> y        <span class="co"># FALSE (AND lógico)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|</span> y        <span class="co"># TRUE (OR lógico)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>x           <span class="co"># FALSE (NOT lógico)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Uso en estructuras de control</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estructura if</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (age <span class="sc">&gt;=</span> <span class="dv">18</span>) {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Adulto"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Menor de edad"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Aplicaciones en funciones y subsetting</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting de vectores usando valores lógicos</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>logical_vector <span class="ot">&lt;-</span> numbers <span class="sc">&gt;</span> <span class="dv">3</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>numbers[logical_vector]  <span class="co"># Devuelve 4 y 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Los valores booleanos son esenciales para la toma de decisiones y el control de flujo en R, y son ampliamente utilizados en la programación para realizar operaciones condicionales y filtrado de datos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi <span class="ot">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># Siempre con mayúsculas</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(objeto_nombrado_por_mi)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(objeto_nombrado_por_mi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aquí está la explicación sobre los objetos numéricos en R y el código que has proporcionado:</p>
+</section>
+<section id="numéricos" class="level3">
+<h3 class="anchored" data-anchor-id="numéricos">Numéricos</h3>
+<p>En R, los objetos numéricos se utilizan para representar valores cuantitativos. Estos pueden ser enteros, decimales o de precisión simple. Los números en R son generalmente tratados como vectores y pueden ser de diferentes clases como <code>numeric</code> o <code>integer</code>.</p>
+<p>Ejemplos de código:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>pi</code></strong>: Este es un objeto predefinido en R que representa el número π (pi). Por defecto, <code>pi</code> es de tipo <code>numeric</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>objeto_nombrado_por_mi</code></strong>: Se crea un objeto numérico con el valor 0 y se asigna a la variable <code>objeto_nombrado_por_mi</code>. Por defecto, los números en R se consideran de tipo <code>numeric</code>, a menos que se especifique lo contrario.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>Mostrar el valor</strong>: Imprime el valor del objeto <code>objeto_nombrado_por_mi</code>, que es 0.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(objeto_nombrado_por_mi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>class()</code></strong>: Esta función muestra la clase del objeto <code>objeto_nombrado_por_mi</code>. Para un número simple, la clase será <code>numeric</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(objeto_nombrado_por_mi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>is.numeric()</code></strong>: Esta función verifica si el objeto <code>objeto_nombrado_por_mi</code> es de tipo <code>numeric</code>. En este caso, devolverá <code>TRUE</code> porque <code>objeto_nombrado_por_mi</code> es un número y, por defecto, los números en R son <code>numeric</code>.</li>
+</ul>
+<ol type="1">
+<li><strong><code>pi</code></strong>: Imprime el valor de π (aproximadamente 3.141593).</li>
+<li><strong><code>objeto_nombrado_por_mi</code></strong>: Imprime <code>0</code>.</li>
+<li><strong><code>class(objeto_nombrado_por_mi)</code></strong>: Imprime <code>numeric</code>.</li>
+<li><strong><code>is.numeric(objeto_nombrado_por_mi)</code></strong>: Imprime <code>TRUE</code>.</li>
+</ol>
+<ul>
+<li><strong>Numéricos en R</strong>: Los objetos numéricos son fundamentales para realizar cálculos y análisis cuantitativos. Los números en R se manejan principalmente como objetos <code>numeric</code>, que incluyen tanto enteros como números de punto flotante (decimales). Puedes verificar la clase y el tipo de un objeto numérico usando funciones como <code>class()</code> y <code>is.numeric()</code>.</li>
+</ul>
+<p>Aquí tienes una explicación sobre cómo manejar fechas en R y el código proporcionado:</p>
+</section>
+<section id="fechas" class="level3">
+<h3 class="anchored" data-anchor-id="fechas">Fechas</h3>
+<p>En R, las fechas pueden representarse y manipularse de manera efectiva utilizando objetos de la clase <code>Date</code>. Es importante seguir formatos estándar como ISO 8601 (YYYY-MM-DD) para asegurar la correcta interpretación de las fechas.</p>
+<p>Ejemplo de código:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi <span class="ot">&lt;-</span> <span class="st">"1969-07-21"</span> <span class="co"># Recomendado: ISO 8601 para fechas</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>objeto_nombrado_por_mi</code></strong>: Aquí se asigna una fecha en formato de cadena de texto a la variable <code>objeto_nombrado_por_mi</code>. Aunque esto es un formato legible, R no lo trata automáticamente como una fecha.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(objeto_nombrado_por_mi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>class()</code></strong>: Esta función muestra la clase del objeto <code>objeto_nombrado_por_mi</code>. En este caso, la clase será <code>character</code> porque la fecha está almacenada como una cadena de texto.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>otro_objeto_distinto <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(objeto_nombrado_por_mi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>as.Date()</code></strong>: Convierte el objeto de texto <code>objeto_nombrado_por_mi</code> a un objeto de clase <code>Date</code>. Esta función interpreta la cadena en formato “YYYY-MM-DD” y la convierte a un objeto de fecha.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(otro_objeto_distinto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>class()</code></strong>: Esta función muestra la clase del objeto <code>otro_objeto_distinto</code>. Después de la conversión con <code>as.Date()</code>, la clase será <code>Date</code>, que es el tipo adecuado para trabajar con fechas en R.</li>
+</ul>
+<ol type="1">
+<li><strong><code>objeto_nombrado_por_mi</code></strong>: Imprime <code>"1969-07-21"</code>, que es una cadena de texto.</li>
+<li><strong><code>class(objeto_nombrado_por_mi)</code></strong>: Imprime <code>"character"</code>, indicando que el objeto es una cadena de texto.</li>
+<li><strong><code>otro_objeto_distinto</code></strong>: Después de la conversión, imprime la fecha en formato de objeto <code>Date</code>, que será <code>1969-07-21</code>.</li>
+<li><strong><code>class(otro_objeto_distinto)</code></strong>: Imprime <code>"Date"</code>, indicando que el objeto es una fecha.</li>
+</ol>
+<ul>
+<li><strong>Representación de fechas en R</strong>: Las fechas en R deben ser representadas como objetos de clase <code>Date</code> para facilitar la manipulación y análisis. Las cadenas de texto que representan fechas deben ser convertidas a objetos <code>Date</code> utilizando la función <code>as.Date()</code>.</li>
+<li><strong>Formato ISO 8601</strong>: Usar el formato de fecha “YYYY-MM-DD” es una buena práctica porque es ampliamente reconocido y evita ambigüedades en la interpretación de las fechas.</li>
+</ul>
+<p>El paquete <strong><code>lubridate</code></strong> en R facilita el manejo y la manipulación de fechas y horas. Proporciona funciones intuitivas para trabajar con fechas y tiempos, que son más accesibles en comparación con las funciones base de R. A continuación, se detallan algunas de las funciones más comunes del paquete <code>lubridate</code> y un ejemplo de cómo usarlas.</p>
+<ul>
+<li><strong><code>ymd()</code></strong>: Convierte cadenas de texto en el formato “YYYY-MM-DD” a objetos de clase <code>Date</code>.</li>
+<li><strong><code>dmy()</code></strong>: Convierte cadenas de texto en el formato “DD-MM-YYYY” a objetos de clase <code>Date</code>.</li>
+<li><strong><code>mdy()</code></strong>: Convierte cadenas de texto en el formato “MM-DD-YYYY” a objetos de clase <code>Date</code>.</li>
+<li><strong><code>now()</code></strong>: Devuelve la fecha y hora actuales en formato <code>POSIXct</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el paquete</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir una fecha en formato de texto a objeto Date</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>fecha_texto <span class="ot">&lt;-</span> <span class="st">"21-07-1969"</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>fecha <span class="ot">&lt;-</span> <span class="fu">dmy</span>(fecha_texto)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fecha)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] "1969-07-21"</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener la fecha y hora actuales</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>ahora <span class="ot">&lt;-</span> <span class="fu">now</span>()</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ahora)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] "2024-09-12 10:30:00 UTC" (ejemplo)</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer componentes de fecha y hora</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(ahora)   <span class="co"># Año</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(ahora)  <span class="co"># Mes</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(ahora)    <span class="co"># Día</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(ahora)   <span class="co"># Hora</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aquí tienes una explicación sobre los valores especiales en R, incluyendo <code>NA</code>, <code>NULL</code> y otros valores especiales:</p>
+</section>
+<section id="valores-especiales-en-r" class="level3">
+<h3 class="anchored" data-anchor-id="valores-especiales-en-r">Valores especiales en R</h3>
+<p>R tiene varios valores especiales que se utilizan para representar datos ausentes, desconocidos o estructuras vacías. Estos incluyen <code>NA</code>, <code>NULL</code>, <code>NaN</code> y <code>Inf</code>.</p>
+<p><strong><code>NA</code> (Not Available)</strong></p>
+<p><code>NA</code> se utiliza para representar datos faltantes o valores desconocidos en un vector o data frame. Indica que un valor no está disponible o no es aplicable. Se usa en datos para señalar que una observación está ausente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi <span class="ot">&lt;-</span> <span class="cn">NA</span> <span class="co"># Siempre en mayúsculas NA</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] NA</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(objeto_nombrado_por_mi)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] "logical"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><code>NULL</code></strong></p>
+<p><code>NULL</code> representa la ausencia de un valor o un objeto. Es utilizado para indicar que una variable o un objeto no existe o no ha sido inicializado. Se usa para representar la ausencia de datos o el resultado de operaciones que no devuelven ningún valor.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: NULL</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(objeto_nombrado_por_mi)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] "NULL"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><code>NaN</code> (Not a Number)</strong></p>
+<p><code>NaN</code> representa un valor que no es un número y resulta de operaciones matemáticas no definidas, como dividir cero por cero. Se usa para representar valores que no son numéricos debido a operaciones inválidas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi <span class="ot">&lt;-</span> <span class="cn">NaN</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>objeto_nombrado_por_mi</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] NaN</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(objeto_nombrado_por_mi)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><code>Inf</code> y <code>-Inf</code> (Infinity)</strong></p>
+<p><code>Inf</code> y <code>-Inf</code> representan infinito positivo y negativo, respectivamente. Se resultan de operaciones como dividir un número positivo por cero o un número negativo por cero. Se usa para representar resultados infinitos en cálculos matemáticos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>positivo_infinito <span class="ot">&lt;-</span> <span class="cn">Inf</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>negativo_infinito <span class="ot">&lt;-</span> <span class="sc">-</span><span class="cn">Inf</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>positivo_infinito</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] Inf</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>negativo_infinito</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] -Inf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aquí tienes la explicación detallada sobre identificación y conversión de tipos en R, usando las funciones <code>is</code> y <code>as</code>:</p>
+</section>
+<section id="identificación-y-conversión-de-tipos-en-r" class="level3">
+<h3 class="anchored" data-anchor-id="identificación-y-conversión-de-tipos-en-r">Identificación y conversión de tipos en R</h3>
+<p>En R, es fundamental poder identificar el tipo de datos de un objeto y convertir entre diferentes tipos cuando sea necesario. Las funciones <code>is</code> permiten verificar el tipo de un objeto, mientras que las funciones <code>as</code> se utilizan para convertir entre tipos.</p>
+<p><strong><code>is</code>:</strong> Las funciones <code>is</code> permiten verificar la clase o tipo de un objeto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cualquier_cosa <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(cualquier_cosa)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: TRUE (porque `cualquier_cosa` es de tipo lógico)</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(cualquier_cosa)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: FALSE (porque `cualquier_cosa` es de tipo lógico, no numérico)</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(cualquier_cosa)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: FALSE (porque `cualquier_cosa` es de tipo lógico, no carácter)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>is.logical()</code></strong>: Verifica si el objeto es de tipo lógico (<code>logical</code>).</li>
+<li><strong><code>is.numeric()</code></strong>: Verifica si el objeto es de tipo numérico (<code>numeric</code>).</li>
+<li><strong><code>is.character()</code></strong>: Verifica si el objeto es de tipo carácter (<code>character</code>).</li>
+</ul>
+<p><strong><code>as</code>:</strong> Las funciones <code>as</code> permiten convertir objetos entre diferentes tipos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="ot">-&gt;</span> true_logico</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>true_logico</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] TRUE</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(true_logico)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] "logical"</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(true_logico) <span class="ot">-&gt;</span> true_char</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>true_char</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] "TRUE"</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(true_char)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>as.character()</code></strong>: Convierte el objeto a tipo carácter (<code>character</code>).</li>
+<li><strong><code>as.numeric()</code></strong>: Convierte el objeto a tipo numérico (<code>numeric</code>).</li>
+<li><strong><code>as.logical()</code></strong>: Convierte el objeto a tipo lógico binario (<code>logic</code>).</li>
+</ul>
+</section>
+<section id="conversiones" class="level3">
+<h3 class="anchored" data-anchor-id="conversiones">Conversiones</h3>
+<p>Aquí tenemos una tabla que describe las conversiones entre diferentes tipos de datos en R, junto con ejemplos para cada caso:</p>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Desde</th>
+<th>Hacia</th>
+<th>Ejemplo de Conversión</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>logical</strong></td>
+<td><strong>numeric</strong></td>
+<td><code>as.numeric(TRUE)</code> -&gt; <code>1</code> <br> <code>as.numeric(FALSE)</code> -&gt; <code>0</code></td>
+</tr>
+<tr class="even">
+<td><strong>logical</strong></td>
+<td><strong>character</strong></td>
+<td><code>as.character(TRUE)</code> -&gt; <code>"TRUE"</code> <br> <code>as.character(FALSE)</code> -&gt; <code>"FALSE"</code></td>
+</tr>
+<tr class="odd">
+<td><strong>numeric</strong></td>
+<td><strong>character</strong></td>
+<td><code>as.character(123)</code> -&gt; <code>"123"</code> <br> <code>as.character(4.56)</code> -&gt; <code>"4.56"</code></td>
+</tr>
+<tr class="even">
+<td><strong>numeric</strong></td>
+<td><strong>Date</strong></td>
+<td><code>as.Date(18993, origin = "1970-01-01")</code> -&gt; <code>"2024-09-12"</code> (días desde el 1 de enero de 1970)</td>
+</tr>
+<tr class="odd">
+<td><strong>character</strong></td>
+<td><strong>Date</strong></td>
+<td><code>as.Date("2024-09-12")</code> -&gt; <code>"2024-09-12"</code> (fecha en formato “YYYY-MM-DD”)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="operaciones" class="level2">
+<h2 class="anchored" data-anchor-id="operaciones">Operaciones</h2>
+<p>Las operaciones en R son funciones especiales que se comportan de manera particular en el lenguaje. Se caracterizan por las siguientes características:</p>
+<ul>
+<li><p><strong>Funciones Internas</strong>: Las operaciones matemáticas y lógicas en R están implementadas como funciones internas del lenguaje. Por ejemplo, <code>+</code>, <code>-</code>, <code>*</code>, y <code>/</code> son en realidad funciones que realizan operaciones sobre los operandos que se les pasan.</p></li>
+<li><p><strong>Sobrecarga de Operadores</strong>: R permite la sobrecarga de operadores, lo que significa que los operadores pueden ser redefinidos para trabajar con objetos de clases específicas. Esto es útil en programación orientada a objetos para definir cómo los operadores deben comportarse con los objetos de una clase personalizada.</p></li>
+<li><p><strong>Evaluación Vectorial</strong>: Las operaciones en R son vectorizadas, lo que significa que se pueden aplicar directamente a vectores y matrices sin necesidad de escribir bucles explícitos. Cada operación se realiza elemento a elemento en los vectores o matrices.</p></li>
+<li><p><strong>Precedencia de Operadores</strong>: R sigue un orden específico de precedencia para evaluar expresiones. Esto determina el orden en el que se realizan las operaciones matemáticas y lógicas dentro de una expresión.</p></li>
+<li><p><strong>Funciones Incorporadas</strong>: Además de los operadores básicos, R tiene una variedad de funciones incorporadas para realizar operaciones matemáticas avanzadas, estadísticas, y lógicas. Estas funciones permiten realizar cálculos complejos y análisis de datos de manera eficiente.</p></li>
+<li><p><strong>Manejo de Valores Especiales</strong>: Las operaciones en R manejan valores especiales como <code>NA</code>, <code>NaN</code>, <code>Inf</code>, y <code>-Inf</code> de manera específica. Por ejemplo, las operaciones que involucran <code>NA</code> suelen devolver <code>NA</code>, y las operaciones con <code>NaN</code> pueden resultar en <code>NaN</code>.</p></li>
+</ul>
+<section id="operadores-matemáticos" class="level3">
+<h3 class="anchored" data-anchor-id="operadores-matemáticos">Operadores matemáticos</h3>
+<p>R proporciona una serie de operadores matemáticos para realizar cálculos básicos y avanzados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>        <span class="co"># Suma</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">-</span> <span class="dv">2</span>        <span class="co"># Resta</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">4</span>        <span class="co"># Multiplicación</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">/</span> <span class="dv">4</span>        <span class="co"># División</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span> <span class="sc">%%</span> <span class="dv">2</span>       <span class="co"># Módulo (residuo de la división)</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">**</span> <span class="dv">3</span>       <span class="co"># Exponenciación (elevado a la potencia)</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">^</span> <span class="dv">3</span>        <span class="co"># Exponenciación (elevado a la potencia, también válido)</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>)      <span class="co"># Logaritmo natural (base e)</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>)     <span class="co"># Raíz cuadrada</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operadores-para-comparación" class="level3">
+<h3 class="anchored" data-anchor-id="operadores-para-comparación">Operadores para comparación</h3>
+<p>Estos operadores permiten comparar valores y devolver resultados lógicos (<code>TRUE</code> o <code>FALSE</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>        <span class="co"># Mayor que</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&lt;</span> <span class="dv">2</span>        <span class="co"># Menor que</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">==</span> <span class="dv">10</span>     <span class="co"># Igual a</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">==</span> <span class="dv">9</span>      <span class="co"># No igual a</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">!=</span> <span class="dv">9</span>      <span class="co"># Diferente de</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">&gt;=</span> <span class="dv">10</span>     <span class="co"># Mayor o igual que</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">&lt;=</span> <span class="dv">8</span>      <span class="co"># Menor o igual que</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operadores-lógicos" class="level3">
+<h3 class="anchored" data-anchor-id="operadores-lógicos">Operadores lógicos</h3>
+<p>Los operadores lógicos se utilizan para combinar o negar condiciones:</p>
+<ul>
+<li><strong>Conjunción (AND)</strong>: <code>&amp;&amp;</code> para comparación de una sola pareja de valores lógicos.</li>
+<li><strong>Disyunción (OR)</strong>: <code>||</code> para comparación de una sola pareja de valores lógicos.</li>
+<li><strong>Negación (NOT)</strong>: <code>!</code> para invertir el valor lógico.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conjunción (ambas condiciones deben ser verdaderas)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">&amp;&amp;</span> <span class="cn">FALSE</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: FALSE</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Disyunción (al menos una condición debe ser verdadera)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">||</span> <span class="cn">FALSE</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: TRUE</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Negación (invierte el valor lógico)</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="cn">TRUE</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="orden-de-las-operaciones" class="level3">
+<h3 class="anchored" data-anchor-id="orden-de-las-operaciones">Orden de las operaciones</h3>
+<p>El orden en que se realizan las operaciones es importante para obtener el resultado correcto. El orden de precedencia es el siguiente:</p>
+<ol type="1">
+<li><strong>Paréntesis</strong>: <code>()</code> - Primero se evalúan las expresiones dentro de los paréntesis.</li>
+<li><strong>Exponentes</strong>: <code>^</code> o <code>**</code> - Luego se evalúan las potencias.</li>
+<li><strong>Multiplicaciones y divisiones</strong>: <code>*</code>, <code>/</code> y <code>%/%</code> - A continuación, se realizan las multiplicaciones y divisiones.</li>
+<li><strong>Adición y sustracción</strong>: <code>+</code> y <code>-</code> - Finalmente, se realizan las sumas y restas.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de orden de operaciones</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> (<span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">4</span> <span class="sc">^</span> <span class="dv">2</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">16</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: [1] 20 (las operaciones se evalúan en el orden de precedencia)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="objetos-variables" class="level2">
+<h2 class="anchored" data-anchor-id="objetos-variables">Objetos (variables)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pi <span class="ot">=</span> <span class="fl">3.1415</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>radio <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>area <span class="ot">=</span> pi <span class="sc">*</span> radio<span class="sc">**</span><span class="dv">2</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>area</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(area, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="vectores-matrices-arreglos-listas-y-tablas" class="level3">
+<h3 class="anchored" data-anchor-id="vectores-matrices-arreglos-listas-y-tablas">Vectores, matrices, arreglos, listas y tablas</h3>
+<ul>
+<li>Vectores: Arreglos lineales del mismo tipo. Tienen la misma clase.</li>
+<li>Matrices: Arreglos rectangulares del mismo tipo. Sábanas de la misma clase.</li>
+<li>Arreglos: Organizaciones cúbicas y de mayor dimensión.</li>
+<li>Listas: Arreglos lineales de distintos tipos.</li>
+<li>Tablas: La estructura data.frame permite tener tablas de datos, donde cada columna es de un tipo determinado, pero no todas iguales.</li>
+</ul>
+<p><img src="estructura-datos.png" class="img-fluid" style="width:80.0%"></p>
+</section>
+<section id="un-tipo-especial-de-variables-factores" class="level3">
+<h3 class="anchored" data-anchor-id="un-tipo-especial-de-variables-factores">Un tipo especial de variables: factores</h3>
+<p>Son vectores numéricos enmascarados como caracteres. Se usan para crear grupos usando clasificaciones o codificaciones de las variables de interés. Estos factores pueden o no tener un orden.</p>
+<p>Ejemplos: estrato socioeconómico, nivel de estudios, mes, sexo, localidad.</p>
+</section>
+<section id="vectores" class="level3">
+<h3 class="anchored" data-anchor-id="vectores">Vectores</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>letters</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>LETTERS</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">15</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="at">length.out =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="factores" class="level3">
+<h3 class="anchored" data-anchor-id="factores">Factores</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(letters)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>estrato <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>estrato</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>estrato.factor <span class="ot">=</span> <span class="fu">factor</span>(estrato)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>estrato.factor</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>estrato.factor.ordenado <span class="ot">=</span> <span class="fu">factor</span>(estrato, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>))</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>estrato.factor.ordenado</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="funciones-sobre-vectores" class="level3">
+<h3 class="anchored" data-anchor-id="funciones-sobre-vectores">Funciones sobre vectores</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>vector_logico <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>vector_cualquiera <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">3</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>un_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>otro_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(vector_logico) <span class="co"># me dice cuales son los verdaderos </span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(vector_cualquiera) <span class="co"># me dice cuánto mide el vector</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(un_vector, otro_vector) <span class="co"># concatena los vectores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operaciones-entre-vectores" class="level3">
+<h3 class="anchored" data-anchor-id="operaciones-entre-vectores">Operaciones entre vectores</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>vector_numerico <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>vector_numeric_1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>vector_numeric_2 <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>vector_numerico <span class="sc">&gt;</span> <span class="dv">3</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">8</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>(vector_numeric_1, vector_numeric_2, <span class="st">"*"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>(vector_numeric_1, vector_numeric_2, <span class="st">"&gt;"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operaciones-entre-vectores-conjuntos" class="level3">
+<h3 class="anchored" data-anchor-id="operaciones-entre-vectores-conjuntos">Operaciones entre vectores (conjuntos)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(vector_numeric_1, vector_numeric_2)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(vector_numeric_1, vector_numeric_2)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(vector_numeric_1, vector_numeric_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="matrices" class="level3">
+<h3 class="anchored" data-anchor-id="matrices">Matrices</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">6</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">9</span>, <span class="at">length.out =</span> <span class="dv">4</span>), <span class="at">nrow =</span> <span class="dv">2</span>) <span class="ot">-&gt;</span> mi_matriz</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>mi_matriz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operaciones-sobre-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="operaciones-sobre-matrices">Operaciones sobre matrices</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>otra_matriz <span class="co"># Toca inventársela</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>mi_matriz<span class="sc">*</span><span class="dv">2</span> <span class="co"># Producto por un escalar</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>mi_matriz <span class="sc">+</span> otra_matriz <span class="co"># Suma de matrices</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>mi_matriz<span class="sc">*</span>otra_matriz <span class="co"># Producto celda por celda</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>mi_matriz <span class="sc">%*%</span> otra_matriz <span class="co"># Producto de matrices</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="funciones-sobre-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="funciones-sobre-matrices">Funciones sobre matrices</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(mi_matriz) <span class="co">#mi_matriz transpuesta</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(mi_matriz) <span class="co">#Diagonal de mi_matriz</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">det</span>(mi_matriz) <span class="co"># Determinante, debe dar un número</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(mi_matriz) <span class="co"># Matriz inversa, sólo se puede con matrices cuadradas de determinante distinto de cero</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mi_matriz) <span class="co"># Dimensión de mi matriz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>Bibliografía complementaria: <a href="https://www.deeplearningbook.org/">Parte 1 Capítulo 2: Linear Algebra, del libro Deep Learning del MIT</a></p>
+</blockquote>
+</section>
+<section id="tablas" class="level3">
+<h3 class="anchored" data-anchor-id="tablas">Tablas</h3>
+<ul>
+<li><a href="https://www.jstatsoft.org/article/view/v059i10/v59i10.pdf">Tidy tables</a></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>iris</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>?iris</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>diamonds</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>?diamonds</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>mpg</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>?mpg</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(diamonds)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mpg)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diamonds)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mpg)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(diamonds)</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="extracción-." class="level3">
+<h3 class="anchored" data-anchor-id="extracción-.">Extracción [.</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>cuales_extraer <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">3</span>) <span class="co"># Creo un vactor con las posiciones que deseo extraer</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>letters[cuales_extraer] <span class="co"># Extrae las letras 1, 8, 6, 3 del vector letters</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>vector_numerico[vector_numerico <span class="sc">&gt;</span> <span class="dv">3</span>] <span class="co"># Extrae los valores mayores a 3 en vector_numerico</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>un_vector[<span class="dv">1</span>] <span class="co"># Extrae el elemento #1 del vector un_vector</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>mi_matriz[<span class="dv">1</span>,<span class="dv">2</span>] <span class="co"># Extrae el valor en la fila 1 columna 2 de mi_matriz</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>mi_matriz[,<span class="dv">1</span>] <span class="co"># Extrae la primera columna de mi_matriz</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>mi_matriz[<span class="dv">2</span>,] <span class="co"># Extrae la segunda fila mi_matriz</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>diamonds[,<span class="dv">8</span>] <span class="co"># Extrae la fila 8 de diamonds</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>diamonds[<span class="st">"x"</span>] <span class="co"># Extrae de diamonds la columna llamada "x"</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>cuales_extraer <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>,<span class="st">"z"</span>) <span class="co"># Creo un vector de variables a extraer</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>diamonds[cuales_extraer] <span class="co">#Hago la extracción</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ejemplo-prueba-t" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-prueba-t">Ejemplo: Prueba T</h3>
+<p>A partir de la base de datos <em>evaluacion</em>, hagamos una prueba de hipótesis para testear si el puntaje obtenido en ciencias (variable <strong>ciencias</strong>) está influenciado/afectado por el sexo (variable <strong>sexo</strong>).</p>
+<p>Nota: cuando una variable toma dos valores se puede recodificar como una <em>variable dummy</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargo los datos de evaluacion y lo guardo en un objeto llamado evaluacion_xlsx</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">read_xlsx</span>(</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"01_data/programacion/evaluacion.xlsx"</span>, </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet=</span> <span class="st">"datos"</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> evaluacion_xlsx</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Hago la prueba t</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(ciencias <span class="sc">~</span> sexo, <span class="at">data =</span> evaluacion_xlsx) <span class="ot">-&gt;</span> t_test_ciencias_sexo</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Llamo los resultados de la prueba t</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>t_test_ciencias_sexo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>¿Qué podríamos extraer de este objeto?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(t_test_ciencias_sexo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Extraigamos el p-valor de la prueba.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>t_test_ciencias_sexo[<span class="st">"p.value"</span>] </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>t_test_ciencias_sexo[[<span class="st">"p.value"</span>]]</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Otra forma</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>t_test_ciencias_sexo<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>Podemos extraer <em>partes</em> de todos los objetos que tengamos en nuestro ambiente de trabajo.</p>
+</blockquote>
+</section>
+<section id="ejemplo-modelo-de-regresión-lineal" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-modelo-de-regresión-lineal">Ejemplo: Modelo de regresión lineal</h3>
+<p>Ajustemos un modelo de regresión lineal simple usando como variable respuesta el puntaje obtenido en humanidades (variable <strong>humanidades</strong>) en función del puntaje obtenido en ciencias (variable <strong>ciencias</strong>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(humanidades <span class="sc">~</span> ciencias, <span class="at">data =</span> evaluacion_xlsx) <span class="ot">-&gt;</span> modelo_humanidades_ciencias</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>modelo_humanidades_ciencias</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="lm_humanidades_ciencias.png" class="img-fluid" style="width:70.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_humanidades_ciencias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>¿Qué podríamos extraer de este objeto?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">summary</span>(modelo_humanidades_ciencias))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Extraigamos el <span class="math inline">\(R^2\)</span> ajustado del modelo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_humanidades_ciencias)<span class="sc">$</span>adj.r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="algoritmos" class="level2">
+<h2 class="anchored" data-anchor-id="algoritmos">Algoritmos</h2>
+<p>Un algoritmo es un conjunto finito de instrucciones que, si se siguen rigurosamente, llevan a cabo una tarea específica.</p>
+<p>Todos los algoritmos se componen de “partes” básicas que se utilizan para crear “partes” más complejas.</p>
+<p><img src="caja-proceso.png" class="img-fluid" style="width:70.0%"></p>
+<blockquote class="blockquote">
+<p>El <strong>tratamiento, análisis y modelado de datos</strong> lo haremos mediante algoritmos.</p>
+</blockquote>
+</section>
+<section id="control-flow" class="level2">
+<h2 class="anchored" data-anchor-id="control-flow">Control flow</h2>
+<p>El <em>control flow</em> es un conjunto de funciones que permiten manejar las órdenes de manera estructurada y lógica. Las más importantes son:</p>
+<ul>
+<li>if</li>
+<li>if - else</li>
+<li>for</li>
+<li>while</li>
+<li>repeat</li>
+<li>break</li>
+<li>next</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>?Control</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="loops" class="level3">
+<h3 class="anchored" data-anchor-id="loops">Loops</h3>
+<p>Todos los lenguajes modernos de programación ofrecen una o más maneras de realizar operaciones iterativas. El poder repetir la misma acción una cantidad indefinida de veces es una de las grandes ventajas de realizar las tareas mediante programación.</p>
+<p><img src="content_flowchart1.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="for" class="level2">
+<h2 class="anchored" data-anchor-id="for">for</h2>
+<p>Sirve para crear tareas repetitivas de un número de pasos específico.</p>
+<p>Uno de los usos más frecuentes de un ciclo for es la configuración de métodos de remuestreo (bootstraping).</p>
+<p><img src="remuestreo.png" class="img-fluid" style="width:70.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#vamos a guardar en una lista los coeficientes de una regresión</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>coeficientes <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># inicializo el ciclo for</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>){</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#en cada paso</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. saco una muestra de 30 estudiantes</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  muestra <span class="ot">&lt;-</span> <span class="fu">sample_n</span>(evaluacion_xlsx, <span class="dv">30</span>)</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. ajusto un modelo de regresión lineal</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(humanidades <span class="sc">~</span> ciencias, <span class="at">data =</span> muestra) <span class="ot">-&gt;</span> modelo</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3. extraigo y almaceno los coeficientes del modelo</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>  coeficientes[[i]] <span class="ot">&lt;-</span> <span class="fu">coefficients</span>(modelo)</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a><span class="co"># grafico el comportamiento de los coeficientes</span></span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>coeficientes <span class="sc">%&gt;%</span> </span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>  transpose <span class="sc">%&gt;%</span> </span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(unlist) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> coeficiente, <span class="at">value =</span> valor) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>  ggplot <span class="sc">+</span></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> valor) <span class="sc">+</span> </span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>coeficiente, <span class="at">nrow =</span> <span class="dv">2</span>,  <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="program_02_basics_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="while" class="level2">
+<h2 class="anchored" data-anchor-id="while">while</h2>
+<p>Sirve para crear tareas repetitivas que no sabemos después de cuántos pasos terminan. Requiere una inicialización cuidadosa.</p>
+<p><strong>Ejemplo</strong>: <a href="https://www.lanacion.com.ar/economia/peleados-con-los-algoritmos-los-economistas-y-su-talon-de-aquiles-nid2076973/">¿Cuántos sobres tengo que comprar para llenar un álbum de 100 cromos?</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inicializo las condiciones de partida</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>album <span class="ot">&lt;-</span> iteracion <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co"># creo la condición lógica que permite ejecutar el proceso</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>aun_falta <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co"># siempre que aun_falta siga siendo verdadero</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(aun_falta){</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># en cada ciclo</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. actualizo en qué iteración voy</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>  iteracion <span class="ot">&lt;-</span> iteracion <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. extraigo una muestra de 6 números ("compro un sobre con 6 cromos")</span></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>  sobre <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">100</span>, <span class="dv">6</span>)</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3.1 tomo el álbum</span></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3.2 le combino los cromos que obtuve</span></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3.3 ordeno los cromos de menor a mayor</span></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3.4 dejo valores únicos (quito cromos duplicados)</span></span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3.5 actualizo el álbum</span></span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>  album <span class="sc">%&gt;%</span> <span class="fu">c</span>(sobre) <span class="sc">%&gt;%</span> sort <span class="sc">%&gt;%</span> unique <span class="ot">-&gt;</span> album</span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4. si tengo menos de 100 cromos es porque me falta</span></span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>(album) <span class="sc">&lt;</span> <span class="dv">100</span> <span class="ot">-&gt;</span> aun_falta</span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a><span class="co"># muestro el número de iteraciones</span></span>
+<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a><span class="co"># es decir, cuántos sobres tuve que comprar</span></span>
+<span id="cb50-29"><a href="#cb50-29" aria-hidden="true" tabindex="-1"></a>iteracion</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="if-else" class="level2">
+<h2 class="anchored" data-anchor-id="if-else">if, else</h2>
+<p>La estructura if sirve para ejecutar varias rutinas distintas dependiendo de una condición lógica. En caso de que sea necesario, es posible aplicar una rutina alterna con la estructura else.</p>
+<p><strong>Ejemplo</strong>: Prueba de normalidad.</p>
+<p>Diversas pruebas y modelos estadísticos requieren verificar el <em>supuesto</em> de <strong>normalidad en los datos</strong>.</p>
+<p><img src="normaldist.jpg" class="img-fluid" style="width:70.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cargo la base de datos del PGN y la almaceno en un objeto llamado pgn</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_xlsx</span>(</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"01_data/programacion/Base de datos PGN 2024.xlsx"</span>, </span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet=</span> <span class="st">"Data"</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> pgn</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># extraigo la variable Funcionamiento</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co"># le hago un test de shapiro</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co"># guardo los resultados de la prueba en un objeto llamado prueba_sw</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>pgn[[<span class="st">"Funcionamiento"</span>]] <span class="sc">%&gt;%</span> <span class="fu">shapiro.test</span>() <span class="ot">-&gt;</span> prueba_sw</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="co"># estructura condicional</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(prueba_sw<span class="sc">$</span>p.value <span class="sc">&gt;</span> <span class="fl">0.05</span>){</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Si acepto la hipótesis de normalidad en la variable mpg</span></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hago una prueba t</span></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"La variable Funcionamiento sigue una distribución normal"</span>)</span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Realizo una prueba t"</span>)</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(mpg <span class="sc">~</span> vs, <span class="at">data =</span> mtcars)</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Si rechazo la hipótesis de normalidad en la variable mpg</span></span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hago una prueba Mann-Whitney-Wilcoxon</span></span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"La variable Funcionamiento no sigue una distribución normal"</span>)</span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Realizo una prueba Mann-Whitney-Wilcoxon"</span>)</span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox.test</span>(mpg <span class="sc">~</span> vs, <span class="at">data =</span> mtcars)</span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
