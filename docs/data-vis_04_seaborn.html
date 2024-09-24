@@ -124,6 +124,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./program_03_tidy.html">
+ <span class="dropdown-text">Manejo de tablas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./program_03_prepara.html">
  <span class="dropdown-text">Limpieza de datos</span></a>
   </li>  
         <li>
@@ -310,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cómo-funciona" class="level2">
 <h2 class="anchored" data-anchor-id="cómo-funciona">Cómo funciona</h2>
-<div id="37a78167" class="cell" data-execution_count="1">
+<div id="801664b1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -325,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.style.use('ggplot')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>El uso básico de Seaborn es:</p>
-<div id="f546d71e" class="cell" data-execution_count="2">
+<div id="a7259597" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic structure</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sns.visualization<span class="op">-</span>geometry(</span>
@@ -356,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="basics" class="level2">
 <h2 class="anchored" data-anchor-id="basics">Basics</h2>
-<div id="92d661ae" class="cell" data-fig-show="asis" data-execution_count="3">
+<div id="12afd705" class="cell" data-fig-show="asis" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"carat"</span>, y <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds) <span class="co">#oriented to data manipulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -368,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="count-plot" class="level3">
 <h3 class="anchored" data-anchor-id="count-plot">Count plot</h3>
-<div id="e4a0d2f7" class="cell" data-fig-show="asis" data-execution_count="4">
+<div id="71a8c141" class="cell" data-fig-show="asis" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sns.countplot(x <span class="op">=</span> <span class="st">"cut"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -378,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="e1c24fee" class="cell" data-fig-show="asis" data-execution_count="5">
+<div id="81e1ae75" class="cell" data-fig-show="asis" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sns.set(color_codes=True)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cut_percent <span class="op">=</span> (diamonds[<span class="st">"cut"</span>]</span>
@@ -398,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="histograma" class="level3">
 <h3 class="anchored" data-anchor-id="histograma">Histograma</h3>
-<div id="77db8e30" class="cell" data-fig-show="asis" data-execution_count="6">
+<div id="7e2b7a62" class="cell" data-fig-show="asis" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(x <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -408,17 +412,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="eb8b1885" class="cell" data-fig-show="asis" data-execution_count="7">
+<div id="824854f1" class="cell" data-fig-show="asis" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(x <span class="op">=</span> <span class="st">"price"</span>, hue<span class="op">=</span><span class="st">"color"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="data-vis_04_seaborn_files/figure-html/cell-8-output-1.png" width="668" height="507" class="figure-img"></p>
+<p><img src="data-vis_04_seaborn_files/figure-html/cell-8-output-1.png" width="668" height="503" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="d0deb279" class="cell" data-fig-show="asis" data-execution_count="8">
+<div id="916586cf" class="cell" data-fig-show="asis" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(x <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds, stat<span class="op">=</span><span class="st">"percent"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -428,12 +432,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="28f83d83" class="cell" data-fig-show="asis" data-execution_count="9">
+<div id="28cd6cf2" class="cell" data-fig-show="asis" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(x <span class="op">=</span> <span class="st">"price"</span>, hue<span class="op">=</span><span class="st">"color"</span>, data <span class="op">=</span> diamonds, stat <span class="op">=</span> <span class="st">"probability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="data-vis_04_seaborn_files/figure-html/cell-10-output-1.png" width="672" height="507" class="figure-img"></p>
+<p><img src="data-vis_04_seaborn_files/figure-html/cell-10-output-1.png" width="672" height="503" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -441,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="estimador-de-densidad-kernel" class="level3">
 <h3 class="anchored" data-anchor-id="estimador-de-densidad-kernel">Estimador de densidad kernel</h3>
-<div id="df1a6e0e" class="cell" data-fig-show="asis" data-execution_count="10">
+<div id="c8d11997" class="cell" data-fig-show="asis" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(x <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -451,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="767716a5" class="cell" data-fig-show="asis" data-execution_count="11">
+<div id="a363e748" class="cell" data-fig-show="asis" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(x <span class="op">=</span> <span class="st">"price"</span>, hue<span class="op">=</span><span class="st">"color"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -464,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ecdf-plot" class="level3">
 <h3 class="anchored" data-anchor-id="ecdf-plot">ECDF plot</h3>
-<div id="d3dfb4db" class="cell" data-fig-show="asis" data-execution_count="12">
+<div id="0a5d1a1b" class="cell" data-fig-show="asis" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sns.ecdfplot(x <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -474,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="8c31a184" class="cell" data-fig-show="asis" data-execution_count="13">
+<div id="f547d31e" class="cell" data-fig-show="asis" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sns.ecdfplot(x <span class="op">=</span> <span class="st">"price"</span>, hue<span class="op">=</span><span class="st">"color"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -487,7 +491,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="distribution-plots" class="level3">
 <h3 class="anchored" data-anchor-id="distribution-plots">Distribution plots</h3>
-<div id="788b16bc" class="cell" data-fig-show="asis" data-execution_count="14">
+<div id="5a3b1d9a" class="cell" data-fig-show="asis" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.displot(x <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds, kind <span class="op">=</span> <span class="st">"hist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -497,7 +501,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="9fed8ffb" class="cell" data-fig-height="8" data-fig-show="asis" data-fig-width="8" data-execution_count="15">
+<div id="8b4c95c5" class="cell" data-fig-height="8" data-fig-show="asis" data-fig-width="8" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.displot(x <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds, kind <span class="op">=</span> <span class="st">"hist"</span>, row <span class="op">=</span> <span class="st">"cut"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -507,7 +511,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="8eccf719" class="cell" data-fig-height="8" data-fig-show="asis" data-fig-width="8" data-execution_count="16">
+<div id="42360751" class="cell" data-fig-height="8" data-fig-show="asis" data-fig-width="8" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.displot(x <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds, kind <span class="op">=</span> <span class="st">"kde"</span>, col <span class="op">=</span> <span class="st">"cut"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -517,7 +521,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="2af7f68f" class="cell" data-fig-height="8" data-fig-show="asis" data-fig-width="8" data-execution_count="17">
+<div id="bcca7998" class="cell" data-fig-height="8" data-fig-show="asis" data-fig-width="8" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.displot(x <span class="op">=</span> <span class="st">"price"</span>, hue <span class="op">=</span> <span class="st">"color"</span>,data <span class="op">=</span> diamonds, kind <span class="op">=</span> <span class="st">"ecdf"</span>, col <span class="op">=</span> <span class="st">"cut"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -530,7 +534,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="scatterplot" class="level3">
 <h3 class="anchored" data-anchor-id="scatterplot">Scatterplot</h3>
-<div id="48976a3f" class="cell" data-fig-show="asis" data-execution_count="18">
+<div id="f2525008" class="cell" data-fig-show="asis" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"carat"</span>, y <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -540,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="ed4c2043" class="cell" data-fig-show="asis" data-execution_count="19">
+<div id="9187833e" class="cell" data-fig-show="asis" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"carat"</span>, y <span class="op">=</span> <span class="st">"price"</span>, hue <span class="op">=</span> <span class="st">"cut"</span>, data <span class="op">=</span> diamonds) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -553,7 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="line-plot" class="level3">
 <h3 class="anchored" data-anchor-id="line-plot">Line plot</h3>
-<div id="989aab0e" class="cell" data-fig-show="asis" data-execution_count="20">
+<div id="09d69502" class="cell" data-fig-show="asis" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">11</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>y0 <span class="op">=</span> np.sin(x0)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -569,7 +573,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="relational-plot" class="level3">
 <h3 class="anchored" data-anchor-id="relational-plot">Relational plot</h3>
-<div id="46f93679" class="cell" data-fig-show="asis" data-execution_count="21">
+<div id="eb1a99dd" class="cell" data-fig-show="asis" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.relplot(x <span class="op">=</span> x0, y <span class="op">=</span> y0, kind <span class="op">=</span> <span class="st">"line"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -579,7 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="489d3b7c" class="cell" data-fig-show="asis" data-execution_count="22">
+<div id="783af115" class="cell" data-fig-show="asis" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.relplot(x<span class="op">=</span><span class="st">"carat"</span>, y <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds, kind <span class="op">=</span> <span class="st">"scatter"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -589,7 +593,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="f0b71d56" class="cell" data-fig-show="asis" data-execution_count="23">
+<div id="4e8864a9" class="cell" data-fig-show="asis" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.relplot(</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"carat"</span>, </span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> <span class="st">"price"</span>, </span>
@@ -605,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="fb6d4ea5" class="cell" data-fig-show="asis" data-execution_count="24">
+<div id="b6c2ef72" class="cell" data-fig-show="asis" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.relplot(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"carat"</span>, </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> <span class="st">"price"</span>, </span>
@@ -624,7 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cat-plots" class="level3">
 <h3 class="anchored" data-anchor-id="cat-plots">Cat plots</h3>
-<div id="6709d50a" class="cell" data-fig-show="asis" data-execution_count="25">
+<div id="f795ed53" class="cell" data-fig-show="asis" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.catplot(</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"cut"</span>, </span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> <span class="st">"price"</span>, </span>
@@ -639,7 +643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="9f4c4d03" class="cell" data-fig-show="asis" data-execution_count="26">
+<div id="1b4b319b" class="cell" data-fig-show="asis" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.catplot(</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"cut"</span>, </span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> <span class="st">"price"</span>, </span>
@@ -655,7 +659,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="2dd4a2bc" class="cell" data-fig-show="asis" data-execution_count="27">
+<div id="454d99b1" class="cell" data-fig-show="asis" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.catplot(</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"cut"</span>, </span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> <span class="st">"price"</span>, </span>
@@ -672,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="d8b1dfc6" class="cell" data-fig-show="asis" data-execution_count="28">
+<div id="ceda5eec" class="cell" data-fig-show="asis" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sns_gr <span class="op">=</span> sns.catplot(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"cut"</span>, </span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> <span class="st">"price"</span>, </span>
@@ -692,7 +696,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="joint-plots" class="level3">
 <h3 class="anchored" data-anchor-id="joint-plots">Joint plots</h3>
-<div id="01825dda" class="cell" data-fig-show="asis" data-execution_count="29">
+<div id="def138a7" class="cell" data-fig-show="asis" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"carat"</span>, y <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -702,7 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="43e6e840" class="cell" data-fig-show="asis" data-execution_count="30">
+<div id="5285ec45" class="cell" data-fig-show="asis" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"carat"</span>, y <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds, kind <span class="op">=</span> <span class="st">"kde"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -712,7 +716,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="eb3732ee" class="cell" data-fig-show="asis" data-execution_count="31">
+<div id="2223effa" class="cell" data-fig-show="asis" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"carat"</span>, y <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds, kind <span class="op">=</span> <span class="st">"hist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -722,7 +726,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="bbee222a" class="cell" data-fig-show="asis" data-execution_count="32">
+<div id="dae78cd5" class="cell" data-fig-show="asis" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"carat"</span>, y <span class="op">=</span> <span class="st">"price"</span>, data <span class="op">=</span> diamonds, kind <span class="op">=</span> <span class="st">"reg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -732,7 +736,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="ff9d3dcf" class="cell" data-fig-show="asis" data-execution_count="33">
+<div id="17db48f8" class="cell" data-fig-show="asis" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"carat"</span>, y <span class="op">=</span> <span class="st">"price"</span>, hue <span class="op">=</span> <span class="st">"color"</span>, data <span class="op">=</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -747,7 +751,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ejercicio" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio">Ejercicio</h2>
 <p>Genera las siguientes gráficas.</p>
-<div id="a3725f02" class="cell" data-fig-show="asis" data-execution_count="34">
+<div id="28ab349a" class="cell" data-fig-show="asis" data-execution_count="34">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -756,7 +760,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="54a86f9a" class="cell" data-fig-show="asis" data-execution_count="35">
+<div id="60e500fe" class="cell" data-fig-show="asis" data-execution_count="35">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

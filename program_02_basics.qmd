@@ -292,12 +292,14 @@ class(objeto_nombrado_por_mi)
 
 ```{r}
 otro_objeto_distinto <- as.Date(objeto_nombrado_por_mi)
+
 ```
 
 - **`as.Date()`**: Convierte el objeto de texto `objeto_nombrado_por_mi` a un objeto de clase `Date`. Esta función interpreta la cadena en formato "YYYY-MM-DD" y la convierte a un objeto de fecha.
 
 ```{r}
 class(otro_objeto_distinto)
+
 ```
 
 - **`class()`**: Esta función muestra la clase del objeto `otro_objeto_distinto`. Después de la conversión con `as.Date()`, la clase será `Date`, que es el tipo adecuado para trabajar con fechas en R.
@@ -319,7 +321,7 @@ El paquete **`lubridate`** en R facilita el manejo y la manipulación de fechas 
 
 ```{r}
 # Cargar el paquete
-library(lubridate)
+library("lubridate")
 
 # Convertir una fecha en formato de texto a objeto Date
 fecha_texto <- "21-07-1969"

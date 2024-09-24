@@ -1,5 +1,5 @@
 ---
-title: "Limpieza de datos"
+title: "Tablas de datos"
 format: 
   html:
     toc: true
@@ -15,13 +15,15 @@ execute:
 
 ---
 
+# Inicio
+
 ## Flujo de trabajo
 
 ![](flujo-trabajo.png){width=80%}
 
 ## Objetivos
 
-Vamos a trabajar con datos tabulares. Existen 3 reglas que logran que un conjunto de datos tabulares esté "limpio":
+Vamos a trabajar con datos tabulares. Existen 3 reglas que logran que un conjunto de datos tabulares esté organizado:
 
 * Cada variable debe tener su propia columna
 * Cada observación debe tener su propia fila
@@ -54,330 +56,247 @@ Ejemplo:
 
 ![](diccionario.png){width=80%}
 
-> Para profundizar: revise el material sobre [cómo limpiar tablas](https://www.jstatsoft.org/article/view/v059i10/v59i10.pdf).
+> Para profundizar: revise el material sobre [cómo organizar tablas](https://www.jstatsoft.org/article/view/v059i10/v59i10.pdf).
 
-## Práctica
+# Práctica
 
-En esta práctica vamos a trabajar con la base de datos *Boston Housing*, y podemos consultar el contexto de dichos datos haciendo clic en [este tunel secreto](https://www.kaggle.com/c/boston-housing/overview/description).
+Esta práctica está diseñada para aprender a utilziar las funciones de tablas de datos...
 
-¿Qué aprenderemos?
-
-* Detección y tratamiento de datos faltantes
-* Detección y tratamiento de datos atípicos
-* Naming
-* Detección y tratamiento de datos duplicados
-* Discretización de variables
-
-Carguemos los datos:
+Para esta sección usaremos las librerías 
 
 ```{r}
-#| echo: false
-set.seed(15)
-
+library("dplyr")
+library("readxl")
+library("magrittr")
+library("scales")
 
 ```
 
 
+## Conjunto de datos
+
+Utilizaremos una muestra de los datos del examen Saber 11 para realizar el análisis. Puedes descargar el conjunto de datos desde el siguiente enlace:
+
+[Saber 11 (muestra)](01_data/programacion/saber-11_sample.xlsx)
+
+## Carga de datos desde Excel
+
+Para trabajar con archivos de Excel, utilizamos el paquete `readxl`. Este paquete permite leer archivos Excel sin necesidad de instalar programas adicionales como MS Excel. A continuación, se carga el archivo y se exploran algunos aspectos básicos del conjunto de datos.
 
 ```{r}
-# Cargamos los paquetes
-library("tidyverse")
+# Cargamos el paquete necesario
 library("readxl")
 
-# Leemos los datos desde un archivo de Excel
-read_xlsx(
-  path = "01_data/programacion/Boston_Housing.xlsx", 
-  sheet="Data"
-) -> boston_housing_xlsx
-str(boston_housing_xlsx)
+# Leemos el archivo Excel, especificando la hoja
+tb_data <- read_excel("01_data/programacion/saber-11_sample.xlsx", sheet = "sample")
 
-# Convierto variables respectivas a factores
-# Esto es muy importante para procesos de limpieza de datos
-factores <- c("CHAS")
-boston_housing_xlsx %>% mutate_at(factores,factor) -> boston_housing_xlsx
+# Verificamos la clase del objeto (será un tibble)
+class(tb_data)
+
+# Contamos las filas
+nrow(tb_data)
+
+# Contamos las columnas
+ncol(tb_data)
+
+# Exploramos el conjunto de datos para ver sus variables y tipos de datos
+glimpse(tb_data)
+
 ```
 
+**Explicación**:
+- `read_excel()`: carga el archivo Excel. El argumento `sheet` indica cuál hoja cargar.
+- `class()`: devuelve el tipo de objeto en R, en este caso un tibble, una versión moderna de los data frames.
+- `nrow()` y `ncol()`: cuentan el número de filas y columnas, respectivamente.
+- `glimpse()`: proporciona una vista rápida del conjunto de datos, mostrando cada variable y sus primeros valores.
 
-> En cualquier escenario, es posible que tengamos datos faltantes. Veámos cómo abordar esta situación.
+## Uso de pipes (tuberías)
 
-## Datos faltantes
-
-Los datos faltantes (*missing data*) son un problema frecuente en todos los tipos de estudios y análisis, sin importar que el diseño sea muy estricto o que los investigadores/analistas traten de prevenirlo.
-
-En ciencia de datos podemos realizar un proceso de imputación de datos, que consiste en asignar un valor a un ítem para el que previamente no se tenia información.
-
-Existen numerosos métodos de imputación de datos, entre otros:
-
-* Usando la media de la variable
-  + Los datos faltantes de cada columna son reemplazados con la media de los datos disponibles de dicha. Útil para variables numéricas con distribuciones aproximadamente normales. 
-  
-![](mean-imputation.png){width=70%}
-
-* HotDeck
-  + Los datos faltantes son reemplazados por valores tomados de registros similares. Útil en conjuntos de datos grandes. 
-  
-![](hotdeck.png){width=70%}  
-
-* ColdDeck
-  + Los datos faltantes son reemplazados por valores tomados de registros similares de una fuente externa de datos.
-* [Algoritmos Random Forest](https://www.youtube.com/watch?v=J4Wdy0Wc_xQ)
-  + Los datos faltantes son reemplazados a partir de ensamblar árboles de decisión. Útil en conjuntos de datos grandes.
-* Imputación múltiple - [MICE](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3074241/)
-  + Los datos faltantes son reemplazados mediante estimaciones obtenidas por una mezcla de métodos de simulación y ponderación de varianzas o errores estándar. Útil para automatizar procesos de limpieza de datos.
-  
-![](mice-detailed.png){width=70%}
-
-Vamos a retirar algunos datos de la base de forma aleatoria.
+Las "tuberías" (`pipes`) en R, implementadas mediante el operador `%>%`, facilitan encadenar varias operaciones de una manera legible y lógica. Veamos cómo aplicarlas en el análisis.
 
 ```{r}
-# Instalamos el paquete mice
-# install.packages("mice")
+# Usamos tuberías para contar las columnas
+tb_data %>% 
+  ncol()
 
-# Cargamos mice
-library("mice")
+# Usamos tuberías para hacer un vistazo rápido a los datos
+tb_data %>% 
+  glimpse()
 
-# Hacemos una copia de la base de datos en otro objeto llamado datos_completos
-datos_completos <- boston_housing_xlsx
-
-# "amputamos" datos usando el método MCAR: missing completely at random
-ampute(datos_completos, prop = 0.5, mech = "MCAR", run = TRUE)$amp -> datos_incompletos
-
-# Mapeamos el número de NAs por cada columna
-datos_incompletos %>% map_df(is.na) %>% colSums()
 ```
 
-Ahora que tenemos datos perdidos en la base de datos, algo que sucede con (mucha) frecuencia, debemos examinar el "comportamiento" de la pérdida de datos, esto es, identificar si existen patrones o situaciones que nos den indicio de por qué se perdieron los datos.
+**Explicación**:
+- `%>%`: permite encadenar funciones en secuencia. En lugar de anidar funciones dentro de otras, podemos pasar el resultado de una función como primer argumento de la siguiente.
 
-Podemos tener tres patrones de pérdida de datos:
+Este enfoque con pipes simplifica el código y lo hace más legible. Además, la sintaxis se asemeja a la lectura secuencial de acciones.
 
-* MCAR (*Missing completely at random*) - *Los datos se pierden de forma aleatoria.*
-* MAR (*Missing at random*) - *Los datos se pierden de forma aleatoria pero es factible pensar en una variable observada que lo explique.*
-* NMAR (*Not missing at random*) - *Los datos no se pierden de forma aleatoria*
+## Transformaciones básicas
 
-> Es **deseable** que si tenemos datos perdidos esto se deba al azar, y en ese caso, podríamos proceder a imputar los datos faltantes en las covariables (no es tan deseable en la variable objetivo/feature). Si tenemos patrones irregulares de pérdida de datos, sería un indicio de que podemos tener problemas en la captura, sistematización, almacenamiento o distribución de los datos.
+En esta sección, vamos a aplicar algunas transformaciones básicas a nuestro conjunto de datos utilizando el poder de las funciones del tidyverse. Estas transformaciones te permiten seleccionar, modificar y agregar columnas de manera eficiente.
 
-Podemos hacer distintas visualizaciones para entender el comportamiento de los datos perdidos.
+### Seleccionar columnas con `select()`
+
+La función `select()` te permite elegir un subconjunto de columnas. Puedes seleccionar columnas por nombre o por patrones específicos.
 
 ```{r}
-#| fig-show: asis
-#| fig-width: 10
-
-# Instalamos los paquetes naniar y VIM
-# install.packages("naniar")
-# install.packages("VIM")
-
-# Cargamos los paquetes
-library("naniar")
-library("VIM")
-
-# Visualización de patrones con naniar
-# Graficamos en orden descendente las variables con más datos perdidos
-# Nos muestra también si hay relaciones de pérdida de datos entre distintas variables
-gg_miss_upset(datos_incompletos)
-
-# Visualización de patrones con VIM
-# Graficamos la proporción de datos incompletos por variable
-# Nos muestra también si hay relaciones de pérdida de datos entre distintas variables
-aggr(datos_incompletos,numbers=T,sortVar=T)
-
-# Visualización de patrones con mice
-# Se enfoca en mostrar si hay relaciones de pérdida de datos entre distintas variables
-md.pattern(datos_incompletos, plot = TRUE, rotate.names = TRUE)
+tb_data %>% 
+  select(FTP_CONSECUTIVO, ESTU_EXAM_DEPT_PRESENTACION, INGLES_PUNT)
 
 ```
 
-> Advertencia: este tipo de análisis tienen sentido si por la naturaleza del problema esperamos tener todos los datos completos. Si hay columnas en donde es esperable tener datos faltantes (por ejemplo, por respuestas opcionales o variables que parten una muestra) deberíamos realizar la gráfica anterior solamente con las columnas (variables) de las que esperamos datos completos.
+En este ejemplo, seleccionamos tres columnas específicas: `FTP_CONSECUTIVO`, `ESTU_EXAM_DEPT_PRESENTACION`, y `INGLES_PUNT`.
 
-Habiendo comprobado que en nuestros datos los valores perdidos se deben al azar y no superan umbrales de trabajo en ciencia de datos, podemos ahora así aplicar métodos de imputación de datos.
+### Seleccionar columnas usando reglas con `tidy select`
 
-### Imputación usando la media
+`tidy select` permite seleccionar columnas de acuerdo con ciertas reglas, como las que empiezan con un prefijo específico. Esto es útil cuando trabajas con muchos campos y quieres hacer selecciones basadas en patrones.
 
 ```{r}
-# Filtramos únicamente variables numéricas
-datos_incompletos_num <- Filter(is.numeric, datos_incompletos)
-# Llamamos el comando mice para imputar los datos
-# Asignamos unos parámetros de imputación
-mice(datos_incompletos_num, 
-     m = 1,              # Número de imputaciones múltiples
-     maxit = 1,          # Número de iteraciones
-     method = "mean",    # Método de imputación
-     printFlag = FALSE) %>% 
-  mice::complete() -> base_datos_imputados_promedios_mice
+tb_data %>% 
+  select(starts_with("ESTU"))
 
-# Verificamos que efectivamente ya no hayan datos faltantes
-base_datos_imputados_promedios_mice %>% map_df(is.na) %>% colSums()
+tb_data %>% 
+  select(ends_with("PUNT"))
 
 ```
 
-### Imputación mediante Hotdeck
+Aquí, seleccionamos todas las columnas que comienzan con "ESTU", correspondientes a la información del estudiante. También aquellas que finalizan en "PUNT", lo cual nos devuelve todas las columnas relacionadas con los puntajes en diferentes áreas del examen.
+
+### Transformar una columna con `mutate()`
+
+La función `mutate()` es clave para transformar una columna o crear una nueva. Puedes utilizarla para hacer cálculos o cambiar el contenido de una columna existente.
 
 ```{r}
-# Llamamos el comando hotdeck
-hotdeck(datos_incompletos) -> datos_imputados_hd
+tb_data %>% 
+  mutate(INGLES_PUNT = INGLES_PUNT * 1.1)
 
-# Verificamos que efectivamente ya no hayan datos faltantes
-datos_imputados_hd[,c(1:ncol(datos_incompletos))] %>% map_df(is.na) %>% colSums()
 
 ```
 
-### Imputación medidante imputación múltiple
+En este ejemplo, estamos aumentando el puntaje de inglés en un 10%. Esta modificación se aplica directamente a la columna `INGLES_PUNT`.
+
+### Cambiar el tipo de una columna con `mutate()`
+
+Si necesitas cambiar el tipo de datos de una columna, también puedes usar `mutate()` junto con funciones como `as.factor()`, `as.numeric()`, etc.
 
 ```{r}
-# Llamamos el comando mice para imputar los datos
-mice(datos_incompletos, printFlag = FALSE) %>% 
-  mice::complete() -> datos_imputados_mice
-
-# Verificamos que efectivamente ya no hayan datos faltantes
-datos_imputados_mice %>% map_df(is.na) %>% colSums()
+tb_data %>% 
+  mutate(ESTU_NACIMIENTO_MES = as.factor(ESTU_NACIMIENTO_MES))
 
 ```
 
-## Datos atípicos
+Aquí, estamos convirtiendo la columna `ESTU_NACIMIENTO_MES` en un factor, lo que es útil cuando trabajas con variables categóricas.
 
-En nuestros análisis debemos examinar la presencia de datos atípicos, en la medida que pueden afectar los resultados de las estimaciones, modelos y pruebas de hipótesis.
-
-Para detectar datos atípicos podemos seguir dos caminos:
-
-* Buscar datos atípicos para cada variable (columna). Para esto podríamos usar criterios numéricos o gráficos.
-* Buscar filas que consistentemente tengan datos atípicos en todas las celdas.
-
-Veamos dos ejemplos usando la base de datos de Boston Housing.
-
-Primero, una detección de atípicos en una variable en específico (*MEDV* que es una variable objetivo).
+La función `cut()` divide una variable continua (en este caso, la edad) en intervalos definidos, creando una nueva columna de categorías. Asegúrate de agregar etiquetas para identificar mejor cada grupo etario.
 
 ```{r}
-# Estadístico de resumen para una variable
-summary(boston_housing_xlsx$MEDV)
-
-# Boxplot de una variable
-boxplot(boston_housing_xlsx$MEDV)
-
-# Valores de potenciales outliers
-boxplot.stats(boston_housing_xlsx$MEDV)$out
-
-# Filas donde se ubican las observaciones atípicas
-outliers <- boxplot(boston_housing_xlsx$MEDV)$out
-outliers_filas <- which(boston_housing_xlsx$MEDV %in% c(outliers))
-outliers_filas
+tb_data %>% 
+  mutate(
+    grupo_etario = cut(ESTU_EDAD, 
+                       breaks = c(0, 10, 15, 20, 30, Inf), 
+                       labels = c("Niñez", "Adolescencia", "Juventud", "Adulto joven", "Adulto"))
+  )
 
 ```
 
-Segundo, una detección de atípicos basado en un análisis multivariado por medio de componentes principales (hay otras técnicas más, por ejemplo, la distancia de Cook).
+- `breaks`: define los puntos de corte para los grupos.
+- `labels`: asigna nombres descriptivos a cada grupo.
 
-```{r out.width = "100%", message=F, warning=F}
-# Instalamos paquetes
-# install.packages("FactoMineR")
-# install.packages("factoextra")
-# install.packages("ggpubr")
-# install.packages("magrittr")
-
-# Cargamos paquetes
-library("FactoMineR")
-library("factoextra")
-library("ggpubr")
-library("magrittr")
-
-# Estandarizamos las variables
-datos_numericos <- Filter(is.numeric, datos_completos)
-datos_numericos %>%
-  mutate_all(scale) -> data_estandarizada
-
-# Ajusto componentes principales usando el método PCA()
-acp = PCA(data_estandarizada, graph=F)
-
-```
+La función `if_else()` permite transformar variables binarias o aplicar lógica condicional. En este caso, estamos convirtiendo la variable `ECON_SN_COMPUTADOR` (donde "0" representa "No" y "1" representa "Sí") a un formato más legible.
 
 ```{r}
-#| eval: false
-# Gráfico de individuos del ACP
-# Esto puede tardar un poco
-fviz_pca_ind(acp, repel = TRUE)
+tb_data %>% 
+  mutate(
+    tiene_computador = if_else(ECON_SN_COMPUTADOR == 0, "No", "Sí")
+  )
 
 ```
 
-![](acp_ind.png)
+- `if_else(condition, true, false)`: revisa si la condición es verdadera (`ECON_SN_COMPUTADOR == 0`), en cuyo caso asigna "No", de lo contrario, asigna "Sí".
 
-Con el siguiente código calculamos la **distancia** al vecino más cercano.
+### Agregar una nueva columna con `mutate()`
+
+Además de modificar columnas existentes, `mutate()` te permite crear nuevas columnas basadas en cálculos o transformaciones de otras variables.
 
 ```{r}
-data_estandarizada %>% 
-  dist %>% as.matrix() %>% add(diag(Inf, ncol(.))) %>% 
-  apply(1, min) %>% enframe() %>% arrange(desc(value))
-
+tb_data %>% 
+  mutate(TOTAL_PUNT = MATEMATICAS_PUNT + LENGUAJE_PUNT + CIENCIAS_SOCIALES_PUNT)
 
 ```
 
-> Por medio de diversos procedimientos estadísticos podemos detectar datos atípicos. ¿Qué hacer con ellos? Depende. Hay que sopesar el contexto de los datos, la naturaleza del problema y de cada variable, así como combinar elementos de juicio estadístico como elementos de juicio profesionales de otras áreas.
+Este ejemplo muestra cómo agregar una nueva columna llamada `TOTAL_PUNT` que contiene la suma de los puntajes en matemáticas, lenguaje y ciencias sociales.
 
-## Nombrado adecuado de las variables
+### Transformación optimizada con `across()`
 
-Recuerde que en programación [los nombres importan (naming)](https://felipe-calvo.github.io/r-101/resources/naming.pdf). Siguiendo ese marco de referencia, asegúrese de que las variables (columnas):
-
-* No tengan acentos
-* No tengan caracteres especiales (@, #, ?, &, *, $, entre otros)
-* No tengan espacios (reemplácelos por un guion medio o bajo)
-* De ser necesario, que sea identificable una relación de orden
+La función `across()` es muy útil cuando deseas aplicar una misma transformación a múltiples columnas de manera simultánea, lo que reduce la repetición de código.
 
 ```{r}
-# Número de variables en la base de datos
-length(datos_completos)
+tb_data %>% 
+  mutate(across(ends_with("PUNT"), rescale))
 
-# Obtiene el nombre de las variables de una base de datos
-names(datos_completos)
-
-# Podríamos declarar un vector con los nuevos nombres que necesitemos
-# nombres_adecuados <- c(
-#   "nombre_variable_1",
-#   "nombre_variable_2",
-#   ...,
-# )
-
-# Y luego asignarlos a nuestra base de datos
-# nombres_adecuados -> names(datos_completos)
-
-# Otro ejemplo
-# Si tuviésemos variables con espacios, podríamos reemplazar todos los espacios así
-# names(datos_completos) <- str_replace_all(names(datos_completos), c(" " = "_"))
 ```
 
-## Valores duplicados
+En este caso, estamos aplicando una transformación a todas las columnas que comienzan con "PUNT", aumentando sus valores en un 5%. El uso de `across()` permite aplicar esta operación de forma eficiente a todas las columnas seleccionadas.
 
-Podemos buscar y eliminar duplicados basados en un columna, por ejemplo, cuando esperamos tener datos únicos de un individuo y tenemos una columna para identificarlo.
 
-```{r, eval=FALSE}
-## Ejemplo: acá dejamos valores únicos en la columna MEDV
-distinct(datos_completos, MEDV, .keep_all = TRUE) -> datos_completos_MEDV_unico
+### Ordenar por puntaje en matemáticas de mayor a menor
 
-## Ejemplo: acá dejamos valores únicos en la columna DIS
-distinct(datos_completos, DIS, .keep_all = TRUE) -> datos_completos_DIS_unico
+La función `arrange()` se utiliza para ordenar las filas de un conjunto de datos en función de una o más columnas. Puedes ordenar de manera ascendente o descendente.
+
+```{r}
+tb_data %>% 
+  arrange(desc(MATEMATICAS_PUNT))
+
 ```
 
-También podemos buscar y eliminar duplicados basados en toda la fila.
+- `arrange(desc(PUNT_MATEMATICAS))`: ordena las filas por la columna `PUNT_MATEMATICAS` en orden descendente (de mayor a menor).
 
-```{r, eval=FALSE}
-distinct(datos_completos) -> datos_completos_sin_filas_duplicadas
+
+### Filtrar usando condicionales con `filter()`
+
+La función `filter()` permite seleccionar filas que cumplen con condiciones específicas. Puedes usar operadores lógicos como `==`, `!=`, `>`, `<`, `>=`, `<=` y `&` para combinar condiciones.
+
+Ejemplo: Filtrar estudiantes mayores de 18 años que tengan computador.
+
+```{r}
+tb_data %>% 
+  filter(ESTU_EDAD > 18, ECON_SN_COMPUTADOR == 0)
+
+
 ```
 
-## Discretización de variables
+- `ESTU_EDAD > 18`: selecciona estudiantes mayores de 18 años.
+- `ECON_SN_COMPUTADOR == 0`: selecciona estudiantes que no tienen computador.
 
-En algunos problemas, conviene convertir variables que son continuas en variables agrupadas por intervalos. Este proceso se llama discretización. Veamos un ejemplo creando un rango de edad para las viviendas de la base de datos.
+### Filtrar un top usando `slice_*()`
 
-```{r, message=F, warning=F}
-# Instalamos paquete lubridate
-# install.packages("lubridate")
+Las funciones `slice_max()` y `slice_min()` seleccionan las filas con los valores más altos o más bajos de una variable específica.
 
-# Cargamos paquete lubridate
-library("lubridate")
+Ejemplo: Seleccionar los 5 estudiantes con los puntajes más altos en la prueba de matemáticas.
 
-# Discretizamos la edad (AGE) de los datos del censo
-# mutate() anexa/crea variables a la base de datos
-datos_completos %>% mutate(
-  edad_hoy = datos_completos$AGE+50,
-  rango_edad = cut(edad_hoy, c(0, 50, 75, 90, 105, 120, 135, Inf))
-) -> datos_completos_fechas
+```{r}
+tb_data %>% 
+  slice_max(MATEMATICAS_PUNT, n = 5)
 
-head(datos_completos_fechas[(ncol(datos_completos_fechas)-1):ncol(datos_completos_fechas)])
 ```
 
-Este mismo principio podría servir para crear rangos etarios en poblaciones, niveles de ingresos, niveles de pobreza, etc.
+- `slice_max(PUNT_MATEMATICAS, n = 5)`: selecciona las 5 filas con los puntajes más altos en la columna `PUNT_MATEMATICAS`.
+
+### Obtener una muestra aleatoria usando `slice_sample()`
+
+La función `slice_sample()` permite obtener una muestra aleatoria de un número determinado de filas o un porcentaje del conjunto de datos.
+
+Ejemplo: Obtener una muestra aleatoria del 10% de los estudiantes.
+
+```{r}
+tb_data %>% 
+  slice_sample(prop = 0.1)
+
+tb_data %>% 
+  slice_sample(n = 100)
+
+
+```
+
+- `prop = 0.1`: selecciona el 10% de las filas de manera aleatoria.
+- Alternativamente, puedes usar `n = 100` para obtener un número específico de filas aleatorias.
 

@@ -19,6 +19,7 @@ project:
     - "program_01_loading-data.qmd"
     - "program_02_basics.qmd"
     - "program_03_tidy.qmd"
+    - "program_03_prepara.qmd"
     - "program_04_eda.qmd"
     - "program_05_asociacion.qmd"
     - "macn_00.qmd"
@@ -38,8 +39,10 @@ website:
             href: program_00_intro.qmd
           - text: "Hola R"
             href: program_02_basics.qmd
-          - text: "Limpieza de datos"
+          - text: "Manejo de tablas"
             href: program_03_tidy.qmd
+          - text: "Limpieza de datos"
+            href: program_03_prepara.qmd
           - text: "Análisis exploratorio"
             href: program_04_eda.qmd
           - text: "Asociación"

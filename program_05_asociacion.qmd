@@ -1,6 +1,5 @@
 ---
 title: "Asociación e independencia entre variables"
-author: "Docente: Felipe Calvo Cepeda - fcalvoc@unal.edu.co | Universidad Nacional de Colombia"
 output: 
   html_document:
     theme: darkly
