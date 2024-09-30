@@ -300,3 +300,189 @@ tb_data %>%
 - `prop = 0.1`: selecciona el 10% de las filas de manera aleatoria.
 - Alternativamente, puedes usar `n = 100` para obtener un número específico de filas aleatorias.
 
+
+# Descriptivos
+
+Los estadísticos descriptivos son fundamentales para resumir y entender las características de los datos. Proveen información crucial sobre la distribución y la variabilidad de las variables numéricas. Algunos de los estadísticos más comunes son:
+
+- **Media**: es el promedio de los valores de una variable.
+- **Varianza**: mide la dispersión de los datos en torno a la media.
+- **Desviación estándar**: es la raíz cuadrada de la varianza y expresa la dispersión en las mismas unidades que los datos.
+- **Mediana**: es el valor que separa la mitad superior de la mitad inferior de un conjunto de datos ordenados.
+- **Cuartiles**: dividen los datos en cuatro partes iguales.
+- **Máximo y mínimo**: el valor más alto y más bajo de una variable.
+
+A continuación se presentan las funciones en R para calcular estos estadísticos:
+
+```{r}
+mean()     # para la media
+var()      # para la varianza
+sd()       # para la desviación estándar
+median()   # para la mediana
+quantile() # para los cuartiles
+max()      # para el máximo
+min()      # para el mínimo
+```
+
+Veamos cómo aplicar estos conceptos con ejemplos usando el conjunto de datos `tb_data`.
+
+
+## Promedio (Media)
+
+La media es una medida de tendencia central que indica el valor promedio de una variable. Se calcula sumando todos los valores y dividiéndolos entre el número de observaciones.
+
+```{r}
+tb_data %>% 
+  summarise(promedio_edad = mean(ESTU_EDAD, na.rm = TRUE))
+```
+
+- `mean(ESTU_EDAD, na.rm = TRUE)`: calcula el promedio de la variable `ESTU_EDAD`, ignorando los valores faltantes (`NA`).
+- El resultado es un solo valor que representa la edad promedio de los estudiantes.
+
+## Varianza
+
+La varianza mide la variabilidad o dispersión de los datos en torno a la media. Si la varianza es alta, significa que los valores están muy dispersos; si es baja, los valores están más cerca de la media.
+
+```{r}
+tb_data %>% 
+  summarise(varianza_edad = var(ESTU_EDAD, na.rm = TRUE))
+```
+
+- `var(ESTU_EDAD, na.rm = TRUE)`: calcula la varianza de la variable `ESTU_EDAD`, ignorando valores faltantes.
+- La varianza está en las unidades al cuadrado de la variable original.
+
+
+## Desviación estándar
+
+La desviación estándar es una medida más intuitiva de la dispersión que la varianza, ya que se expresa en las mismas unidades que los datos originales.
+
+```{r}
+tb_data %>% 
+  summarise(desviacion_edad = sd(ESTU_EDAD, na.rm = TRUE))
+```
+
+- `sd(ESTU_EDAD, na.rm = TRUE)`: calcula la desviación estándar de `ESTU_EDAD`.
+- Este valor representa cuánto, en promedio, se desvían las edades de la media.
+
+## Mediana
+
+La mediana es una medida robusta de tendencia central, que no se ve tan afectada por valores atípicos (outliers). Representa el valor que está en el centro de un conjunto de datos ordenados.
+
+```{r}
+tb_data %>% 
+  summarise(mediana_edad = median(ESTU_EDAD, na.rm = TRUE))
+```
+
+
+## Cuartiles
+
+Los cuartiles dividen los datos en cuatro partes iguales. El primer cuartil (Q1) es el valor por debajo del cual se encuentra el 25% de los datos, y el tercer cuartil (Q3) es el valor por debajo del cual está el 75%.
+
+```{r}
+tb_data %>% 
+  summarise(q1 = quantile(ESTU_EDAD, 0.25, na.rm = TRUE),
+            mediana = quantile(ESTU_EDAD, 0.5, na.rm = TRUE),
+            q3 = quantile(ESTU_EDAD, 0.75, na.rm = TRUE))
+```
+
+
+## Máximo y mínimo
+
+Los valores máximo y mínimo son útiles para identificar el rango de una variable. Nos indican cuáles son los valores extremos.
+
+```{r}
+tb_data %>% 
+  summarise(min_edad = min(ESTU_EDAD, na.rm = TRUE),
+            max_edad = max(ESTU_EDAD, na.rm = TRUE))
+```
+
+
+### Nota:
+
+En cada una de estas funciones hemos agregado el argumento `na.rm = TRUE` para ignorar los valores faltantes. Si tienes valores `NA` en los datos y no los manejas, algunas funciones como `mean()` o `sd()` no devolverán resultados.
+
+
+## Tablas agrupadas
+
+Las tablas agrupadas permiten calcular estadísticas descriptivas para diferentes grupos dentro de los datos. Esto es útil cuando deseas analizar patrones o tendencias dentro de subgrupos específicos, como diferentes regiones, categorías o niveles.
+
+### Promedio (Media)
+
+Para calcular la media de una variable, agrupando los datos por otra variable (en este caso, por el departamento donde el estudiante presentó el examen):
+
+```{r}
+tb_data %>% 
+  group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
+  summarise(promedio_edad = mean(ESTU_EDAD, na.rm = TRUE))
+```
+
+- `group_by(ESTU_EXAM_DEPT_PRESENTACION)`: agrupa los datos por el departamento en el que el estudiante presentó el examen.
+- `summarise()`: calcula el promedio de la edad (`ESTU_EDAD`) para cada departamento, ignorando los valores faltantes.
+
+Este código devolverá una tabla donde cada fila corresponde a un departamento y la columna `promedio_edad` muestra la edad promedio de los estudiantes en ese departamento.
+
+### Varianza
+
+De manera similar, podemos calcular la varianza de la edad para cada grupo (departamento):
+
+```{r}
+tb_data %>% 
+  group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
+  summarise(varianza_edad = var(ESTU_EDAD, na.rm = TRUE))
+```
+
+- `var(ESTU_EDAD, na.rm = TRUE)`: calcula la varianza de las edades por departamento, ignorando los valores faltantes.
+
+Esto te permitirá ver qué tan dispersas son las edades de los estudiantes dentro de cada departamento.
+
+### Desviación estándar
+
+Para calcular la desviación estándar agrupada:
+
+```{r}
+tb_data %>% 
+  group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
+  summarise(desviacion_edad = sd(ESTU_EDAD, na.rm = TRUE))
+```
+
+- `sd(ESTU_EDAD, na.rm = TRUE)`: calcula la desviación estándar de las edades dentro de cada departamento.
+
+### Mediana
+
+La mediana también puede calcularse por grupo para obtener una medida de tendencia central menos sensible a valores atípicos:
+
+```{r}
+tb_data %>% 
+  group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
+  summarise(mediana_edad = median(ESTU_EDAD, na.rm = TRUE))
+```
+
+
+### Mínimo y máximo
+
+Para encontrar los valores mínimo y máximo dentro de cada departamento:
+
+```{r}
+tb_data %>% 
+  group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
+  summarise(min_edad = min(ESTU_EDAD, na.rm = TRUE),
+            max_edad = max(ESTU_EDAD, na.rm = TRUE))
+```
+
+Esto te dará los valores más extremos de la edad por cada departamento.
+
+
+### Cuartiles
+
+Si deseas obtener los cuartiles de la edad para cada grupo:
+
+```{r}
+tb_data %>% 
+  group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
+  summarise(q1 = quantile(ESTU_EDAD, 0.25, na.rm = TRUE),
+            mediana = quantile(ESTU_EDAD, 0.5, na.rm = TRUE),
+            q3 = quantile(ESTU_EDAD, 0.75, na.rm = TRUE))
+```
+
+Con esto, obtendrás el primer cuartil (Q1), la mediana y el tercer cuartil (Q3) para cada departamento.
+
