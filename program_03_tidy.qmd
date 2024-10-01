@@ -315,6 +315,7 @@ Los estadísticos descriptivos son fundamentales para resumir y entender las car
 A continuación se presentan las funciones en R para calcular estos estadísticos:
 
 ```{r}
+#| eval: false
 mean()     # para la media
 var()      # para la varianza
 sd()       # para la desviación estándar
@@ -322,6 +323,7 @@ median()   # para la mediana
 quantile() # para los cuartiles
 max()      # para el máximo
 min()      # para el mínimo
+
 ```
 
 Veamos cómo aplicar estos conceptos con ejemplos usando el conjunto de datos `tb_data`.
@@ -334,6 +336,7 @@ La media es una medida de tendencia central que indica el valor promedio de una 
 ```{r}
 tb_data %>% 
   summarise(promedio_edad = mean(ESTU_EDAD, na.rm = TRUE))
+
 ```
 
 - `mean(ESTU_EDAD, na.rm = TRUE)`: calcula el promedio de la variable `ESTU_EDAD`, ignorando los valores faltantes (`NA`).
@@ -346,6 +349,7 @@ La varianza mide la variabilidad o dispersión de los datos en torno a la media.
 ```{r}
 tb_data %>% 
   summarise(varianza_edad = var(ESTU_EDAD, na.rm = TRUE))
+
 ```
 
 - `var(ESTU_EDAD, na.rm = TRUE)`: calcula la varianza de la variable `ESTU_EDAD`, ignorando valores faltantes.
@@ -359,6 +363,7 @@ La desviación estándar es una medida más intuitiva de la dispersión que la v
 ```{r}
 tb_data %>% 
   summarise(desviacion_edad = sd(ESTU_EDAD, na.rm = TRUE))
+
 ```
 
 - `sd(ESTU_EDAD, na.rm = TRUE)`: calcula la desviación estándar de `ESTU_EDAD`.
@@ -371,8 +376,8 @@ La mediana es una medida robusta de tendencia central, que no se ve tan afectada
 ```{r}
 tb_data %>% 
   summarise(mediana_edad = median(ESTU_EDAD, na.rm = TRUE))
-```
 
+```
 
 ## Cuartiles
 
@@ -383,6 +388,7 @@ tb_data %>%
   summarise(q1 = quantile(ESTU_EDAD, 0.25, na.rm = TRUE),
             mediana = quantile(ESTU_EDAD, 0.5, na.rm = TRUE),
             q3 = quantile(ESTU_EDAD, 0.75, na.rm = TRUE))
+
 ```
 
 
@@ -394,6 +400,7 @@ Los valores máximo y mínimo son útiles para identificar el rango de una varia
 tb_data %>% 
   summarise(min_edad = min(ESTU_EDAD, na.rm = TRUE),
             max_edad = max(ESTU_EDAD, na.rm = TRUE))
+
 ```
 
 
@@ -414,6 +421,7 @@ Para calcular la media de una variable, agrupando los datos por otra variable (e
 tb_data %>% 
   group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
   summarise(promedio_edad = mean(ESTU_EDAD, na.rm = TRUE))
+
 ```
 
 - `group_by(ESTU_EXAM_DEPT_PRESENTACION)`: agrupa los datos por el departamento en el que el estudiante presentó el examen.
@@ -429,6 +437,7 @@ De manera similar, podemos calcular la varianza de la edad para cada grupo (depa
 tb_data %>% 
   group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
   summarise(varianza_edad = var(ESTU_EDAD, na.rm = TRUE))
+
 ```
 
 - `var(ESTU_EDAD, na.rm = TRUE)`: calcula la varianza de las edades por departamento, ignorando los valores faltantes.
@@ -443,6 +452,7 @@ Para calcular la desviación estándar agrupada:
 tb_data %>% 
   group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
   summarise(desviacion_edad = sd(ESTU_EDAD, na.rm = TRUE))
+
 ```
 
 - `sd(ESTU_EDAD, na.rm = TRUE)`: calcula la desviación estándar de las edades dentro de cada departamento.
@@ -455,6 +465,7 @@ La mediana también puede calcularse por grupo para obtener una medida de tenden
 tb_data %>% 
   group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
   summarise(mediana_edad = median(ESTU_EDAD, na.rm = TRUE))
+
 ```
 
 
@@ -465,8 +476,11 @@ Para encontrar los valores mínimo y máximo dentro de cada departamento:
 ```{r}
 tb_data %>% 
   group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
-  summarise(min_edad = min(ESTU_EDAD, na.rm = TRUE),
-            max_edad = max(ESTU_EDAD, na.rm = TRUE))
+  summarise(
+    min_edad = min(ESTU_EDAD, na.rm = TRUE),
+    max_edad = max(ESTU_EDAD, na.rm = TRUE)
+  )
+
 ```
 
 Esto te dará los valores más extremos de la edad por cada departamento.
@@ -479,10 +493,209 @@ Si deseas obtener los cuartiles de la edad para cada grupo:
 ```{r}
 tb_data %>% 
   group_by(ESTU_EXAM_DEPT_PRESENTACION) %>% 
-  summarise(q1 = quantile(ESTU_EDAD, 0.25, na.rm = TRUE),
-            mediana = quantile(ESTU_EDAD, 0.5, na.rm = TRUE),
-            q3 = quantile(ESTU_EDAD, 0.75, na.rm = TRUE))
+  summarise(
+    q1 = quantile(ESTU_EDAD, 0.25, na.rm = TRUE),
+    mediana = quantile(ESTU_EDAD, 0.5, na.rm = TRUE),
+    q3 = quantile(ESTU_EDAD, 0.75, na.rm = TRUE)
+    )
+
 ```
 
 Con esto, obtendrás el primer cuartil (Q1), la mediana y el tercer cuartil (Q3) para cada departamento.
+
+La función `across()` de **dplyr** es una herramienta poderosa que permite realizar operaciones en varias columnas al mismo tiempo dentro de las funciones `mutate()`, `summarise()` o `filter()`. 
+
+
+## ¿Cómo funciona `across()`?
+
+1. **Selección de columnas**: `across()` te permite especificar un conjunto de columnas de manera flexible utilizando helpers como `starts_with()`, `contains()`, `ends_with()`, etc., o simplemente seleccionando nombres de columnas directamente.
+   
+2. **Aplicación de funciones**: Con `across()`, puedes aplicar una función a todas las columnas seleccionadas. Por ejemplo, podrías transformar todas las columnas numéricas con una misma operación, como redondear o calcular un promedio, sin tener que repetir la operación para cada columna individualmente.
+
+### Uso básico de `across()`
+
+**Sintaxis general**:
+
+```{r}
+#| eval: false
+
+across(.cols, .fns, ...)
+
+```
+
+- `.cols`: Especifica las columnas a las que se aplicará la función. Puede ser un rango de nombres, un helper de tidyselect (como `starts_with()`), o una lista de columnas.
+- `.fns`: La función que se va a aplicar a las columnas seleccionadas. Puede ser cualquier función que tome como argumento una columna (por ejemplo, `mean()`, `sd()`, etc.).
+- `...`: Argumentos adicionales que se pasan a la función especificada.
+
+### Ejemplos con `across()`
+
+#### Aplicar una transformación a varias columnas
+
+Supongamos que queremos convertir varias columnas a mayúsculas o calcular una misma operación en múltiples columnas. Podemos hacerlo con `across()` en `summarise()`:
+
+```{r}
+tb_data %>% 
+  summarise(across(starts_with("ESTU_DISC"), sum, na.rm = TRUE))
+
+```
+
+Esto calcula la cuenta de todas las columnas que comienzan con "ESTU_DISC", ignorando los valores faltantes.
+
+#### Usar diferentes funciones en diferentes columnas
+
+Puedes aplicar diferentes funciones a diferentes columnas usando una lista de funciones:
+
+```{r}
+tb_data %>% 
+  summarise(across(c(ESTU_EDAD, INGLES_PUNT), list(promedio = mean, sd = sd), na.rm = TRUE))
+
+```
+
+Este ejemplo calcula tanto el promedio como la desviación estándar de las columnas `ESTU_EDAD` y `PUNT_GLOBAL`.
+
+#### Aplicar múltiples funciones a las mismas columnas
+
+Si deseas aplicar varias funciones a las mismas columnas, `across()` también lo permite:
+
+```{r}
+tb_data %>% 
+  summarise(across(ends_with("PUNT"), list(promedio = mean, desviacion = sd), na.rm = TRUE))
+
+```
+
+Esto aplicará `mean()` y `sd()` a todas las columnas que terminen con "PUNT", generando columnas nuevas con los nombres `promedio` y `desviacion`.
+
+Ventajas de `across()`
+
+- **Flexibilidad**: Puedes seleccionar columnas de manera dinámica.
+- **Claridad**: El código es más legible y más fácil de mantener que repetir operaciones manualmente para cada columna.
+- **Escalabilidad**: Puedes aplicar funciones a múltiples columnas con menos código y menos esfuerzo.
+
+### Casos de uso comunes
+
+- **Transformación de datos**: Cambiar el tipo de datos de varias columnas (por ejemplo, convertir varias columnas de carácter a factor).
+- **Resúmenes estadísticos**: Calcular medidas como la media, mediana, desviación estándar, etc., para múltiples columnas.
+- **Renombrar múltiples columnas**: Aplicar una función para ajustar nombres de columnas.
+  
+En resumen, `across()` es una herramienta indispensable para aplicar transformaciones y resúmenes de manera eficiente y clara cuando trabajas con múltiples columnas en `dplyr`.
+
+Las **funciones de tidyselect** son una serie de herramientas que te permiten seleccionar columnas de un dataframe de manera eficiente y flexible en `dplyr`, principalmente usadas con funciones como `select()`, `rename()`, `mutate()` y `across()`. Estas funciones están diseñadas para ser intuitivas y trabajar bien con patrones comunes en el nombre de las columnas. A continuación te explico las más comunes.
+
+### Principales funciones de `tidyselect`
+
+#### **`starts_with()`**
+
+Selecciona todas las columnas cuyos nombres comienzan con un prefijo específico.
+
+```{r}
+select(tb_data, starts_with("ECON"))
+
+```
+
+Esto selecciona todas las columnas cuyos nombres comienzan con "ECON".
+
+#### **`ends_with()`**
+
+Selecciona todas las columnas cuyos nombres terminan con un sufijo específico.
+
+```{r}
+select(tb_data, ends_with("_PUNT"))
+
+```
+
+Esto selecciona todas las columnas cuyos nombres terminan con "_score".
+
+#### **`contains()`**
+
+Selecciona todas las columnas que contienen una cadena de texto específica en su nombre.
+
+```{r}
+select(tb_data, contains("MPIO"))
+
+```
+
+Esto selecciona todas las columnas que contienen "MPIO" en su nombre.
+
+#### **`everything()`**
+
+Selecciona todas las columnas de un dataframe. Es útil cuando quieres reordenar columnas colocando algunas al principio y luego mantener el resto.
+
+```{r}
+select(tb_data, ESTU_EDAD, everything())
+
+```
+
+Esto coloca la columna `ESTU_EDAD` al principio, y el resto de las columnas permanecen en el orden original.
+
+#### **`one_of()`**
+
+Selecciona columnas por su nombre a partir de un vector, omitiendo las que no existen.
+
+```{r}
+columnas_seleccionadas <- c("FILOSOFIA_PUNT", "ESTU_EDAD")
+select(tb_data, one_of(columnas_seleccionadas))
+
+```
+
+Esto selecciona solo las columnas que estén presentes en el dataframe a partir del vector `columnas_seleccionadas`.
+
+#### **`all_of()`**
+
+Es similar a `one_of()`, pero arroja un error si alguna columna no existe en el dataframe. Es útil para asegurar que todas las columnas en el vector están presentes.
+
+```{r}
+columnas_seleccionadas <- c("FILOSOFIA_PUNT", "ESTU_EDAD")
+select(tb_data, all_of(columnas_seleccionadas))
+
+```
+
+Si alguna columna en `columnas_seleccionadas` no existe, el código fallará.
+
+#### **`any_of()`**
+
+Selecciona las columnas en un vector que estén disponibles, pero ignora las que no existan, sin generar error.
+
+```{r}
+
+select(tb_data, any_of(c("PUNT_GLOBAL", "INEXISTENTE")))
+
+```
+
+Esto selecciona `PUNT_GLOBAL` pero ignora la columna `INEXISTENTE` si no está presente.
+
+#### **`last_col()`**
+
+Selecciona la última columna del dataframe. Es útil cuando deseas trabajar con la última columna independientemente de su nombre.
+
+```{r}
+select(tb_data, last_col())
+
+```
+
+Esto selecciona la última columna en el dataframe `tb_data`.
+
+### Ejemplos combinando funciones `tidyselect`
+
+Puedes usar múltiples funciones de `tidyselect` en una sola llamada a `select()` para seleccionar columnas con mayor precisión. Por ejemplo:
+
+```{r}
+tb_data %>% 
+  select(ends_with("PUNT"), starts_with("ECON"), ESTU_EDAD)
+  
+```
+
+Esto selecciona todas las columnas que terminan con "PUNT", todas las columnas que comienzan con "ECON" y la columna `ESTU_EDAD`.
+
+### Uso de `tidyselect` con `across()`
+
+Además de `select()`, estas funciones también son útiles en `across()` cuando aplicas transformaciones a múltiples columnas:
+
+```{r}
+tb_data %>%
+  mutate(across(ends_with("PUNT"), round, 0))
+  
+```
+
+Esto redondea todas las columnas que comienzan con "PUNT" a un decimal.
+
 

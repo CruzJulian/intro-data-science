@@ -267,6 +267,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#obtener-una-muestra-aleatoria-usando-slice_sample" id="toc-obtener-una-muestra-aleatoria-usando-slice_sample" class="nav-link" data-scroll-target="#obtener-una-muestra-aleatoria-usando-slice_sample">Obtener una muestra aleatoria usando <code>slice_sample()</code></a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#descriptivos" id="toc-descriptivos" class="nav-link" data-scroll-target="#descriptivos">Descriptivos</a>
+  <ul class="collapse">
+  <li><a href="#promedio-media" id="toc-promedio-media" class="nav-link" data-scroll-target="#promedio-media">Promedio (Media)</a></li>
+  <li><a href="#varianza" id="toc-varianza" class="nav-link" data-scroll-target="#varianza">Varianza</a></li>
+  <li><a href="#desviación-estándar" id="toc-desviación-estándar" class="nav-link" data-scroll-target="#desviación-estándar">Desviación estándar</a></li>
+  <li><a href="#mediana" id="toc-mediana" class="nav-link" data-scroll-target="#mediana">Mediana</a></li>
+  <li><a href="#cuartiles" id="toc-cuartiles" class="nav-link" data-scroll-target="#cuartiles">Cuartiles</a></li>
+  <li><a href="#máximo-y-mínimo" id="toc-máximo-y-mínimo" class="nav-link" data-scroll-target="#máximo-y-mínimo">Máximo y mínimo</a>
+  <ul class="collapse">
+  <li><a href="#nota" id="toc-nota" class="nav-link" data-scroll-target="#nota">Nota:</a></li>
+  </ul></li>
+  <li><a href="#tablas-agrupadas" id="toc-tablas-agrupadas" class="nav-link" data-scroll-target="#tablas-agrupadas">Tablas agrupadas</a>
+  <ul class="collapse">
+  <li><a href="#promedio-media-1" id="toc-promedio-media-1" class="nav-link" data-scroll-target="#promedio-media-1">Promedio (Media)</a></li>
+  <li><a href="#varianza-1" id="toc-varianza-1" class="nav-link" data-scroll-target="#varianza-1">Varianza</a></li>
+  <li><a href="#desviación-estándar-1" id="toc-desviación-estándar-1" class="nav-link" data-scroll-target="#desviación-estándar-1">Desviación estándar</a></li>
+  <li><a href="#mediana-1" id="toc-mediana-1" class="nav-link" data-scroll-target="#mediana-1">Mediana</a></li>
+  <li><a href="#mínimo-y-máximo" id="toc-mínimo-y-máximo" class="nav-link" data-scroll-target="#mínimo-y-máximo">Mínimo y máximo</a></li>
+  <li><a href="#cuartiles-1" id="toc-cuartiles-1" class="nav-link" data-scroll-target="#cuartiles-1">Cuartiles</a></li>
+  </ul></li>
+  <li><a href="#cómo-funciona-across" id="toc-cómo-funciona-across" class="nav-link" data-scroll-target="#cómo-funciona-across">¿Cómo funciona <code>across()</code>?</a>
+  <ul class="collapse">
+  <li><a href="#uso-básico-de-across" id="toc-uso-básico-de-across" class="nav-link" data-scroll-target="#uso-básico-de-across">Uso básico de <code>across()</code></a></li>
+  <li><a href="#ejemplos-con-across" id="toc-ejemplos-con-across" class="nav-link" data-scroll-target="#ejemplos-con-across">Ejemplos con <code>across()</code></a></li>
+  <li><a href="#casos-de-uso-comunes" id="toc-casos-de-uso-comunes" class="nav-link" data-scroll-target="#casos-de-uso-comunes">Casos de uso comunes</a></li>
+  <li><a href="#principales-funciones-de-tidyselect" id="toc-principales-funciones-de-tidyselect" class="nav-link" data-scroll-target="#principales-funciones-de-tidyselect">Principales funciones de <code>tidyselect</code></a></li>
+  <li><a href="#ejemplos-combinando-funciones-tidyselect" id="toc-ejemplos-combinando-funciones-tidyselect" class="nav-link" data-scroll-target="#ejemplos-combinando-funciones-tidyselect">Ejemplos combinando funciones <code>tidyselect</code></a></li>
+  <li><a href="#uso-de-tidyselect-con-across" id="toc-uso-de-tidyselect-con-across" class="nav-link" data-scroll-target="#uso-de-tidyselect-con-across">Uso de <code>tidyselect</code> con <code>across()</code></a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -532,6 +562,328 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>prop = 0.1</code>: selecciona el 10% de las filas de manera aleatoria.</li>
 <li>Alternativamente, puedes usar <code>n = 100</code> para obtener un número específico de filas aleatorias.</li>
 </ul>
+</section>
+</section>
+</section>
+<section id="descriptivos" class="level1">
+<h1>Descriptivos</h1>
+<p>Los estadísticos descriptivos son fundamentales para resumir y entender las características de los datos. Proveen información crucial sobre la distribución y la variabilidad de las variables numéricas. Algunos de los estadísticos más comunes son:</p>
+<ul>
+<li><strong>Media</strong>: es el promedio de los valores de una variable.</li>
+<li><strong>Varianza</strong>: mide la dispersión de los datos en torno a la media.</li>
+<li><strong>Desviación estándar</strong>: es la raíz cuadrada de la varianza y expresa la dispersión en las mismas unidades que los datos.</li>
+<li><strong>Mediana</strong>: es el valor que separa la mitad superior de la mitad inferior de un conjunto de datos ordenados.</li>
+<li><strong>Cuartiles</strong>: dividen los datos en cuatro partes iguales.</li>
+<li><strong>Máximo y mínimo</strong>: el valor más alto y más bajo de una variable.</li>
+</ul>
+<p>A continuación se presentan las funciones en R para calcular estos estadísticos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>()     <span class="co"># para la media</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>()      <span class="co"># para la varianza</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>()       <span class="co"># para la desviación estándar</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>()   <span class="co"># para la mediana</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>() <span class="co"># para los cuartiles</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>()      <span class="co"># para el máximo</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>()      <span class="co"># para el mínimo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Veamos cómo aplicar estos conceptos con ejemplos usando el conjunto de datos <code>tb_data</code>.</p>
+<section id="promedio-media" class="level2">
+<h2 class="anchored" data-anchor-id="promedio-media">Promedio (Media)</h2>
+<p>La media es una medida de tendencia central que indica el valor promedio de una variable. Se calcula sumando todos los valores y dividiéndolos entre el número de observaciones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">promedio_edad =</span> <span class="fu">mean</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>mean(ESTU_EDAD, na.rm = TRUE)</code>: calcula el promedio de la variable <code>ESTU_EDAD</code>, ignorando los valores faltantes (<code>NA</code>).</li>
+<li>El resultado es un solo valor que representa la edad promedio de los estudiantes.</li>
+</ul>
+</section>
+<section id="varianza" class="level2">
+<h2 class="anchored" data-anchor-id="varianza">Varianza</h2>
+<p>La varianza mide la variabilidad o dispersión de los datos en torno a la media. Si la varianza es alta, significa que los valores están muy dispersos; si es baja, los valores están más cerca de la media.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">varianza_edad =</span> <span class="fu">var</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>var(ESTU_EDAD, na.rm = TRUE)</code>: calcula la varianza de la variable <code>ESTU_EDAD</code>, ignorando valores faltantes.</li>
+<li>La varianza está en las unidades al cuadrado de la variable original.</li>
+</ul>
+</section>
+<section id="desviación-estándar" class="level2">
+<h2 class="anchored" data-anchor-id="desviación-estándar">Desviación estándar</h2>
+<p>La desviación estándar es una medida más intuitiva de la dispersión que la varianza, ya que se expresa en las mismas unidades que los datos originales.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">desviacion_edad =</span> <span class="fu">sd</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>sd(ESTU_EDAD, na.rm = TRUE)</code>: calcula la desviación estándar de <code>ESTU_EDAD</code>.</li>
+<li>Este valor representa cuánto, en promedio, se desvían las edades de la media.</li>
+</ul>
+</section>
+<section id="mediana" class="level2">
+<h2 class="anchored" data-anchor-id="mediana">Mediana</h2>
+<p>La mediana es una medida robusta de tendencia central, que no se ve tan afectada por valores atípicos (outliers). Representa el valor que está en el centro de un conjunto de datos ordenados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mediana_edad =</span> <span class="fu">median</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cuartiles" class="level2">
+<h2 class="anchored" data-anchor-id="cuartiles">Cuartiles</h2>
+<p>Los cuartiles dividen los datos en cuatro partes iguales. El primer cuartil (Q1) es el valor por debajo del cual se encuentra el 25% de los datos, y el tercer cuartil (Q3) es el valor por debajo del cual está el 75%.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">q1 =</span> <span class="fu">quantile</span>(ESTU_EDAD, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">quantile</span>(ESTU_EDAD, <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">q3 =</span> <span class="fu">quantile</span>(ESTU_EDAD, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="máximo-y-mínimo" class="level2">
+<h2 class="anchored" data-anchor-id="máximo-y-mínimo">Máximo y mínimo</h2>
+<p>Los valores máximo y mínimo son útiles para identificar el rango de una variable. Nos indican cuáles son los valores extremos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min_edad =</span> <span class="fu">min</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_edad =</span> <span class="fu">max</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="nota" class="level3">
+<h3 class="anchored" data-anchor-id="nota">Nota:</h3>
+<p>En cada una de estas funciones hemos agregado el argumento <code>na.rm = TRUE</code> para ignorar los valores faltantes. Si tienes valores <code>NA</code> en los datos y no los manejas, algunas funciones como <code>mean()</code> o <code>sd()</code> no devolverán resultados.</p>
+</section>
+</section>
+<section id="tablas-agrupadas" class="level2">
+<h2 class="anchored" data-anchor-id="tablas-agrupadas">Tablas agrupadas</h2>
+<p>Las tablas agrupadas permiten calcular estadísticas descriptivas para diferentes grupos dentro de los datos. Esto es útil cuando deseas analizar patrones o tendencias dentro de subgrupos específicos, como diferentes regiones, categorías o niveles.</p>
+<section id="promedio-media-1" class="level3">
+<h3 class="anchored" data-anchor-id="promedio-media-1">Promedio (Media)</h3>
+<p>Para calcular la media de una variable, agrupando los datos por otra variable (en este caso, por el departamento donde el estudiante presentó el examen):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ESTU_EXAM_DEPT_PRESENTACION) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">promedio_edad =</span> <span class="fu">mean</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>group_by(ESTU_EXAM_DEPT_PRESENTACION)</code>: agrupa los datos por el departamento en el que el estudiante presentó el examen.</li>
+<li><code>summarise()</code>: calcula el promedio de la edad (<code>ESTU_EDAD</code>) para cada departamento, ignorando los valores faltantes.</li>
+</ul>
+<p>Este código devolverá una tabla donde cada fila corresponde a un departamento y la columna <code>promedio_edad</code> muestra la edad promedio de los estudiantes en ese departamento.</p>
+</section>
+<section id="varianza-1" class="level3">
+<h3 class="anchored" data-anchor-id="varianza-1">Varianza</h3>
+<p>De manera similar, podemos calcular la varianza de la edad para cada grupo (departamento):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ESTU_EXAM_DEPT_PRESENTACION) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">varianza_edad =</span> <span class="fu">var</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>var(ESTU_EDAD, na.rm = TRUE)</code>: calcula la varianza de las edades por departamento, ignorando los valores faltantes.</li>
+</ul>
+<p>Esto te permitirá ver qué tan dispersas son las edades de los estudiantes dentro de cada departamento.</p>
+</section>
+<section id="desviación-estándar-1" class="level3">
+<h3 class="anchored" data-anchor-id="desviación-estándar-1">Desviación estándar</h3>
+<p>Para calcular la desviación estándar agrupada:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ESTU_EXAM_DEPT_PRESENTACION) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">desviacion_edad =</span> <span class="fu">sd</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>sd(ESTU_EDAD, na.rm = TRUE)</code>: calcula la desviación estándar de las edades dentro de cada departamento.</li>
+</ul>
+</section>
+<section id="mediana-1" class="level3">
+<h3 class="anchored" data-anchor-id="mediana-1">Mediana</h3>
+<p>La mediana también puede calcularse por grupo para obtener una medida de tendencia central menos sensible a valores atípicos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ESTU_EXAM_DEPT_PRESENTACION) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mediana_edad =</span> <span class="fu">median</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mínimo-y-máximo" class="level3">
+<h3 class="anchored" data-anchor-id="mínimo-y-máximo">Mínimo y máximo</h3>
+<p>Para encontrar los valores mínimo y máximo dentro de cada departamento:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ESTU_EXAM_DEPT_PRESENTACION) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_edad =</span> <span class="fu">min</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_edad =</span> <span class="fu">max</span>(ESTU_EDAD, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto te dará los valores más extremos de la edad por cada departamento.</p>
+</section>
+<section id="cuartiles-1" class="level3">
+<h3 class="anchored" data-anchor-id="cuartiles-1">Cuartiles</h3>
+<p>Si deseas obtener los cuartiles de la edad para cada grupo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ESTU_EXAM_DEPT_PRESENTACION) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">q1 =</span> <span class="fu">quantile</span>(ESTU_EDAD, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">quantile</span>(ESTU_EDAD, <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">q3 =</span> <span class="fu">quantile</span>(ESTU_EDAD, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Con esto, obtendrás el primer cuartil (Q1), la mediana y el tercer cuartil (Q3) para cada departamento.</p>
+<p>La función <code>across()</code> de <strong>dplyr</strong> es una herramienta poderosa que permite realizar operaciones en varias columnas al mismo tiempo dentro de las funciones <code>mutate()</code>, <code>summarise()</code> o <code>filter()</code>.</p>
+</section>
+</section>
+<section id="cómo-funciona-across" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-funciona-across">¿Cómo funciona <code>across()</code>?</h2>
+<ol type="1">
+<li><p><strong>Selección de columnas</strong>: <code>across()</code> te permite especificar un conjunto de columnas de manera flexible utilizando helpers como <code>starts_with()</code>, <code>contains()</code>, <code>ends_with()</code>, etc., o simplemente seleccionando nombres de columnas directamente.</p></li>
+<li><p><strong>Aplicación de funciones</strong>: Con <code>across()</code>, puedes aplicar una función a todas las columnas seleccionadas. Por ejemplo, podrías transformar todas las columnas numéricas con una misma operación, como redondear o calcular un promedio, sin tener que repetir la operación para cada columna individualmente.</p></li>
+</ol>
+<section id="uso-básico-de-across" class="level3">
+<h3 class="anchored" data-anchor-id="uso-básico-de-across">Uso básico de <code>across()</code></h3>
+<p><strong>Sintaxis general</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">across</span>(.cols, .fns, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>.cols</code>: Especifica las columnas a las que se aplicará la función. Puede ser un rango de nombres, un helper de tidyselect (como <code>starts_with()</code>), o una lista de columnas.</li>
+<li><code>.fns</code>: La función que se va a aplicar a las columnas seleccionadas. Puede ser cualquier función que tome como argumento una columna (por ejemplo, <code>mean()</code>, <code>sd()</code>, etc.).</li>
+<li><code>...</code>: Argumentos adicionales que se pasan a la función especificada.</li>
+</ul>
+</section>
+<section id="ejemplos-con-across" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplos-con-across">Ejemplos con <code>across()</code></h3>
+<section id="aplicar-una-transformación-a-varias-columnas" class="level4">
+<h4 class="anchored" data-anchor-id="aplicar-una-transformación-a-varias-columnas">Aplicar una transformación a varias columnas</h4>
+<p>Supongamos que queremos convertir varias columnas a mayúsculas o calcular una misma operación en múltiples columnas. Podemos hacerlo con <code>across()</code> en <code>summarise()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"ESTU_DISC"</span>), sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto calcula la cuenta de todas las columnas que comienzan con “ESTU_DISC”, ignorando los valores faltantes.</p>
+</section>
+<section id="usar-diferentes-funciones-en-diferentes-columnas" class="level4">
+<h4 class="anchored" data-anchor-id="usar-diferentes-funciones-en-diferentes-columnas">Usar diferentes funciones en diferentes columnas</h4>
+<p>Puedes aplicar diferentes funciones a diferentes columnas usando una lista de funciones:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(ESTU_EDAD, INGLES_PUNT), <span class="fu">list</span>(<span class="at">promedio =</span> mean, <span class="at">sd =</span> sd), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este ejemplo calcula tanto el promedio como la desviación estándar de las columnas <code>ESTU_EDAD</code> y <code>PUNT_GLOBAL</code>.</p>
+</section>
+<section id="aplicar-múltiples-funciones-a-las-mismas-columnas" class="level4">
+<h4 class="anchored" data-anchor-id="aplicar-múltiples-funciones-a-las-mismas-columnas">Aplicar múltiples funciones a las mismas columnas</h4>
+<p>Si deseas aplicar varias funciones a las mismas columnas, <code>across()</code> también lo permite:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"PUNT"</span>), <span class="fu">list</span>(<span class="at">promedio =</span> mean, <span class="at">desviacion =</span> sd), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto aplicará <code>mean()</code> y <code>sd()</code> a todas las columnas que terminen con “PUNT”, generando columnas nuevas con los nombres <code>promedio</code> y <code>desviacion</code>.</p>
+<p>Ventajas de <code>across()</code></p>
+<ul>
+<li><strong>Flexibilidad</strong>: Puedes seleccionar columnas de manera dinámica.</li>
+<li><strong>Claridad</strong>: El código es más legible y más fácil de mantener que repetir operaciones manualmente para cada columna.</li>
+<li><strong>Escalabilidad</strong>: Puedes aplicar funciones a múltiples columnas con menos código y menos esfuerzo.</li>
+</ul>
+</section>
+</section>
+<section id="casos-de-uso-comunes" class="level3">
+<h3 class="anchored" data-anchor-id="casos-de-uso-comunes">Casos de uso comunes</h3>
+<ul>
+<li><strong>Transformación de datos</strong>: Cambiar el tipo de datos de varias columnas (por ejemplo, convertir varias columnas de carácter a factor).</li>
+<li><strong>Resúmenes estadísticos</strong>: Calcular medidas como la media, mediana, desviación estándar, etc., para múltiples columnas.</li>
+<li><strong>Renombrar múltiples columnas</strong>: Aplicar una función para ajustar nombres de columnas.</li>
+</ul>
+<p>En resumen, <code>across()</code> es una herramienta indispensable para aplicar transformaciones y resúmenes de manera eficiente y clara cuando trabajas con múltiples columnas en <code>dplyr</code>.</p>
+<p>Las <strong>funciones de tidyselect</strong> son una serie de herramientas que te permiten seleccionar columnas de un dataframe de manera eficiente y flexible en <code>dplyr</code>, principalmente usadas con funciones como <code>select()</code>, <code>rename()</code>, <code>mutate()</code> y <code>across()</code>. Estas funciones están diseñadas para ser intuitivas y trabajar bien con patrones comunes en el nombre de las columnas. A continuación te explico las más comunes.</p>
+</section>
+<section id="principales-funciones-de-tidyselect" class="level3">
+<h3 class="anchored" data-anchor-id="principales-funciones-de-tidyselect">Principales funciones de <code>tidyselect</code></h3>
+<section id="starts_with" class="level4">
+<h4 class="anchored" data-anchor-id="starts_with"><strong><code>starts_with()</code></strong></h4>
+<p>Selecciona todas las columnas cuyos nombres comienzan con un prefijo específico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(tb_data, <span class="fu">starts_with</span>(<span class="st">"ECON"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto selecciona todas las columnas cuyos nombres comienzan con “ECON”.</p>
+</section>
+<section id="ends_with" class="level4">
+<h4 class="anchored" data-anchor-id="ends_with"><strong><code>ends_with()</code></strong></h4>
+<p>Selecciona todas las columnas cuyos nombres terminan con un sufijo específico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(tb_data, <span class="fu">ends_with</span>(<span class="st">"_PUNT"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto selecciona todas las columnas cuyos nombres terminan con “_score”.</p>
+</section>
+<section id="contains" class="level4">
+<h4 class="anchored" data-anchor-id="contains"><strong><code>contains()</code></strong></h4>
+<p>Selecciona todas las columnas que contienen una cadena de texto específica en su nombre.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(tb_data, <span class="fu">contains</span>(<span class="st">"MPIO"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto selecciona todas las columnas que contienen “MPIO” en su nombre.</p>
+</section>
+<section id="everything" class="level4">
+<h4 class="anchored" data-anchor-id="everything"><strong><code>everything()</code></strong></h4>
+<p>Selecciona todas las columnas de un dataframe. Es útil cuando quieres reordenar columnas colocando algunas al principio y luego mantener el resto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(tb_data, ESTU_EDAD, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto coloca la columna <code>ESTU_EDAD</code> al principio, y el resto de las columnas permanecen en el orden original.</p>
+</section>
+<section id="one_of" class="level4">
+<h4 class="anchored" data-anchor-id="one_of"><strong><code>one_of()</code></strong></h4>
+<p>Selecciona columnas por su nombre a partir de un vector, omitiendo las que no existen.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>columnas_seleccionadas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"FILOSOFIA_PUNT"</span>, <span class="st">"ESTU_EDAD"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(tb_data, <span class="fu">one_of</span>(columnas_seleccionadas))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto selecciona solo las columnas que estén presentes en el dataframe a partir del vector <code>columnas_seleccionadas</code>.</p>
+</section>
+<section id="all_of" class="level4">
+<h4 class="anchored" data-anchor-id="all_of"><strong><code>all_of()</code></strong></h4>
+<p>Es similar a <code>one_of()</code>, pero arroja un error si alguna columna no existe en el dataframe. Es útil para asegurar que todas las columnas en el vector están presentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>columnas_seleccionadas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"FILOSOFIA_PUNT"</span>, <span class="st">"ESTU_EDAD"</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(tb_data, <span class="fu">all_of</span>(columnas_seleccionadas))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Si alguna columna en <code>columnas_seleccionadas</code> no existe, el código fallará.</p>
+</section>
+<section id="any_of" class="level4">
+<h4 class="anchored" data-anchor-id="any_of"><strong><code>any_of()</code></strong></h4>
+<p>Selecciona las columnas en un vector que estén disponibles, pero ignora las que no existan, sin generar error.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(tb_data, <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">"PUNT_GLOBAL"</span>, <span class="st">"INEXISTENTE"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto selecciona <code>PUNT_GLOBAL</code> pero ignora la columna <code>INEXISTENTE</code> si no está presente.</p>
+</section>
+<section id="last_col" class="level4">
+<h4 class="anchored" data-anchor-id="last_col"><strong><code>last_col()</code></strong></h4>
+<p>Selecciona la última columna del dataframe. Es útil cuando deseas trabajar con la última columna independientemente de su nombre.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(tb_data, <span class="fu">last_col</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto selecciona la última columna en el dataframe <code>tb_data</code>.</p>
+</section>
+</section>
+<section id="ejemplos-combinando-funciones-tidyselect" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplos-combinando-funciones-tidyselect">Ejemplos combinando funciones <code>tidyselect</code></h3>
+<p>Puedes usar múltiples funciones de <code>tidyselect</code> en una sola llamada a <code>select()</code> para seleccionar columnas con mayor precisión. Por ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"PUNT"</span>), <span class="fu">starts_with</span>(<span class="st">"ECON"</span>), ESTU_EDAD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto selecciona todas las columnas que terminan con “PUNT”, todas las columnas que comienzan con “ECON” y la columna <code>ESTU_EDAD</code>.</p>
+</section>
+<section id="uso-de-tidyselect-con-across" class="level3">
+<h3 class="anchored" data-anchor-id="uso-de-tidyselect-con-across">Uso de <code>tidyselect</code> con <code>across()</code></h3>
+<p>Además de <code>select()</code>, estas funciones también son útiles en <code>across()</code> cuando aplicas transformaciones a múltiples columnas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>tb_data <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"PUNT"</span>), round, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto redondea todas las columnas que comienzan con “PUNT” a un decimal.</p>
 
 
 </section>
